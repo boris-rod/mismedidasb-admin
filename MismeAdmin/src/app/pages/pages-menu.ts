@@ -9,7 +9,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Usuarios',
-    icon: 'home-outline',
+    icon: 'people-outline',
     link: '/pages/users'
   },
   // {
