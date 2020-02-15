@@ -1,6 +1,11 @@
 import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
 import { NbLoginComponent, NbAuthService, NB_AUTH_OPTIONS, NbAuthResult } from '@nebular/auth';
 import { Router } from '@angular/router';
+import { AuthenticationService, LoginContext } from '../../core-mismes/authentication/authentication.service';
+import { finalize } from 'rxjs/operators';
+import { Logger } from '../../core-mismes';
+
+const log = new Logger('Login');
 
 @Component({
   selector: 'login',
@@ -22,7 +27,7 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
   constructor(protected service: NbAuthService,
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     protected cd: ChangeDetectorRef,
-    protected router: Router) {
+    protected router: Router, private authenticationService: AuthenticationService) {
 
     super(service, options, cd, router);
 
@@ -35,27 +40,52 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
 
   ngOnInit() { }
   login(): void {
+
     this.errors = [];
     this.messages = [];
     this.submitted = true;
 
-    this.service.authenticate(this.strategy, this.user).subscribe((result: NbAuthResult) => {
-      this.submitted = false;
+    const loginContext: LoginContext = {
+      password: this.user.password,
+      username: this.user.email,
+      remember: this.user.rememberMe
+    };
+    this.authenticationService.login(loginContext)
+      .pipe(
+        finalize(() => {
+          this.submitted = false;
+        })
+      )
+      .subscribe(
+        credentials => {
+          log.debug(`${credentials} successfully logged in`);
+          this.router.navigate(['/'], { replaceUrl: true });
+        },
+        error => {
+          log.debug(`Login error: ${error}`);
+        }
+      );
 
-      if (result.isSuccess()) {
-        this.messages = result.getMessages();
-      } else {
-        this.errors = result.getErrors();
-      }
 
-      const redirect = result.getRedirect();
-      if (redirect) {
-        setTimeout(() => {
-          return this.router.navigateByUrl(redirect);
-        }, this.redirectDelay);
-      }
-      this.cd.detectChanges();
-    });
+
+
+    // this.service.authenticate(this.strategy, this.user).subscribe((result: NbAuthResult) => {
+    //   this.submitted = false;
+
+    //   if (result.isSuccess()) {
+    //     this.messages = result.getMessages();
+    //   } else {
+    //     this.errors = result.getErrors();
+    //   }
+
+    //   const redirect = result.getRedirect();
+    //   if (redirect) {
+    //     setTimeout(() => {
+    //       return this.router.navigateByUrl(redirect);
+    //     }, this.redirectDelay);
+    //   }
+    //   this.cd.detectChanges();
+    // });
   }
 
 

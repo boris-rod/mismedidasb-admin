@@ -6,11 +6,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { PollsComponent } from './polls/polls.component';
 import { DishesComponent } from './dishes/dishes.component';
+import { AuthenticationGuard } from '../core-mismes';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
-  // canActivate: [AuthenticationGuard],
+  canActivate: [AuthenticationGuard],
   children: [
     {
       path: 'dashboard',

@@ -1,9 +1,12 @@
 export interface User {
-  first_name: string;
-  last_name: string;
+  id: number;
+  fullName: string;
   email: string;
-  public_id: string;
-  admin: boolean;
-  default_user_broker_id: number;
-  has_onboard: boolean;
+  phone: string;
+  statusId: number;
+  status: string;
+  avatar: string;
+  avatarMimeType: string;
+  role: string;
+  roleId: number;
 }
