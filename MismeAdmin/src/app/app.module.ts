@@ -11,6 +11,7 @@ import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CoreMismesModule } from './core-mismes/core-mismes.module';
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -43,7 +44,8 @@ import {
     }),
 
 
-    CoreModule.forRoot()
+    CoreModule.forRoot(),
+    CoreMismesModule
   ],
   bootstrap: [AppComponent],
 })
