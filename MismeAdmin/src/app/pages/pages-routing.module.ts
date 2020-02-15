@@ -10,6 +10,7 @@ import { DishesComponent } from './dishes/dishes.component';
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
+  // canActivate: [AuthenticationGuard],
   children: [
     {
       path: 'dashboard',
