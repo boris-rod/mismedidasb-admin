@@ -12,6 +12,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'people-outline',
     link: '/pages/users'
   },
+  {
+    title: 'Cuestionarios',
+    icon: 'people-outline',
+    link: '/pages/polls'
+  },
+  {
+    title: 'Platos',
+    icon: 'people-outline',
+    link: '/pages/dishes'
+  },
   // {
   //   title: 'FEATURES',
   //   group: true,

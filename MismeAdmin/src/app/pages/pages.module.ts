@@ -8,6 +8,8 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { UsersComponent } from './users/users.component';
 import { TableComponent } from './users/table/table.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { PollsComponent } from './polls/polls.component';
+import { DishesComponent } from './dishes/dishes.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     PagesComponent,
     UsersComponent,
     TableComponent,
+    PollsComponent,
+    DishesComponent,
   ],
 })
 export class PagesModule {
