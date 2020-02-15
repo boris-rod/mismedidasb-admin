@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService, NbMenuItem } from '@nebular/theme';
 
 import { UserData } from '../../../@core/data/users';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { MenuItemEnum } from '../../../core-mismes/enums/menu-item.enum';
+import { AuthenticationService } from '../../../core-mismes/authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -37,13 +40,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu: NbMenuItem[] = [{ title: 'Profile' }, { title: 'Log out', data: { type: MenuItemEnum.LOGOUT } }];
 
   constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private userService: UserData,
-              private breakpointService: NbMediaBreakpointsService) {
+    private menuService: NbMenuService,
+    private themeService: NbThemeService,
+    private userService: UserData,
+    private breakpointService: NbMediaBreakpointsService,
+    private authService: AuthenticationService,
+    private router: Router) {
+
+    menuService.onItemClick().subscribe(m => {
+      switch (m.item.data.type) {
+        case MenuItemEnum.LOGOUT:
+          this.authService.logout().subscribe(
+            () => this.router.navigate(['/auth/login'], { replaceUrl: true })
+          );
+          break;
+
+        default:
+          break;
+      }
+    });
   }
 
   ngOnInit() {
