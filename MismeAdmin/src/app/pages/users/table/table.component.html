@@ -4,7 +4,19 @@
   </nb-card-header>
 
   <nb-card-body>
-    <ngx-datatable [rows]="rows" [columns]="columns">
+    <ngx-datatable class="material" [headerHeight]="40" [footerHeight]="40" [rows]="users"
+      [loadingIndicator]="loadingIndicator" [columnMode]="ColumnMode" [externalPaging]="true" [count]="total"
+      [offset]="page" [limit]="perPage" (page)="setPage($event)">
+      <ngx-datatable-column [sortable]="false">
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="true" prop="fullName" name="Name">
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="true" prop="email" name="Correo">
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="true" prop="phone" name="Teléfono">
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="true" prop="status" name="Estado">
+      </ngx-datatable-column>
     </ngx-datatable>
   </nb-card-body>
 </nb-card>

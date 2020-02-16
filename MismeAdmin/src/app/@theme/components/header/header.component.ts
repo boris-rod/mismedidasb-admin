@@ -51,15 +51,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router) {
 
     menuService.onItemClick().subscribe(m => {
-      switch (m.item.data.type) {
-        case MenuItemEnum.LOGOUT:
-          this.authService.logout().subscribe(
-            () => this.router.navigate(['/auth/login'], { replaceUrl: true })
-          );
-          break;
+      if (m.item.data) {
+        switch (m.item.data.type) {
+          case MenuItemEnum.LOGOUT:
+            this.authService.logout().subscribe(
+              () => this.router.navigate(['/auth/login'], { replaceUrl: true })
+            );
+            break;
 
-        default:
-          break;
+          default:
+            break;
+        }
       }
     });
   }

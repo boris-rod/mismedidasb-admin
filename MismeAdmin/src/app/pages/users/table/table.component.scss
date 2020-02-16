@@ -1,0 +1,26 @@
+// ::ng-deep .datatable-footer-inner{
+//     background-color: #3366ff;
+// }
+
+::ng-deep .ngx-datatable.material{
+    .datatable-body {
+        .datatable-body-row {
+            .datatable-body-cell {
+                padding-top: 0.25rem;
+            }
+             &:hover {
+                background-color: #598bff;
+            }
+        }
+    }
+}
+
+// ::ng-deep .ngx-datatable{ 
+//     .datatable-header{
+//         .datatable-header-cell.sortable{
+//             .datatable-header-cell-wrapper{
+//                 font-weight: bold;
+//             }
+//         }
+//     }
+// }

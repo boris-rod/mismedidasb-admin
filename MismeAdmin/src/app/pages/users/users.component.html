@@ -1,6 +1,7 @@
 <nb-layout>
-  <nb-layout-column style="border: 1px solid yellow;">
-    <app-table></app-table>
+  <nb-layout-column>
+    <app-table [users]="results" [isLoading]="isLoading" [page]="page" [perPage]="perPage" [total]="total"
+      (paged)="onPaged($event)"></app-table>
   </nb-layout-column>
 
 </nb-layout>
