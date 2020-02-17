@@ -1,7 +1,9 @@
 <nb-layout>
   <nb-layout-column>
     <app-table [users]="results" [isLoading]="isLoading" [page]="page" [perPage]="perPage" [total]="total"
-      (paged)="onPaged($event)" (filtered)="onFiltered($event)" (sorted)="onSorted($event)"></app-table>
+      [showReset]="resetIsNeeded" (paged)="onPaged($event)" (filtered)="onFiltered($event)" (sorted)="onSorted($event)"
+      (reseted)="onReseted($event)">
+    </app-table>
   </nb-layout-column>
 
 </nb-layout>

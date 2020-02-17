@@ -3,6 +3,7 @@ import { UserService } from './users.service';
 import { User } from '../../core-mismes/models/user';
 import { Logger } from '../../core-mismes';
 import { finalize } from 'rxjs/operators';
+import { NbSearchService } from '@nebular/theme';
 
 const log = new Logger('Users');
 @Component({
@@ -21,12 +22,18 @@ export class UsersComponent implements OnInit {
 
 
   results: User[];
+  resetIsNeeded: boolean = false;
 
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private searchService: NbSearchService) { }
 
   ngOnInit() {
     this.loadUsers();
+    this.searchService.onSearchSubmit().subscribe(s => {
+      this.searchTerm = s.term;
+      this.resetIsNeeded = true;
+      this.loadUsers();
+    });
   }
 
   loadUsers() {
@@ -56,5 +63,15 @@ export class UsersComponent implements OnInit {
   onSorted(sort: string) {
     this.sort = sort;
     this.loadUsers();
+  }
+  onReseted(reset: boolean) {
+    if (reset) {
+      this.sort = '';
+      this.searchTerm = '';
+      this.statusFilter = -1;
+      this.page = 1;
+      this.resetIsNeeded = false;
+      this.loadUsers();
+    }
   }
 }

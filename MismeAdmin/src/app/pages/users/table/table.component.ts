@@ -14,11 +14,13 @@ export class TableComponent implements OnInit {
   @Input() page: number;
   @Input() perPage: number;
   @Input() total: number;
+  @Input() showReset: boolean;
 
   @Output() paged = new EventEmitter<number>()
   @Output() filtered = new EventEmitter<number>()
   @Output() sorted = new EventEmitter<string>()
-  currentFilerSelection: number = -1;
+  @Output() reseted = new EventEmitter<boolean>()
+  currentFilerSelection: number = null;
 
   ColumnMode = ColumnMode.force;
   constructor() { }
@@ -29,14 +31,19 @@ export class TableComponent implements OnInit {
     this.paged.emit(pageInfo.offset + 1);
   }
   selectionChange(selection: any) {
-    if (selection !== this.currentFilerSelection) {
-      log.debug("entre");
-      this.filtered.emit(selection);
+    if (selection !== null) {
+      this.showReset = true;
     }
+    this.filtered.emit(selection);
   }
 
   setSort(sortInfo) {
     const sort = sortInfo.sorts[0].prop + '_' + sortInfo.sorts[0].dir;
     this.sorted.emit(sort);
+  }
+
+  reset() {
+    this.currentFilerSelection = null;
+    this.reseted.emit(true);
   }
 }
