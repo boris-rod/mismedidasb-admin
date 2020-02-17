@@ -33,6 +33,11 @@
       <ngx-datatable-column [sortable]="true" prop="phone" name="Teléfono">
       </ngx-datatable-column>
       <ngx-datatable-column [sortable]="true" prop="status" name="Estado">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span *ngIf="row.statusId===0" style="color: blue;">Pendiente</span>
+          <span *ngIf="row.statusId===2" style="color: green;">Activo</span>
+          <span *ngIf="row.statusId===1" style="color: red;">Inactivo</span>
+        </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>
   </nb-card-body>
