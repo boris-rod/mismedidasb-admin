@@ -40,7 +40,6 @@ export class UsersComponent implements OnInit {
         const pData = resp.headers.get('PagingData');
         this.total = JSON.parse(pData)['totalItems'];
         this.results = resp.body['result'];
-        log.info(this.results);
       }, error => {
         log.error(error);
       });
@@ -51,8 +50,11 @@ export class UsersComponent implements OnInit {
     this.loadUsers();
   }
   onFiltered(filter: number) {
-    log.debug(filter);
     this.statusFilter = filter;
+    this.loadUsers();
+  }
+  onSorted(sort: string) {
+    this.sort = sort;
     this.loadUsers();
   }
 }

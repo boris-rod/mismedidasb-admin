@@ -17,6 +17,7 @@ export class TableComponent implements OnInit {
 
   @Output() paged = new EventEmitter<number>()
   @Output() filtered = new EventEmitter<number>()
+  @Output() sorted = new EventEmitter<string>()
   currentFilerSelection: number = -1;
 
   ColumnMode = ColumnMode.force;
@@ -32,6 +33,10 @@ export class TableComponent implements OnInit {
       log.debug("entre");
       this.filtered.emit(selection);
     }
+  }
 
+  setSort(sortInfo) {
+    const sort = sortInfo.sorts[0].prop + '_' + sortInfo.sorts[0].dir;
+    this.sorted.emit(sort);
   }
 }

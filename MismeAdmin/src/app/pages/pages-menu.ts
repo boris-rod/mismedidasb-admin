@@ -14,12 +14,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Cuestionarios',
-    icon: 'people-outline',
+    icon: 'question-mark-outline',
     link: '/pages/polls'
   },
   {
     title: 'Platos',
-    icon: 'people-outline',
+    icon: 'archive-outline',
     link: '/pages/dishes'
   },
   // {

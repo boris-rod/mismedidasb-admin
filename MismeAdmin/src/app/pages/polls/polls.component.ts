@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { PollsService } from './polls.service';
+import { Poll } from '../../core-mismes/models/poll';
+import { Logger } from '../../core-mismes/logger.service';
+import { finalize } from 'rxjs/operators';
+
+const log = new Logger('Polls');
 
 @Component({
   selector: 'polls',
@@ -6,10 +12,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./polls.component.scss']
 })
 export class PollsComponent implements OnInit {
-
-  constructor() { }
+  isLoading: boolean = false;
+  results: Poll[];
+  constructor(private pollService: PollsService) { }
 
   ngOnInit() {
+    this.loadPolls();
+  }
+
+  loadPolls() {
+    this.isLoading = true;
+
+    this.pollService.getPolls()
+      .pipe(finalize(() => {
+        this.isLoading = false;
+      }))
+      .subscribe(resp => {
+        this.results = resp.body['result'];
+        log.info(this.results);
+      }, error => {
+        log.error(error);
+      });
   }
 
 }

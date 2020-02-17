@@ -1,3 +1,7 @@
-<p>
-  polls works!
-</p>
+<nb-layout>
+  <nb-layout-column>
+    <polls-table [polls]="results" [isLoading]="isLoading" [page]="page" [perPage]="perPage" [total]="results?.length">
+    </polls-table>
+  </nb-layout-column>
+
+</nb-layout>

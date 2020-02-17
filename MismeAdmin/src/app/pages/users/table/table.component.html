@@ -14,7 +14,7 @@
     </div>
     <ngx-datatable class="material" [headerHeight]="40" [footerHeight]="40" [rows]="users" [rowHeight]="50"
       [loadingIndicator]="loadingIndicator" [columnMode]="ColumnMode" [externalPaging]="true" [count]="total"
-      [offset]="page" [limit]="perPage" (page)="setPage($event)">
+      [offset]="page" [limit]="perPage" (page)="setPage($event)" [externalSorting]="true" (sort)="setSort($event)">
       <ngx-datatable-column [sortable]="false">
         <ng-template let-row="row" ngx-datatable-cell-template>
           <nb-user [onlyPicture]="true" [picture]="row.avatar===''?'assets/images/no-photo.png': row.avatar"
@@ -22,7 +22,7 @@
           </nb-user>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="true" prop="fullName" name="Name">
+      <ngx-datatable-column [sortable]="true" prop="fullName" name="Nombre">
       </ngx-datatable-column>
       <ngx-datatable-column [sortable]="true" prop="email" name="Correo">
       </ngx-datatable-column>

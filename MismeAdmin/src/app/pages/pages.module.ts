@@ -10,6 +10,7 @@ import { TableComponent } from './users/table/table.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PollsComponent } from './polls/polls.component';
 import { DishesComponent } from './dishes/dishes.component';
+import { PollsTableComponent } from './polls/polls-table/polls-table.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { DishesComponent } from './dishes/dishes.component';
     TableComponent,
     PollsComponent,
     DishesComponent,
+    PollsTableComponent,
   ],
 })
 export class PagesModule {
