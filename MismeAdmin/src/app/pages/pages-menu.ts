@@ -13,6 +13,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/users'
   },
   {
+    title: 'Datos Personales',
+    icon: 'list-outline',
+    link: '/pages/personal-data'
+  },
+  {
     title: 'Cuestionarios',
     icon: 'question-mark-outline',
     link: '/pages/polls'

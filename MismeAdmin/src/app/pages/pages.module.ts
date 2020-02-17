@@ -11,6 +11,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PollsComponent } from './polls/polls.component';
 import { DishesComponent } from './dishes/dishes.component';
 import { PollsTableComponent } from './polls/polls-table/polls-table.component';
+import { PersonalDataComponent } from './personal-data/personal-data.component';
+import { PersonalDataTableComponent } from './personal-data/personal-data-table/personal-data-table.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { PollsTableComponent } from './polls/polls-table/polls-table.component';
     PollsComponent,
     DishesComponent,
     PollsTableComponent,
+    PersonalDataComponent,
+    PersonalDataTableComponent,
   ],
 })
 export class PagesModule {

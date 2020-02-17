@@ -3,4 +3,5 @@ export const Constants = {
   CREDENTIALS_KEY: 'credentials',
   GET_USERS: 'user',
   GET_POLLS: 'poll',
+  GET_PERSONAL_DATAS: 'personal-data'
 };

@@ -7,6 +7,7 @@ import { UsersComponent } from './users/users.component';
 import { PollsComponent } from './polls/polls.component';
 import { DishesComponent } from './dishes/dishes.component';
 import { AuthenticationGuard } from '../core-mismes';
+import { PersonalDataComponent } from './personal-data/personal-data.component';
 
 const routes: Routes = [{
   path: '',
@@ -25,6 +26,10 @@ const routes: Routes = [{
     {
       path: 'users',
       component: UsersComponent,
+    },
+    {
+      path: 'personal-data',
+      component: PersonalDataComponent,
     },
     {
       path: 'polls',

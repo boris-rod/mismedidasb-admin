@@ -29,7 +29,6 @@ export class PollsComponent implements OnInit {
       }))
       .subscribe(resp => {
         this.results = resp.body['result'];
-        log.info(this.results);
       }, error => {
         log.error(error);
       });
