@@ -1,7 +1,7 @@
 <nb-layout>
   <nb-layout-column>
     <app-table [users]="results" [isLoading]="isLoading" [page]="page" [perPage]="perPage" [total]="total"
-      (paged)="onPaged($event)"></app-table>
+      (paged)="onPaged($event)" (filtered)="onFiltered($event)"></app-table>
   </nb-layout-column>
 
 </nb-layout>

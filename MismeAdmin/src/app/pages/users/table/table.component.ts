@@ -16,6 +16,8 @@ export class TableComponent implements OnInit {
   @Input() total: number;
 
   @Output() paged = new EventEmitter<number>()
+  @Output() filtered = new EventEmitter<number>()
+  currentFilerSelection: number = -1;
 
   ColumnMode = ColumnMode.force;
   constructor() { }
@@ -24,5 +26,12 @@ export class TableComponent implements OnInit {
   }
   setPage(pageInfo) {
     this.paged.emit(pageInfo.offset + 1);
+  }
+  selectionChange(selection: any) {
+    if (selection !== this.currentFilerSelection) {
+      log.debug("entre");
+      this.filtered.emit(selection);
+    }
+
   }
 }

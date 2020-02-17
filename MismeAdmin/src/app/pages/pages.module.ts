@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule, NbCardModule, NbLayoutModule } from '@nebular/theme';
+import { NbMenuModule, NbCardModule, NbLayoutModule, NbUserModule, NbSelectModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -20,6 +20,8 @@ import { DishesComponent } from './dishes/dishes.component';
     DashboardModule,
     NbCardModule,
     NbLayoutModule,
+    NbUserModule,
+    NbSelectModule,
     NgxDatatableModule
   ],
   declarations: [

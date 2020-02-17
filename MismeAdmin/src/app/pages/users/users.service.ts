@@ -15,7 +15,7 @@ export class UserService {
             .append('perPage', perPage.toString())
             .append('sortOrder', sortOrder)
             .append('search', search)
-            .append('whichIssues', statusFilter.toString());
+            .append('statusFilter', statusFilter.toString());
 
         return this.http.get<User>(Constants.GET_USERS, {
             params: params,

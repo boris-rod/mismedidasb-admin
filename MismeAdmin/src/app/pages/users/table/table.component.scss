@@ -6,8 +6,10 @@
     .datatable-body {
         .datatable-body-row {
             .datatable-body-cell {
-                padding-top: 0.25rem;
+                // padding-top: 0.25rem;
+                // margin-top:5px;
             }
+           
              &:hover {
                 background-color: #598bff;
             }

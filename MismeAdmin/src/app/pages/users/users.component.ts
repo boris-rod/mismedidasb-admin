@@ -50,4 +50,9 @@ export class UsersComponent implements OnInit {
     this.page = page;
     this.loadUsers();
   }
+  onFiltered(filter: number) {
+    log.debug(filter);
+    this.statusFilter = filter;
+    this.loadUsers();
+  }
 }

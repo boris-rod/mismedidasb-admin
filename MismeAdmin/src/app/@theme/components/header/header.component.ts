@@ -7,6 +7,8 @@ import { Subject } from 'rxjs';
 import { MenuItemEnum } from '../../../core-mismes/enums/menu-item.enum';
 import { AuthenticationService } from '../../../core-mismes/authentication/authentication.service';
 import { Router } from '@angular/router';
+import { CredentialsService } from '../../../core-mismes/authentication/credentials.service';
+import { User } from '../../../core-mismes/models/user';
 
 @Component({
   selector: 'ngx-header',
@@ -17,7 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
-  user: any;
+  user: User;
 
   themes = [
     {
@@ -48,7 +50,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private userService: UserData,
     private breakpointService: NbMediaBreakpointsService,
     private authService: AuthenticationService,
-    private router: Router) {
+    private router: Router,
+    private credService: CredentialsService) {
 
     menuService.onItemClick().subscribe(m => {
       if (m.item.data) {
@@ -69,9 +72,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
 
-    this.userService.getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
+    // this.userService.getUsers()
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe((users: any) => this.user = users.nick);
+
+    this.user = this.credService.credentials.account;
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
