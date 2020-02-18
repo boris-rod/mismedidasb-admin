@@ -5,5 +5,5 @@
  */
 export const environment = {
   production: true,
-  serverUrl: ''
+  serverUrl: 'http://ec2-18-188-244-39.us-east-2.compute.amazonaws.com/api/'
 };

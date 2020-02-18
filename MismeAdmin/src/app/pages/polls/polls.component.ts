@@ -13,6 +13,7 @@ const log = new Logger('Polls');
 })
 export class PollsComponent implements OnInit {
   isLoading: boolean = false;
+  perPage: number = 10;
   results: Poll[];
   constructor(private pollService: PollsService) { }
 

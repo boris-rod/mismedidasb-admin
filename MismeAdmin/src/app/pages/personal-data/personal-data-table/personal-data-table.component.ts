@@ -10,9 +10,8 @@ import { PersonalData } from '../../../core-mismes/models/personal-data';
 export class PersonalDataTableComponent implements OnInit {
   @Input() pDatas: PersonalData[];
   @Input() isLoading: boolean;
-  @Input() page: number;
   @Input() perPage: number;
-  @Input() total: number;
+
   ColumnMode = ColumnMode.force;
 
   constructor() { }

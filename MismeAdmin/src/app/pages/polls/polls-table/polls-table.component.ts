@@ -10,9 +10,8 @@ import { ColumnMode } from '@swimlane/ngx-datatable';
 export class PollsTableComponent implements OnInit {
   @Input() polls: Poll[];
   @Input() isLoading: boolean;
-  @Input() page: number;
   @Input() perPage: number;
-  @Input() total: number;
+
   ColumnMode = ColumnMode.force;
 
   constructor() { }

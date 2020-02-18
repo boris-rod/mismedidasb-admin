@@ -12,7 +12,7 @@ const log = new Logger('PData');
   styleUrls: ['./personal-data.component.scss']
 })
 export class PersonalDataComponent implements OnInit {
-
+  perPage: number = 10;
   isLoading: boolean = false;
   results: PersonalData[];
   constructor(private pDataService: PersonalDataService) { }

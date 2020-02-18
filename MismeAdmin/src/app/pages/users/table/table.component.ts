@@ -44,6 +44,7 @@ export class TableComponent implements OnInit {
 
   reset() {
     this.currentFilerSelection = null;
+    this.showReset = false;
     this.reseted.emit(true);
   }
 }

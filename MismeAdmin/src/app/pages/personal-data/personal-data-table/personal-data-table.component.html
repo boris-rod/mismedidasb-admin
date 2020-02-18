@@ -5,7 +5,7 @@
 
   <nb-card-body>
     <ngx-datatable class="material" [headerHeight]="40" [footerHeight]="40" [rowHeight]="50" [columnMode]="ColumnMode"
-      [rows]="pDatas" [limit]="perPage">
+      [loadingIndicator]="isLoading" [rows]="pDatas" [limit]="perPage">
       <ngx-datatable-column [sortable]="true" prop="name" name="Nombre">
       </ngx-datatable-column>
       <ngx-datatable-column [sortable]="true" prop="measureUnit" name="Unidad de Medida">
