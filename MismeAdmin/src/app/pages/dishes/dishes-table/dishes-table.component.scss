@@ -1,0 +1,8 @@
+.reset{
+    cursor: pointer;
+    font-size: small;
+    color:#598bff !important;
+    &:hover{
+        font-weight: bold;
+    }
+}

@@ -13,6 +13,7 @@ import { DishesComponent } from './dishes/dishes.component';
 import { PollsTableComponent } from './polls/polls-table/polls-table.component';
 import { PersonalDataComponent } from './personal-data/personal-data.component';
 import { PersonalDataTableComponent } from './personal-data/personal-data-table/personal-data-table.component';
+import { DishesTableComponent } from './dishes/dishes-table/dishes-table.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { PersonalDataTableComponent } from './personal-data/personal-data-table/
     PollsTableComponent,
     PersonalDataComponent,
     PersonalDataTableComponent,
+    DishesTableComponent,
   ],
 })
 export class PagesModule {
