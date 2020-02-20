@@ -1,0 +1,16 @@
+<div fxLayout="row" style="max-width:450px; overflow-x: auto; min-height:85px;">
+
+  <div fxLayout="column" fxLayoutAlign="center center" *ngFor="let img of images;  let i = index" class="images">
+    <ngx-avatar [src]="img.src" [round]="false"></ngx-avatar>
+    <span *ngIf="hideRemoveButton===false" class="remove-image-icon" (click)="removeImage(img,i)">Del</span>
+  </div>
+
+  <div *ngIf="hideAddButton===false && currentCount<maxImagesCount" fxLayout="column" fxLayoutAlign="center center"
+    class="add-images-container" onclick="document.getElementById('upload').click(); return false">
+    <!-- <mat-icon color="primary">photo_library</mat-icon> -->
+    <span>Add</span>
+  </div>
+
+  <input id="upload" type="file" [multiple]="true" ngFileSelect [uploadInput]="uploadInput"
+    (change)="changeListener($event)" style="visibility: hidden; width: 1px; height: 1px">
+</div>

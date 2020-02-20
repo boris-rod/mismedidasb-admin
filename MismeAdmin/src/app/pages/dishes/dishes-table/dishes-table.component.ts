@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Dish } from '../../../core-mismes/models/dish';
 import { ColumnMode } from '@swimlane/ngx-datatable';
-
+import { AddDishComponent } from '../add-dish/add-dish.component';
+import { NbWindowService } from '@nebular/theme';
+import { Logger } from '../../../core-mismes';
+const log = new Logger('Dishes Table');
 @Component({
   selector: 'dishes-table',
   templateUrl: './dishes-table.component.html',
@@ -18,7 +21,7 @@ export class DishesTableComponent implements OnInit {
 
   ColumnMode = ColumnMode.force;
 
-  constructor() { }
+  constructor(private windowService: NbWindowService) { }
 
   ngOnInit() {
   }
@@ -26,5 +29,18 @@ export class DishesTableComponent implements OnInit {
   reset() {
     this.showReset = false;
     this.reseted.emit(true);
+  }
+
+  newDish() {
+    const wind = this.windowService.open(AddDishComponent, {
+      title: 'Nuevo Plato',
+      context: {
+
+      }
+    });
+
+    wind.onClose.subscribe(s => {
+
+    });
   }
 }

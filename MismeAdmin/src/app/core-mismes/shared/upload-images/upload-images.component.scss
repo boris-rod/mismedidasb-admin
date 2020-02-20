@@ -1,0 +1,22 @@
+.images{
+  height: 50px;
+  width: 50px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.add-images-container{
+  border: 1px solid blue;
+  height: 50px;
+  width: 50px;
+  margin-top: 10px;
+  cursor: pointer;
+  span{
+    color:blue;
+    font-size:.875rem;
+  }
+}
+
+.remove-image-icon{
+  font-size:10px;
+  color:blue;
+  cursor: pointer;}

@@ -5,9 +5,10 @@ import { RouterModule, RouteReuseStrategy } from '@angular/router';
 import { JwtInterceptor } from './http/jwt.interceptor';
 import { HttpService } from './http/http.service';
 import { RouteReusableStrategy } from './route-reusable-strategy';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-    imports: [CommonModule, HttpClientModule, RouterModule],
+    imports: [CommonModule, HttpClientModule, RouterModule, SharedModule],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,

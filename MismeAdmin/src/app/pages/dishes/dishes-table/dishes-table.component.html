@@ -4,7 +4,16 @@
   </nb-card-header>
 
   <nb-card-body>
-    <div class="text-right mb-3" *ngIf="showReset==true"><a (click)="reset()" class="reset">Limpiar</a></div>
+    <div class="row mb-3 pl-3">
+      <div>
+        <button nbButton status="primary" (click)="newDish()">
+          <nb-icon icon="plus-outline"></nb-icon>Nuevo Plato
+        </button>
+      </div>
+      <div class="col text-right pr-3" *ngIf="showReset==true">
+        <a (click)="reset()" class="reset">Limpiar</a>
+      </div>
+    </div>
 
     <ngx-datatable class="material" [headerHeight]="40" [footerHeight]="40" [rowHeight]="50" [columnMode]="ColumnMode"
       [loadingIndicator]="isLoading" [rows]="dishes" [limit]="perPage">
