@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { UploadInput } from 'ngx-uploader';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-upload-images',
@@ -18,7 +19,7 @@ export class UploadImagesComponent implements OnInit {
   @Input() maxImagesCount = 1;
 
   currentCount = 0;
-  constructor() { }
+  constructor(private toastrService: NbToastrService) { }
 
   ngOnInit() {
     this.currentCount = this.images.length;
@@ -61,11 +62,7 @@ export class UploadImagesComponent implements OnInit {
         }
       }
       if (error === true) {
-        // this.toastrService.info(
-        //   `Some files was ignored. Only ${this.maxImagesCount} png,
-        //   jpg or jpeg files are accepted with max size of 2M per file.`
-        //   , 'Issue Images'
-        // );
+        this.toastrService.danger(`Imagen requerida en formato png, jpg o jpeg y de hasta 2M.`, 'Adicionar Imagen');
       }
       this.imageAdded.emit(this.imagesToSend);
 

@@ -43,4 +43,17 @@ export class DishesTableComponent implements OnInit {
       this.reseted.emit(true);
     });
   }
+  editDish(dish: Dish) {
+    const wind = this.windowService.open(AddDishComponent, {
+      title: 'Editar Plato',
+      context: {
+        edit: true,
+        dishToEdit: dish
+      }
+    });
+
+    wind.onClose.subscribe(s => {
+      this.reseted.emit(true);
+    });
+  }
 }

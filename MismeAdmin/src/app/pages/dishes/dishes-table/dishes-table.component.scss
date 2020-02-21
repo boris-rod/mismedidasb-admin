@@ -6,3 +6,9 @@
         font-weight: bold;
     }
 }
+.iconClass{
+    cursor: pointer;
+    &:hover{
+        color:#598bff;
+    }
+}

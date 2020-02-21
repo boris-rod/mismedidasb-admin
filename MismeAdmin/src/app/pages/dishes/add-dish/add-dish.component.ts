@@ -6,6 +6,7 @@ import { DishesService } from '../dishes.service';
 import { TagService } from '../tags.service';
 import { Tag } from '../../../core-mismes/models/tag';
 import { finalize } from 'rxjs/operators';
+import { Dish } from '../../../core-mismes/models/dish';
 
 const log = new Logger('Add Dish');
 
@@ -18,6 +19,7 @@ export class AddDishComponent implements OnInit {
   isLoading: boolean = false;
 
   edit: boolean = false;
+  // id: number = -1;
   dishName = new FormControl();
   dishCalories = new FormControl();
   dishFat = new FormControl();
@@ -29,8 +31,12 @@ export class AddDishComponent implements OnInit {
   removedImages: any[] = [];
   imagesToSend: File[] = [];
 
+  hideRemoveButton = true;
+
   selectedTags: Tag[] = [];
   allTags: Tag[] = [];
+
+  dishToEdit: Dish;
 
   constructor(protected ref: NbWindowRef, private dishService: DishesService, private tagService: TagService, private toastrService: NbToastrService) {
     this.dishName.setValidators(Validators.required);
@@ -53,8 +59,25 @@ export class AddDishComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadTags();
     if (this.edit === false) {
-      this.loadTags();
+
+    }
+    else {
+      this.dishName.setValue(this.dishToEdit.name);
+      this.dishCalories.setValue(this.dishToEdit.calories);
+      this.dishFat.setValue(this.dishToEdit.fat);
+      this.dishFiber.setValue(this.dishToEdit.fiber);
+      this.dishCarbohidrates.setValue(this.dishToEdit.carbohydrates);
+      this.dishProteins.setValue(this.dishToEdit.proteins);
+      this.selectedTags = this.dishToEdit.tags;
+      if (this.dishToEdit.image !== null && this.dishToEdit.image !== '') {
+        const img = {
+          src: this.dishToEdit.image,
+        };
+        this.images.push(img);
+      }
+
     }
   }
   onImageAdded(images: File[]) {
@@ -99,15 +122,34 @@ export class AddDishComponent implements OnInit {
       newTags: newTags,
       image: this.imagesToSend.length > 0 ? this.imagesToSend[0] : null
     };
+    if (this.edit === false) {
+      this.dishService.addDish(obj)
+        .pipe(finalize(() => {
+          this.isLoading = false;
+        })).subscribe(d => {
+          this.toastrService.success('Plato creado satisfactoriamente.', 'Adicionar Plato');
+          this.cleanFields();
+          this.ref.close();
+        });
+    } else {
+      obj['id'] = this.dishToEdit.id;
+      obj['removedImage'] = this.removedImages.length > 0 ? this.removedImages[0] : null
+      this.dishService.updateDish(obj)
+        .pipe(finalize(() => {
+          this.isLoading = false;
+        })).subscribe(d => {
+          this.toastrService.success('Plato actualizado satisfactoriamente.', 'Editar Plato');
+          this.cleanFields();
+          this.ref.close();
+        });
+    }
+  }
 
-    this.dishService.addDish(obj)
-      .pipe(finalize(() => {
-        this.isLoading = false;
-      })).subscribe(d => {
-        this.toastrService.success('Plato creado satisfactoriamente.', 'Adicionar Plato');
-        this.ref.close();
-        this.allTags = [];
-      });
-
+  cleanFields() {
+    this.allTags = [];
+    this.selectedTags = [];
+    this.imagesToSend = [];
+    this.removedImages = [];
+    this.images = [];
   }
 }

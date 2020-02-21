@@ -6,5 +6,7 @@ export const Constants = {
   GET_PERSONAL_DATAS: 'personal-data',
   GET_DISHES: 'dish',
   GET_TAGS: 'tag',
-  ADD_DISH: 'dish'
+  ADD_DISH: 'dish',
+  UPDATE_DISH: 'dish/update',
+  GET_DISH_BY_ID: 'dish'
 };
