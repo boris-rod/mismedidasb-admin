@@ -9,7 +9,8 @@ import {
   NbButtonModule,
   NbWindowModule,
   NbRadioModule,
-  NbInputModule
+  NbInputModule,
+  NbDialogModule
 } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
@@ -30,6 +31,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../core-mismes/shared/shared.module';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { DeleteDishComponent } from './dishes/delete-dish/delete-dish.component';
 
 
 @NgModule({
@@ -50,6 +52,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NbRadioModule,
     NbInputModule,
     NbWindowModule.forChild(),
+    NbDialogModule.forChild(),
     NgxDatatableModule,
     SharedModule,
     NgSelectModule
@@ -65,9 +68,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
     PersonalDataTableComponent,
     DishesTableComponent,
     AddDishComponent,
+    DeleteDishComponent,
   ],
   entryComponents: [
-    AddDishComponent
+    AddDishComponent,
+    DeleteDishComponent
   ]
 })
 export class PagesModule {

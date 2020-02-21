@@ -38,8 +38,12 @@
       </ngx-datatable-column>
       <ngx-datatable-column [sortable]="false">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <nb-icon icon="edit-outline" title="Editar Plato" class="mr-2 iconClass" (click)="editDish(row)"></nb-icon>
-          <nb-icon icon="trash-2-outline" title="Eiminar Plato" class="iconClass"></nb-icon>
+          <button nbButton ghost (click)="editDish(row)" size="tiny">
+            <nb-icon icon="edit-outline" title="Editar Plato"></nb-icon>
+          </button>
+          <button nbButton ghost (click)="deleteDish(row)" size="tiny">
+            <nb-icon icon="trash-2-outline" title="Eiminar Plato"> </nb-icon>
+          </button>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>

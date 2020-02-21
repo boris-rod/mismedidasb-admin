@@ -2,8 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Dish } from '../../../core-mismes/models/dish';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { AddDishComponent } from '../add-dish/add-dish.component';
-import { NbWindowService } from '@nebular/theme';
+import { NbWindowService, NbDialogService } from '@nebular/theme';
 import { Logger } from '../../../core-mismes';
+import { DeleteDishComponent } from '../delete-dish/delete-dish.component';
 const log = new Logger('Dishes Table');
 @Component({
   selector: 'dishes-table',
@@ -19,9 +20,11 @@ export class DishesTableComponent implements OnInit {
 
   @Output() reseted = new EventEmitter<boolean>()
 
-  ColumnMode = ColumnMode.force;
+  ColumnMode;
 
-  constructor(private windowService: NbWindowService) { }
+  constructor(private windowService: NbWindowService, private dialogService: NbDialogService) {
+    this.ColumnMode = ColumnMode.force
+  }
 
   ngOnInit() {
   }
@@ -56,4 +59,16 @@ export class DishesTableComponent implements OnInit {
       this.reseted.emit(true);
     });
   }
+
+  deleteDish(dish: any) {
+    this.dialogService.open(DeleteDishComponent, {
+      context: {
+        title: 'Eliminar Plato',
+        dishId: dish.id
+      }
+    }).onClose.subscribe(s => {
+      this.reseted.emit(true);
+    });
+  }
+
 }

@@ -60,4 +60,8 @@ export class DishesService {
         }
         return this.http.post<Dish>(Constants.UPDATE_DISH, formData);
     }
+    deleteDish(dishId: number) {
+
+        return this.http.delete(Constants.DELETE_DISH + "/" + dishId);
+    }
 }

@@ -66,8 +66,11 @@
         </div>
       </div>
     </div>
+  </nb-card-body>
+  <nb-card-footer>
     <button type="submit" nbButton
       [disabled]="!dishName.valid || !dishCalories.valid || !dishFat.valid || !dishFiber.valid || !dishCarbohidrates.valid || !dishProteins.valid || isLoading===true"
       (click)="saveDish()">Salvar</button>
-  </nb-card-body>
+    <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
+  </nb-card-footer>
 </nb-card>

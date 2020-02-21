@@ -152,4 +152,9 @@ export class AddDishComponent implements OnInit {
     this.removedImages = [];
     this.images = [];
   }
+
+  close() {
+    this.cleanFields();
+    this.ref.close();
+  }
 }
