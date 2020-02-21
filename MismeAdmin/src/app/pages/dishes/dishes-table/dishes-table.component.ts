@@ -5,6 +5,8 @@ import { AddDishComponent } from '../add-dish/add-dish.component';
 import { NbWindowService, NbDialogService } from '@nebular/theme';
 import { Logger } from '../../../core-mismes';
 import { DeleteDishComponent } from '../delete-dish/delete-dish.component';
+import { TagService } from '../tags.service';
+import { Tag } from '../../../core-mismes/models/tag';
 const log = new Logger('Dishes Table');
 @Component({
   selector: 'dishes-table',
@@ -19,17 +21,28 @@ export class DishesTableComponent implements OnInit {
   @Input() showReset: boolean;
 
   @Output() reseted = new EventEmitter<boolean>()
+  @Output() filtered = new EventEmitter<number[]>()
+  tags: Tag[] = [];
+
+  currentFilerSelection: number[] = [];
+
 
   ColumnMode;
 
-  constructor(private windowService: NbWindowService, private dialogService: NbDialogService) {
+  constructor(private windowService: NbWindowService, private dialogService: NbDialogService, private tagsService: TagService) {
     this.ColumnMode = ColumnMode.force
   }
 
   ngOnInit() {
+    this.tagsService.getTags().subscribe(t => {
+      this.tags = [...t.body['result']];
+
+    });
   }
 
   reset() {
+    this.currentFilerSelection = [];
+    this.filtered.emit(this.currentFilerSelection);
     this.showReset = false;
     this.reseted.emit(true);
   }
@@ -69,6 +82,13 @@ export class DishesTableComponent implements OnInit {
     }).onClose.subscribe(s => {
       this.reseted.emit(true);
     });
+  }
+
+  selectionChange(selection: number[]) {
+    if (selection.length > 0) {
+      this.showReset = true;
+    }
+    this.filtered.emit(selection);
   }
 
 }

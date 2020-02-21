@@ -10,8 +10,14 @@
           <nb-icon icon="plus-outline"></nb-icon>Nuevo Plato
         </button>
       </div>
-      <div class="col text-right pr-3" *ngIf="showReset==true">
-        <a (click)="reset()" class="reset">Limpiar</a>
+      <div class="col-7"></div>
+      <div class="col text-right pr-3">
+        <nb-select placeholder="Filtro por Categorías" [fullWidth]="true" [multiple]="true"
+          [(selected)]="currentFilerSelection" (selectedChange)="selectionChange($event)">
+          <nb-option *ngFor="let t of tags" [value]="t.id"> {{ t.name }} </nb-option>
+        </nb-select>
+        <br>
+        <a *ngIf="showReset==true" (click)="reset()" class="reset">Limpiar</a>
       </div>
     </div>
 

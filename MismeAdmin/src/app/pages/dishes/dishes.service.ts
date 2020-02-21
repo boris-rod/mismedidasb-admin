@@ -9,9 +9,13 @@ import { Dish } from '../../core-mismes/models/dish';
 export class DishesService {
     constructor(private http: HttpClient) { }
 
-    getDishes(search: string) {
-        const params: HttpParams = new HttpParams()
+    getDishes(search: string, tags: number[]) {
+        let params: HttpParams = new HttpParams()
             .append('search', search);
+
+        tags.forEach(numb => {
+            params = params.append('tags', numb.toString());
+        });
 
         return this.http.get<Dish>(Constants.GET_DISHES, {
             params: params,

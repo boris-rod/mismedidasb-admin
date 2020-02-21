@@ -15,6 +15,7 @@ export class DishesComponent implements OnInit {
   perPage: number = 10;
   isLoading: boolean = false;
   searchTerm: string = '';
+  tags: number[] = [];
 
   results: Dish[];
   resetIsNeeded: boolean = false;
@@ -33,7 +34,7 @@ export class DishesComponent implements OnInit {
   loadDishes() {
     this.isLoading = true;
 
-    this.dishService.getDishes(this.searchTerm)
+    this.dishService.getDishes(this.searchTerm, this.tags)
       .pipe(finalize(() => {
         this.isLoading = false;
       }))
@@ -51,6 +52,10 @@ export class DishesComponent implements OnInit {
       this.resetIsNeeded = false;
       this.loadDishes();
     }
+  }
+  onFiltered(tags: number[]) {
+    this.tags = tags;
+    this.loadDishes();
   }
 
 }
