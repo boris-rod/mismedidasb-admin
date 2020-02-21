@@ -28,6 +28,8 @@ import { DishesTableComponent } from './dishes/dishes-table/dishes-table.compone
 import { AddDishComponent } from './dishes/add-dish/add-dish.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../core-mismes/shared/shared.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbRadioModule,
     NbInputModule,
     NbWindowModule.forChild(),
-    NgxDatatableModule
+    NgxDatatableModule,
+    SharedModule,
+    NgSelectModule
   ],
   declarations: [
     PagesComponent,

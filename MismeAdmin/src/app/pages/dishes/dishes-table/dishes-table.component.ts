@@ -40,7 +40,7 @@ export class DishesTableComponent implements OnInit {
     });
 
     wind.onClose.subscribe(s => {
-
+      this.reseted.emit(true);
     });
   }
 }
