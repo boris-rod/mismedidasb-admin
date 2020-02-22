@@ -34,9 +34,11 @@ export class DishesTableComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadTags();
+  }
+  loadTags() {
     this.tagsService.getTags().subscribe(t => {
       this.tags = [...t.body['result']];
-
     });
   }
 
@@ -56,6 +58,7 @@ export class DishesTableComponent implements OnInit {
     });
 
     wind.onClose.subscribe(s => {
+      this.loadTags();
       this.reseted.emit(true);
     });
   }
@@ -69,6 +72,7 @@ export class DishesTableComponent implements OnInit {
     });
 
     wind.onClose.subscribe(s => {
+      this.loadTags();
       this.reseted.emit(true);
     });
   }

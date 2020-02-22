@@ -66,6 +66,6 @@ export class DishesService {
     }
     deleteDish(dishId: number) {
 
-        return this.http.delete(Constants.DELETE_DISH + "/" + dishId);
+        return this.http.post(Constants.DELETE_DISH + "/" + dishId, {});
     }
 }

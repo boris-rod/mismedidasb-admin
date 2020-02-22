@@ -9,5 +9,5 @@ export const Constants = {
   ADD_DISH: 'dish',
   UPDATE_DISH: 'dish/update',
   GET_DISH_BY_ID: 'dish',
-  DELETE_DISH: 'dish'
+  DELETE_DISH: 'dish/delete'
 };
