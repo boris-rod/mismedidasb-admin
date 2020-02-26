@@ -9,5 +9,6 @@ export const Constants = {
   ADD_DISH: 'dish',
   UPDATE_DISH: 'dish/update',
   GET_DISH_BY_ID: 'dish',
-  DELETE_DISH: 'dish/delete'
+  DELETE_DISH: 'dish/delete',
+  CHANGE_PASS: 'account/change-password'
 };

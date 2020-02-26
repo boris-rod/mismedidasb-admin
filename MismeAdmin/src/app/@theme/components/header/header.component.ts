@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService, NbMenuItem } from '@nebular/theme';
+import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService, NbMenuItem, NbWindowService, NbDialogService } from '@nebular/theme';
 
 import { UserData } from '../../../@core/data/users';
 import { map, takeUntil } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { AuthenticationService } from '../../../core-mismes/authentication/authe
 import { Router } from '@angular/router';
 import { CredentialsService } from '../../../core-mismes/authentication/credentials.service';
 import { User } from '../../../core-mismes/models/user';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'ngx-header',
@@ -42,7 +43,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu: NbMenuItem[] = [{ title: 'Profile' }, { title: 'Log out', data: { type: MenuItemEnum.LOGOUT } }];
+  userMenu: NbMenuItem[] = [
+    { title: 'Perfil', data: { type: MenuItemEnum.PROFILE } },
+    { title: 'Cambiar Contraseña', data: { type: MenuItemEnum.CHANGE_PASSWORD } },
+    { title: 'Salir', data: { type: MenuItemEnum.LOGOUT } }
+  ];
 
   constructor(private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
@@ -51,7 +56,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private breakpointService: NbMediaBreakpointsService,
     private authService: AuthenticationService,
     private router: Router,
-    private credService: CredentialsService) {
+    private credService: CredentialsService,
+    private dialogService: NbDialogService) {
 
     menuService.onItemClick().subscribe(m => {
       if (m.item.data) {
@@ -60,6 +66,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.authService.logout().subscribe(
               () => this.router.navigate(['/auth/login'], { replaceUrl: true })
             );
+            break;
+          case MenuItemEnum.CHANGE_PASSWORD:
+            this.dialogService.open(ChangePasswordComponent, {
+              autoFocus: false,
+              context: {
+                title: 'Cambiar Contraseña'
+              }
+            })
             break;
 
           default:

@@ -12,6 +12,8 @@ import {
   NbSelectModule,
   NbIconModule,
   NbThemeModule,
+  NbCardModule,
+  NbInputModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
@@ -39,6 +41,9 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -53,6 +58,12 @@ const NB_MODULES = [
   NbSelectModule,
   NbIconModule,
   NbEvaIconsModule,
+  NbCardModule,
+  NbInputModule,
+  FormsModule,
+  CommonModule,
+  RxReactiveFormsModule,
+  ReactiveFormsModule
 ];
 const COMPONENTS = [
   SwitcherComponent,
@@ -75,7 +86,8 @@ const PIPES = [
 @NgModule({
   imports: [CommonModule, ...NB_MODULES],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
-  declarations: [...COMPONENTS, ...PIPES],
+  declarations: [...COMPONENTS, ...PIPES, ChangePasswordComponent],
+  entryComponents: [ChangePasswordComponent]
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {
