@@ -43,7 +43,7 @@ export class AddDishComponent implements OnInit {
     this.dishName.setValue('');
 
     this.dishCalories.setValidators(Validators.required);
-    this.dishCalories.setValue(0);
+    this.dishCalories.setValue(0.0);
 
     this.dishFat.setValidators(Validators.required);
     this.dishFat.setValue(0.0);
@@ -130,6 +130,9 @@ export class AddDishComponent implements OnInit {
           this.toastrService.success('Plato creado satisfactoriamente.', 'Adicionar Plato');
           this.cleanFields();
           this.ref.close();
+        }, error => {
+          this.toastrService.danger('Ha ocurrido un error adicionando el plato.', 'Adicionar Plato');
+          log.error(error);
         });
     } else {
       obj['id'] = this.dishToEdit.id;
