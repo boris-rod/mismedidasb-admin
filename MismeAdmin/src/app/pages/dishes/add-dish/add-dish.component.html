@@ -16,9 +16,9 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="inputLastName" class="label">Calorías (Kcal)</label>
-          <input type="number" nbInput fullWidth id="inputLastName" required min="0" step="0.01" name="dishCalories"
-            [formControl]="dishCalories" pattern="^\d+(?:\.\d{1,2})?$"
+          <label class="label">Calorías (Kcal)</label>
+          <input type="number" nbInput fullWidth min="0.0" step="0.01" name="dishCalories" [formControl]="dishCalories"
+            pattern="^\d+(?:\.\d{1,4})?$"
             [status]="dishCalories.dirty ? (dishCalories.invalid  ? 'danger' : 'success') : 'basic'" [required]="true">
           <ng-container *ngIf="dishCalories.invalid && dishCalories.touched">
             <p class="caption status-danger" *ngIf="dishCalories.errors?.required">
@@ -35,9 +35,9 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="inputCarbohidratos" class="label">Carbohidratos (g)</label>
-          <input type="number" nbInput fullWidth id="inputCarbohidratos" required min="0" step="0.01"
-            pattern="^\d+(?:\.\d{1,2})?$" name="dishCarbohidrates" [formControl]="dishCarbohidrates"
+          <label class="label">Carbohidratos (g)</label>
+          <input type="number" nbInput fullWidth min="0.0" step="0.01" pattern="^\d+(?:\.\d{1,4})?$"
+            name="dishCarbohidrates" [formControl]="dishCarbohidrates"
             [status]="dishCarbohidrates.dirty ? (dishCarbohidrates.invalid  ? 'danger' : 'success') : 'basic'"
             [required]="true">
           <ng-container *ngIf="dishCarbohidrates.invalid && dishCarbohidrates.touched">
@@ -49,9 +49,9 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="inputProteins" class="label">Proteínas (g)</label>
-          <input type="number" nbInput fullWidth id="inputProteins" required min="0" step="0.01"
-            pattern="^\d+(?:\.\d{1,2})?$" name="dishProteins" [formControl]="dishProteins"
+          <label class="label">Proteínas (g)</label>
+          <input type="number" nbInput fullWidth min="0.0" step="0.01" pattern="^\d+(?:\.\d{1,4})?$" name="dishProteins"
+            [formControl]="dishProteins"
             [status]="dishProteins.dirty ? (dishProteins.invalid  ? 'danger' : 'success') : 'basic'" [required]="true">
           <ng-container *ngIf="dishProteins.invalid && dishProteins.touched">
             <p class="caption status-danger" *ngIf="dishProteins.errors?.required">
@@ -64,10 +64,10 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="inputFat" class="label">Grasas (g)</label>
-          <input type="number" nbInput fullWidth id="inputFat" required min="0" step="0.01"
-            pattern="^\d+(?:\.\d{1,2})?$" name="dishFat" [formControl]="dishFat"
-            [status]="dishFat.dirty ? (dishFat.invalid  ? 'danger' : 'success') : 'basic'" [required]="true">
+          <label class="label">Grasas (g)</label>
+          <input type="number" nbInput fullWidth min="0.0" step="0.01" pattern="^\d+(?:\.\d{1,4})?$" name="dishFat"
+            [formControl]="dishFat" [status]="dishFat.dirty ? (dishFat.invalid  ? 'danger' : 'success') : 'basic'"
+            [required]="true">
           <ng-container *ngIf="dishFat.invalid && dishFat.touched">
             <p class="caption status-danger" *ngIf="dishFat.errors?.required">
               Debe introducir un valor.
@@ -77,10 +77,10 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="inputFiber" class="label">Fibras (g)</label>
-          <input type="number" nbInput fullWidth id="inputFiber" required min="0" step="0.01"
-            pattern="^\d+(?:\.\d{1,2})?$" name="dishFiber" [formControl]="dishFiber"
-            [status]="dishFiber.dirty ? (dishFiber.invalid  ? 'danger' : 'success') : 'basic'" [required]="true">
+          <label class="label">Fibras (g)</label>
+          <input type="number" nbInput fullWidth min="0.0" step="0.01" pattern="^\d+(?:\.\d{1,4})?$" name="dishFiber"
+            [formControl]="dishFiber" [status]="dishFiber.dirty ? (dishFiber.invalid  ? 'danger' : 'success') : 'basic'"
+            [required]="true">
           <ng-container *ngIf="dishFiber.invalid && dishFiber.touched">
             <p class="caption status-danger" *ngIf="dishFiber.errors?.required">
               Debe introducir un valor.
@@ -109,9 +109,9 @@
     </div>
   </nb-card-body>
   <nb-card-footer>
-    <button type="submit" nbButton
-      [disabled]="!dishName.valid || !dishCalories.valid || !dishFat.valid || !dishFiber.valid || !dishCarbohidrates.valid || !dishProteins.valid || isLoading===true"
-      (click)="saveDish()">Salvar</button>
+    <button type="submit" nbButton [disabled]="!dishName.valid || !dishCalories.valid 
+      || !dishFat.valid || !dishFiber.valid || !dishCarbohidrates.valid 
+      || !dishProteins.valid || isLoading===true" (click)="saveDish()">Salvar</button>
     <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
   </nb-card-footer>
 </nb-card>
