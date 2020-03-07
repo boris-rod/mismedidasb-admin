@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentTheme = 'default';
 
   userMenu: NbMenuItem[] = [
-    { title: 'Perfil', data: { type: MenuItemEnum.PROFILE } },
+    // { title: 'Perfil', data: { type: MenuItemEnum.PROFILE } },
     { title: 'Cambiar Contraseña', data: { type: MenuItemEnum.CHANGE_PASSWORD } },
     { title: 'Salir', data: { type: MenuItemEnum.LOGOUT } }
   ];
@@ -76,14 +76,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
               }
             })
             break;
-          case MenuItemEnum.PROFILE:
-            this.dialogService.open(UpdateProfileComponent, {
-              autoFocus: false,
-              context: {
-                title: 'Actualizar Perfil'
-              }
-            })
-            break;
+          // case MenuItemEnum.PROFILE:
+          //   this.dialogService.open(UpdateProfileComponent, {
+          //     autoFocus: false,
+          //     context: {
+          //       title: 'Actualizar Perfil'
+          //     }
+          //   })
+          //   break;
           default:
             break;
         }
