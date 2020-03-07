@@ -13,4 +13,9 @@ export class ThemeService {
             observe: 'response'
         });
     }
+    getProfile() {
+        return this.http.get(Constants.GET_PROFILE, {
+            observe: 'response'
+        });
+    }
 }

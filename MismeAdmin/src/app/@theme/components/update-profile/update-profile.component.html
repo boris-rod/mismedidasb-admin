@@ -1,0 +1,41 @@
+<div style="width:500px;">
+  <nb-card>
+    <nb-card-header>{{ title }}</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <!-- <app-upload-images [images]="images" [imagesToSend]="imagesToSend" (imageAdded)="onImageAdded($event)"
+              (imageRemoved)="onImageRemoved($event)"></app-upload-images> -->
+
+            <nb-user [onlyPicture]="true" [picture]="image===''?'assets/images/no-photo.png': image"
+              style="margin-top:-10px;">
+            </nb-user>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label class="label">Nombre</label>
+            <input type="text" nbInput fullWidth placeholder="Nombre" name="name" [formControl]="name"
+              [status]="name.dirty ? (name.invalid  ? 'danger' : 'success') : 'basic'">
+            <ng-container *ngIf="name.invalid && name.touched">
+              <p class="caption status-danger" *ngIf="name.errors?.required">
+                Debe introducir su nombre.
+              </p>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+
+    </nb-card-body>
+    <nb-card-footer>
+      <button type="submit" nbButton [disabled]="isLoading||!name.valid" (click)="updateProfile()">Salvar</button>
+      <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
+    </nb-card-footer>
+  </nb-card>
+</div>

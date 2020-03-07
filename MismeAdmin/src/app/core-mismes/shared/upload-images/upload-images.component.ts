@@ -17,7 +17,7 @@ export class UploadImagesComponent implements OnInit {
   @Input() imagesToSend: File[] = [];
 
   @Input() maxImagesCount = 1;
-
+  @Input() size = 100;
   currentCount = 0;
   constructor(private toastrService: NbToastrService) { }
 

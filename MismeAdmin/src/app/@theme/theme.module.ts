@@ -44,6 +44,8 @@ import { DARK_THEME } from './styles/theme.dark';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { SharedModule } from '../core-mismes/shared/shared.module';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -63,7 +65,8 @@ const NB_MODULES = [
   FormsModule,
   CommonModule,
   RxReactiveFormsModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  SharedModule
 ];
 const COMPONENTS = [
   SwitcherComponent,
@@ -86,8 +89,8 @@ const PIPES = [
 @NgModule({
   imports: [CommonModule, ...NB_MODULES],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
-  declarations: [...COMPONENTS, ...PIPES, ChangePasswordComponent],
-  entryComponents: [ChangePasswordComponent]
+  declarations: [...COMPONENTS, ...PIPES, ChangePasswordComponent, UpdateProfileComponent],
+  entryComponents: [ChangePasswordComponent, UpdateProfileComponent]
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {

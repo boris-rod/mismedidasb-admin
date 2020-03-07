@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { CredentialsService } from '../../../core-mismes/authentication/credentials.service';
 import { User } from '../../../core-mismes/models/user';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { UpdateProfileComponent } from '../update-profile/update-profile.component';
 
 @Component({
   selector: 'ngx-header',
@@ -75,7 +76,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
               }
             })
             break;
-
+          case MenuItemEnum.PROFILE:
+            this.dialogService.open(UpdateProfileComponent, {
+              autoFocus: false,
+              context: {
+                title: 'Actualizar Perfil'
+              }
+            })
+            break;
           default:
             break;
         }

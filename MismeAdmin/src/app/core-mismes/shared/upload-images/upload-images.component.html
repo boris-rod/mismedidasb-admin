@@ -1,7 +1,7 @@
 <div fxLayout="row" style="max-width:450px; overflow-x: auto; min-height:85px;">
 
   <div fxLayout="column" fxLayoutAlign="center center" *ngFor="let img of images;  let i = index" class="images">
-    <ngx-avatar [src]="img.src" [round]="false" size="100"></ngx-avatar>
+    <ngx-avatar [src]="img.src" [round]="false" [size]="size"></ngx-avatar>
     <span *ngIf="hideRemoveButton===false" class="remove-image-icon" (click)="removeImage(img,i)">Quitar</span>
   </div>
 
