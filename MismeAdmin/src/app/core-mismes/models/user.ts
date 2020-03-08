@@ -9,4 +9,6 @@ export interface User {
   avatarMimeType: string;
   role: string;
   roleId: number;
+  createdAt: Date;
+  modifiedAt: Date;
 }

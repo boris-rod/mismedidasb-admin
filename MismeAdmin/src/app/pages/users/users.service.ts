@@ -22,4 +22,9 @@ export class UserService {
             observe: 'response'
         });
     }
+    getUserStats() {
+        return this.http.get<User>(Constants.GET_USERS_STATS, {
+            observe: 'response'
+        });
+    }
 }

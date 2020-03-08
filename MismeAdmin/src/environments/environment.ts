@@ -10,5 +10,6 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'https://localhost:44384/api/'
+  serverUrl: 'https://localhost:44384/api/',
+  hubUrl: 'https://localhost:44384/'
 };

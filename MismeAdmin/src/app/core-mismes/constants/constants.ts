@@ -2,6 +2,7 @@ export const Constants = {
   SIGNIN_URL: 'account/login',
   CREDENTIALS_KEY: 'credentials',
   GET_USERS: 'user',
+  GET_USERS_STATS: 'user/stats',
   GET_POLLS: 'poll',
   GET_PERSONAL_DATAS: 'personal-data',
   GET_DISHES: 'dish',
