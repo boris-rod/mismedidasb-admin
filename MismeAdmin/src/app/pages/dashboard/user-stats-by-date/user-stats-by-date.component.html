@@ -1,11 +1,16 @@
 <nb-card>
-  <nb-card-header>Usuarios por Fechas</nb-card-header>
+  <nb-card-header>
+    <div style="display: flex; justify-content: space-between;">
+      <div>Usuarios: {{total}}</div>
+      <div>
+        <nb-select [(selected)]="currentFilterSelection" (selectedChange)="selectionChange($event)">
+          <nb-option *ngFor="let t of options" [value]="t.id"> {{ t.name }} </nb-option>
+        </nb-select>
+      </div>
+    </div>
+  </nb-card-header>
   <nb-card-body>
-    <!-- <div style="display: flex; justify-content: space-between;">
-      <span class="text-success">Activos: {{active}}</span>
-      <span class="text-warning">Por Activar: {{pending}}</span>
-      <span class="text-danger">Deshabililtados: {{disabled}}</span>
-    </div> -->
+
     <div style="width: 600px; height: 400px;">
       <ngx-charts-bar-vertical-2d [results]="results" [xAxis]="true" [yAxis]="true" [legend]="true" [legendTitle]="''">
       </ngx-charts-bar-vertical-2d>

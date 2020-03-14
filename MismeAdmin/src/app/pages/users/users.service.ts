@@ -28,8 +28,12 @@ export class UserService {
             observe: 'response'
         });
     }
-    getUserStatsByDates() {
+    getUserStatsByDates(filter: number) {
+        const params: HttpParams = new HttpParams()
+            .append('dateType', filter.toString());
+
         return this.http.get<UserStatSerie[]>(Constants.GET_USERS_STATS_BY_DATE, {
+            params: params,
             observe: 'response'
         });
     }

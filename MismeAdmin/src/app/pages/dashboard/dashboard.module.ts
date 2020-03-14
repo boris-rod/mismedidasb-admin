@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbCardModule } from '@nebular/theme';
+import { NbCardModule, NbSelectModule } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
@@ -12,7 +12,8 @@ import { UserStatsByDateComponent } from './user-stats-by-date/user-stats-by-dat
   imports: [
     NbCardModule,
     ThemeModule,
-    NgxChartsModule
+    NgxChartsModule,
+    NbSelectModule
   ],
   declarations: [
     DashboardComponent,

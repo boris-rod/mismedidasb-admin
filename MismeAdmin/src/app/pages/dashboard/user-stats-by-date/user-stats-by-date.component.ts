@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserStatSerie } from '../../../core-mismes/models/user-stats-series';
 import { UserService } from '../../users/users.service';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'user-stats-by-date',
   templateUrl: './user-stats-by-date.component.html',
@@ -10,120 +12,43 @@ import { UserService } from '../../users/users.service';
 export class UserStatsByDateComponent implements OnInit {
 
   results: UserStatSerie[] = [];
-  // results = [
-  //   {
-  //     "name": "Germany",
-  //     "series": [
-  //       {
-  //         "name": "2010",
-  //         "value": 40632,
-  //         "extra": {
-  //           "code": "de"
-  //         }
-  //       },
-  //       {
-  //         "name": "2000",
-  //         "value": 36953,
-  //         "extra": {
-  //           "code": "de"
-  //         }
-  //       },
-  //       {
-  //         "name": "1990",
-  //         "value": 31476,
-  //         "extra": {
-  //           "code": "de"
-  //         }
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     "name": "United States",
-  //     "series": [
-  //       {
-  //         "name": "2010",
-  //         "value": 0,
-  //         "extra": {
-  //           "code": "us"
-  //         }
-  //       },
-  //       {
-  //         "name": "2000",
-  //         "value": 45986,
-  //         "extra": {
-  //           "code": "us"
-  //         }
-  //       },
-  //       {
-  //         "name": "1990",
-  //         "value": 37060,
-  //         "extra": {
-  //           "code": "us"
-  //         }
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     "name": "France",
-  //     "series": [
-  //       {
-  //         "name": "2010",
-  //         "value": 36745,
-  //         "extra": {
-  //           "code": "fr"
-  //         }
-  //       },
-  //       {
-  //         "name": "2000",
-  //         "value": 34774,
-  //         "extra": {
-  //           "code": "fr"
-  //         }
-  //       },
-  //       {
-  //         "name": "1990",
-  //         "value": 29476,
-  //         "extra": {
-  //           "code": "fr"
-  //         }
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     "name": "United Kingdom",
-  //     "series": [
-  //       {
-  //         "name": "2010",
-  //         "value": 36240,
-  //         "extra": {
-  //           "code": "uk"
-  //         }
-  //       },
-  //       {
-  //         "name": "2000",
-  //         "value": 32543,
-  //         "extra": {
-  //           "code": "uk"
-  //         }
-  //       },
-  //       {
-  //         "name": "1990",
-  //         "value": 26424,
-  //         "extra": {
-  //           "code": "uk"
-  //         }
-  //       }
-  //     ]
-  //   }
-  // ];
+  options = [{
+    id: 1,
+    name: 'Hoy'
+  }, {
+    id: 2,
+    name: 'Mes'
+  }, {
+    id: 0,
+    name: 'Año'
+  }];
+
+  total: number = 0;
+  currentFilterSelection = 1;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUserStatsByDates().subscribe(
+    this.loadUserStatsByDate();
+  }
+
+  loadUserStatsByDate() {
+    this.userService.getUserStatsByDates(this.currentFilterSelection).subscribe(
       stats => {
-        this.results = stats.body['result'];
+        this.total = 0;
+        this.results = [...stats.body['result']];
+        this.results.forEach(r => {
+          if (this.currentFilterSelection === 1) {
+            r.name = moment.utc(Number.parseInt(r.name) * 3600 * 1000).format('hh a')
+          }
+          r.series.forEach(s => {
+            this.total += s.value;
+          });
+        });
       }
     );
   }
 
+  selectionChange(event: any) {
+    this.loadUserStatsByDate();
+  }
 }
