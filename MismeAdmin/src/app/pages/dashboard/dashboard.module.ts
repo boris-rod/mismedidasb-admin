@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { UserStatsComponent } from './user-stats/user-stats.component';
 import { EatStatsComponent } from './eat-stats/eat-stats.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { UserStatsByDateComponent } from './user-stats-by-date/user-stats-by-date.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     DashboardComponent,
     UserStatsComponent,
     EatStatsComponent,
+    UserStatsByDateComponent,
   ],
 })
 export class DashboardModule { }

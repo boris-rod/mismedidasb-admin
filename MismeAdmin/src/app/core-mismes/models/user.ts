@@ -11,4 +11,6 @@ export interface User {
   roleId: number;
   createdAt: Date;
   modifiedAt: Date;
+  activatedAt: Date | null;
+  disabledAt: Date | null;
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../../core-mismes/models/user';
 import { Constants } from '../../core-mismes/constants/constants';
+import { UserStatSerie } from '../../core-mismes/models/user-stats-series';
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +25,11 @@ export class UserService {
     }
     getUserStats() {
         return this.http.get<User>(Constants.GET_USERS_STATS, {
+            observe: 'response'
+        });
+    }
+    getUserStatsByDates() {
+        return this.http.get<UserStatSerie[]>(Constants.GET_USERS_STATS_BY_DATE, {
             observe: 'response'
         });
     }

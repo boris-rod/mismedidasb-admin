@@ -1,0 +1,14 @@
+<nb-card>
+  <nb-card-header>Usuarios por Fechas</nb-card-header>
+  <nb-card-body>
+    <!-- <div style="display: flex; justify-content: space-between;">
+      <span class="text-success">Activos: {{active}}</span>
+      <span class="text-warning">Por Activar: {{pending}}</span>
+      <span class="text-danger">Deshabililtados: {{disabled}}</span>
+    </div> -->
+    <div style="width: 600px; height: 400px;">
+      <ngx-charts-bar-vertical-2d [results]="results" [xAxis]="true" [yAxis]="true" [legend]="true" [legendTitle]="''">
+      </ngx-charts-bar-vertical-2d>
+    </div>
+  </nb-card-body>
+</nb-card>

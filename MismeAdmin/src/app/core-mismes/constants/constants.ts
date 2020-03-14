@@ -3,6 +3,7 @@ export const Constants = {
   CREDENTIALS_KEY: 'credentials',
   GET_USERS: 'user',
   GET_USERS_STATS: 'user/stats',
+  GET_USERS_STATS_BY_DATE: 'user/stats-by-date',
   GET_POLLS: 'poll',
   GET_PERSONAL_DATAS: 'personal-data',
   GET_DISHES: 'dish',
