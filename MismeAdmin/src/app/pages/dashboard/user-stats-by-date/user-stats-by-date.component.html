@@ -12,8 +12,10 @@
   <nb-card-body>
 
     <div style="width: 600px; height: 400px;">
-      <ngx-charts-bar-vertical-2d [results]="results" [xAxis]="true" [yAxis]="true" [legend]="true" [legendTitle]="''">
+      <ngx-charts-bar-vertical-2d [results]="results" [xAxis]="true" [yAxis]="true" [legend]="true" [legendTitle]="''"
+        *ngIf="results.length>0">
       </ngx-charts-bar-vertical-2d>
+      <p *ngIf="results.length===0">Sin datos que mostrar.</p>
     </div>
   </nb-card-body>
 </nb-card>
