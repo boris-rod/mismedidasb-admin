@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserStatSerie } from '../../../core-mismes/models/user-stats-series';
 import { UserService } from '../../users/users.service';
 
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
+import { UserStatsSharedService } from '../../../core-mismes/shared/services/user-stats-shared.service';
+import { User } from '../../../core-mismes/models/user';
 
 @Component({
   selector: 'user-stats-by-date',
   templateUrl: './user-stats-by-date.component.html',
   styleUrls: ['./user-stats-by-date.component.scss']
 })
-export class UserStatsByDateComponent implements OnInit {
+export class UserStatsByDateComponent implements OnInit, OnDestroy {
 
   results: UserStatSerie[] = [];
   options = [{
@@ -25,7 +28,25 @@ export class UserStatsByDateComponent implements OnInit {
 
   total: number = 0;
   currentFilterSelection = 1;
-  constructor(private userService: UserService) { }
+
+  registeredUserSubscription: Subscription;
+  activatedUserSubscription: Subscription;
+  disabledUserSubscription: Subscription;
+
+  constructor(private userService: UserService, private userStatsSharedService: UserStatsSharedService) {
+    this.registeredUserSubscription = this.userStatsSharedService.getRegisteredUserSubject().subscribe(user => {
+      this.updateRegisteredUsers(user);
+    });
+
+    this.activatedUserSubscription = this.userStatsSharedService.getActivedUserSubject().subscribe(user => {
+      this.updateActivatedUsers(user);
+    });
+
+    this.disabledUserSubscription = this.userStatsSharedService.getDisabledUserSubject().subscribe(user => {
+      this.updateDisabledUsers(user);
+    });
+
+  }
 
   ngOnInit() {
     this.loadUserStatsByDate();
@@ -50,5 +71,23 @@ export class UserStatsByDateComponent implements OnInit {
 
   selectionChange(event: any) {
     this.loadUserStatsByDate();
+  }
+
+  updateRegisteredUsers(user: User) {
+    this.loadUserStatsByDate();
+  }
+
+  updateActivatedUsers(user: User) {
+    this.loadUserStatsByDate();
+  }
+
+  updateDisabledUsers(user: User) {
+    this.loadUserStatsByDate();
+  }
+
+  ngOnDestroy() {
+    this.disabledUserSubscription.unsubscribe();
+    this.registeredUserSubscription.unsubscribe();
+    this.activatedUserSubscription.unsubscribe();
   }
 }
