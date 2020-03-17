@@ -58,6 +58,7 @@ export class UsersComponent implements OnInit {
   }
   onFiltered(filter: number) {
     this.statusFilter = filter;
+    this.page = 1;
     this.loadUsers();
   }
   onSorted(sort: string) {
