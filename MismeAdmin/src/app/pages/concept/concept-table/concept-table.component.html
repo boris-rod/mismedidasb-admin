@@ -6,10 +6,9 @@
   <nb-card-body>
     <ngx-datatable class="material" [headerHeight]="40" [footerHeight]="40" [rowHeight]="50" [columnMode]="ColumnMode"
       [loadingIndicator]="isLoading" [rows]="concepts" [limit]="perPage">
-      <ngx-datatable-column [sortable]="true">
+      <ngx-datatable-column [sortable]="true" name="Imágen">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <nb-user [onlyPicture]="true" [picture]="row.image===''?'assets/images/dish.png': row.image"
-            style="margin-top:-10px;">
+          <nb-user [onlyPicture]="true" [picture]="row.image" style="margin-top:-10px;" *ngIf="row.image!==''">
           </nb-user>
         </ng-template>
       </ngx-datatable-column>
@@ -22,6 +21,9 @@
         <ng-template let-row="row" ngx-datatable-cell-template>
           <button nbButton ghost (click)="editConcept(row)" size="tiny">
             <nb-icon icon="edit-outline" title="Editar Concepto"></nb-icon>
+          </button>
+          <button nbButton ghost (click)="conceptDetails(row)" size="tiny">
+            <nb-icon icon="info-outline" title="Detalles"></nb-icon>
           </button>
         </ng-template>
       </ngx-datatable-column>

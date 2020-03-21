@@ -1,0 +1,58 @@
+<nb-card>
+  <nb-card-body>
+    <div class="row mb-3">
+      <div class="col-sm-12">
+        <div style="font-weight: bold;" class="mb-2">Concepto:</div>
+        <div> {{concept.title}}</div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-12">
+        <div style="font-weight: bold;" class="mb-2">Descripción:</div>
+        <div *ngIf="concept.description!==''" style="max-height: 60px; overflow-y: auto;">{{concept.description}}</div>
+        <div *ngIf="concept.description===''">-</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div style="font-weight: bold;" class="mb-2">Cuestionarios:</div>
+        <div class="row">
+          <div class="col-sm-6">Nombre</div>
+          <div class="col-sm-6 text-right"> Orden</div>
+        </div>
+        <nb-list>
+          <nb-list-item *ngFor="let p of polls">
+            <div class="row">
+              <div class="col-sm-10" (dblclick)="inlineEdition(p)" *ngIf="showInput===false || selectedPoll?.id!==p.id">
+                {{ p.name }}
+              </div>
+
+              <div class="col-sm-10" *ngIf="showInput===true && selectedPoll?.id===p.id">
+                <input type="text" nbInput fullWidth [(ngModel)]="pollName" #conceptTitleElement tabindex="-1"
+                  (focusout)="hideInput()"
+                  [status]="showInput===true ? (pollName===''  ? 'danger' : 'success') : 'basic'" />
+                <ng-container *ngIf="showInput===true && pollName===''">
+                  <p class="caption status-danger">
+                    Debe introducir un valor.
+                  </p>
+                </ng-container>
+              </div>
+
+              <div class="col-sm-2 text-right">
+                <nb-select [fullWidth]="false" [multiple]="false" [(selected)]="p.order"
+                  (selectedChange)="selectionChange($event,p)">
+                  <nb-option *ngFor="let t of polls; index as pos" [value]="pos+1"> {{ pos+1}} </nb-option>
+                </nb-select>
+              </div>
+            </div>
+
+          </nb-list-item>
+        </nb-list>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <!-- <button type="submit" nbButton (click)="save()">Salvar</button> -->
+    <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
+  </nb-card-footer>
+</nb-card>

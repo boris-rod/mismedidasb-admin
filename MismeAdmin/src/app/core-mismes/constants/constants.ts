@@ -5,6 +5,7 @@ export const Constants = {
   GET_USERS_STATS: 'user/stats',
   GET_USERS_STATS_BY_DATE: 'user/stats-by-date',
   GET_POLLS: 'poll',
+  UPDATE_POLL_TITLE: 'poll',
   GET_PERSONAL_DATAS: 'personal-data',
   GET_DISHES: 'dish',
   GET_TAGS: 'tag',
@@ -15,5 +16,7 @@ export const Constants = {
   CHANGE_PASS: 'account/change-password',
   GET_PROFILE: 'account/profile',
   GET_CONCEPTS: 'concept',
-  UPDATE_CONCEPT: 'concept'
+  UPDATE_CONCEPT: 'concept',
+  GET_CONCEPTS_POLLS: 'concept',
+  UPDATE_CONCEPT_POLLS_ORDERS: 'concept'
 };

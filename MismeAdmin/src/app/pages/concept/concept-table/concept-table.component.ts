@@ -3,6 +3,7 @@ import { Concept } from '../../../core-mismes/models/concept';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { NbWindowService, NbDialogService } from '@nebular/theme';
 import { EditConceptComponent } from '../edit-concept/edit-concept.component';
+import { ConceptDetailsComponent } from '../concept-details/concept-details.component';
 
 @Component({
   selector: 'concept-table',
@@ -39,5 +40,16 @@ export class ConceptTableComponent implements OnInit {
       this.reseted.emit(true);
     });
   }
+  conceptDetails(concept: Concept) {
+    const wind = this.windowService.open(ConceptDetailsComponent, {
+      title: 'Detalles',
+      context: {
+        concept: concept
+      }
+    });
 
+    wind.onClose.subscribe(s => {
+      this.reseted.emit(true);
+    });
+  }
 }

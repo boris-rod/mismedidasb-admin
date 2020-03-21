@@ -14,4 +14,9 @@ export class PollsService {
             observe: 'response'
         });
     }
+    updatePollTitle(pollId: number, title: string) {
+        let params: HttpParams = new HttpParams()
+            .append('title', title);
+        return this.http.patch<Poll>(Constants.UPDATE_POLL_TITLE + '/' + pollId, {}, { params: params });
+    }
 }

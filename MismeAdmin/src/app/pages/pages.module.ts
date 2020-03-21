@@ -10,7 +10,8 @@ import {
   NbWindowModule,
   NbRadioModule,
   NbInputModule,
-  NbDialogModule
+  NbDialogModule,
+  NbListModule
 } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
@@ -35,6 +36,7 @@ import { DeleteDishComponent } from './dishes/delete-dish/delete-dish.component'
 import { ConceptComponent } from './concept/concept.component';
 import { ConceptTableComponent } from './concept/concept-table/concept-table.component';
 import { EditConceptComponent } from './concept/edit-concept/edit-concept.component';
+import { ConceptDetailsComponent } from './concept/concept-details/concept-details.component';
 
 
 @NgModule({
@@ -54,6 +56,7 @@ import { EditConceptComponent } from './concept/edit-concept/edit-concept.compon
     NbButtonModule,
     NbRadioModule,
     NbInputModule,
+    NbListModule,
     NbWindowModule.forChild(),
     NbDialogModule.forChild(),
     NgxDatatableModule,
@@ -75,11 +78,13 @@ import { EditConceptComponent } from './concept/edit-concept/edit-concept.compon
     ConceptComponent,
     ConceptTableComponent,
     EditConceptComponent,
+    ConceptDetailsComponent,
   ],
   entryComponents: [
     AddDishComponent,
     DeleteDishComponent,
-    EditConceptComponent
+    EditConceptComponent,
+    ConceptDetailsComponent
   ]
 })
 export class PagesModule {
