@@ -1,3 +1,4 @@
+import { Question } from './question';
 export interface Poll {
     id: number;
     name: string;
@@ -6,4 +7,5 @@ export interface Poll {
     createdAt: Date;
     modifiedAt: Date;
     isReadOnly: boolean;
+    questions: Question[];
 }
