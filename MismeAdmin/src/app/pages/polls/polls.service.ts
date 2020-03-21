@@ -24,4 +24,7 @@ export class PollsService {
     addPoll(poll: any) {
         return this.http.post<Poll>(Constants.POLL_BASE, poll);
     }
+    deletePoll(pollId: number) {
+        return this.http.delete(Constants.POLL_BASE + '/' + pollId);
+    }
 }

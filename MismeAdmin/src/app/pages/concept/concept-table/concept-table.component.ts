@@ -4,6 +4,7 @@ import { ColumnMode } from '@swimlane/ngx-datatable';
 import { NbWindowService, NbDialogService } from '@nebular/theme';
 import { EditConceptComponent } from '../edit-concept/edit-concept.component';
 import { ConceptDetailsComponent } from '../concept-details/concept-details.component';
+import { DeletePollComponent } from '../../polls/delete-poll/delete-poll.component';
 
 @Component({
   selector: 'concept-table',
@@ -20,8 +21,7 @@ export class ConceptTableComponent implements OnInit {
 
   ColumnMode;
 
-  constructor(private windowService: NbWindowService,
-    private dialogService: NbDialogService) {
+  constructor(private windowService: NbWindowService) {
     this.ColumnMode = ColumnMode.force
   }
 

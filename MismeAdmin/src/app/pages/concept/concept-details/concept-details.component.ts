@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef, TemplateRef } from '@angular/core';
 import { Concept } from '../../../core-mismes/models/concept';
-import { NbWindowRef, NbToastrService } from '@nebular/theme';
+import { NbWindowRef, NbToastrService, NbDialogService, NbDialogRef } from '@nebular/theme';
 import { ConceptService } from '../concept.service';
 import { Poll } from '../../../core-mismes/models/poll';
 import { finalize } from 'rxjs/operators';
 import { Logger } from '../../../core-mismes/logger.service';
 import { PollsService } from '../../polls/polls.service';
+import { DeletePollComponent } from '../../polls/delete-poll/delete-poll.component';
 const log = new Logger('Concept details');
 @Component({
   selector: 'concept-details',
@@ -21,12 +22,15 @@ export class ConceptDetailsComponent implements OnInit {
   showInput = false;
   pollName = '';
 
+  pollToDelete = 0;
+
   @ViewChild('conceptTitleElement', { static: false }) conceptTitleElement!: ElementRef;
 
   constructor(protected ref: NbWindowRef,
     private conceptService: ConceptService,
     private pollService: PollsService,
-    private toastrService: NbToastrService) { }
+    private toastrService: NbToastrService,
+    private dialogService: NbDialogService) { }
 
   ngOnInit() {
     this.loadPolls();
@@ -117,6 +121,31 @@ export class ConceptDetailsComponent implements OnInit {
         this.loadPolls();
       },
       );
+  }
+
+  deletePoll(poll: Poll, dialog: TemplateRef<any>) {
+
+    this.pollToDelete = poll.id;
+    this.dialogService.open(dialog, {
+
+    }).onClose.subscribe(s => {
+      this.loadPolls();
+    });
+  }
+
+  deletePollDialog(ref: NbDialogRef<any>) {
+    this.isLoading = true;
+    this.pollService.deletePoll(this.pollToDelete)
+      .pipe(finalize(() => {
+        this.isLoading = false;
+      })).subscribe(d => {
+        this.pollToDelete = 0;
+        this.toastrService.success('Custionario eliminado satisfactoriamente.', 'Eliminar Cuestionario');
+        ref.close();
+      });
+  }
+  dismissDeletePoll(ref: NbDialogRef<any>) {
+    ref.close();
   }
 }
 

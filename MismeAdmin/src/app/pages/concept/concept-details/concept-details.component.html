@@ -31,7 +31,14 @@
         <nb-list>
           <nb-list-item *ngFor="let p of polls">
             <div class="row">
-              <div class="col-sm-10" (dblclick)="inlineEdition(p)" *ngIf="showInput===false || selectedPoll?.id!==p.id">
+              <div class="col-sm-1" *ngIf="showInput===false || selectedPoll?.id!==p.id">
+                <button nbButton ghost status="danger" (click)="deletePoll(p, dialog)" size="tiny"
+                  style="margin-top:-5px;">
+                  <nb-icon icon="trash-outline" title="Eliminar Cuestionario"></nb-icon>
+                </button>
+
+              </div>
+              <div class="col-sm-9" (dblclick)="inlineEdition(p)" *ngIf="showInput===false || selectedPoll?.id!==p.id">
                 {{ p.name }}
               </div>
 
@@ -64,3 +71,18 @@
     <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
   </nb-card-footer>
 </nb-card>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <div style="width:600px;">
+    <nb-card>
+      <nb-card-header>Eliminar Cuestionario</nb-card-header>
+      <nb-card-body>
+        ¿Confirma la eliminación del cuestionario y sus preguntas y respuestas asociadas?
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton status="danger" (click)="deletePollDialog(ref)">Confirmar</button>
+        <button nbButton status="basic" (click)="dismissDeletePoll(ref)" style="float: right;">Cancelar</button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</ng-template>
