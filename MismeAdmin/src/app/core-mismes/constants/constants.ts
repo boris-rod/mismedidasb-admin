@@ -13,5 +13,6 @@ export const Constants = {
   GET_DISH_BY_ID: 'dish',
   DELETE_DISH: 'dish/delete',
   CHANGE_PASS: 'account/change-password',
-  GET_PROFILE: 'account/profile'
+  GET_PROFILE: 'account/profile',
+  GET_CONCEPTS: 'concept'
 };

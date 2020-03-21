@@ -1,0 +1,30 @@
+<nb-card>
+  <nb-card-header>
+    Conceptos
+  </nb-card-header>
+
+  <nb-card-body>
+    <ngx-datatable class="material" [headerHeight]="40" [footerHeight]="40" [rowHeight]="50" [columnMode]="ColumnMode"
+      [loadingIndicator]="isLoading" [rows]="concepts" [limit]="perPage">
+      <ngx-datatable-column [sortable]="true">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <nb-user [onlyPicture]="true" [picture]="row.image===''?'assets/images/dish.png': row.image"
+            style="margin-top:-10px;">
+          </nb-user>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="true" prop="title" name="Nombre">
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="true" prop="description" name="Descripción">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button nbButton ghost (click)="editConcept(row)" size="tiny">
+            <nb-icon icon="edit-outline" title="Editar Concepto"></nb-icon>
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </nb-card-body>
+</nb-card>

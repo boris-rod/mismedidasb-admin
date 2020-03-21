@@ -13,10 +13,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/users'
   },
   {
-    title: 'Datos Personales',
+    title: 'Conceptos',
     icon: 'list-outline',
-    link: '/pages/personal-data'
+    link: '/pages/concept'
   },
+  // {
+  //   title: 'Datos Personales',
+  //   icon: 'list-outline',
+  //   link: '/pages/personal-data'
+  // },
   {
     title: 'Cuestionarios',
     icon: 'question-mark-outline',

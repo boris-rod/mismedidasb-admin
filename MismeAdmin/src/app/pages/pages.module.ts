@@ -32,6 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../core-mismes/shared/shared.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DeleteDishComponent } from './dishes/delete-dish/delete-dish.component';
+import { ConceptComponent } from './concept/concept.component';
+import { ConceptTableComponent } from './concept/concept-table/concept-table.component';
 
 
 @NgModule({
@@ -69,6 +71,8 @@ import { DeleteDishComponent } from './dishes/delete-dish/delete-dish.component'
     DishesTableComponent,
     AddDishComponent,
     DeleteDishComponent,
+    ConceptComponent,
+    ConceptTableComponent,
   ],
   entryComponents: [
     AddDishComponent,
