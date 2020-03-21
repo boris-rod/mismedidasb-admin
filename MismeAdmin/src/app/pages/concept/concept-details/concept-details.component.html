@@ -13,9 +13,17 @@
         <div *ngIf="concept.description===''">-</div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" style="max-height: 400px; overflow-y: auto;">
       <div class="col-sm-12">
-        <div style="font-weight: bold;" class="mb-2">Cuestionarios:</div>
+        <div class="row">
+          <div style="font-weight: bold;" class="col-sm-6 mb-2">Cuestionarios:</div>
+          <div style="font-weight: bold;" class="col-sm-6 mb-2 text-right">
+            <button nbButton ghost (click)="newPoll()" size="tiny">
+              <nb-icon icon="plus-outline" title="Adicionar Cuestionario"></nb-icon>
+            </button>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-sm-6">Nombre</div>
           <div class="col-sm-6 text-right"> Orden</div>

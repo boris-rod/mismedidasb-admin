@@ -102,5 +102,21 @@ export class ConceptDetailsComponent implements OnInit {
       this.conceptTitleElement.nativeElement.focus();
     }, 0);
   }
+
+  newPoll() {
+    const obj = {
+      name: 'Cuestionario-' + new Date().toUTCString(),
+      conceptId: this.concept.id
+    };
+    this.pollService.addPoll(obj)
+      .pipe(finalize(() => {
+
+      }))
+      .subscribe(not => {
+        this.toastrService.success('Cuestionario adicionado satisfactoriamente.', 'Cuestionario');
+        this.loadPolls();
+      },
+      );
+  }
 }
 

@@ -10,13 +10,18 @@ export class PollsService {
     constructor(private http: HttpClient) { }
 
     getPolls() {
-        return this.http.get<Poll>(Constants.GET_POLLS, {
+        return this.http.get<Poll>(Constants.POLL_BASE, {
             observe: 'response'
         });
     }
+
     updatePollTitle(pollId: number, title: string) {
         let params: HttpParams = new HttpParams()
             .append('title', title);
-        return this.http.patch<Poll>(Constants.UPDATE_POLL_TITLE + '/' + pollId, {}, { params: params });
+        return this.http.patch<Poll>(Constants.POLL_BASE + '/' + pollId, {}, { params: params });
+    }
+
+    addPoll(poll: any) {
+        return this.http.post<Poll>(Constants.POLL_BASE, poll);
     }
 }

@@ -10,7 +10,7 @@ import { Poll } from '../../core-mismes/models/poll';
 export class ConceptService {
     constructor(private http: HttpClient) { }
     getConcepts() {
-        return this.http.get<Concept[]>(Constants.GET_CONCEPTS, {
+        return this.http.get<Concept[]>(Constants.CONCEPT_BASE, {
             observe: 'response'
         });
     }
@@ -21,15 +21,15 @@ export class ConceptService {
         formData.append('description', concept.description);
         formData.append('image', concept.image);
         formData.append('removedImage', concept.removedImage);
-        return this.http.put<Concept>(Constants.UPDATE_CONCEPT + '/' + concept.id, formData);
+        return this.http.put<Concept>(Constants.CONCEPT_BASE + '/' + concept.id, formData);
     }
     getConceptPolls(conceptId: number) {
-        return this.http.get<Poll[]>(Constants.GET_CONCEPTS_POLLS + '/' + conceptId + '/polls', {
+        return this.http.get<Poll[]>(Constants.CONCEPT_BASE + '/' + conceptId + '/polls', {
             observe: 'response'
         });
     }
 
     updateConceptPollOrder(conceptId: number, obj: any) {
-        return this.http.post<any>(Constants.UPDATE_CONCEPT_POLLS_ORDERS + '/' + conceptId + '/polls-order', obj);
+        return this.http.post<any>(Constants.CONCEPT_BASE + '/' + conceptId + '/polls-order', obj);
     }
 }

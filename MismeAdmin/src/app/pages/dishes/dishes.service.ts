@@ -17,13 +17,13 @@ export class DishesService {
             params = params.append('tags', numb.toString());
         });
 
-        return this.http.get<Dish>(Constants.GET_DISHES, {
+        return this.http.get<Dish>(Constants.DISH_BASE, {
             params: params,
             observe: 'response'
         });
     }
     getDishById(id: number) {
-        return this.http.get<Dish>(Constants.GET_DISH_BY_ID + '/' + id, {
+        return this.http.get<Dish>(Constants.DISH_BASE + '/' + id, {
             observe: 'response'
         });
     }
@@ -43,7 +43,7 @@ export class DishesService {
         for (const tag of dish.tagsIds) {
             formData.append('tagsIds', tag.toString());
         }
-        return this.http.post<Dish>(Constants.ADD_DISH, formData);
+        return this.http.post<Dish>(Constants.DISH_BASE, formData);
     }
     updateDish(dish: any) {
         const formData = new FormData();
