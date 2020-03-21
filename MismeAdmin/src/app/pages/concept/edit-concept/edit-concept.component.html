@@ -1,0 +1,40 @@
+<nb-card>
+  <nb-card-body>
+    <div class="row" style="display: flex; justify-content: space-around;">
+      <!-- <div class="form-group" style="display: flex; justify-content: space-around;"> -->
+      <!-- <label class="label">Imagen</label> -->
+      <app-upload-images [images]="images" [imagesToSend]="imagesToSend" (imageAdded)="onImageAdded($event)"
+        (imageRemoved)="onImageRemoved($event)"></app-upload-images>
+      <!-- </div> -->
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="inputConceptName" class="label">Nombre</label>
+          <input type="text" nbInput fullWidth id="inputConceptName" placeholder="Nombre" name="conceptName"
+            [formControl]="conceptName"
+            [status]="conceptName.dirty ? (conceptName.invalid  ? 'danger' : 'success') : 'basic'" [required]="true">
+          <ng-container *ngIf="conceptName.invalid && conceptName.touched">
+            <p class="caption status-danger" *ngIf="conceptName.errors?.required">
+              Debe introducir un nombre para el concepto.
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label class="label">Description</label>
+          <textarea rows="5" nbInput fullWidth shape="round" placeholder="Description" name="conceptDescription"
+            [formControl]="conceptDescription" [status]="'basic'"></textarea>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button type="submit" nbButton [disabled]="!conceptName.valid || isLoading===true"
+      (click)="saveConcept()">Salvar</button>
+    <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
+  </nb-card-footer>
+</nb-card>

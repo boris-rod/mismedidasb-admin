@@ -53,7 +53,6 @@ export class DishesTableComponent implements OnInit {
     const wind = this.windowService.open(AddDishComponent, {
       title: 'Nuevo Plato',
       context: {
-
       }
     });
 

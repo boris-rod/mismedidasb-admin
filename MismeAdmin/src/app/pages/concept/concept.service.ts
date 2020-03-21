@@ -13,4 +13,13 @@ export class ConceptService {
             observe: 'response'
         });
     }
+    updateConcept(concept: any) {
+        const formData = new FormData();
+        formData.append('id', concept.id);
+        formData.append('title', concept.title);
+        formData.append('description', concept.description);
+        formData.append('image', concept.image);
+        formData.append('removedImage', concept.removedImage);
+        return this.http.put<Concept>(Constants.UPDATE_CONCEPT + '/' + concept.id, formData);
+    }
 }

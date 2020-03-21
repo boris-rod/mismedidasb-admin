@@ -33,4 +33,8 @@ export class ConceptComponent implements OnInit {
         log.error(error);
       });
   }
+
+  onReseted(reset: boolean) {
+    this.loadData();
+  }
 }

@@ -6,8 +6,10 @@
   </div>
 
   <div *ngIf="hideAddButton===false && currentCount<maxImagesCount" fxLayout="column" class="add-images-container"
+    style="display: flex; justify-content: space-around;"
     onclick="document.getElementById('upload').click(); return false">
-    <nb-icon icon="plus-outline"></nb-icon>
+    <span>Imagen <nb-icon icon="plus-outline"></nb-icon>
+    </span>
   </div>
 
   <input id="upload" type="file" [multiple]="true" ngFileSelect [uploadInput]="uploadInput"

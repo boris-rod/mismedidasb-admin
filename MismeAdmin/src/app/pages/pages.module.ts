@@ -34,6 +34,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { DeleteDishComponent } from './dishes/delete-dish/delete-dish.component';
 import { ConceptComponent } from './concept/concept.component';
 import { ConceptTableComponent } from './concept/concept-table/concept-table.component';
+import { EditConceptComponent } from './concept/edit-concept/edit-concept.component';
 
 
 @NgModule({
@@ -73,10 +74,12 @@ import { ConceptTableComponent } from './concept/concept-table/concept-table.com
     DeleteDishComponent,
     ConceptComponent,
     ConceptTableComponent,
+    EditConceptComponent,
   ],
   entryComponents: [
     AddDishComponent,
-    DeleteDishComponent
+    DeleteDishComponent,
+    EditConceptComponent
   ]
 })
 export class PagesModule {
