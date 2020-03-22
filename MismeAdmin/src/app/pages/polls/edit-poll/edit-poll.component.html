@@ -1,32 +1,46 @@
-<nb-card>
-  <nb-card-body>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="form-group">
-          <label for="inputPollName" class="label">Nombre</label>
-          <input type="text" nbInput fullWidth id="inputPollName" placeholder="Nombre" name="pollName"
-            [formControl]="pollName" [status]="pollName.dirty ? (pollName.invalid  ? 'danger' : 'success') : 'basic'"
-            [required]="true">
-          <ng-container *ngIf="pollName.invalid && pollName.touched">
-            <p class="caption status-danger" *ngIf="pollName.errors?.required">
-              Debe introducir un nombre para el cuestionario.
-            </p>
-          </ng-container>
+<div style="width:600px;">
+  <nb-card>
+    <nb-card-header>{{ title }}</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="inputPollName" class="label">Nombre</label>
+            <input type="text" nbInput fullWidth id="inputPollName" placeholder="Nombre" name="pollName"
+              [formControl]="pollName" [status]="pollName.dirty ? (pollName.invalid  ? 'danger' : 'success') : 'basic'"
+              [required]="true">
+            <ng-container *ngIf="pollName.invalid && pollName.touched">
+              <p class="caption status-danger" *ngIf="pollName.errors?.required">
+                Debe introducir un nombre para el cuestionario.
+              </p>
+            </ng-container>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="form-group">
-          <label class="label">Descripción</label>
-          <textarea rows="5" nbInput fullWidth shape="round" placeholder="Descripción" name="pollDescription"
-            [formControl]="pollDescription" [status]="'basic'"></textarea>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="label">Concepto</label>
+            <nb-select [fullWidth]="true" [(ngModel)]="selectedConcept">
+              <nb-option *ngFor="let c of concepts" [value]="c.id"> {{ c.title }} </nb-option>
+            </nb-select>
+          </div>
         </div>
       </div>
-    </div>
-  </nb-card-body>
-  <nb-card-footer>
-    <button type="submit" nbButton [disabled]="!pollName.valid || isLoading===true" (click)="savePoll()">Salvar</button>
-    <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
-  </nb-card-footer>
-</nb-card>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="label">Descripción</label>
+            <textarea rows="5" nbInput fullWidth shape="round" placeholder="Descripción" name="pollDescription"
+              [formControl]="pollDescription" [status]="'basic'"></textarea>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button type="submit" nbButton [disabled]="!pollName.valid || isLoading===true"
+        (click)="savePoll()">Salvar</button>
+      <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
+    </nb-card-footer>
+  </nb-card>
+</div>

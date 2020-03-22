@@ -1,117 +1,122 @@
-<nb-card>
-  <nb-card-body>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label for="inputFirstName" class="label">Nombre</label>
-          <input type="text" nbInput fullWidth id="inputFirstName" placeholder="Nombre" name="dishName"
-            [formControl]="dishName" [status]="dishName.dirty ? (dishName.invalid  ? 'danger' : 'success') : 'basic'"
-            [required]="true">
-          <ng-container *ngIf="dishName.invalid && dishName.touched">
-            <p class="caption status-danger" *ngIf="dishName.errors?.required">
-              Debe introducir un nombre para el plato.
-            </p>
-          </ng-container>
+<div style="width:800px;">
+  <nb-card>
+    <nb-card-header>{{ title }}</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputFirstName" class="label">Nombre</label>
+            <input type="text" nbInput fullWidth id="inputFirstName" placeholder="Nombre" name="dishName"
+              [formControl]="dishName" [status]="dishName.dirty ? (dishName.invalid  ? 'danger' : 'success') : 'basic'"
+              [required]="true">
+            <ng-container *ngIf="dishName.invalid && dishName.touched">
+              <p class="caption status-danger" *ngIf="dishName.errors?.required">
+                Debe introducir un nombre para el plato.
+              </p>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="label">Calorías (Kcal)</label>
+            <input type="number" nbInput fullWidth min="0.0" step="0.01" name="dishCalories"
+              [formControl]="dishCalories" pattern="^\d+(?:\.\d{1,4})?$"
+              [status]="dishCalories.dirty ? (dishCalories.invalid  ? 'danger' : 'success') : 'basic'"
+              [required]="true">
+            <ng-container *ngIf="dishCalories.invalid && dishCalories.touched">
+              <p class="caption status-danger" *ngIf="dishCalories.errors?.required">
+                Debe introducir un valor.
+              </p>
+              <p class="caption status-danger" *ngIf="!dishCalories.errors?.required">
+                Debe introducir un valor entero.
+              </p>
+            </ng-container>
+          </div>
+
         </div>
       </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="label">Calorías (Kcal)</label>
-          <input type="number" nbInput fullWidth min="0.0" step="0.01" name="dishCalories" [formControl]="dishCalories"
-            pattern="^\d+(?:\.\d{1,4})?$"
-            [status]="dishCalories.dirty ? (dishCalories.invalid  ? 'danger' : 'success') : 'basic'" [required]="true">
-          <ng-container *ngIf="dishCalories.invalid && dishCalories.touched">
-            <p class="caption status-danger" *ngIf="dishCalories.errors?.required">
-              Debe introducir un valor.
-            </p>
-            <p class="caption status-danger" *ngIf="!dishCalories.errors?.required">
-              Debe introducir un valor entero.
-            </p>
-          </ng-container>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="label">Carbohidratos (g)</label>
+            <input type="number" nbInput fullWidth min="0.0" step="0.01" pattern="^\d+(?:\.\d{1,4})?$"
+              name="dishCarbohidrates" [formControl]="dishCarbohidrates"
+              [status]="dishCarbohidrates.dirty ? (dishCarbohidrates.invalid  ? 'danger' : 'success') : 'basic'"
+              [required]="true">
+            <ng-container *ngIf="dishCarbohidrates.invalid && dishCarbohidrates.touched">
+              <p class="caption status-danger" *ngIf="dishCarbohidrates.errors?.required">
+                Debe introducir un valor.
+              </p>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="label">Proteínas (g)</label>
+            <input type="number" nbInput fullWidth min="0.0" step="0.01" pattern="^\d+(?:\.\d{1,4})?$"
+              name="dishProteins" [formControl]="dishProteins"
+              [status]="dishProteins.dirty ? (dishProteins.invalid  ? 'danger' : 'success') : 'basic'"
+              [required]="true">
+            <ng-container *ngIf="dishProteins.invalid && dishProteins.touched">
+              <p class="caption status-danger" *ngIf="dishProteins.errors?.required">
+                Debe introducir un valor.
+              </p>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="label">Grasas (g)</label>
+            <input type="number" nbInput fullWidth min="0.0" step="0.01" pattern="^\d+(?:\.\d{1,4})?$" name="dishFat"
+              [formControl]="dishFat" [status]="dishFat.dirty ? (dishFat.invalid  ? 'danger' : 'success') : 'basic'"
+              [required]="true">
+            <ng-container *ngIf="dishFat.invalid && dishFat.touched">
+              <p class="caption status-danger" *ngIf="dishFat.errors?.required">
+                Debe introducir un valor.
+              </p>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="label">Fibras (g)</label>
+            <input type="number" nbInput fullWidth min="0.0" step="0.01" pattern="^\d+(?:\.\d{1,4})?$" name="dishFiber"
+              [formControl]="dishFiber"
+              [status]="dishFiber.dirty ? (dishFiber.invalid  ? 'danger' : 'success') : 'basic'" [required]="true">
+            <ng-container *ngIf="dishFiber.invalid && dishFiber.touched">
+              <p class="caption status-danger" *ngIf="dishFiber.errors?.required">
+                Debe introducir un valor.
+              </p>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="label">Tags</label>
+            <ng-select [items]="allTags" [addTag]="addTagFn" multiple="true" bindLabel="name" [(ngModel)]="selectedTags"
+              [multiple]="true" [closeOnSelect]="false">
+            </ng-select>
+          </div>
         </div>
 
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="label">Carbohidratos (g)</label>
-          <input type="number" nbInput fullWidth min="0.0" step="0.01" pattern="^\d+(?:\.\d{1,4})?$"
-            name="dishCarbohidrates" [formControl]="dishCarbohidrates"
-            [status]="dishCarbohidrates.dirty ? (dishCarbohidrates.invalid  ? 'danger' : 'success') : 'basic'"
-            [required]="true">
-          <ng-container *ngIf="dishCarbohidrates.invalid && dishCarbohidrates.touched">
-            <p class="caption status-danger" *ngIf="dishCarbohidrates.errors?.required">
-              Debe introducir un valor.
-            </p>
-          </ng-container>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="label">Imagen</label>
+            <app-upload-images [images]="images" [imagesToSend]="imagesToSend" (imageAdded)="onImageAdded($event)"
+              (imageRemoved)="onImageRemoved($event)"></app-upload-images>
+          </div>
         </div>
       </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="label">Proteínas (g)</label>
-          <input type="number" nbInput fullWidth min="0.0" step="0.01" pattern="^\d+(?:\.\d{1,4})?$" name="dishProteins"
-            [formControl]="dishProteins"
-            [status]="dishProteins.dirty ? (dishProteins.invalid  ? 'danger' : 'success') : 'basic'" [required]="true">
-          <ng-container *ngIf="dishProteins.invalid && dishProteins.touched">
-            <p class="caption status-danger" *ngIf="dishProteins.errors?.required">
-              Debe introducir un valor.
-            </p>
-          </ng-container>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="label">Grasas (g)</label>
-          <input type="number" nbInput fullWidth min="0.0" step="0.01" pattern="^\d+(?:\.\d{1,4})?$" name="dishFat"
-            [formControl]="dishFat" [status]="dishFat.dirty ? (dishFat.invalid  ? 'danger' : 'success') : 'basic'"
-            [required]="true">
-          <ng-container *ngIf="dishFat.invalid && dishFat.touched">
-            <p class="caption status-danger" *ngIf="dishFat.errors?.required">
-              Debe introducir un valor.
-            </p>
-          </ng-container>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="label">Fibras (g)</label>
-          <input type="number" nbInput fullWidth min="0.0" step="0.01" pattern="^\d+(?:\.\d{1,4})?$" name="dishFiber"
-            [formControl]="dishFiber" [status]="dishFiber.dirty ? (dishFiber.invalid  ? 'danger' : 'success') : 'basic'"
-            [required]="true">
-          <ng-container *ngIf="dishFiber.invalid && dishFiber.touched">
-            <p class="caption status-danger" *ngIf="dishFiber.errors?.required">
-              Debe introducir un valor.
-            </p>
-          </ng-container>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="label">Tags</label>
-          <ng-select [items]="allTags" [addTag]="addTagFn" multiple="true" bindLabel="name" [(ngModel)]="selectedTags"
-            [multiple]="true" [closeOnSelect]="false">
-          </ng-select>
-        </div>
-      </div>
-
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="label">Imagen</label>
-          <app-upload-images [images]="images" [imagesToSend]="imagesToSend" (imageAdded)="onImageAdded($event)"
-            (imageRemoved)="onImageRemoved($event)"></app-upload-images>
-        </div>
-      </div>
-    </div>
-  </nb-card-body>
-  <nb-card-footer>
-    <button type="submit" nbButton [disabled]="!dishName.valid || !dishCalories.valid 
+    </nb-card-body>
+    <nb-card-footer>
+      <button type="submit" nbButton [disabled]="!dishName.valid || !dishCalories.valid 
       || !dishFat.valid || !dishFiber.valid || !dishCarbohidrates.valid 
       || !dishProteins.valid || isLoading===true" (click)="saveDish()">Salvar</button>
-    <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
-  </nb-card-footer>
-</nb-card>
+      <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
+    </nb-card-footer>
+  </nb-card>
+</div>

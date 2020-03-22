@@ -21,7 +21,7 @@ export class ConceptTableComponent implements OnInit {
 
   ColumnMode;
 
-  constructor(private windowService: NbWindowService) {
+  constructor(private dialogService: NbDialogService) {
     this.ColumnMode = ColumnMode.force
   }
 
@@ -29,27 +29,49 @@ export class ConceptTableComponent implements OnInit {
   }
 
   editConcept(concept: Concept) {
-    const wind = this.windowService.open(EditConceptComponent, {
-      title: 'Editar Concepto',
+    // const wind = this.windowService.open(EditConceptComponent, {
+    //   title: 'Editar Concepto',
+    //   context: {
+    //     conceptToEdit: concept
+    //   }
+    // });
+
+    // wind.onClose.subscribe(s => {
+    //   this.reseted.emit(true);
+    // });
+
+    this.dialogService.open(EditConceptComponent, {
       context: {
+        title: 'Editar Concepto',
         conceptToEdit: concept
       }
-    });
-
-    wind.onClose.subscribe(s => {
+    }).onClose.subscribe(s => {
       this.reseted.emit(true);
     });
+
+
+
   }
   conceptDetails(concept: Concept) {
-    const wind = this.windowService.open(ConceptDetailsComponent, {
-      title: 'Detalles',
+    // const wind = this.windowService.open(ConceptDetailsComponent, {
+    //   title: 'Detalles',
+    //   context: {
+    //     concept: concept
+    //   }
+    // });
+
+    // wind.onClose.subscribe(s => {
+    //   this.reseted.emit(true);
+    // });
+
+    this.dialogService.open(ConceptDetailsComponent, {
       context: {
+        title: 'Detalles',
         concept: concept
       }
-    });
-
-    wind.onClose.subscribe(s => {
+    }).onClose.subscribe(s => {
       this.reseted.emit(true);
     });
+
   }
 }

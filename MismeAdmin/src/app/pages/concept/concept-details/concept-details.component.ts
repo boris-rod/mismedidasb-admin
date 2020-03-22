@@ -14,6 +14,7 @@ const log = new Logger('Concept details');
   styleUrls: ['./concept-details.component.scss']
 })
 export class ConceptDetailsComponent implements OnInit {
+  title = '';
   isLoading = false;
   concept: Concept;
   polls: Poll[];
@@ -26,7 +27,7 @@ export class ConceptDetailsComponent implements OnInit {
 
   @ViewChild('conceptTitleElement', { static: false }) conceptTitleElement!: ElementRef;
 
-  constructor(protected ref: NbWindowRef,
+  constructor(protected ref: NbDialogRef<ConceptDetailsComponent>,
     private conceptService: ConceptService,
     private pollService: PollsService,
     private toastrService: NbToastrService,

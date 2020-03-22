@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Concept } from '../../../core-mismes/models/concept';
-import { NbWindowRef, NbToastrService } from '@nebular/theme';
+import { NbWindowRef, NbToastrService, NbDialogRef } from '@nebular/theme';
 import { ConceptService } from '../concept.service';
 import { finalize } from 'rxjs/operators';
 
@@ -11,6 +11,8 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./edit-concept.component.scss']
 })
 export class EditConceptComponent implements OnInit {
+
+  title = '';
   isLoading: boolean = false;
 
   conceptName = new FormControl();
@@ -23,7 +25,7 @@ export class EditConceptComponent implements OnInit {
   hideRemoveButton = true;
 
   conceptToEdit: Concept;
-  constructor(protected ref: NbWindowRef,
+  constructor(protected ref: NbDialogRef<EditConceptComponent>,
     private conceptService: ConceptService,
     private toastrService: NbToastrService) {
 

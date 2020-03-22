@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NbWindowRef, NbToastrService } from '@nebular/theme';
+import { NbToastrService, NbDialogRef } from '@nebular/theme';
 import { Logger } from '../../../core-mismes';
 import { FormControl, RequiredValidator, Validators } from '@angular/forms';
 import { DishesService } from '../dishes.service';
@@ -16,6 +16,7 @@ const log = new Logger('Add Dish');
   styleUrls: ['./add-dish.component.scss']
 })
 export class AddDishComponent implements OnInit {
+  title = '';
   isLoading: boolean = false;
 
   edit: boolean = false;
@@ -38,7 +39,9 @@ export class AddDishComponent implements OnInit {
 
   dishToEdit: Dish;
 
-  constructor(protected ref: NbWindowRef, private dishService: DishesService, private tagService: TagService, private toastrService: NbToastrService) {
+  constructor(protected ref: NbDialogRef<AddDishComponent>,
+    private dishService: DishesService, private tagService: TagService,
+    private toastrService: NbToastrService) {
     this.dishName.setValidators(Validators.required);
     this.dishName.setValue('');
 

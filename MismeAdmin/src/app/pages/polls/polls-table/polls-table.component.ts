@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Poll } from '../../../core-mismes/models/poll';
 import { ColumnMode } from '@swimlane/ngx-datatable';
-import { NbWindowService } from '@nebular/theme';
+import { NbDialogService } from '@nebular/theme';
 import { EditPollComponent } from '../edit-poll/edit-poll.component';
 
 @Component({
@@ -18,29 +18,29 @@ export class PollsTableComponent implements OnInit {
 
   @Output() onReloadIsNeeded = new EventEmitter<boolean>()
 
-  constructor(private windowService: NbWindowService) { }
+  constructor(private dialogService: NbDialogService) { }
 
   ngOnInit() {
   }
 
   editPoll(p: Poll) {
-    const wind = this.windowService.open(EditPollComponent, {
-      title: 'Editar Cuestionario',
+    this.dialogService.open(EditPollComponent, {
       context: {
-        pollToEdit: p,
+        title: 'Editar Cuestionario',
+        pollToEdit: p
       }
     }).onClose.subscribe(s => {
       this.onReloadIsNeeded.emit(true);
     });
   }
+
   newPoll() {
-    const wind = this.windowService.open(EditPollComponent, {
-      title: 'Nuevo Cuestionario',
-      context: {}
+    this.dialogService.open(EditPollComponent, {
+      context: {
+        title: 'Nuevo Cuestionario'
+      }
     }).onClose.subscribe(s => {
       this.onReloadIsNeeded.emit(true);
     });
   }
-
-
 }

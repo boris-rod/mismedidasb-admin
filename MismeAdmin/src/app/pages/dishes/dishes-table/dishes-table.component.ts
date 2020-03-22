@@ -29,7 +29,7 @@ export class DishesTableComponent implements OnInit {
 
   ColumnMode;
 
-  constructor(private windowService: NbWindowService, private dialogService: NbDialogService, private tagsService: TagService) {
+  constructor(private dialogService: NbDialogService, private tagsService: TagService) {
     this.ColumnMode = ColumnMode.force
   }
 
@@ -50,27 +50,23 @@ export class DishesTableComponent implements OnInit {
   }
 
   newDish() {
-    const wind = this.windowService.open(AddDishComponent, {
-      title: 'Nuevo Plato',
+    this.dialogService.open(AddDishComponent, {
       context: {
+        title: 'Nuevo Plato'
       }
-    });
-
-    wind.onClose.subscribe(s => {
+    }).onClose.subscribe(s => {
       this.loadTags();
       this.reseted.emit(true);
     });
   }
   editDish(dish: Dish) {
-    const wind = this.windowService.open(AddDishComponent, {
-      title: 'Editar Plato',
+    this.dialogService.open(AddDishComponent, {
       context: {
+        title: 'Editar Plato',
         edit: true,
         dishToEdit: dish
       }
-    });
-
-    wind.onClose.subscribe(s => {
+    }).onClose.subscribe(s => {
       this.loadTags();
       this.reseted.emit(true);
     });
