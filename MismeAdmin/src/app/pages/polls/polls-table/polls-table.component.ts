@@ -3,6 +3,7 @@ import { Poll } from '../../../core-mismes/models/poll';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { NbDialogService } from '@nebular/theme';
 import { EditPollComponent } from '../edit-poll/edit-poll.component';
+import { DeletePollComponent } from '../delete-poll/delete-poll.component';
 
 @Component({
   selector: 'polls-table',
@@ -38,6 +39,17 @@ export class PollsTableComponent implements OnInit {
     this.dialogService.open(EditPollComponent, {
       context: {
         title: 'Nuevo Cuestionario'
+      }
+    }).onClose.subscribe(s => {
+      this.onReloadIsNeeded.emit(true);
+    });
+  }
+
+  deletePoll(poll: Poll) {
+    this.dialogService.open(DeletePollComponent, {
+      context: {
+        title: 'Eliminar Cuestionario',
+        pollId: poll.id
       }
     }).onClose.subscribe(s => {
       this.onReloadIsNeeded.emit(true);

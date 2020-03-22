@@ -9,8 +9,8 @@ import { finalize } from 'rxjs/internal/operators/finalize';
   styleUrls: ['./delete-poll.component.scss']
 })
 export class DeletePollComponent implements OnInit {
-  @Input() title: string;
-  @Input() pollId: number;
+  title: string;
+  pollId: number;
   isLoading: boolean = false;
 
   constructor(private pollService: PollsService,
