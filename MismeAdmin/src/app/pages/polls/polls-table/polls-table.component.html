@@ -4,11 +4,27 @@
   </nb-card-header>
 
   <nb-card-body>
+    <div class="row mb-3 pl-3">
+      <div>
+        <button nbButton status="primary" (click)="newPoll()">
+          <nb-icon icon="plus-outline"></nb-icon>Nuevo Cuestionario
+        </button>
+      </div>
+      <!-- <div class="col-7"></div> -->
+      <!-- <div class="col text-right pr-3">
+        <nb-select placeholder="Filtro por Categorías" [fullWidth]="true" [multiple]="true"
+          [(selected)]="currentFilerSelection" (selectedChange)="selectionChange($event)">
+          <nb-option *ngFor="let t of tags" [value]="t.id"> {{ t.name }} </nb-option>
+        </nb-select>
+        <br>
+        <a *ngIf="showReset==true" (click)="reset()" class="reset">Limpiar</a>
+      </div> -->
+    </div>
     <ngx-datatable class="material" [headerHeight]="40" [footerHeight]="40" [rowHeight]="50" [columnMode]="ColumnMode"
       [loadingIndicator]="isLoading" [rows]="polls" [limit]="perPage">
       <ngx-datatable-column [sortable]="true" prop="name" name="Nombre">
       </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="false" prop="description" name="Descripción">
+      <ngx-datatable-column [sortable]="true" prop="concept.title" name="Concepto">
       </ngx-datatable-column>
       <ngx-datatable-column [sortable]="true" prop="createdAt" name="Creado">
         <ng-template let-row="row" ngx-datatable-cell-template>
@@ -21,7 +37,14 @@
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column [sortable]="false" name="Acciones">
-
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button nbButton ghost (click)="editPoll(row)" size="tiny">
+            <nb-icon icon="edit-outline" title="Editar Cuestionario"></nb-icon>
+          </button>
+          <!-- <button nbButton ghost (click)="conceptDetails(row)" size="tiny">
+            <nb-icon icon="info-outline" title="Detalles"></nb-icon>
+          </button> -->
+        </ng-template>
 
       </ngx-datatable-column>
     </ngx-datatable>

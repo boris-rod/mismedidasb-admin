@@ -1,6 +1,6 @@
 <nb-layout>
   <nb-layout-column>
-    <polls-table [polls]="results" [isLoading]="isLoading" [perPage]="perPage">
+    <polls-table [polls]="results" [isLoading]="isLoading" [perPage]="perPage" (onReloadIsNeeded)="loadPolls()">
     </polls-table>
   </nb-layout-column>
 

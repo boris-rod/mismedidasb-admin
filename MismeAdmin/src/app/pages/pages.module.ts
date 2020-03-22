@@ -38,6 +38,7 @@ import { ConceptTableComponent } from './concept/concept-table/concept-table.com
 import { EditConceptComponent } from './concept/edit-concept/edit-concept.component';
 import { ConceptDetailsComponent } from './concept/concept-details/concept-details.component';
 import { DeletePollComponent } from './polls/delete-poll/delete-poll.component';
+import { EditPollComponent } from './polls/edit-poll/edit-poll.component';
 
 
 @NgModule({
@@ -81,9 +82,11 @@ import { DeletePollComponent } from './polls/delete-poll/delete-poll.component';
     EditConceptComponent,
     ConceptDetailsComponent,
     DeletePollComponent,
+    EditPollComponent,
   ],
   entryComponents: [
     DeletePollComponent,
+    EditPollComponent,
     AddDishComponent,
     DeleteDishComponent,
     EditConceptComponent,
