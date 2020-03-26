@@ -4,9 +4,32 @@
   </nb-card-header>
 
   <nb-card-body>
-    <div class="text-right mb-2">
-      <nb-select placeholder="Filtro por Estado" [(selected)]="currentFilerSelection"
-        (selectedChange)="selectionChange($event)">
+    <div class="row mb-3 pl-3">
+      <div class="col-2"></div>
+      <div class="col-7"></div>
+      <div class="col text-right pr-3">
+        <label>Estado</label>
+        <nb-select [fullWidth]="true" [(selected)]="currentFilerSelection" (selectedChange)="selectionChange($event)">
+          <nb-option [value]="-1">Todos</nb-option>
+          <nb-option [value]="0">Pendiente</nb-option>
+          <nb-option [value]="1">Inactivo</nb-option>
+          <nb-option [value]="2">Activo</nb-option>
+        </nb-select>
+        <br>
+        <!-- <a *ngIf="currentFilerSelection!==-1" (click)="reset()" class="reset">Limpiar</a> -->
+        <a (click)="reset()" *ngIf="showReset==true" class="reset">Limpiar</a>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- <div class="col text-right mb-2  pr-3">
+      <label>Estado</label>
+      <nb-select [(selected)]="currentFilerSelection" (selectedChange)="selectionChange($event)">
         <nb-option [value]="-1">Todos</nb-option>
         <nb-option [value]="0">Pendiente</nb-option>
         <nb-option [value]="1">Inactivo</nb-option>
@@ -14,7 +37,7 @@
       </nb-select>
     </div>
 
-    <div class="text-right mb-3" *ngIf="showReset==true"><a (click)="reset()" class="reset">Limpiar</a></div>
+    <div class="text-right mb-3" *ngIf="showReset==true"><a (click)="reset()" class="reset">Limpiar</a></div> -->
 
     <ngx-datatable class="material" [headerHeight]="40" [footerHeight]="40" [rows]="users" [rowHeight]="50"
       [loadingIndicator]="isLoading" [columnMode]="ColumnMode" [externalPaging]="true" [count]="total" [offset]="page-1"

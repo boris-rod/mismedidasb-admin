@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
   @Output() filtered = new EventEmitter<number>()
   @Output() sorted = new EventEmitter<string>()
   @Output() reseted = new EventEmitter<boolean>()
-  currentFilerSelection: number = null;
+  currentFilerSelection: number = -1;
 
   ColumnMode = ColumnMode.force;
   constructor() { }
@@ -31,8 +31,12 @@ export class TableComponent implements OnInit {
     this.paged.emit(pageInfo.offset + 1);
   }
   selectionChange(selection: any) {
-    if (selection !== null) {
+    console.log(selection);
+    if (selection !== -1) {
       this.showReset = true;
+    }
+    else {
+      this.showReset = false;
     }
     this.filtered.emit(selection);
   }
@@ -43,7 +47,7 @@ export class TableComponent implements OnInit {
   }
 
   reset() {
-    this.currentFilerSelection = null;
+    this.currentFilerSelection = -1;
     this.showReset = false;
     this.reseted.emit(true);
   }
