@@ -39,6 +39,7 @@ import { EditConceptComponent } from './concept/edit-concept/edit-concept.compon
 import { ConceptDetailsComponent } from './concept/concept-details/concept-details.component';
 import { DeletePollComponent } from './polls/delete-poll/delete-poll.component';
 import { EditPollComponent } from './polls/edit-poll/edit-poll.component';
+import { PollDetailsComponent } from './polls/poll-details/poll-details.component';
 
 
 @NgModule({
@@ -83,6 +84,7 @@ import { EditPollComponent } from './polls/edit-poll/edit-poll.component';
     ConceptDetailsComponent,
     DeletePollComponent,
     EditPollComponent,
+    PollDetailsComponent,
   ],
   entryComponents: [
     DeletePollComponent,
@@ -90,7 +92,8 @@ import { EditPollComponent } from './polls/edit-poll/edit-poll.component';
     AddDishComponent,
     DeleteDishComponent,
     EditConceptComponent,
-    ConceptDetailsComponent
+    ConceptDetailsComponent,
+    PollDetailsComponent
   ]
 })
 export class PagesModule {

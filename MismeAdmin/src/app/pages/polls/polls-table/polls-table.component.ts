@@ -4,6 +4,7 @@ import { ColumnMode } from '@swimlane/ngx-datatable';
 import { NbDialogService } from '@nebular/theme';
 import { EditPollComponent } from '../edit-poll/edit-poll.component';
 import { DeletePollComponent } from '../delete-poll/delete-poll.component';
+import { PollDetailsComponent } from '../poll-details/poll-details.component';
 
 @Component({
   selector: 'polls-table',
@@ -50,6 +51,17 @@ export class PollsTableComponent implements OnInit {
       context: {
         title: 'Eliminar Cuestionario',
         pollId: poll.id
+      }
+    }).onClose.subscribe(s => {
+      this.onReloadIsNeeded.emit(true);
+    });
+  }
+
+  pollDetails(poll: Poll) {
+    this.dialogService.open(PollDetailsComponent, {
+      context: {
+        title: 'Detalles del Cuestionario',
+        poll: poll
       }
     }).onClose.subscribe(s => {
       this.onReloadIsNeeded.emit(true);

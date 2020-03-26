@@ -141,7 +141,7 @@ export class ConceptDetailsComponent implements OnInit {
         this.isLoading = false;
       })).subscribe(d => {
         this.pollToDelete = 0;
-        this.toastrService.success('Custionario eliminado satisfactoriamente.', 'Eliminar Cuestionario');
+        this.toastrService.success('Cuestionario eliminado satisfactoriamente.', 'Eliminar Cuestionario');
         ref.close();
       });
   }

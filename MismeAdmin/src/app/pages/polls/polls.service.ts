@@ -30,4 +30,8 @@ export class PollsService {
     deletePoll(pollId: number) {
         return this.http.delete(Constants.POLL_BASE + '/' + pollId);
     }
+
+    updatePollQuestionOrder(pollId: number, obj: any) {
+        return this.http.post<any>(Constants.POLL_BASE + '/' + pollId + '/questions-order', obj);
+    }
 }

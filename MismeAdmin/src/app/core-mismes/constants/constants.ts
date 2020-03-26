@@ -7,6 +7,7 @@ export const Constants = {
   POLL_BASE: 'poll',
   DISH_BASE: 'dish',
   CONCEPT_BASE: 'concept',
+  QUESTION_BASE: 'question',
   GET_PERSONAL_DATAS: 'personal-data',
   GET_TAGS: 'tag',
   UPDATE_DISH: 'dish/update',
