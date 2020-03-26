@@ -1,6 +1,7 @@
 <nb-layout>
   <nb-layout-column>
-    <polls-table [polls]="results" [isLoading]="isLoading" [perPage]="perPage" (onReloadIsNeeded)="loadPolls()">
+    <polls-table [polls]="results" [isLoading]="isLoading" [perPage]="perPage" (onReloadIsNeeded)="loadPolls()"
+      (onFilterChange)="onFilterChange($event)">
     </polls-table>
   </nb-layout-column>
 

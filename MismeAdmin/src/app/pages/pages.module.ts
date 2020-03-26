@@ -40,6 +40,7 @@ import { ConceptDetailsComponent } from './concept/concept-details/concept-detai
 import { DeletePollComponent } from './polls/delete-poll/delete-poll.component';
 import { EditPollComponent } from './polls/edit-poll/edit-poll.component';
 import { PollDetailsComponent } from './polls/poll-details/poll-details.component';
+import { AddQuestionComponent } from './question/add-question/add-question.component';
 
 
 @NgModule({
@@ -85,6 +86,7 @@ import { PollDetailsComponent } from './polls/poll-details/poll-details.componen
     DeletePollComponent,
     EditPollComponent,
     PollDetailsComponent,
+    AddQuestionComponent,
   ],
   entryComponents: [
     DeletePollComponent,

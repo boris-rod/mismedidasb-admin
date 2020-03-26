@@ -15,6 +15,7 @@ export class PollsComponent implements OnInit {
   isLoading: boolean = false;
   perPage: number = 10;
   results: Poll[];
+  conceptFilter = -1;
   constructor(private pollService: PollsService) { }
 
   ngOnInit() {
@@ -24,7 +25,7 @@ export class PollsComponent implements OnInit {
   loadPolls() {
     this.isLoading = true;
 
-    this.pollService.getPolls()
+    this.pollService.getPolls(this.conceptFilter)
       .pipe(finalize(() => {
         this.isLoading = false;
       }))
@@ -33,6 +34,11 @@ export class PollsComponent implements OnInit {
       }, error => {
         log.error(error);
       });
+  }
+
+  onFilterChange(conceptId: number) {
+    this.conceptFilter = conceptId;
+    this.loadPolls();
   }
 
 }

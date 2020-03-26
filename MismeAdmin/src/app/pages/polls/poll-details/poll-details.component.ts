@@ -3,7 +3,7 @@ import { Poll } from '../../../core-mismes/models/poll';
 import { NbDialogRef, NbToastrService, NbDialogService } from '@nebular/theme';
 import { Question } from '../../../core-mismes/models/question';
 import { PollsService } from '../polls.service';
-import { QuestionService } from '../question.service';
+import { QuestionService } from '../../question/question.service';
 import { finalize } from 'rxjs/operators';
 
 @Component({

@@ -10,15 +10,17 @@
           <nb-icon icon="plus-outline"></nb-icon>Nuevo Cuestionario
         </button>
       </div>
-      <!-- <div class="col-7"></div> -->
-      <!-- <div class="col text-right pr-3">
-        <nb-select placeholder="Filtro por Categorías" [fullWidth]="true" [multiple]="true"
-          [(selected)]="currentFilerSelection" (selectedChange)="selectionChange($event)">
-          <nb-option *ngFor="let t of tags" [value]="t.id"> {{ t.name }} </nb-option>
+      <div class="col-7"></div>
+      <div class="col text-right pr-3">
+        <label>Concepto</label>
+        <nb-select [fullWidth]="true" [multiple]="false" [(ngModel)]="currentFilerSelection"
+          (selectedChange)="selectionChange($event)">
+          <nb-option [value]="-1"> Todos</nb-option>
+          <nb-option *ngFor="let t of concepts" [value]="t.id"> {{ t.title }} </nb-option>
         </nb-select>
         <br>
-        <a *ngIf="showReset==true" (click)="reset()" class="reset">Limpiar</a>
-      </div> -->
+        <a *ngIf="currentFilerSelection!==-1" (click)="reset()" class="reset">Limpiar</a>
+      </div>
     </div>
     <ngx-datatable class="material" [headerHeight]="40" [footerHeight]="40" [rowHeight]="50" [columnMode]="ColumnMode"
       [loadingIndicator]="isLoading" [rows]="polls" [limit]="perPage">

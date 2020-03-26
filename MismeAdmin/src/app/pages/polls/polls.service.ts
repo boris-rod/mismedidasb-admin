@@ -9,8 +9,11 @@ import { Injectable } from '@angular/core';
 export class PollsService {
     constructor(private http: HttpClient) { }
 
-    getPolls() {
+    getPolls(conceptId: number) {
+        let params: HttpParams = new HttpParams()
+            .append('conceptId', conceptId.toString());
         return this.http.get<Poll>(Constants.POLL_BASE, {
+            params: params,
             observe: 'response'
         });
     }

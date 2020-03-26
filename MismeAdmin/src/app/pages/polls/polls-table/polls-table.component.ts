@@ -5,6 +5,9 @@ import { NbDialogService } from '@nebular/theme';
 import { EditPollComponent } from '../edit-poll/edit-poll.component';
 import { DeletePollComponent } from '../delete-poll/delete-poll.component';
 import { PollDetailsComponent } from '../poll-details/poll-details.component';
+import { Concept } from '../../../core-mismes/models/concept';
+import { ConceptService } from '../../concept/concept.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'polls-table',
@@ -19,10 +22,22 @@ export class PollsTableComponent implements OnInit {
   ColumnMode = ColumnMode.force;
 
   @Output() onReloadIsNeeded = new EventEmitter<boolean>()
+  @Output() onFilterChange = new EventEmitter<number>()
 
-  constructor(private dialogService: NbDialogService) { }
+  concepts: Concept[];
+  currentFilerSelection: number = -1;
+
+  constructor(private dialogService: NbDialogService,
+    private conceptService: ConceptService) { }
 
   ngOnInit() {
+    this.conceptService.getConcepts()
+      .pipe(finalize(() => {
+      }))
+      .subscribe(resp => {
+        this.concepts = resp.body['result'];
+      }, error => {
+      });
   }
 
   editPoll(p: Poll) {
@@ -66,5 +81,13 @@ export class PollsTableComponent implements OnInit {
     }).onClose.subscribe(s => {
       this.onReloadIsNeeded.emit(true);
     });
+  }
+
+  selectionChange(event: any) {
+    this.onFilterChange.emit(event);
+  }
+  reset() {
+    this.currentFilerSelection = -1;
+    this.onFilterChange.emit(-1);
   }
 }
