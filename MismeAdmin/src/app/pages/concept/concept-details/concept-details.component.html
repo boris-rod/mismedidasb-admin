@@ -58,10 +58,14 @@
                 </div>
 
                 <div class="col-sm-2 text-right">
-                  <nb-select [fullWidth]="false" [multiple]="false" [(selected)]="p.order"
+                  <!-- <nb-select [fullWidth]="false" [multiple]="false" [(selected)]="p.order"
                     (selectedChange)="selectionChange($event,p)">
                     <nb-option *ngFor="let t of polls; index as pos" [value]="pos+1"> {{ pos+1}} </nb-option>
-                  </nb-select>
+                  </nb-select> -->
+                  <ng-select [searchable]="false" [clearable]="false" [(ngModel)]="p.order"
+                    (change)="selectionChange($event, p)">
+                    <ng-option *ngFor="let t of polls; index as pos" [value]="pos+1">{{pos+1}}</ng-option>
+                  </ng-select>
                 </div>
               </div>
 

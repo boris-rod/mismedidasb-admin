@@ -64,10 +64,15 @@
                 </div>
 
                 <div class="col-sm-2 text-right">
-                  <nb-select [fullWidth]="false" [multiple]="false" [(ngModel)]="q.order"
+                  <!-- <nb-select [fullWidth]="false" [multiple]="false" [(ngModel)]="q.order"
                     (selectedChange)="selectionChange($event,q)">
                     <nb-option *ngFor="let t of poll.questions; index as pos" [value]="pos+1"> {{ pos+1}} </nb-option>
-                  </nb-select>
+                  </nb-select> -->
+
+                  <ng-select [searchable]="false" [clearable]="false" [(ngModel)]="q.order"
+                    (change)="selectionChange($event, q)">
+                    <ng-option *ngFor="let t of poll.questions; index as pos" [value]="pos+1">{{pos+1}}</ng-option>
+                  </ng-select>
                 </div>
               </div>
 

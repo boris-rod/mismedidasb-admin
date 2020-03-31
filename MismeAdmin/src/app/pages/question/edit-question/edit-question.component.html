@@ -87,10 +87,17 @@
 
                 <!-- order -->
                 <div class="col-sm-2 text-right" *ngIf="showInput===false || selectedAnswer?.id!==a.id">
-                  <nb-select [fullWidth]="false" [multiple]="false" [(ngModel)]="a.order"
-                    (selectedChange)="selectionChange($event,a)">
-                    <nb-option *ngFor="let t of answers; index as pos" [value]="pos+1"> {{ pos+1}} </nb-option>
-                  </nb-select>
+                  <!-- <nb-select #select [fullWidth]="false" [multiple]="false" [(ngModel)]="a.order"
+                    (selectedChange)="selectionChange($event, a,select)">
+                    <nb-option *ngFor="let t of answers; index as pos" [value]="t.order"> {{ pos+1}} </nb-option>
+                  </nb-select> -->
+                  <ng-select [searchable]="false" [clearable]="false" [(ngModel)]="a.order"
+                    (change)="selectionChange($event, a)">
+                    <ng-option *ngFor="let t of answers; index as pos" [value]="t.order">{{pos+1}}</ng-option>
+                  </ng-select>
+
+
+
                 </div>
                 <!-- end order -->
 

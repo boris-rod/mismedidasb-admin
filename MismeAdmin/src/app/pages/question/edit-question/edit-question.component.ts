@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { NbDialogRef, NbToastrService } from '@nebular/theme';
 import { Answer } from '../../../core-mismes/models/answer';
 import { Question } from '../../../core-mismes/models/question';
@@ -32,7 +32,8 @@ export class EditQuestionComponent implements OnInit {
 
   constructor(private ref: NbDialogRef<EditQuestionComponent>,
     private questionService: QuestionService,
-    private toastrService: NbToastrService) {
+    private toastrService: NbToastrService,
+    private detector: ChangeDetectorRef) {
     this.answerName.setValidators(Validators.required);
     this.answerWeight.setValidators([Validators.required, Validators.pattern('^-?[0-9]+$')]);
 
@@ -91,7 +92,15 @@ export class EditQuestionComponent implements OnInit {
   }
 
   selectionChange(e: any, a: Answer) {
+    let backup = this.answers;
+    const ind = backup.findIndex(p => p.id === a.id);
+    backup[e - 1].order = ind + 1;
+    backup[ind].order = a.order;
+    backup = backup.sort((as, b) => as.order - b.order)
+    this.answers.splice(0, backup.length - 1, ...backup);
+    this.answers = [...backup];
 
+    this.detector.detectChanges();
   }
   removeAllAnswers() {
     this.answers = [];
