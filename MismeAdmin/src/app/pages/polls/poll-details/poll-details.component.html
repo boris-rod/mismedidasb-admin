@@ -26,8 +26,8 @@
           <div class="row">
             <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2">Preguntas:</div>
             <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2 text-right">
-              <button nbButton ghost (click)="newQuestion()" size="tiny">
-                <nb-icon icon="plus-outline" title="Adicionar Pregunta"></nb-icon>
+              <button nbTooltip="Adicionar" nbButton ghost (click)="newQuestion()" size="tiny">
+                <nb-icon icon="plus-outline" title="Adicionar"></nb-icon>
               </button>
             </div>
           </div>
@@ -40,11 +40,13 @@
             <nb-list-item *ngFor="let q of poll.questions">
               <div class="row">
                 <div class="col-sm-2" *ngIf="showInput===false || selectedQuestion?.id!==q.id">
-                  <button nbButton ghost (click)="deleteQuestion(q, dialog)" size="tiny" style="margin-top:-5px;">
-                    <nb-icon icon="trash-outline" title="Eliminar Pregunta"></nb-icon>
+                  <button nbTooltip="Eliminar" nbButton ghost (click)="deleteQuestion(q, dialog)" size="tiny"
+                    style="margin-top:-5px;">
+                    <nb-icon icon="trash-outline" title="Eliminar"></nb-icon>
                   </button>
-                  <button nbButton ghost (click)="editQuestion(q)" size="tiny" style="margin-top:-5px;">
-                    <nb-icon icon="edit-outline" title="Editar Pregunta"></nb-icon>
+                  <button nbTooltip="Editar" nbButton ghost (click)="editQuestion(q)" size="tiny"
+                    style="margin-top:-5px;">
+                    <nb-icon icon="edit-outline" title="Editar"></nb-icon>
                   </button>
                 </div>
                 <div class="col-sm-8" (dblclick)="inlineEdition(q)"

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, AfterViewInit } from '@angular/core';
 import { Poll } from '../../../core-mismes/models/poll';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { NbDialogService } from '@nebular/theme';
@@ -31,11 +31,13 @@ export class PollsTableComponent implements OnInit {
     private conceptService: ConceptService) { }
 
   ngOnInit() {
+
     this.conceptService.getConcepts()
       .pipe(finalize(() => {
       }))
       .subscribe(resp => {
         this.concepts = resp.body['result'];
+
       }, error => {
       });
   }

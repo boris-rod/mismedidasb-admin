@@ -21,8 +21,8 @@
           <div class="row">
             <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2">Cuestionarios:</div>
             <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2 text-right">
-              <button nbButton ghost (click)="newPoll()" size="tiny">
-                <nb-icon icon="plus-outline" title="Adicionar Cuestionario"></nb-icon>
+              <button nbTooltip="Adicionar" nbButton ghost (click)="newPoll()" size="tiny">
+                <nb-icon icon="plus-outline" title="Adicionar"></nb-icon>
               </button>
             </div>
           </div>
@@ -35,9 +35,9 @@
             <nb-list-item *ngFor="let p of polls">
               <div class="row">
                 <div class="col-sm-1" *ngIf="showInput===false || selectedPoll?.id!==p.id">
-                  <button nbButton ghost status="danger" (click)="deletePoll(p, dialog)" size="tiny"
+                  <button nbTooltip="Eliminar" nbButton ghost (click)="deletePoll(p, dialog)" size="tiny"
                     style="margin-top:-5px;">
-                    <nb-icon icon="trash-outline" title="Eliminar Cuestionario"></nb-icon>
+                    <nb-icon icon="trash-outline" title="Eliminar"></nb-icon>
                   </button>
 
                 </div>

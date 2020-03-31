@@ -44,11 +44,11 @@
       </ngx-datatable-column>
       <ngx-datatable-column [sortable]="false" name="Acciones">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <button nbButton ghost (click)="editDish(row)" size="tiny">
-            <nb-icon icon="edit-outline" title="Editar Plato"></nb-icon>
+          <button nbTooltip="Editar" nbButton ghost (click)="editDish(row)" size="tiny">
+            <nb-icon icon="edit-outline" title="Editar"></nb-icon>
           </button>
-          <button nbButton ghost (click)="deleteDish(row)" size="tiny">
-            <nb-icon icon="trash-2-outline" title="Eiminar Plato"> </nb-icon>
+          <button nbTooltip="Eliminar" nbButton ghost (click)="deleteDish(row)" size="tiny">
+            <nb-icon icon="trash-2-outline" title="Eiminar"> </nb-icon>
           </button>
         </ng-template>
       </ngx-datatable-column>

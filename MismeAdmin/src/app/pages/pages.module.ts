@@ -11,7 +11,8 @@ import {
   NbRadioModule,
   NbInputModule,
   NbDialogModule,
-  NbListModule
+  NbListModule,
+  NbTooltipModule
 } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
@@ -62,6 +63,7 @@ import { EditQuestionComponent } from './question/edit-question/edit-question.co
     NbRadioModule,
     NbInputModule,
     NbListModule,
+    NbTooltipModule,
     NbWindowModule.forChild(),
     NbDialogModule.forChild(),
     NgxDatatableModule,

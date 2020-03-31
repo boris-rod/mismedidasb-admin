@@ -15,11 +15,12 @@
           <div class="row">
             <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2">Respuestas:</div>
             <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2 text-right">
-              <button nbButton ghost (click)="removeAllAnswers()" size="tiny" *ngIf="answers.length>0">
-                <nb-icon icon="refresh-outline" title="Quitar Respuestas"></nb-icon>
+              <button nbTooltip="Limpiar" nbButton ghost (click)="removeAllAnswers()" size="tiny"
+                *ngIf="answers.length>0">
+                <nb-icon icon="refresh-outline" title="Limpiar"></nb-icon>
               </button>
-              <button nbButton ghost (click)="newAnswer()" size="tiny">
-                <nb-icon icon="plus-outline" title="Adicionar Respuesta"></nb-icon>
+              <button nbTooltip="Adicionar" nbButton ghost (click)="newAnswer()" size="tiny">
+                <nb-icon icon="plus-outline" title="Adicionar"></nb-icon>
               </button>
             </div>
           </div>
@@ -36,7 +37,8 @@
               <div class="row">
                 <!-- remove button -->
                 <div class="col-sm-1" *ngIf="showInput===false || selectedAnswer?.id!==a.id">
-                  <button nbButton ghost (click)="deleteAnswer(a)" size="tiny" style="margin-top:5px;">
+                  <button nbTooltip="Eliminar" nbButton ghost (click)="deleteAnswer(a)" size="tiny"
+                    style="margin-top:5px;">
                     <nb-icon icon="trash-outline" title="Eliminar Respuesta"></nb-icon>
                   </button>
                 </div>
