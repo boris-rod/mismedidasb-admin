@@ -5,6 +5,8 @@ import { Question } from '../../../core-mismes/models/question';
 import { PollsService } from '../polls.service';
 import { QuestionService } from '../../question/question.service';
 import { finalize } from 'rxjs/operators';
+import { EditQuestionComponent } from '../../question/edit-question/edit-question.component';
+import { Answer } from '../../../core-mismes/models/answer';
 
 @Component({
   selector: 'poll-details',
@@ -40,7 +42,7 @@ export class PollDetailsComponent implements OnInit {
       }))
       .subscribe(resp => {
         this.poll.questions = [...resp['result']];
-        this.toastrService.success('Preguntas actualizadas satisfactoriamente.', 'Cuestionario');
+
       }, error => {
       });
   }
@@ -50,8 +52,40 @@ export class PollDetailsComponent implements OnInit {
   }
 
   newQuestion() {
+    const ind = this.poll.questions.findIndex(q => q.answers.length > 0);
+    let answers: Answer[] = [];
+    if (ind > -1) {
+      answers = this.poll.questions[ind].answers;
+    }
 
+    this.dialogService.open(EditQuestionComponent, {
+      context: {
+        answers: answers,
+        pollId: this.poll.id
+      }
+    }).onClose.subscribe(s => {
+      if (s) {
+        this.loadPollQuestions();
+      }
+    });
   }
+
+  editQuestion(q: Question) {
+    this.dialogService.open(EditQuestionComponent, {
+      context: {
+        title: 'Editar Pregunta',
+        answers: q.answers,
+        pollId: this.poll.id,
+        question: q
+      }
+    }).onClose.subscribe(s => {
+      if (s) {
+        this.loadPollQuestions();
+      }
+    });
+  }
+
+
   selectionChange(event: any, q: Question) {
     const ind = this.poll.questions.findIndex(p => p.id === q.id);
     this.poll.questions[event - 1].order = ind + 1;
@@ -68,6 +102,7 @@ export class PollDetailsComponent implements OnInit {
       }))
       .subscribe(resp => {
         this.loadPollQuestions();
+        this.toastrService.success('Preguntas actualizadas satisfactoriamente.', 'Cuestionario');
 
       }, error => {
       });

@@ -39,14 +39,15 @@
           <nb-list>
             <nb-list-item *ngFor="let q of poll.questions">
               <div class="row">
-                <div class="col-sm-1" *ngIf="showInput===false || selectedQuestion?.id!==q.id">
-                  <button nbButton ghost status="danger" (click)="deleteQuestion(q, dialog)" size="tiny"
-                    style="margin-top:-5px;">
+                <div class="col-sm-2" *ngIf="showInput===false || selectedQuestion?.id!==q.id">
+                  <button nbButton ghost (click)="deleteQuestion(q, dialog)" size="tiny" style="margin-top:-5px;">
                     <nb-icon icon="trash-outline" title="Eliminar Pregunta"></nb-icon>
                   </button>
-
+                  <button nbButton ghost (click)="editQuestion(q)" size="tiny" style="margin-top:-5px;">
+                    <nb-icon icon="edit-outline" title="Editar Pregunta"></nb-icon>
+                  </button>
                 </div>
-                <div class="col-sm-9" (dblclick)="inlineEdition(q)"
+                <div class="col-sm-8" (dblclick)="inlineEdition(q)"
                   *ngIf="showInput===false || selectedQuestion?.id!==q.id">
                   {{ q.title }}
                 </div>

@@ -1,0 +1,128 @@
+<div style="width:800px;">
+  <nb-card>
+    <nb-card-header>{{ title }}</nb-card-header>
+    <nb-card-body>
+      <div class="row mb-3">
+        <div class="col-sm-6">
+          <div style="font-weight: bold;" class="mb-2">Pregunta:</div>
+          <input type="text" nbInput fullWidth [(ngModel)]="questionName" />
+        </div>
+      </div>
+
+      <!-- answers -->
+      <div class="row" style="max-height: 400px; overflow-y: auto;">
+        <div class="col-sm-12">
+          <div class="row">
+            <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2">Respuestas:</div>
+            <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2 text-right">
+              <button nbButton ghost (click)="removeAllAnswers()" size="tiny" *ngIf="answers.length>0">
+                <nb-icon icon="refresh-outline" title="Quitar Respuestas"></nb-icon>
+              </button>
+              <button nbButton ghost (click)="newAnswer()" size="tiny">
+                <nb-icon icon="plus-outline" title="Adicionar Respuesta"></nb-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-7">Respuesta</div>
+            <div class="col-sm-3 text-right"> Valor</div>
+            <div class="col-sm-2 text-right" *ngIf="showInput===false"> Orden</div>
+            <div class="col-sm-2 text-right" *ngIf="showInput===true"></div>
+          </div>
+          <nb-list>
+            <!-- <nb-list-item *ngFor="let a of answers" (dblclick)="inlineEdition($event,a)" (focusout)="hideInput($event)"> -->
+            <nb-list-item *ngFor="let a of answers" (dblclick)="inlineEdition(a)">
+              <div class="row">
+                <!-- remove button -->
+                <div class="col-sm-1" *ngIf="showInput===false || selectedAnswer?.id!==a.id">
+                  <button nbButton ghost (click)="deleteAnswer(a)" size="tiny" style="margin-top:5px;">
+                    <nb-icon icon="trash-outline" title="Eliminar Respuesta"></nb-icon>
+                  </button>
+                </div>
+                <!-- ende remove button -->
+
+                <!-- title -->
+                <div class="col-sm-6 custom-padding" *ngIf="showInput===false || selectedAnswer?.id!==a.id">
+                  {{ a.title }}
+                </div>
+
+                <div class="col-sm-7" *ngIf="showInput===true && selectedAnswer?.id===a.id">
+                  <input type="text" nbInput fullWidth [formControl]="answerName" name="answerName" #answerTitleElement
+                    tabindex="-1" [status]="showInput===true ? (answerName===''  ? 'danger' : 'success') : 'basic'" />
+                  <ng-container *ngIf="showInput===true && answerName===''">
+                    <p class="caption status-danger">
+                      Debe introducir un valor.
+                    </p>
+                  </ng-container>
+                </div>
+                <!-- end title -->
+                <!-- value -->
+                <div class="col-sm-3 text-right custom-padding" *ngIf="showInput===false || selectedAnswer?.id!==a.id">
+                  {{a.weight}}
+                </div>
+                <div class="col-sm-3" *ngIf="showInput===true && selectedAnswer?.id===a.id">
+                  <input type="text" nbInput fullWidth [formControl]="answerWeight" name="answerWeight"
+                    [status]="answerWeight.dirty ? (answerWeight.invalid  ? 'danger' : 'success') : 'basic'" />
+                  <ng-container *ngIf="showInput===true && answerWeight.invalid && answerWeight.touched">
+                    <p class="caption status-danger">
+                      Debe introducir un valor.
+                    </p>
+                  </ng-container>
+                </div>
+                <!-- end value -->
+
+                <!-- action buttons-->
+                <div class="col-sm-2" *ngIf="showInput===true && selectedAnswer?.id===a.id">
+                  <button nbButton ghost [disabled]="answerWeight.invalid || answerName.invalid" size="tiny"
+                    style="margin-top:5px;" (click)="setValues()">
+                    <nb-icon icon="checkmark-outline" title="Salvar"></nb-icon>
+                  </button>
+                  <button nbButton ghost size="tiny" style="margin-top:5px;" (click)="hideInput()">
+                    <nb-icon icon="close-circle-outline" title="Quitar"></nb-icon>
+                  </button>
+                </div>
+                <!-- end action buttons -->
+
+
+                <!-- order -->
+                <div class="col-sm-2 text-right" *ngIf="showInput===false || selectedAnswer?.id!==a.id">
+                  <nb-select [fullWidth]="false" [multiple]="false" [(ngModel)]="a.order"
+                    (selectedChange)="selectionChange($event,a)">
+                    <nb-option *ngFor="let t of answers; index as pos" [value]="pos+1"> {{ pos+1}} </nb-option>
+                  </nb-select>
+                </div>
+                <!-- end order -->
+
+              </div>
+
+            </nb-list-item>
+          </nb-list>
+        </div>
+      </div>
+      <!-- end answers -->
+    </nb-card-body>
+    <nb-card-footer>
+      <button type="submit" nbButton [disabled]="questionName===''|| answers.length===0" (click)="saveQuestion()"
+        *ngIf="!this.question">Adicionar</button>
+      <button type="submit" nbButton [disabled]="questionName===''|| answers.length===0" (click)="saveQuestion()"
+        *ngIf="this.question">Actualizar</button>
+      <button nbButton status="basic" (click)="dismiss()" style="float: right;">Cancelar</button>
+    </nb-card-footer>
+  </nb-card>
+</div>
+
+<!-- <ng-template #dialog let-data let-ref="dialogRef">
+  <div style="width:600px;">
+    <nb-card>
+      <nb-card-header>Eliminar Pregunta</nb-card-header>
+      <nb-card-body>
+        ¿Confirma la eliminación de la pregunta y sus respuestas asociadas?
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton status="danger" (click)="deleteQuestionDialog(ref)">Confirmar</button>
+        <button nbButton status="basic" (click)="dismissDeleteQuestion(ref)" style="float: right;">Cancelar</button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</ng-template> -->

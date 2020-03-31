@@ -15,12 +15,10 @@ export class QuestionService {
         return this.http.patch<Question>(Constants.QUESTION_BASE + '/' + questionId + '/change-title', {}, { params: params });
     }
 
-    // addPoll(poll: any) {
-    //     return this.http.post<Poll>(Constants.POLL_BASE, poll);
-    // }
-    // updatePoll(poll: any) {
-    //     return this.http.put<Poll>(Constants.POLL_BASE, poll);
-    // }
+    addOrUpdateQuestionWithAnswers(obj: any) {
+        return this.http.post<Question>(Constants.QUESTION_BASE + '/add-or-update', obj);
+    }
+
     deleteQuestion(questionId: number) {
         return this.http.delete(Constants.QUESTION_BASE + '/' + questionId);
     }
