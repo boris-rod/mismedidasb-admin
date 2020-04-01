@@ -59,7 +59,8 @@
           <button nbTooltip="Preguntas/Respuestas" nbButton ghost size="tiny" *ngIf="row.isReadOnly===true">
             <nb-icon icon="flash-outline" title="Preguntas/Respuestas"></nb-icon>
           </button>
-          <button nbTooltip="Solo Lectura" nbButton ghost size="tiny" *ngIf="row.isReadOnly===false">
+          <button nbTooltip="Solo Lectura" nbButton ghost size="tiny" *ngIf="row.isReadOnly===false"
+            (click)="makeReadOnly(row)">
             <nb-icon icon="flash-off-outline" title="Solo Lectura"></nb-icon>
           </button>
         </ng-template>

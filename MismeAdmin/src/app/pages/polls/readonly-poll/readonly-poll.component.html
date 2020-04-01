@@ -1,0 +1,49 @@
+<div style="width:800px;">
+  <nb-card>
+    <nb-card-header>{{ title }}</nb-card-header>
+    <nb-card-body>
+      <div class="row mb-3">
+        <div class="col-sm-6">
+          <div style="font-weight: bold;" class="mb-2">Cuestionario:</div>
+          <div> {{poll.name}}</div>
+        </div>
+        <div class="col-sm-6">
+          <div style="font-weight: bold;" class="mb-2">Concepto:</div>
+          <div> {{poll.concept?.title}}</div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <div style="font-weight: bold;" class="mb-2">Descripción:</div>
+          <div *ngIf="poll.description!==''" style="max-height: 60px; overflow-y: auto;">{{poll.description}}
+          </div>
+          <div *ngIf="poll.description===''">-</div>
+        </div>
+      </div>
+      <!-- questions -->
+      <div class="row">
+        <my-tiny-mce [content]="text" (editorKeyup)="onContentChange($event)"></my-tiny-mce>
+      </div>
+      <!-- end questions -->
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="save()">Aceptar</button>
+      <button nbButton status="basic" (click)="dismiss()" style="float: right;">Cancelar</button>
+    </nb-card-footer>
+  </nb-card>
+</div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <div style="width:600px;">
+    <nb-card>
+      <nb-card-header>Eliminar Pregunta</nb-card-header>
+      <nb-card-body>
+        ¿Confirma la eliminación de la pregunta y sus respuestas asociadas?
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton status="danger" (click)="deleteQuestionDialog(ref)">Confirmar</button>
+        <button nbButton status="basic" (click)="dismissDeleteQuestion(ref)" style="float: right;">Cancelar</button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</ng-template>

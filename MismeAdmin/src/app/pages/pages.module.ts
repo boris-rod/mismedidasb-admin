@@ -43,6 +43,7 @@ import { EditPollComponent } from './polls/edit-poll/edit-poll.component';
 import { PollDetailsComponent } from './polls/poll-details/poll-details.component';
 import { AddQuestionComponent } from './question/add-question/add-question.component';
 import { EditQuestionComponent } from './question/edit-question/edit-question.component';
+import { ReadonlyPollComponent } from './polls/readonly-poll/readonly-poll.component';
 
 
 @NgModule({
@@ -91,6 +92,7 @@ import { EditQuestionComponent } from './question/edit-question/edit-question.co
     PollDetailsComponent,
     AddQuestionComponent,
     EditQuestionComponent,
+    ReadonlyPollComponent,
   ],
   entryComponents: [
     DeletePollComponent,
@@ -100,7 +102,8 @@ import { EditQuestionComponent } from './question/edit-question/edit-question.co
     EditConceptComponent,
     ConceptDetailsComponent,
     PollDetailsComponent,
-    EditQuestionComponent
+    EditQuestionComponent,
+    ReadonlyPollComponent
   ]
 })
 export class PagesModule {

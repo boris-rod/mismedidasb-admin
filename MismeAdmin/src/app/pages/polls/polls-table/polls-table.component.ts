@@ -8,6 +8,7 @@ import { PollDetailsComponent } from '../poll-details/poll-details.component';
 import { Concept } from '../../../core-mismes/models/concept';
 import { ConceptService } from '../../concept/concept.service';
 import { finalize } from 'rxjs/operators';
+import { ReadonlyPollComponent } from '../readonly-poll/readonly-poll.component';
 
 @Component({
   selector: 'polls-table',
@@ -91,5 +92,16 @@ export class PollsTableComponent implements OnInit {
   reset() {
     this.currentFilerSelection = -1;
     this.onFilterChange.emit(-1);
+  }
+
+  makeReadOnly(p: Poll) {
+    this.dialogService.open(ReadonlyPollComponent, {
+      context: {
+        title: 'Read Only',
+        poll: p
+      }
+    }).onClose.subscribe(s => {
+      // this.onReloadIsNeeded.emit(true);
+    });
   }
 }

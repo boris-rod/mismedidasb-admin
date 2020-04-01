@@ -6,6 +6,7 @@ import { UploadImagesComponent } from './upload-images/upload-images.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AvatarModule } from 'ngx-avatar';
 import { NbIconModule } from '@nebular/theme';
+import { MyTinyMceComponent } from './my-tiny-mce/my-tiny-mce.component';
 
 @NgModule({
     imports: [
@@ -18,10 +19,12 @@ import { NbIconModule } from '@nebular/theme';
         NbIconModule
     ],
     declarations: [
-        UploadImagesComponent
+        UploadImagesComponent,
+        MyTinyMceComponent
     ],
     exports: [
-        UploadImagesComponent
+        UploadImagesComponent,
+        MyTinyMceComponent
     ]
 })
 export class SharedModule { }
