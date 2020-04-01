@@ -97,11 +97,23 @@ export class PollsTableComponent implements OnInit {
   makeReadOnly(p: Poll) {
     this.dialogService.open(ReadonlyPollComponent, {
       context: {
-        title: 'Read Only',
+        title: 'Solo Lectura',
         poll: p
       }
     }).onClose.subscribe(s => {
-      // this.onReloadIsNeeded.emit(true);
+      this.onReloadIsNeeded.emit(true);
+    });
+  }
+
+  questionAnswers(row: Poll) {
+    row.isReadOnly = false;
+    this.dialogService.open(PollDetailsComponent, {
+      context: {
+        title: 'Preguntas/Respuestas',
+        poll: row
+      }
+    }).onClose.subscribe(s => {
+      this.onReloadIsNeeded.emit(true);
     });
   }
 }

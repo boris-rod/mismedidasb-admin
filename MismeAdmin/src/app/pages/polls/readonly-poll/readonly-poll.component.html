@@ -20,11 +20,11 @@
           <div *ngIf="poll.description===''">-</div>
         </div>
       </div>
-      <!-- questions -->
-      <div class="row">
+      <!-- editor -->
+      <div class="row" style="padding: 1px;">
         <my-tiny-mce [content]="text" (editorKeyup)="onContentChange($event)"></my-tiny-mce>
       </div>
-      <!-- end questions -->
+      <!-- end editor-->
     </nb-card-body>
     <nb-card-footer>
       <button nbButton (click)="save()">Aceptar</button>

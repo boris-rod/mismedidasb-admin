@@ -103,7 +103,6 @@ export class PollDetailsComponent implements OnInit {
       .subscribe(resp => {
         this.loadPollQuestions();
         this.toastrService.success('Preguntas actualizadas satisfactoriamente.', 'Cuestionario');
-
       }, error => {
       });
   }
@@ -169,5 +168,22 @@ export class PollDetailsComponent implements OnInit {
   }
   dismissDeleteQuestion(ref: NbDialogRef<any>) {
     ref.close();
+  }
+
+  onContentChange(content: string) {
+    this.poll.htmlContent = content;
+  }
+
+  saveContent() {
+    const obj = {
+      readOnly: true,
+      htmlContent: this.poll.htmlContent
+    };
+    this.pollService.updatePollReadOnly(this.poll.id, obj)
+      .pipe(finalize(() => {
+      })).subscribe(d => {
+        this.ref.close();
+        this.toastrService.success('Cuestionario actualizado satisfactoriamente.', 'Cuestionario');
+      });
   }
 }

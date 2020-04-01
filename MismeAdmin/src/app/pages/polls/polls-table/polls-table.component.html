@@ -28,10 +28,10 @@
       </ngx-datatable-column>
       <ngx-datatable-column [sortable]="true" prop="concept.title" name="Concepto">
       </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="true" prop="isReadOnly" name="Solo Lectura">
+      <ngx-datatable-column [sortable]="true" name="Solo Lectura">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <span *ngIf="isReadOnly===true">Sí</span>
-          <span *ngIf="isReadOnly!==true">No</span>
+          <span *ngIf="row.isReadOnly===true">Sí</span>
+          <span *ngIf="row.isReadOnly===false">No</span>
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column [sortable]="true" prop="createdAt" name="Creado">
@@ -56,7 +56,8 @@
             <nb-icon icon="info-outline" title="Detalles"></nb-icon>
           </button>
 
-          <button nbTooltip="Preguntas/Respuestas" nbButton ghost size="tiny" *ngIf="row.isReadOnly===true">
+          <button nbTooltip="Preguntas/Respuestas" nbButton ghost size="tiny" *ngIf="row.isReadOnly===true"
+            (click)="questionAnswers(row)">
             <nb-icon icon="flash-outline" title="Preguntas/Respuestas"></nb-icon>
           </button>
           <button nbTooltip="Solo Lectura" nbButton ghost size="tiny" *ngIf="row.isReadOnly===false"

@@ -37,4 +37,8 @@ export class PollsService {
     updatePollQuestionOrder(pollId: number, obj: any) {
         return this.http.post<any>(Constants.POLL_BASE + '/' + pollId + '/questions-order', obj);
     }
+
+    updatePollReadOnly(pollId: number, obj: any) {
+        return this.http.post<any>(Constants.POLL_BASE + '/' + pollId + '/read-only', obj);
+    }
 }

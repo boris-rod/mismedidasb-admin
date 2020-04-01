@@ -20,8 +20,14 @@
           <div *ngIf="poll.description===''">-</div>
         </div>
       </div>
+      <!-- editor -->
+      <div class="row" style="padding: 1px;" *ngIf="poll.isReadOnly===true">
+        <my-tiny-mce [content]="poll.htmlContent? poll.htmlContent: ''" (editorKeyup)="onContentChange($event)">
+        </my-tiny-mce>
+      </div>
+      <!-- end editor -->
       <!-- questions -->
-      <div class="row" style="max-height: 400px; overflow-y: auto;">
+      <div class="row" style="max-height: 400px; overflow-y: auto;" *ngIf="poll.isReadOnly===false">
         <div class="col-sm-12">
           <div class="row">
             <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2">Preguntas:</div>
@@ -85,7 +91,7 @@
       <!-- end questions -->
     </nb-card-body>
     <nb-card-footer>
-      <!-- <button nbButton status="danger" (click)="delete()">Confirmar</button> -->
+      <button *ngIf="poll.isReadOnly===true" nbButton (click)="saveContent()">Actualizar</button>
       <button nbButton status="basic" (click)="dismiss()" style="float: right;">Cancelar</button>
     </nb-card-footer>
   </nb-card>
