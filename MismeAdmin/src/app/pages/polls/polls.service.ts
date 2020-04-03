@@ -41,4 +41,25 @@ export class PollsService {
     updatePollReadOnly(pollId: number, obj: any) {
         return this.http.post<any>(Constants.POLL_BASE + '/' + pollId + '/read-only', obj);
     }
+
+    addTip(tip: any) {
+        return this.http.post<any>(Constants.POLL_BASE + '/tips', tip);
+    }
+
+    deleteTip(tipId: number) {
+        return this.http.delete(Constants.POLL_BASE + '/tips/delete/' + tipId);
+    }
+
+    updateTipContent(tipId: number, content: string) {
+        let params: HttpParams = new HttpParams()
+            .append('content', content);
+        return this.http.patch<Poll>(Constants.POLL_BASE + '/tips/' + tipId, {}, { params: params });
+    }
+
+    activateTip(tipId: number, pollId: number, position: number) {
+        let params: HttpParams = new HttpParams()
+            .append('pollId', pollId.toString())
+            .append('position', position.toString());
+        return this.http.post<any>(Constants.POLL_BASE + '/tips/activate/' + tipId, {}, { params: params });
+    }
 }

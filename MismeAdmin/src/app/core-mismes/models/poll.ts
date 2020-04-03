@@ -1,5 +1,6 @@
 import { Question } from './question';
 import { Concept } from './concept';
+import { Tip } from './tip';
 export interface Poll {
     id: number;
     name: string;
@@ -12,4 +13,5 @@ export interface Poll {
     conceptId: number;
     concept: Concept;
     questions: Question[];
+    tips: Tip[];
 }

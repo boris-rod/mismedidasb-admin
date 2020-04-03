@@ -28,18 +28,18 @@
       </ngx-datatable-column>
       <ngx-datatable-column [sortable]="true" prop="concept.title" name="Concepto">
       </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="true" name="Solo Lectura">
+      <ngx-datatable-column [sortable]="true" name="Solo Lectura" [width]="50">
         <ng-template let-row="row" ngx-datatable-cell-template>
           <span *ngIf="row.isReadOnly===true">Sí</span>
           <span *ngIf="row.isReadOnly===false">No</span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="true" prop="createdAt" name="Creado">
+      <ngx-datatable-column [sortable]="true" prop="createdAt" name="Creado" [width]="50">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{row.createdAt | date:'short'}}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="true" prop="modifiedAt" name="Modificado">
+      <ngx-datatable-column [sortable]="true" prop="modifiedAt" name="Modificado" [width]="50">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{row.modifiedAt | date:'short'}}
         </ng-template>
@@ -60,6 +60,11 @@
             (click)="questionAnswers(row)">
             <nb-icon icon="flash-outline" title="Preguntas/Respuestas"></nb-icon>
           </button>
+
+          <button nbTooltip="Consejos" nbButton ghost size="tiny" *ngIf="row.isReadOnly===true" (click)="tips(row)">
+            <nb-icon icon="bulb-outline" title="Consejos"></nb-icon>
+          </button>
+
           <button nbTooltip="Solo Lectura" nbButton ghost size="tiny" *ngIf="row.isReadOnly===false"
             (click)="makeReadOnly(row)">
             <nb-icon icon="flash-off-outline" title="Solo Lectura"></nb-icon>

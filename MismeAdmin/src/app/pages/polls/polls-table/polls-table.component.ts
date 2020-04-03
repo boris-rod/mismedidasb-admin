@@ -9,6 +9,7 @@ import { Concept } from '../../../core-mismes/models/concept';
 import { ConceptService } from '../../concept/concept.service';
 import { finalize } from 'rxjs/operators';
 import { ReadonlyPollComponent } from '../readonly-poll/readonly-poll.component';
+import { PollTipsComponent } from '../poll-tips/poll-tips.component';
 
 @Component({
   selector: 'polls-table',
@@ -110,6 +111,17 @@ export class PollsTableComponent implements OnInit {
     this.dialogService.open(PollDetailsComponent, {
       context: {
         title: 'Preguntas/Respuestas',
+        poll: row
+      }
+    }).onClose.subscribe(s => {
+      this.onReloadIsNeeded.emit(true);
+    });
+  }
+
+  tips(row: Poll) {
+    this.dialogService.open(PollTipsComponent, {
+      context: {
+        title: 'Consejos',
         poll: row
       }
     }).onClose.subscribe(s => {
