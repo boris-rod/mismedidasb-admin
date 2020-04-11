@@ -45,26 +45,26 @@ export class EditQuestionComponent implements OnInit {
     }
   }
 
-  newAnswer() {
-    const ans: Answer = {
-      title: 'Respuesta',
-      weight: 0,
-      id: this.getRandomArbitrary(),
-      order: this.answers.length + 1,
-      questionId: -1,
-      createdAt: new Date(),
-      modifiedAt: new Date(),
-    };
-    this.answers.push(ans);
-    this.inlineEdition(ans);
-  }
+  // newAnswer() {
+  //   const ans: Answer = {
+  //     title: 'Respuesta',
+  //     weight: 0,
+  //     id: this.getRandomArbitrary(),
+  //     order: this.answers.length + 1,
+  //     questionId: -1,
+  //     createdAt: new Date(),
+  //     modifiedAt: new Date(),
+  //   };
+  //   this.answers.push(ans);
+  //   this.inlineEdition(ans);
+  // }
 
-  deleteAnswer(a: Answer) {
-    const ind = this.answers.findIndex(an => an.id === a.id);
-    if (ind > -1) {
-      this.answers.splice(ind, 1);
-    }
-  }
+  // deleteAnswer(a: Answer) {
+  //   const ind = this.answers.findIndex(an => an.id === a.id);
+  //   if (ind > -1) {
+  //     this.answers.splice(ind, 1);
+  //   }
+  // }
 
   inlineEdition(a: Answer) {
     this.selectedAnswer = a;
@@ -91,20 +91,20 @@ export class EditQuestionComponent implements OnInit {
     this.showInput = false;
   }
 
-  selectionChange(e: any, a: Answer) {
-    let backup = this.answers;
-    const ind = backup.findIndex(p => p.id === a.id);
-    backup[e - 1].order = ind + 1;
-    backup[ind].order = a.order;
-    backup = backup.sort((as, b) => as.order - b.order)
-    this.answers.splice(0, backup.length - 1, ...backup);
-    this.answers = [...backup];
+  // selectionChange(e: any, a: Answer) {
+  //   let backup = this.answers;
+  //   const ind = backup.findIndex(p => p.id === a.id);
+  //   backup[e - 1].order = ind + 1;
+  //   backup[ind].order = a.order;
+  //   backup = backup.sort((as, b) => as.order - b.order)
+  //   this.answers.splice(0, backup.length - 1, ...backup);
+  //   this.answers = [...backup];
 
-    this.detector.detectChanges();
-  }
-  removeAllAnswers() {
-    this.answers = [];
-  }
+  //   this.detector.detectChanges();
+  // }
+  // removeAllAnswers() {
+  //   this.answers = [];
+  // }
   dismiss() {
     this.ref.close();
   }

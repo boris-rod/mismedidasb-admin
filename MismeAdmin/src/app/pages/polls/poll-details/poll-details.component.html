@@ -32,24 +32,24 @@
           <div class="row">
             <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2">Preguntas:</div>
             <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2 text-right">
-              <button nbTooltip="Adicionar" nbButton ghost (click)="newQuestion()" size="tiny">
+              <!-- <button nbTooltip="Adicionar" nbButton ghost (click)="newQuestion()" size="tiny">
                 <nb-icon icon="plus-outline" title="Adicionar"></nb-icon>
-              </button>
+              </button> -->
             </div>
           </div>
 
           <div class="row">
             <div class="col-sm-6">Pregunta</div>
-            <div class="col-sm-6 text-right"> Orden</div>
+            <!-- <div class="col-sm-6 text-right"> Orden</div> -->
           </div>
           <nb-list>
             <nb-list-item *ngFor="let q of poll.questions">
               <div class="row">
                 <div class="col-sm-2" *ngIf="showInput===false || selectedQuestion?.id!==q.id">
-                  <button nbTooltip="Eliminar" nbButton ghost (click)="deleteQuestion(q, dialog)" size="tiny"
+                  <!-- <button nbTooltip="Eliminar" nbButton ghost (click)="deleteQuestion(q, dialog)" size="tiny"
                     style="margin-top:-5px;">
                     <nb-icon icon="trash-outline" title="Eliminar"></nb-icon>
-                  </button>
+                  </button> -->
                   <button nbTooltip="Editar" nbButton ghost (click)="editQuestion(q)" size="tiny"
                     style="margin-top:-5px;">
                     <nb-icon icon="edit-outline" title="Editar"></nb-icon>
@@ -72,15 +72,10 @@
                 </div>
 
                 <div class="col-sm-2 text-right">
-                  <!-- <nb-select [fullWidth]="false" [multiple]="false" [(ngModel)]="q.order"
-                    (selectedChange)="selectionChange($event,q)">
-                    <nb-option *ngFor="let t of poll.questions; index as pos" [value]="pos+1"> {{ pos+1}} </nb-option>
-                  </nb-select> -->
-
-                  <ng-select [searchable]="false" [clearable]="false" [(ngModel)]="q.order"
+                  <!-- <ng-select [searchable]="false" [clearable]="false" [(ngModel)]="q.order"
                     (change)="selectionChange($event, q)">
                     <ng-option *ngFor="let t of poll.questions; index as pos" [value]="pos+1">{{pos+1}}</ng-option>
-                  </ng-select>
+                  </ng-select> -->
                 </div>
               </div>
 
@@ -97,7 +92,7 @@
   </nb-card>
 </div>
 
-<ng-template #dialog let-data let-ref="dialogRef">
+<!-- <ng-template #dialog let-data let-ref="dialogRef">
   <div style="width:600px;">
     <nb-card>
       <nb-card-header>Eliminar Pregunta</nb-card-header>
@@ -110,4 +105,4 @@
       </nb-card-footer>
     </nb-card>
   </div>
-</ng-template>
+</ng-template> -->

@@ -55,26 +55,26 @@ export class PollsTableComponent implements OnInit {
     });
   }
 
-  newPoll() {
-    this.dialogService.open(EditPollComponent, {
-      context: {
-        title: 'Nuevo Cuestionario'
-      }
-    }).onClose.subscribe(s => {
-      this.onReloadIsNeeded.emit(true);
-    });
-  }
+  // newPoll() {
+  //   this.dialogService.open(EditPollComponent, {
+  //     context: {
+  //       title: 'Nuevo Cuestionario'
+  //     }
+  //   }).onClose.subscribe(s => {
+  //     this.onReloadIsNeeded.emit(true);
+  //   });
+  // }
 
-  deletePoll(poll: Poll) {
-    this.dialogService.open(DeletePollComponent, {
-      context: {
-        title: 'Eliminar Cuestionario',
-        pollId: poll.id
-      }
-    }).onClose.subscribe(s => {
-      this.onReloadIsNeeded.emit(true);
-    });
-  }
+  // deletePoll(poll: Poll) {
+  //   this.dialogService.open(DeletePollComponent, {
+  //     context: {
+  //       title: 'Eliminar Cuestionario',
+  //       pollId: poll.id
+  //     }
+  //   }).onClose.subscribe(s => {
+  //     this.onReloadIsNeeded.emit(true);
+  //   });
+  // }
 
   pollDetails(poll: Poll) {
     this.dialogService.open(PollDetailsComponent, {
@@ -95,28 +95,28 @@ export class PollsTableComponent implements OnInit {
     this.onFilterChange.emit(-1);
   }
 
-  makeReadOnly(p: Poll) {
-    this.dialogService.open(ReadonlyPollComponent, {
-      context: {
-        title: 'Solo Lectura',
-        poll: p
-      }
-    }).onClose.subscribe(s => {
-      this.onReloadIsNeeded.emit(true);
-    });
-  }
+  // makeReadOnly(p: Poll) {
+  //   this.dialogService.open(ReadonlyPollComponent, {
+  //     context: {
+  //       title: 'Solo Lectura',
+  //       poll: p
+  //     }
+  //   }).onClose.subscribe(s => {
+  //     this.onReloadIsNeeded.emit(true);
+  //   });
+  // }
 
-  questionAnswers(row: Poll) {
-    row.isReadOnly = false;
-    this.dialogService.open(PollDetailsComponent, {
-      context: {
-        title: 'Preguntas/Respuestas',
-        poll: row
-      }
-    }).onClose.subscribe(s => {
-      this.onReloadIsNeeded.emit(true);
-    });
-  }
+  // questionAnswers(row: Poll) {
+  //   row.isReadOnly = false;
+  //   this.dialogService.open(PollDetailsComponent, {
+  //     context: {
+  //       title: 'Preguntas/Respuestas',
+  //       poll: row
+  //     }
+  //   }).onClose.subscribe(s => {
+  //     this.onReloadIsNeeded.emit(true);
+  //   });
+  // }
 
   tips(row: Poll) {
     this.dialogService.open(PollTipsComponent, {

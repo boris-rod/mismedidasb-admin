@@ -15,33 +15,33 @@
           <div class="row">
             <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2">Respuestas:</div>
             <div style="font-weight: bold;" class="col-sm-6 mb-2 mt-2 text-right">
-              <button nbTooltip="Limpiar" nbButton ghost (click)="removeAllAnswers()" size="tiny"
+              <!-- <button nbTooltip="Limpiar" nbButton ghost (click)="removeAllAnswers()" size="tiny"
                 *ngIf="answers.length>0">
                 <nb-icon icon="refresh-outline" title="Limpiar"></nb-icon>
               </button>
               <button nbTooltip="Adicionar" nbButton ghost (click)="newAnswer()" size="tiny">
                 <nb-icon icon="plus-outline" title="Adicionar"></nb-icon>
-              </button>
+              </button> -->
             </div>
           </div>
 
           <div class="row">
             <div class="col-sm-7">Respuesta</div>
-            <div class="col-sm-3 text-right"> Valor</div>
+            <!-- <div class="col-sm-3 text-right"> Valor</div>
             <div class="col-sm-2 text-right" *ngIf="showInput===false"> Orden</div>
-            <div class="col-sm-2 text-right" *ngIf="showInput===true"></div>
+            <div class="col-sm-2 text-right" *ngIf="showInput===true"></div> -->
           </div>
           <nb-list>
             <!-- <nb-list-item *ngFor="let a of answers" (dblclick)="inlineEdition($event,a)" (focusout)="hideInput($event)"> -->
             <nb-list-item *ngFor="let a of answers" (dblclick)="inlineEdition(a)">
               <div class="row">
                 <!-- remove button -->
-                <div class="col-sm-1" *ngIf="showInput===false || selectedAnswer?.id!==a.id">
-                  <button nbTooltip="Eliminar" nbButton ghost (click)="deleteAnswer(a)" size="tiny"
+                <!-- <div class="col-sm-1" *ngIf="showInput===false || selectedAnswer?.id!==a.id"> -->
+                <!-- <button nbTooltip="Eliminar" nbButton ghost (click)="deleteAnswer(a)" size="tiny"
                     style="margin-top:5px;">
                     <nb-icon icon="trash-outline" title="Eliminar Respuesta"></nb-icon>
-                  </button>
-                </div>
+                  </button> -->
+                <!-- </div> -->
                 <!-- ende remove button -->
 
                 <!-- title -->
@@ -60,7 +60,7 @@
                 </div>
                 <!-- end title -->
                 <!-- value -->
-                <div class="col-sm-3 text-right custom-padding" *ngIf="showInput===false || selectedAnswer?.id!==a.id">
+                <!-- <div class="col-sm-3 text-right custom-padding" *ngIf="showInput===false || selectedAnswer?.id!==a.id">
                   {{a.weight}}
                 </div>
                 <div class="col-sm-3" *ngIf="showInput===true && selectedAnswer?.id===a.id">
@@ -71,7 +71,7 @@
                       Debe introducir un valor.
                     </p>
                   </ng-container>
-                </div>
+                </div> -->
                 <!-- end value -->
 
                 <!-- action buttons-->
@@ -88,19 +88,12 @@
 
 
                 <!-- order -->
-                <div class="col-sm-2 text-right" *ngIf="showInput===false || selectedAnswer?.id!==a.id">
-                  <!-- <nb-select #select [fullWidth]="false" [multiple]="false" [(ngModel)]="a.order"
-                    (selectedChange)="selectionChange($event, a,select)">
-                    <nb-option *ngFor="let t of answers; index as pos" [value]="t.order"> {{ pos+1}} </nb-option>
-                  </nb-select> -->
+                <!-- <div class="col-sm-2 text-right" *ngIf="showInput===false || selectedAnswer?.id!==a.id">
                   <ng-select [searchable]="false" [clearable]="false" [(ngModel)]="a.order"
                     (change)="selectionChange($event, a)">
                     <ng-option *ngFor="let t of answers; index as pos" [value]="t.order">{{pos+1}}</ng-option>
                   </ng-select>
-
-
-
-                </div>
+                </div> -->
                 <!-- end order -->
 
               </div>

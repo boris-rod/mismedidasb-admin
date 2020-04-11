@@ -5,11 +5,11 @@
 
   <nb-card-body>
     <div class="row mb-3 pl-3">
-      <div>
+      <!-- <div>
         <button nbButton status="primary" (click)="newPoll()">
           <nb-icon icon="plus-outline"></nb-icon>Nuevo Cuestionario
         </button>
-      </div>
+      </div> -->
       <div class="col-7"></div>
       <div class="col text-right pr-3">
         <label>Concepto</label>
@@ -49,26 +49,26 @@
           <button nbTooltip="Editar" nbButton ghost (click)="editPoll(row)" size="tiny">
             <nb-icon icon="edit-outline" title="Editar"></nb-icon>
           </button>
-          <button nbTooltip="Eliminar" nbButton ghost (click)="deletePoll(row)" size="tiny">
+          <!-- <button nbTooltip="Eliminar" nbButton ghost (click)="deletePoll(row)" size="tiny">
             <nb-icon icon="trash-outline" title="Eliminar"></nb-icon>
-          </button>
+          </button> -->
           <button nbTooltip="Detalles" nbButton ghost (click)="pollDetails(row)" size="tiny">
             <nb-icon icon="info-outline" title="Detalles"></nb-icon>
           </button>
 
-          <button nbTooltip="Preguntas/Respuestas" nbButton ghost size="tiny" *ngIf="row.isReadOnly===true"
+          <!-- <button nbTooltip="Preguntas/Respuestas" nbButton ghost size="tiny" *ngIf="row.isReadOnly===true"
             (click)="questionAnswers(row)">
             <nb-icon icon="flash-outline" title="Preguntas/Respuestas"></nb-icon>
-          </button>
+          </button> -->
 
-          <button nbTooltip="Consejos" nbButton ghost size="tiny" *ngIf="row.isReadOnly===true" (click)="tips(row)">
+          <button nbTooltip="Consejos" nbButton ghost size="tiny" (click)="tips(row)">
             <nb-icon icon="bulb-outline" title="Consejos"></nb-icon>
           </button>
 
-          <button nbTooltip="Solo Lectura" nbButton ghost size="tiny" *ngIf="row.isReadOnly===false"
+          <!-- <button nbTooltip="Solo Lectura" nbButton ghost size="tiny" *ngIf="row.isReadOnly===false"
             (click)="makeReadOnly(row)">
             <nb-icon icon="flash-off-outline" title="Solo Lectura"></nb-icon>
-          </button>
+          </button> -->
         </ng-template>
 
       </ngx-datatable-column>

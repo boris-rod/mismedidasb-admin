@@ -51,24 +51,24 @@ export class PollDetailsComponent implements OnInit {
     this.ref.close();
   }
 
-  newQuestion() {
-    const ind = this.poll.questions.findIndex(q => q.answers.length > 0);
-    let answers: Answer[] = [];
-    if (ind > -1) {
-      answers = this.poll.questions[ind].answers;
-    }
+  // newQuestion() {
+  //   const ind = this.poll.questions.findIndex(q => q.answers.length > 0);
+  //   let answers: Answer[] = [];
+  //   if (ind > -1) {
+  //     answers = this.poll.questions[ind].answers;
+  //   }
 
-    this.dialogService.open(EditQuestionComponent, {
-      context: {
-        answers: answers,
-        pollId: this.poll.id
-      }
-    }).onClose.subscribe(s => {
-      if (s) {
-        this.loadPollQuestions();
-      }
-    });
-  }
+  //   this.dialogService.open(EditQuestionComponent, {
+  //     context: {
+  //       answers: answers,
+  //       pollId: this.poll.id
+  //     }
+  //   }).onClose.subscribe(s => {
+  //     if (s) {
+  //       this.loadPollQuestions();
+  //     }
+  //   });
+  // }
 
   editQuestion(q: Question) {
     this.dialogService.open(EditQuestionComponent, {
@@ -86,26 +86,26 @@ export class PollDetailsComponent implements OnInit {
   }
 
 
-  selectionChange(event: any, q: Question) {
-    const ind = this.poll.questions.findIndex(p => p.id === q.id);
-    this.poll.questions[event - 1].order = ind + 1;
-    const obj = {
-      questionOneId: q.id,
-      questionOneOrder: q.order,
-      questionTwoId: this.poll.questions[event - 1].id,
-      questionTwoOrder: this.poll.questions[event - 1].order
-    };
+  // selectionChange(event: any, q: Question) {
+  //   const ind = this.poll.questions.findIndex(p => p.id === q.id);
+  //   this.poll.questions[event - 1].order = ind + 1;
+  //   const obj = {
+  //     questionOneId: q.id,
+  //     questionOneOrder: q.order,
+  //     questionTwoId: this.poll.questions[event - 1].id,
+  //     questionTwoOrder: this.poll.questions[event - 1].order
+  //   };
 
-    this.pollService.updatePollQuestionOrder(this.poll.id, obj)
-      .pipe(finalize(() => {
-        this.isLoading = false;
-      }))
-      .subscribe(resp => {
-        this.loadPollQuestions();
-        this.toastrService.success('Preguntas actualizadas satisfactoriamente.', 'Cuestionario');
-      }, error => {
-      });
-  }
+  //   this.pollService.updatePollQuestionOrder(this.poll.id, obj)
+  //     .pipe(finalize(() => {
+  //       this.isLoading = false;
+  //     }))
+  //     .subscribe(resp => {
+  //       this.loadPollQuestions();
+  //       this.toastrService.success('Preguntas actualizadas satisfactoriamente.', 'Cuestionario');
+  //     }, error => {
+  //     });
+  // }
 
   hideInput() {
     if (this.questionName !== '') {

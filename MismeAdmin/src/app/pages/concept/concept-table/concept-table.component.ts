@@ -29,17 +29,6 @@ export class ConceptTableComponent implements OnInit {
   }
 
   editConcept(concept: Concept) {
-    // const wind = this.windowService.open(EditConceptComponent, {
-    //   title: 'Editar Concepto',
-    //   context: {
-    //     conceptToEdit: concept
-    //   }
-    // });
-
-    // wind.onClose.subscribe(s => {
-    //   this.reseted.emit(true);
-    // });
-
     this.dialogService.open(EditConceptComponent, {
       context: {
         title: 'Editar Concepto',
@@ -48,30 +37,17 @@ export class ConceptTableComponent implements OnInit {
     }).onClose.subscribe(s => {
       this.reseted.emit(true);
     });
-
-
-
   }
-  conceptDetails(concept: Concept) {
-    // const wind = this.windowService.open(ConceptDetailsComponent, {
-    //   title: 'Detalles',
-    //   context: {
-    //     concept: concept
-    //   }
-    // });
 
-    // wind.onClose.subscribe(s => {
-    //   this.reseted.emit(true);
-    // });
+  // conceptDetails(concept: Concept) {
+  //   this.dialogService.open(ConceptDetailsComponent, {
+  //     context: {
+  //       title: 'Detalles',
+  //       concept: concept
+  //     }
+  //   }).onClose.subscribe(s => {
+  //     this.reseted.emit(true);
+  //   });
 
-    this.dialogService.open(ConceptDetailsComponent, {
-      context: {
-        title: 'Detalles',
-        concept: concept
-      }
-    }).onClose.subscribe(s => {
-      this.reseted.emit(true);
-    });
-
-  }
+  // }
 }
