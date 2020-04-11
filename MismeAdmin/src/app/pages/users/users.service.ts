@@ -37,4 +37,11 @@ export class UserService {
             observe: 'response'
         });
     }
+
+    disableUser(id: number) {
+        return this.http.post<any>(Constants.GET_USERS + '/' + id + '/disable', {}, {});
+    }
+    enableUser(id: number) {
+        return this.http.post<any>(Constants.GET_USERS + '/' + id + '/enable', {}, {});
+    }
 }

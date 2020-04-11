@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../../core-mismes/models/user';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Logger } from '../../../core-mismes';
+import { NbDialogService } from '@nebular/theme';
+import { EnableUserComponent } from '../enable-user/enable-user.component';
+import { DisableUserComponent } from '../disable-user/disable-user.component';
 const log = new Logger('Users Table');
 @Component({
   selector: 'app-table',
@@ -23,7 +26,7 @@ export class TableComponent implements OnInit {
   currentFilerSelection: number = -1;
 
   ColumnMode = ColumnMode.force;
-  constructor() { }
+  constructor(private dialogService: NbDialogService) { }
 
   ngOnInit() {
   }
@@ -50,5 +53,28 @@ export class TableComponent implements OnInit {
     this.currentFilerSelection = -1;
     this.showReset = false;
     this.reseted.emit(true);
+  }
+
+  sendMessage(user: User) {
+
+  }
+  enable(user: User) {
+    this.dialogService.open(EnableUserComponent, {
+      context: {
+        userId: user.id
+      }
+    }).onClose.subscribe(s => {
+      this.reseted.emit(true);
+    });
+
+  }
+  disable(user: User) {
+    this.dialogService.open(DisableUserComponent, {
+      context: {
+        userId: user.id
+      }
+    }).onClose.subscribe(s => {
+      this.reseted.emit(true);
+    });
   }
 }
