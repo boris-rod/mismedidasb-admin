@@ -12,7 +12,8 @@ import { environment } from '../../../environments/environment';
 })
 export class ApiPrefixInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!/^(http|https):/i.test(request.url)) {
+
+    if (!/^(http|https):/i.test(request.url) && request.url.indexOf('assets/i18n') === -1) {
       request = request.clone({ url: environment.serverUrl + request.url });
     }
     return next.handle(request);

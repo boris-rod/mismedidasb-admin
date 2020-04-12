@@ -31,7 +31,7 @@ export class ConceptTableComponent implements OnInit {
   editConcept(concept: Concept) {
     this.dialogService.open(EditConceptComponent, {
       context: {
-        title: 'Editar Concepto',
+        // title: 'Editar Concepto',
         conceptToEdit: concept
       }
     }).onClose.subscribe(s => {

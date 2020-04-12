@@ -12,7 +12,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class EditConceptComponent implements OnInit {
 
-  title = '';
+  // title = '';
   isLoading: boolean = false;
 
   conceptName = new FormControl();

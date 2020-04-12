@@ -46,6 +46,8 @@
     "@nebular/security": "4.1.2",
     "@nebular/theme": "4.1.2",
     "@ng-select/ng-select": "^3.7.2",
+    "@ngx-translate/core": "^12.1.2",
+    "@ngx-translate/http-loader": "^4.0.0",
     "@rxweb/reactive-form-validators": "^1.9.9-beta2",
     "@swimlane/ngx-charts": "^12.0.1",
     "@swimlane/ngx-datatable": "^16.0.3",

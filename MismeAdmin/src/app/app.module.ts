@@ -22,6 +22,10 @@ import {
   NbWindowModule
 } from '@nebular/theme';
 
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,12 +46,21 @@ import {
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
-
-
     CoreModule.forRoot(),
-    CoreMismesModule
+    CoreMismesModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {
+}
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }

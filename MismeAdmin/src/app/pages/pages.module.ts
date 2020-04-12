@@ -48,6 +48,7 @@ import { PollTipsComponent } from './polls/poll-tips/poll-tips.component';
 import { DisableUserComponent } from './users/disable-user/disable-user.component';
 import { EnableUserComponent } from './users/enable-user/enable-user.component';
 import { NotifyUserComponent } from './users/notify-user/notify-user.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { NotifyUserComponent } from './users/notify-user/notify-user.component';
     NbDialogModule.forChild(),
     NgxDatatableModule,
     SharedModule,
-    NgSelectModule
+    NgSelectModule,
+    TranslateModule
   ],
   declarations: [
     PagesComponent,

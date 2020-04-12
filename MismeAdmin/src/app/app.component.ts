@@ -11,6 +11,7 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import * as signalR from '@aspnet/signalr';
 import { User } from './core-mismes/models/user';
 import { UserStatsSharedService } from './core-mismes/shared/services/user-stats-shared.service';
+import { TranslateService } from '@ngx-translate/core';
 
 const log = new Logger('app');
 @Component({
@@ -19,7 +20,10 @@ const log = new Logger('app');
 })
 export class AppComponent implements OnInit {
   private _hubConnectionInv: HubConnection | undefined;
-  constructor(private analytics: AnalyticsService, private userStatsSharedService: UserStatsSharedService) {
+  constructor(private analytics: AnalyticsService,
+    private userStatsSharedService: UserStatsSharedService,
+    private translate: TranslateService) {
+    translate.setDefaultLang('es');
   }
 
   ngOnInit() {
