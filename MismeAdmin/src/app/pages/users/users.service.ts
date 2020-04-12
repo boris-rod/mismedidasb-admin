@@ -44,4 +44,8 @@ export class UserService {
     enableUser(id: number) {
         return this.http.post<any>(Constants.GET_USERS + '/' + id + '/enable', {}, {});
     }
+
+    notify(id: number, obj: any) {
+        return this.http.post<any>(Constants.GET_USERS + '/' + id + '/notification', obj, {});
+    }
 }

@@ -5,6 +5,7 @@ import { Logger } from '../../../core-mismes';
 import { NbDialogService } from '@nebular/theme';
 import { EnableUserComponent } from '../enable-user/enable-user.component';
 import { DisableUserComponent } from '../disable-user/disable-user.component';
+import { NotifyUserComponent } from '../notify-user/notify-user.component';
 const log = new Logger('Users Table');
 @Component({
   selector: 'app-table',
@@ -56,7 +57,13 @@ export class TableComponent implements OnInit {
   }
 
   sendMessage(user: User) {
-
+    this.dialogService.open(NotifyUserComponent, {
+      context: {
+        userId: user.id
+      }
+    }).onClose.subscribe(s => {
+      this.reseted.emit(true);
+    });
   }
   enable(user: User) {
     this.dialogService.open(EnableUserComponent, {

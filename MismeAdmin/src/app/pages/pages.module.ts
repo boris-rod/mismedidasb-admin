@@ -47,6 +47,7 @@ import { ReadonlyPollComponent } from './polls/readonly-poll/readonly-poll.compo
 import { PollTipsComponent } from './polls/poll-tips/poll-tips.component';
 import { DisableUserComponent } from './users/disable-user/disable-user.component';
 import { EnableUserComponent } from './users/enable-user/enable-user.component';
+import { NotifyUserComponent } from './users/notify-user/notify-user.component';
 
 
 @NgModule({
@@ -99,6 +100,7 @@ import { EnableUserComponent } from './users/enable-user/enable-user.component';
     PollTipsComponent,
     DisableUserComponent,
     EnableUserComponent,
+    NotifyUserComponent,
   ],
   entryComponents: [
     DeletePollComponent,
@@ -112,7 +114,8 @@ import { EnableUserComponent } from './users/enable-user/enable-user.component';
     ReadonlyPollComponent,
     PollTipsComponent,
     DisableUserComponent,
-    EnableUserComponent
+    EnableUserComponent,
+    NotifyUserComponent
   ]
 })
 export class PagesModule {
