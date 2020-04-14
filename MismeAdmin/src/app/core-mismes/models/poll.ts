@@ -14,4 +14,11 @@ export interface Poll {
     concept: Concept;
     questions: Question[];
     tips: Tip[];
+
+    nameEN: string;
+    descriptionEN: string;
+    htmlContentEN: string;
+    nameIT: string;
+    descriptionIT: string;
+    htmlContentIT: string;
 }

@@ -32,6 +32,34 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'archive-outline',
     link: '/pages/dishes'
   },
+  {
+    title: 'Traducciones',
+    icon: 'globe-outline',
+    // link: '/pages/translations',
+    children: [
+      {
+        title: 'Conceptos',
+        link: '/pages/translations/concept',
+      },
+      {
+        title: 'Cuestionarios',
+        link: '/pages/translations/poll',
+      },
+      {
+        title: 'Preguntas',
+        link: '/pages/translations/question',
+      },
+      {
+        title: 'Respuestas',
+        link: '/pages/translations/answer',
+      },
+
+      {
+        title: 'Consejos',
+        link: '/pages/translations/tip',
+      }
+    ]
+  },
   // {
   //   title: 'FEATURES',
   //   group: true,

@@ -49,6 +49,12 @@ import { DisableUserComponent } from './users/disable-user/disable-user.componen
 import { EnableUserComponent } from './users/enable-user/enable-user.component';
 import { NotifyUserComponent } from './users/notify-user/notify-user.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { TranslationsComponent } from './translations/translations.component';
+import { AnswersTranslationsComponent } from './translations/answers-translations/answers-translations.component';
+import { ConceptTranslationsComponent } from './translations/concept-translations/concept-translations.component';
+import { PollTranslationsComponent } from './translations/poll-translations/poll-translations.component';
+import { QuestionTranslationsComponent } from './translations/question-translations/question-translations.component';
+import { TipsTranslationsComponent } from './translations/tips-translations/tips-translations.component';
 
 
 @NgModule({
@@ -103,6 +109,12 @@ import { TranslateModule } from '@ngx-translate/core';
     DisableUserComponent,
     EnableUserComponent,
     NotifyUserComponent,
+    TranslationsComponent,
+    AnswersTranslationsComponent,
+    ConceptTranslationsComponent,
+    PollTranslationsComponent,
+    QuestionTranslationsComponent,
+    TipsTranslationsComponent,
   ],
   entryComponents: [
     DeletePollComponent,

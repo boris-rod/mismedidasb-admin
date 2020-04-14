@@ -4,6 +4,8 @@ export interface Answer {
     order: number;
     weight: number;
     title: string;
+    titleEN: string;
+    titleIT: string;
     createdAt: Date;
     modifiedAt: Date;
 }

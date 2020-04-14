@@ -4,6 +4,8 @@ export interface Question {
     pollId: number;
     order: number;
     title: string;
+    titleEN: string;
+    titleIT: string;
     createdAt: Date;
     modifiedAt: Date;
     answers: Answer[];

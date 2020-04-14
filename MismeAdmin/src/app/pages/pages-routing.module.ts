@@ -9,6 +9,12 @@ import { DishesComponent } from './dishes/dishes.component';
 import { AuthenticationGuard } from '../core-mismes';
 import { PersonalDataComponent } from './personal-data/personal-data.component';
 import { ConceptComponent } from './concept/concept.component';
+import { TranslationsComponent } from './translations/translations.component';
+import { TipsTranslationsComponent } from './translations/tips-translations/tips-translations.component';
+import { ConceptTranslationsComponent } from './translations/concept-translations/concept-translations.component';
+import { QuestionTranslationsComponent } from './translations/question-translations/question-translations.component';
+import { AnswersTranslationsComponent } from './translations/answers-translations/answers-translations.component';
+import { PollTranslationsComponent } from './translations/poll-translations/poll-translations.component';
 
 const routes: Routes = [{
   path: '',
@@ -43,6 +49,26 @@ const routes: Routes = [{
     {
       path: 'dishes',
       component: DishesComponent,
+    },
+    {
+      path: 'translations/tip',
+      component: TipsTranslationsComponent,
+    },
+    {
+      path: 'translations/question',
+      component: QuestionTranslationsComponent,
+    },
+    {
+      path: 'translations/concept',
+      component: ConceptTranslationsComponent,
+    },
+    {
+      path: 'translations/answer',
+      component: AnswersTranslationsComponent,
+    },
+    {
+      path: 'translations/poll',
+      component: PollTranslationsComponent,
     },
   ],
 }];
