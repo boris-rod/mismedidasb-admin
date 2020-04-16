@@ -14,6 +14,11 @@ export class ConceptService {
             observe: 'response'
         });
     }
+    getAdminConcepts() {
+        return this.http.get<Concept[]>(Constants.CONCEPT_BASE + '/admin', {
+            observe: 'response'
+        });
+    }
     updateConcept(concept: any) {
         const formData = new FormData();
         formData.append('id', concept.id);
@@ -31,5 +36,9 @@ export class ConceptService {
 
     updateConceptPollOrder(conceptId: number, obj: any) {
         return this.http.post<any>(Constants.CONCEPT_BASE + '/' + conceptId + '/polls-order', obj);
+    }
+
+    updateConceptTranslations(conceptId: number, obj: any) {
+        return this.http.post<any>(Constants.CONCEPT_BASE + '/' + conceptId + '/define-translation', obj);
     }
 }

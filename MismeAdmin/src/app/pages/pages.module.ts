@@ -12,7 +12,9 @@ import {
   NbInputModule,
   NbDialogModule,
   NbListModule,
-  NbTooltipModule
+  NbTooltipModule,
+  NbAccordionModule,
+  NbTabsetModule
 } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
@@ -55,6 +57,7 @@ import { ConceptTranslationsComponent } from './translations/concept-translation
 import { PollTranslationsComponent } from './translations/poll-translations/poll-translations.component';
 import { QuestionTranslationsComponent } from './translations/question-translations/question-translations.component';
 import { TipsTranslationsComponent } from './translations/tips-translations/tips-translations.component';
+import { ConceptFormTranslationComponent } from './translations/concept-translations/concept-form-translation/concept-form-translation.component';
 
 
 @NgModule({
@@ -76,6 +79,8 @@ import { TipsTranslationsComponent } from './translations/tips-translations/tips
     NbInputModule,
     NbListModule,
     NbTooltipModule,
+    NbAccordionModule,
+    NbTabsetModule,
     NbWindowModule.forChild(),
     NbDialogModule.forChild(),
     NgxDatatableModule,
@@ -115,6 +120,7 @@ import { TipsTranslationsComponent } from './translations/tips-translations/tips
     PollTranslationsComponent,
     QuestionTranslationsComponent,
     TipsTranslationsComponent,
+    ConceptFormTranslationComponent,
   ],
   entryComponents: [
     DeletePollComponent,
