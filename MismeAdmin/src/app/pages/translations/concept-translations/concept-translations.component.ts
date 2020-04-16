@@ -19,8 +19,17 @@ export class ConceptTranslationsComponent implements OnInit {
   onTitleChanged(event: any) {
     const index = this.concepts.findIndex(c => c.id === event.id);
     if (index !== -1) {
-      this.concepts[index].title = event.title;
+      if (event.lang === 'en') {
+        this.concepts[index].titleEN = event.title;
+      }
+      else if (event.lang === 'it') {
+        this.concepts[index].titleIT = event.title;
+      }
+      else {
+        this.concepts[index].title = event.title;
+      }
       this.concepts = [...this.concepts];
     }
   }
+
 }

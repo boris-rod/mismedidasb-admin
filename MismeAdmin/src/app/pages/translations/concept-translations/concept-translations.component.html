@@ -4,22 +4,32 @@
     <nb-accordion>
       <nb-accordion-item #item *ngFor="let c of concepts">
         <nb-accordion-item-header>
-          {{c.title}}
+          <!-- {{c.title}} -->
+          <div class="row" style="width: 100%;">
+            <div class="col-12">{{c.title}}</div>
+            <div class="col-12">
+              <div class="row pl-3">
+                <div class="mr-1 lang-name">ES</div>
+                <div *ngIf="c.titleEN?.length>0" class="mr-1 lang-name">EN</div>
+                <div *ngIf="c.titleIT?.length>0" class="lang-name">IT</div>
+              </div>
+            </div>
+          </div>
         </nb-accordion-item-header>
         <nb-accordion-item-body>
           <nb-tabset>
             <nb-tab tabTitle="Español">
               <concept-form-translation [conceptId]="c.id" [concName]="c.title" [concDescription]="c.description"
-                [lang]="'es'" (valuesChanged)=onTitleChanged($event)>
+                [lang]="'es'" (valuesChanged)='onTitleChanged($event)'>
               </concept-form-translation>
             </nb-tab>
             <nb-tab tabTitle="Inglés">
               <concept-form-translation [conceptId]="c.id" [concName]="c.titleEN" [concDescription]="c.descriptionEN"
-                [lang]="'en'"></concept-form-translation>
+                [lang]="'en'" (valuesChanged)='onTitleChanged($event)'></concept-form-translation>
             </nb-tab>
             <nb-tab tabTitle="Italiano">
               <concept-form-translation [conceptId]="c.id" [concName]="c.titleIT" [concDescription]="c.descriptionIT"
-                [lang]="'it'"></concept-form-translation>
+                [lang]="'it'" (valuesChanged)='onTitleChanged($event)'></concept-form-translation>
             </nb-tab>
           </nb-tabset>
 

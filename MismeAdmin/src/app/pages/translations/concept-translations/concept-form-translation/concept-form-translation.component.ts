@@ -44,7 +44,7 @@ export class ConceptFormTranslationComponent implements OnInit {
       })).subscribe(re => {
         this.toastrService.success('Traducción actualizada satisfactoriamente.', 'Traducir Concepto');
         if (this.lang === 'es') {
-          this.valuesChanged.emit({ 'title': this.conceptName.value, 'id': this.conceptId });
+          this.valuesChanged.emit({ 'title': this.conceptName.value, 'id': this.conceptId, 'lang': this.lang });
         }
       });
 
