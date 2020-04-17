@@ -35,7 +35,7 @@ export class TipsFormTranslationComponent implements OnInit {
       .pipe(finalize(() => {
         this.isLoading = false;
       })).subscribe(re => {
-        this.toastrService.success('Traducción actualizada satisfactoriamente.', 'Traducir Concejo');
+        this.toastrService.success('Traducción actualizada satisfactoriamente.', 'Traducir Consejo');
         // if (this.lang === 'es') {
         this.valuesChanged.emit({ 'content': this.contentControl.value, 'id': this.tipId, 'lang': this.lang });
         // }

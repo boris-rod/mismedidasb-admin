@@ -62,4 +62,14 @@ export class PollsService {
             .append('position', position.toString());
         return this.http.post<any>(Constants.POLL_BASE + '/tips/activate/' + tipId, {}, { params: params });
     }
+
+    getAdminPolls() {
+        return this.http.get<Poll[]>(Constants.POLL_BASE + '/admin', {
+            observe: 'response'
+        });
+    }
+
+    updatePollTranslations(pollId: number, obj: any) {
+        return this.http.post<any>(Constants.POLL_BASE + '/' + pollId + '/define-translation', obj);
+    }
 }

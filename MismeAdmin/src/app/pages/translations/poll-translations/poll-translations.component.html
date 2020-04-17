@@ -1,3 +1,44 @@
-<p>
-  poll-translations works!
-</p>
+<nb-card>
+  <nb-card-header>Cuestionarios</nb-card-header>
+  <nb-card-body>
+    <nb-accordion>
+      <nb-accordion-item #item *ngFor="let c of polls">
+        <nb-accordion-item-header>
+          <div class="row" style="width: 100%;">
+            <div class="col-12">{{c.name}}</div>
+            <div class="col-12">
+              <div class="row pl-3">
+                <div class="mr-1 lang-name">ES</div>
+                <div *ngIf="c.nameEN?.length>0" class="mr-1 lang-name">EN</div>
+                <div *ngIf="c.nameIT?.length>0" class="lang-name">IT</div>
+              </div>
+            </div>
+          </div>
+        </nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <nb-tabset>
+            <nb-tab tabTitle="Español" [lazyLoad]="true">
+              <poll-form-translate [pollId]="c.id" [pollName]="c.name" [pollDescription]="c.description"
+                [pollHtmlContent]="c.htmlContent" [pollReadOnly]="c.isReadOnly" [lang]="'es'"
+                (valuesChanged)='onTitleChanged($event)'>
+              </poll-form-translate>
+
+            </nb-tab>
+            <nb-tab tabTitle="Inglés" [lazyLoad]="true">
+              <poll-form-translate [pollId]="c.id" [pollName]="c.nameEN" [pollDescription]="c.descriptionEN"
+                [pollHtmlContent]="c.htmlContentEN" [pollReadOnly]="c.isReadOnly" [lang]="'en'"
+                (valuesChanged)='onTitleChanged($event)'>
+              </poll-form-translate>
+            </nb-tab>
+            <nb-tab tabTitle="Italiano" [lazyLoad]="true">
+              <poll-form-translate [pollId]="c.id" [pollName]="c.nameIT" [pollDescription]="c.descriptionIT"
+                [pollHtmlContent]="c.htmlContentIT" [pollReadOnly]="c.isReadOnly" [lang]="'it'"
+                (valuesChanged)='onTitleChanged($event)'>
+              </poll-form-translate>
+            </nb-tab>
+          </nb-tabset>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </nb-card-body>
+</nb-card>
