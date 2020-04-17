@@ -1,6 +1,7 @@
 export interface Tip {
     id: number;
     pollId: number;
+    pollName: string;
     content: string;
     contentEN: string;
     contentIT: string;

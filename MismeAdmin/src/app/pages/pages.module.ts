@@ -58,6 +58,7 @@ import { PollTranslationsComponent } from './translations/poll-translations/poll
 import { QuestionTranslationsComponent } from './translations/question-translations/question-translations.component';
 import { TipsTranslationsComponent } from './translations/tips-translations/tips-translations.component';
 import { ConceptFormTranslationComponent } from './translations/concept-translations/concept-form-translation/concept-form-translation.component';
+import { TipsFormTranslationComponent } from './translations/tips-translations/tips-form-translation/tips-form-translation.component';
 
 
 @NgModule({
@@ -121,6 +122,7 @@ import { ConceptFormTranslationComponent } from './translations/concept-translat
     QuestionTranslationsComponent,
     TipsTranslationsComponent,
     ConceptFormTranslationComponent,
+    TipsFormTranslationComponent,
   ],
   entryComponents: [
     DeletePollComponent,

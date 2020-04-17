@@ -1,0 +1,25 @@
+<div style="width:600px;">
+  <nb-card>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="label">Consejo</label>
+            <input type="text" nbInput fullWidth placeholder="Consejo" name="content" [formControl]="contentControl"
+              [status]="contentControl.dirty ? (contentControl.invalid  ? 'danger' : 'success') : 'basic'"
+              [required]="true">
+            <ng-container *ngIf="contentControl.invalid && contentControl.touched">
+              <p class="caption status-danger" *ngIf="contentControl.errors?.required">
+                Debe introducir el contenido del consejo.
+              </p>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton [disabled]="!contentControl.valid || isLoading===true"
+        (click)="saveTranslation()">Salvar</button>
+    </nb-card-footer>
+  </nb-card>
+</div>

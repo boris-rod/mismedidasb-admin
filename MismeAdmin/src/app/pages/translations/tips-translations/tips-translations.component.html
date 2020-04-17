@@ -1,3 +1,43 @@
-<p>
-  tips-translations works!
-</p>
+<nb-card>
+  <nb-card-header>Consejos</nb-card-header>
+  <nb-card-body>
+    <nb-accordion>
+      <nb-accordion-item #item *ngFor="let c of tips">
+        <nb-accordion-item-header>
+          <div class="row" style="width: 100%;">
+            <div class="col-12">
+              {{c.content}}
+            </div>
+            <div class="col-12">
+              <div class="row pl-3">
+                <div class="mr-1 lang-name">ES</div>
+                <div *ngIf="c.contentEN?.length>0" class="mr-1 lang-name">EN</div>
+                <div *ngIf="c.contentIT?.length>0" class="lang-name">IT</div>
+              </div>
+            </div>
+          </div>
+        </nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <nb-tabset>
+            <nb-tab tabTitle="Español">
+              <tips-form-translation [tipId]="c.id" [content]="c.content" [lang]="'es'"
+                (valuesChanged)='onContentChanged($event)'>
+              </tips-form-translation>
+            </nb-tab>
+            <nb-tab tabTitle="Inglés">
+              <tips-form-translation [tipId]="c.id" [content]="c.contentEN" [lang]="'en'"
+                (valuesChanged)='onContentChanged($event)'>
+              </tips-form-translation>
+            </nb-tab>
+            <nb-tab tabTitle="Italiano">
+              <tips-form-translation [tipId]="c.id" [content]="c.contentIT" [lang]="'it'"
+                (valuesChanged)='onContentChanged($event)'>
+              </tips-form-translation>
+            </nb-tab>
+          </nb-tabset>
+
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </nb-card-body>
+</nb-card>
