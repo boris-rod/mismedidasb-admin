@@ -35,7 +35,9 @@ export class PollTranslationsComponent implements OnInit {
         this.polls[index].description = event.description;
         this.polls[index].htmlContent = event.htmlContent;
       }
-      this.polls = this.polls.filter(t => !t.nameEN || t.nameEN === '' || !t.nameIT || t.nameIT === '');
+      if (this.backupPolls && this.backupPolls.length > 0) {
+        this.polls = this.polls.filter(t => !t.nameEN || t.nameEN === '' || !t.nameIT || t.nameIT === '');
+      }
       this.polls = [...this.polls];
     }
   }

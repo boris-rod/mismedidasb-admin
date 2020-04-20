@@ -28,4 +28,10 @@ export class QuestionService {
             .append('pollId', pollId.toString());
         return this.http.get(Constants.QUESTION_BASE, { params });
     }
+    getAdminQuestions() {
+        return this.http.get(Constants.QUESTION_BASE + '/admin', { observe: 'response' });
+    }
+    updateTipTranslations(questionId: number, obj: any) {
+        return this.http.post<any>(Constants.QUESTION_BASE + '/' + questionId + '/define-translation', obj);
+    }
 }

@@ -29,7 +29,9 @@ export class ConceptTranslationsComponent implements OnInit {
       else {
         this.concepts[index].title = event.title;
       }
-      this.concepts = this.concepts.filter(t => !t.titleEN || t.titleEN === '' || !t.titleIT || t.titleIT === '');
+      if (this.backupConcepts && this.backupConcepts.length > 0) {
+        this.concepts = this.concepts.filter(t => !t.titleEN || t.titleEN === '' || !t.titleIT || t.titleIT === '');
+      }
       this.concepts = [...this.concepts];
     }
   }

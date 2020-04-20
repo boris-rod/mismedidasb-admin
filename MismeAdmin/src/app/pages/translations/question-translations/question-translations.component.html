@@ -1,3 +1,50 @@
-<p>
-  question-translations works!
-</p>
+<nb-card>
+  <nb-card-header>
+    <div class="row">
+      <div class="col-sm-6">Preguntas</div>
+      <div class="col-sm-6 text-right">
+        <nb-checkbox status="primary" (checkedChange)="onCheckedChange($event)">Por Traducir</nb-checkbox>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-accordion>
+      <nb-accordion-item #item *ngFor="let c of questions">
+        <nb-accordion-item-header>
+          <div class="row" style="width: 100%;">
+            <div class="col-12">
+              {{c.title}}
+            </div>
+            <div class="col-12">
+              <div class="row pl-3">
+                <div class="mr-1 lang-name">ES</div>
+                <div *ngIf="c.titleEN?.length>0" class="mr-1 lang-name">EN</div>
+                <div *ngIf="c.titleIT?.length>0" class="lang-name">IT</div>
+              </div>
+            </div>
+          </div>
+        </nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <nb-tabset>
+            <nb-tab tabTitle="Español">
+              <question-form-translate [questionId]="c.id" [title]="c.title" [lang]="'es'"
+                (valuesChanged)='onContentChanged($event)'>
+              </question-form-translate>
+            </nb-tab>
+            <nb-tab tabTitle="Inglés">
+              <question-form-translate [questionId]="c.id" [title]="c.titleEN" [lang]="'en'"
+                (valuesChanged)='onContentChanged($event)'>
+              </question-form-translate>
+            </nb-tab>
+            <nb-tab tabTitle="Italiano">
+              <question-form-translate [questionId]="c.id" [title]="c.titleIT" [lang]="'it'"
+                (valuesChanged)='onContentChanged($event)'>
+              </question-form-translate>
+            </nb-tab>
+          </nb-tabset>
+
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </nb-card-body>
+</nb-card>

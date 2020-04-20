@@ -64,6 +64,7 @@ import { PollFormTranslateComponent } from './translations/poll-translations/pol
 import { DishesTranslationsComponent } from './translations/dishes-translations/dishes-translations.component';
 import { ResultsTranslationsComponent } from './translations/results-translations/results-translations.component';
 import { ScheduleTranslationsComponent } from './translations/schedule-translations/schedule-translations.component';
+import { QuestionFormTranslateComponent } from './translations/question-translations/question-form-translate/question-form-translate.component';
 
 
 @NgModule({
@@ -133,6 +134,7 @@ import { ScheduleTranslationsComponent } from './translations/schedule-translati
     DishesTranslationsComponent,
     ResultsTranslationsComponent,
     ScheduleTranslationsComponent,
+    QuestionFormTranslateComponent,
   ],
   entryComponents: [
     DeletePollComponent,

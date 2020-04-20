@@ -29,7 +29,10 @@ export class TipsTranslationsComponent implements OnInit {
       else {
         this.tips[index].content = event.content;
       }
-      this.tips = this.tips.filter(t => !t.contentEN || t.contentEN === '' || !t.contentIT || t.contentIT === '');
+      if (this.backupTips && this.backupTips.length > 0) {
+        this.tips = this.tips.filter(t => !t.contentEN || t.contentEN === '' || !t.contentIT || t.contentIT === '');
+      }
+
       this.tips = [...this.tips];
     }
   }
