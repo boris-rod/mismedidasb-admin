@@ -65,6 +65,7 @@ import { DishesTranslationsComponent } from './translations/dishes-translations/
 import { ResultsTranslationsComponent } from './translations/results-translations/results-translations.component';
 import { ScheduleTranslationsComponent } from './translations/schedule-translations/schedule-translations.component';
 import { QuestionFormTranslateComponent } from './translations/question-translations/question-form-translate/question-form-translate.component';
+import { AnswerFormTranslateComponent } from './translations/answers-translations/answer-form-translate/answer-form-translate.component';
 
 
 @NgModule({
@@ -135,6 +136,7 @@ import { QuestionFormTranslateComponent } from './translations/question-translat
     ResultsTranslationsComponent,
     ScheduleTranslationsComponent,
     QuestionFormTranslateComponent,
+    AnswerFormTranslateComponent,
   ],
   entryComponents: [
     DeletePollComponent,

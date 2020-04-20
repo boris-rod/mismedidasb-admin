@@ -8,4 +8,5 @@ export interface Answer {
     titleIT: string;
     createdAt: Date;
     modifiedAt: Date;
+    pollName: string;
 }
