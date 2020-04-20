@@ -9,6 +9,7 @@ import { PollsService } from '../../polls/polls.service';
 })
 export class PollTranslationsComponent implements OnInit {
   polls: Poll[] = [];
+  backupPolls: Poll[] = [];
   constructor(private pollService: PollsService) { }
 
   ngOnInit() {
@@ -34,7 +35,18 @@ export class PollTranslationsComponent implements OnInit {
         this.polls[index].description = event.description;
         this.polls[index].htmlContent = event.htmlContent;
       }
+      this.polls = this.polls.filter(t => !t.nameEN || t.nameEN === '' || !t.nameIT || t.nameIT === '');
       this.polls = [...this.polls];
+    }
+  }
+  onCheckedChange(event: any) {
+    if (event === true) {
+      this.backupPolls = this.polls;
+      this.polls = this.polls.filter(t => !t.nameEN || t.nameEN === '' || !t.nameIT || t.nameIT === '');
+    }
+    else {
+      this.polls = [...this.backupPolls];
+      this.backupPolls = [];
     }
   }
 }

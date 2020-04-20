@@ -1,5 +1,12 @@
 <nb-card>
-  <nb-card-header>Cuestionarios</nb-card-header>
+  <nb-card-header>
+    <div class="row">
+      <div class="col-sm-6">Cuestionarios</div>
+      <div class="col-sm-6 text-right">
+        <nb-checkbox status="primary" (checkedChange)="onCheckedChange($event)">Por Traducir</nb-checkbox>
+      </div>
+    </div>
+  </nb-card-header>
   <nb-card-body>
     <nb-accordion>
       <nb-accordion-item #item *ngFor="let c of polls">

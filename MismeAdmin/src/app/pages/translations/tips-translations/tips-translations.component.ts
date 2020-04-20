@@ -9,6 +9,7 @@ import { TipsService } from './tips.service';
 })
 export class TipsTranslationsComponent implements OnInit {
   tips: Tip[];
+  backupTips: Tip[];
   constructor(private tipService: TipsService) { }
 
   ngOnInit() {
@@ -28,7 +29,20 @@ export class TipsTranslationsComponent implements OnInit {
       else {
         this.tips[index].content = event.content;
       }
+      this.tips = this.tips.filter(t => !t.contentEN || t.contentEN === '' || !t.contentIT || t.contentIT === '');
       this.tips = [...this.tips];
     }
   }
+
+  onCheckedChange(event: any) {
+    if (event === true) {
+      this.backupTips = this.tips;
+      this.tips = this.tips.filter(t => !t.contentEN || t.contentEN === '' || !t.contentIT || t.contentIT === '');
+    }
+    else {
+      this.tips = [...this.backupTips];
+      this.backupTips = [];
+    }
+  }
+
 }

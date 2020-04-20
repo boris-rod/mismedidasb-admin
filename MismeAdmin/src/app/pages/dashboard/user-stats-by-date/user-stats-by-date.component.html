@@ -3,9 +3,14 @@
     <div style="display: flex; justify-content: space-between;">
       <div>Usuarios: {{total}}</div>
       <div>
-        <nb-select [(selected)]="currentFilterSelection" (selectedChange)="selectionChange($event)">
+        <!-- <nb-select [(selected)]="currentFilterSelection" (selectedChange)="selectionChange($event)">
           <nb-option *ngFor="let t of options" [value]="t.id"> {{ t.name }} </nb-option>
-        </nb-select>
+        </nb-select> -->
+
+        <ng-select [searchable]="false" [clearable]="false" [(ngModel)]="currentFilterSelection"
+          (change)="selectionChange($event)">
+          <ng-option *ngFor="let t of options" [value]="t.id">{{t.name}}</ng-option>
+        </ng-select>
       </div>
     </div>
   </nb-card-header>

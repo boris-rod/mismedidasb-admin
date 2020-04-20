@@ -57,6 +57,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Consejos',
         link: '/pages/translations/tip',
+      },
+      {
+        title: 'Resultados',
+        link: '/pages/translations/result',
+
+      },
+      {
+        title: 'Recordatorios',
+        link: '/pages/translations/schedule',
+
+      },
+      {
+        title: 'Platos',
+        link: '/pages/translations/dish',
       }
     ]
   },

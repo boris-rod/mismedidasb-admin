@@ -15,6 +15,9 @@ import { ConceptTranslationsComponent } from './translations/concept-translation
 import { QuestionTranslationsComponent } from './translations/question-translations/question-translations.component';
 import { AnswersTranslationsComponent } from './translations/answers-translations/answers-translations.component';
 import { PollTranslationsComponent } from './translations/poll-translations/poll-translations.component';
+import { DishesTranslationsComponent } from './translations/dishes-translations/dishes-translations.component';
+import { ResultsTranslationsComponent } from './translations/results-translations/results-translations.component';
+import { ScheduleTranslationsComponent } from './translations/schedule-translations/schedule-translations.component';
 
 const routes: Routes = [{
   path: '',
@@ -70,6 +73,18 @@ const routes: Routes = [{
       path: 'translations/poll',
       component: PollTranslationsComponent,
     },
+    {
+      path: 'translations/schedule',
+      component: ScheduleTranslationsComponent,
+    },
+    {
+      path: 'translations/result',
+      component: ResultsTranslationsComponent,
+    },
+    {
+      path: 'translations/dish',
+      component: DishesTranslationsComponent,
+    }
   ],
 }];
 

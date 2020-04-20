@@ -9,6 +9,7 @@ import { Concept } from '../../../core-mismes/models/concept';
 })
 export class ConceptTranslationsComponent implements OnInit {
   concepts: Concept[] = [];
+  backupConcepts: Concept[] = [];
   constructor(private concetpService: ConceptService) { }
 
   ngOnInit() {
@@ -28,8 +29,19 @@ export class ConceptTranslationsComponent implements OnInit {
       else {
         this.concepts[index].title = event.title;
       }
+      this.concepts = this.concepts.filter(t => !t.titleEN || t.titleEN === '' || !t.titleIT || t.titleIT === '');
       this.concepts = [...this.concepts];
     }
   }
 
+  onCheckedChange(event: any) {
+    if (event === true) {
+      this.backupConcepts = this.concepts;
+      this.concepts = this.concepts.filter(t => !t.titleEN || t.titleEN === '' || !t.titleIT || t.titleIT === '');
+    }
+    else {
+      this.concepts = [...this.backupConcepts];
+      this.backupConcepts = [];
+    }
+  }
 }

@@ -14,7 +14,8 @@ import {
   NbListModule,
   NbTooltipModule,
   NbAccordionModule,
-  NbTabsetModule
+  NbTabsetModule,
+  NbCheckboxModule
 } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
@@ -60,6 +61,9 @@ import { TipsTranslationsComponent } from './translations/tips-translations/tips
 import { ConceptFormTranslationComponent } from './translations/concept-translations/concept-form-translation/concept-form-translation.component';
 import { TipsFormTranslationComponent } from './translations/tips-translations/tips-form-translation/tips-form-translation.component';
 import { PollFormTranslateComponent } from './translations/poll-translations/poll-form-translate/poll-form-translate.component';
+import { DishesTranslationsComponent } from './translations/dishes-translations/dishes-translations.component';
+import { ResultsTranslationsComponent } from './translations/results-translations/results-translations.component';
+import { ScheduleTranslationsComponent } from './translations/schedule-translations/schedule-translations.component';
 
 
 @NgModule({
@@ -83,6 +87,7 @@ import { PollFormTranslateComponent } from './translations/poll-translations/pol
     NbTooltipModule,
     NbAccordionModule,
     NbTabsetModule,
+    NbCheckboxModule,
     NbWindowModule.forChild(),
     NbDialogModule.forChild(),
     NgxDatatableModule,
@@ -125,6 +130,9 @@ import { PollFormTranslateComponent } from './translations/poll-translations/pol
     ConceptFormTranslationComponent,
     TipsFormTranslationComponent,
     PollFormTranslateComponent,
+    DishesTranslationsComponent,
+    ResultsTranslationsComponent,
+    ScheduleTranslationsComponent,
   ],
   entryComponents: [
     DeletePollComponent,
