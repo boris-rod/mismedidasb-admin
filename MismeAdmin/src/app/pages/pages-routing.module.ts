@@ -17,7 +17,7 @@ import { AnswersTranslationsComponent } from './translations/answers-translation
 import { PollTranslationsComponent } from './translations/poll-translations/poll-translations.component';
 import { DishesTranslationsComponent } from './translations/dishes-translations/dishes-translations.component';
 import { ResultsTranslationsComponent } from './translations/results-translations/results-translations.component';
-import { ScheduleTranslationsComponent } from './translations/schedule-translations/schedule-translations.component';
+import { ReminderTranslationsComponent } from './translations/reminder-translations/reminder-translations.component';
 
 const routes: Routes = [{
   path: '',
@@ -74,8 +74,8 @@ const routes: Routes = [{
       component: PollTranslationsComponent,
     },
     {
-      path: 'translations/schedule',
-      component: ScheduleTranslationsComponent,
+      path: 'translations/reminder',
+      component: ReminderTranslationsComponent,
     },
     {
       path: 'translations/result',

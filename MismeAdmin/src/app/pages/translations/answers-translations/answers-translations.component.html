@@ -8,6 +8,7 @@
     </div>
   </nb-card-header>
   <nb-card-body>
+    <p *ngIf="!answers||answers.length===0">Sin datos que mostrar</p>
     <nb-accordion>
       <nb-accordion-item #item *ngFor="let c of answers">
         <nb-accordion-item-header>

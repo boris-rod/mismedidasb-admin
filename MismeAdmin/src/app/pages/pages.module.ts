@@ -63,10 +63,11 @@ import { TipsFormTranslationComponent } from './translations/tips-translations/t
 import { PollFormTranslateComponent } from './translations/poll-translations/poll-form-translate/poll-form-translate.component';
 import { DishesTranslationsComponent } from './translations/dishes-translations/dishes-translations.component';
 import { ResultsTranslationsComponent } from './translations/results-translations/results-translations.component';
-import { ScheduleTranslationsComponent } from './translations/schedule-translations/schedule-translations.component';
+import { ReminderTranslationsComponent } from './translations/reminder-translations/reminder-translations.component';
 import { QuestionFormTranslateComponent } from './translations/question-translations/question-form-translate/question-form-translate.component';
 import { AnswerFormTranslateComponent } from './translations/answers-translations/answer-form-translate/answer-form-translate.component';
 import { DishFormTranslateComponent } from './translations/dishes-translations/dish-form-translate/dish-form-translate.component';
+import { ReminderFormTranslateComponent } from './translations/reminder-translations/reminder-form-translate/reminder-form-translate.component';
 
 
 @NgModule({
@@ -135,10 +136,11 @@ import { DishFormTranslateComponent } from './translations/dishes-translations/d
     PollFormTranslateComponent,
     DishesTranslationsComponent,
     ResultsTranslationsComponent,
-    ScheduleTranslationsComponent,
+    ReminderTranslationsComponent,
     QuestionFormTranslateComponent,
     AnswerFormTranslateComponent,
     DishFormTranslateComponent,
+    ReminderFormTranslateComponent,
   ],
   entryComponents: [
     DeletePollComponent,

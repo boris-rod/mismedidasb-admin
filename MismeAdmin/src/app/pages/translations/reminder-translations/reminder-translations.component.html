@@ -1,26 +1,27 @@
 <nb-card>
   <nb-card-header>
     <div class="row">
-      <div class="col-sm-6">Consejos</div>
+      <div class="col-sm-6">Recordatorios</div>
       <div class="col-sm-6 text-right">
         <nb-checkbox status="primary" (checkedChange)="onCheckedChange($event)">Por Traducir</nb-checkbox>
       </div>
     </div>
   </nb-card-header>
   <nb-card-body>
-    <p *ngIf="!tips||tips.length===0">Sin datos que mostrar</p>
+    <p *ngIf="!reminders||reminders.length===0">Sin datos que mostrar</p>
     <nb-accordion>
-      <nb-accordion-item #item *ngFor="let c of tips">
+      <nb-accordion-item #item *ngFor="let c of reminders">
         <nb-accordion-item-header>
           <div class="row" style="width: 100%;">
             <div class="col-12">
-              {{c.content}}
+              {{c.title}}
+              <div class="row pl-3 misme-subtitle">Cuerpo: {{c.body}}</div>
             </div>
             <div class="col-12">
               <div class="row pl-3">
                 <div class="mr-1 lang-name">ES</div>
-                <div *ngIf="c.contentEN?.length>0" class="mr-1 lang-name">EN</div>
-                <div *ngIf="c.contentIT?.length>0" class="lang-name">IT</div>
+                <div *ngIf="c.titleEN?.length>0" class="mr-1 lang-name">EN</div>
+                <div *ngIf="c.titleIT?.length>0" class="lang-name">IT</div>
               </div>
             </div>
           </div>
@@ -28,19 +29,19 @@
         <nb-accordion-item-body>
           <nb-tabset>
             <nb-tab tabTitle="Español">
-              <tips-form-translation [tipId]="c.id" [content]="c.content" [lang]="'es'"
+              <reminder-form-translate [reminderId]="c.id" [title]="c.title" [body]="c.body" [lang]="'es'"
                 (valuesChanged)='onContentChanged($event)'>
-              </tips-form-translation>
+              </reminder-form-translate>
             </nb-tab>
             <nb-tab tabTitle="Inglés">
-              <tips-form-translation [tipId]="c.id" [content]="c.contentEN" [lang]="'en'"
+              <reminder-form-translate [reminderId]="c.id" [title]="c.titleEN" [body]="c.bodyEN" [lang]="'en'"
                 (valuesChanged)='onContentChanged($event)'>
-              </tips-form-translation>
+              </reminder-form-translate>
             </nb-tab>
             <nb-tab tabTitle="Italiano">
-              <tips-form-translation [tipId]="c.id" [content]="c.contentIT" [lang]="'it'"
+              <reminder-form-translate [reminderId]="c.id" [title]="c.titleIT" [body]="c.bodyIT" [lang]="'it'"
                 (valuesChanged)='onContentChanged($event)'>
-              </tips-form-translation>
+              </reminder-form-translate>
             </nb-tab>
           </nb-tabset>
 

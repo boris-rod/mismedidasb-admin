@@ -20,6 +20,7 @@
     </div>
   </nb-card-header>
   <nb-card-body>
+    <p *ngIf="!dishes||dishes.length===0">Sin datos que mostrar</p>
     <nb-accordion>
       <nb-accordion-item #item *ngFor="let c of dishes">
         <nb-accordion-item-header>

@@ -65,7 +65,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Recordatorios',
-        link: '/pages/translations/schedule',
+        link: '/pages/translations/reminder',
 
       },
       {

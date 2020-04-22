@@ -16,7 +16,6 @@ export class QuestionTranslationsComponent implements OnInit {
   ngOnInit() {
     this.questionService.getAdminQuestions().subscribe(resp => {
       this.questions = resp.body['result'];
-      console.log(this.questions);
     });
   }
 
