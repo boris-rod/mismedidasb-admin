@@ -68,4 +68,14 @@ export class DishesService {
 
         return this.http.post(Constants.DELETE_DISH + "/" + dishId, {});
     }
+
+    getAdminDishes() {
+        return this.http.get<Dish[]>(Constants.DISH_BASE + '/admin', {
+            observe: 'response'
+        });
+    }
+    updateDishTranslations(dishId: number, obj: any) {
+        return this.http.post<any>(Constants.DISH_BASE + '/' + dishId + '/define-translation', obj);
+    }
+
 }

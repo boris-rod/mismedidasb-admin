@@ -3,6 +3,8 @@ import { Tag } from './tag';
 export interface Dish {
     id: number;
     name: string;
+    nameEN: string;
+    nameIT: string;
     calories: number;
     carbohydrates: number;
     proteins: number;

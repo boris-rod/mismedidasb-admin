@@ -15,7 +15,7 @@ export class AnswersTranslationsComponent implements OnInit {
   ngOnInit() {
     this.answerService.getAnswers().subscribe(resp => {
       this.answers = resp.body['result'];
-      console.log(this.answers);
+
     });
   }
   onContentChanged(event: any) {
