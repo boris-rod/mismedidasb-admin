@@ -8,6 +8,7 @@ export const Constants = {
   DISH_BASE: 'dish',
   TIP_BASE: 'tip',
   REMINDER_BASE: 'reminder',
+  RESULT_BASE: 'result',
   ANSWER_BASE: 'answer',
   CONCEPT_BASE: 'concept',
   QUESTION_BASE: 'question',

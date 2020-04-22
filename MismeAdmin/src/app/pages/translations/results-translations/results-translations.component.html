@@ -1,3 +1,55 @@
-<p>
-  results-translations works!
-</p>
+<nb-card>
+  <nb-card-header>
+    <div class="row">
+      <div class="col-sm-10">Resultados
+        <br>
+        <span style="color: red; font-size: 12px;">Es importante que al traducir se respeten los [number1] y [number2]
+          que aparezcan pues son usados para sustituirlos por los valores calculados en cada caso.</span>
+      </div>
+      <div class="col-sm-2 text-right">
+        <nb-checkbox status="primary" (checkedChange)="onCheckedChange($event)">Por Traducir</nb-checkbox>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <p *ngIf="!results||results.length===0">Sin datos que mostrar</p>
+    <nb-accordion>
+      <nb-accordion-item #item *ngFor="let c of results">
+        <nb-accordion-item-header>
+          <div class="row" style="width: 100%;">
+            <div class="col-12">
+              {{c.text}}
+            </div>
+            <div class="col-12">
+              <div class="row pl-3">
+                <div class="mr-1 lang-name">ES</div>
+                <div *ngIf="c.textEN?.length>0" class="mr-1 lang-name">EN</div>
+                <div *ngIf="c.textIT?.length>0" class="lang-name">IT</div>
+              </div>
+            </div>
+          </div>
+        </nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <nb-tabset>
+            <nb-tab tabTitle="Español">
+              <result-form-translate [resultId]="c.id" [text]="c.text" [lang]="'es'"
+                (valuesChanged)='onContentChanged($event)'>
+              </result-form-translate>
+            </nb-tab>
+            <nb-tab tabTitle="Inglés">
+              <result-form-translate [resultId]="c.id" [text]="c.textEN" [lang]="'en'"
+                (valuesChanged)='onContentChanged($event)'>
+              </result-form-translate>
+            </nb-tab>
+            <nb-tab tabTitle="Italiano">
+              <result-form-translate [resultId]="c.id" [text]="c.textIT" [lang]="'it'"
+                (valuesChanged)='onContentChanged($event)'>
+              </result-form-translate>
+            </nb-tab>
+          </nb-tabset>
+
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </nb-card-body>
+</nb-card>

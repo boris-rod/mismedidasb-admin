@@ -1,0 +1,24 @@
+<div style="width:600px;">
+  <nb-card>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="label">Texto</label>
+            <textarea rows="5" nbInput fullWidth shape="round" placeholder="Texto" name="text"
+              [formControl]="textControl" [status]="'basic'"></textarea>
+            <ng-container *ngIf="textControl.invalid && textControl.touched">
+              <p class="caption status-danger" *ngIf="textControl.errors?.required">
+                Debe introducir un texto para el resultado.
+              </p>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button type="submit" nbButton [disabled]="!textControl.valid || isLoading===true"
+        (click)="saveTranslation()">Salvar</button>
+    </nb-card-footer>
+  </nb-card>
+</div>

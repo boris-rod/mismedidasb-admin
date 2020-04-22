@@ -23,11 +23,11 @@
             <label class="label">Cuerpo</label>
             <textarea rows="5" nbInput fullWidth shape="round" placeholder="Cuerpo" name="body"
               [formControl]="bodyControl" [status]="'basic'"></textarea>
-            <!-- <ng-container *ngIf="bodyControl.invalid && bodyControl.touched">
-                <p class="caption status-danger" *ngIf="bodyControl.errors?.required">
-                  Debe introducir un cuerpo para el recordatorio.
-                </p>
-              </ng-container> -->
+            <ng-container *ngIf="bodyControl.invalid && bodyControl.touched">
+              <p class="caption status-danger" *ngIf="bodyControl.errors?.required">
+                Debe introducir un cuerpo para el recordatorio.
+              </p>
+            </ng-container>
           </div>
         </div>
       </div>

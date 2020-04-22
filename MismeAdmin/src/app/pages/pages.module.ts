@@ -68,6 +68,7 @@ import { QuestionFormTranslateComponent } from './translations/question-translat
 import { AnswerFormTranslateComponent } from './translations/answers-translations/answer-form-translate/answer-form-translate.component';
 import { DishFormTranslateComponent } from './translations/dishes-translations/dish-form-translate/dish-form-translate.component';
 import { ReminderFormTranslateComponent } from './translations/reminder-translations/reminder-form-translate/reminder-form-translate.component';
+import { ResultFormTranslateComponent } from './translations/results-translations/result-form-translate/result-form-translate.component';
 
 
 @NgModule({
@@ -141,6 +142,7 @@ import { ReminderFormTranslateComponent } from './translations/reminder-translat
     AnswerFormTranslateComponent,
     DishFormTranslateComponent,
     ReminderFormTranslateComponent,
+    ResultFormTranslateComponent,
   ],
   entryComponents: [
     DeletePollComponent,
