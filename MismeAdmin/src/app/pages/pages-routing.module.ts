@@ -18,6 +18,7 @@ import { PollTranslationsComponent } from './translations/poll-translations/poll
 import { DishesTranslationsComponent } from './translations/dishes-translations/dishes-translations.component';
 import { ResultsTranslationsComponent } from './translations/results-translations/results-translations.component';
 import { ReminderTranslationsComponent } from './translations/reminder-translations/reminder-translations.component';
+import { GeneralContentTranslationsComponent } from './translations/general-content-translations/general-content-translations.component';
 
 const routes: Routes = [{
   path: '',
@@ -84,6 +85,10 @@ const routes: Routes = [{
     {
       path: 'translations/dish',
       component: DishesTranslationsComponent,
+    },
+    {
+      path: 'translations/general-content',
+      component: GeneralContentTranslationsComponent,
     }
   ],
 }];

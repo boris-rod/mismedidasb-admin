@@ -71,6 +71,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Platos',
         link: '/pages/translations/dish',
+      },
+      {
+        title: 'Contenido General',
+        link: '/pages/translations/general-content',
       }
     ]
   },
