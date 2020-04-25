@@ -4,6 +4,7 @@ export const Constants = {
   GET_USERS: 'user',
   GET_USERS_STATS: 'user/stats',
   GET_USERS_STATS_BY_DATE: 'user/stats-by-date',
+  GET_EATS_STATS_BY_DATE: 'user/eats-by-date',
   POLL_BASE: 'poll',
   DISH_BASE: 'dish',
   TIP_BASE: 'tip',
@@ -19,5 +20,5 @@ export const Constants = {
   DELETE_DISH: 'dish/delete',
   CHANGE_PASS: 'account/change-password',
   GET_PROFILE: 'account/profile',
-
+  GET_EATS_COUNT: 'user/eat-count'
 };

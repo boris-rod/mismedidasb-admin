@@ -38,9 +38,26 @@ export class UserService {
         });
     }
 
+    getUserEatsByDates(filter: number) {
+        const params: HttpParams = new HttpParams()
+            .append('dateType', filter.toString());
+
+        return this.http.get<UserStatSerie[]>(Constants.GET_EATS_STATS_BY_DATE, {
+            params: params,
+            observe: 'response'
+        });
+    }
+
+    getUserEatsCount() {
+        return this.http.get<number>(Constants.GET_EATS_COUNT, {
+            observe: 'response'
+        });
+    }
+
     disableUser(id: number) {
         return this.http.post<any>(Constants.GET_USERS + '/' + id + '/disable', {}, {});
     }
+
     enableUser(id: number) {
         return this.http.post<any>(Constants.GET_USERS + '/' + id + '/enable', {}, {});
     }
