@@ -16,6 +16,7 @@ export class ConceptFormTranslationComponent implements OnInit {
   @Input() lang: string;
   @Input() concName: string;
   @Input() concDescription: string;
+  @Input() instructions: string;
 
   @Output() valuesChanged = new EventEmitter<any>();
 
@@ -29,6 +30,14 @@ export class ConceptFormTranslationComponent implements OnInit {
   ngOnInit() {
     this.conceptName.setValue(this.concName ? this.concName : '');
     this.conceptDescription.setValue(this.concDescription ? this.concDescription : '');
+    if (!this.instructions) {
+      this.instructions = '';
+    }
+
+  }
+
+  onContentChange(content: any) {
+    this.instructions = content;
   }
 
   saveTranslation() {
@@ -36,7 +45,8 @@ export class ConceptFormTranslationComponent implements OnInit {
     const obj = {
       'lang': this.lang,
       'title': this.conceptName.value,
-      'description': this.conceptDescription.value ? this.conceptDescription.value : ''
+      'description': this.conceptDescription.value ? this.conceptDescription.value : '',
+      'instructions': this.instructions
     };
     this.conceptService.updateConceptTranslations(this.conceptId, obj)
       .pipe(finalize(() => {
