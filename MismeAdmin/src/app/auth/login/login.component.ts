@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService, LoginContext } from '../../core-mismes/authentication/authentication.service';
 import { finalize } from 'rxjs/operators';
 import { Logger } from '../../core-mismes';
+import { NbToastrService } from '@nebular/theme';
 
 const log = new Logger('Login');
 
@@ -27,7 +28,8 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
   constructor(protected service: NbAuthService,
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     protected cd: ChangeDetectorRef,
-    protected router: Router, private authenticationService: AuthenticationService) {
+    protected router: Router, private authenticationService: AuthenticationService,
+    private toastrService: NbToastrService) {
 
     super(service, options, cd, router);
 
@@ -58,11 +60,21 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
       )
       .subscribe(
         credentials => {
+
+          if (credentials.role.toLowerCase() !== 'admin') {
+            this.toastrService.danger('Solo usuarios con permiso de administración pueden acceder.', 'Autenticación');
+          }
+
           log.debug(`${credentials} successfully logged in`);
           this.router.navigate(['/'], { replaceUrl: true });
         },
         error => {
-          log.debug(`Login error: ${error}`);
+          // if (error === 'Unauthorized access.') {
+          this.toastrService.danger('Usuario o contraseña incorrecta.', 'Autenticación');
+          // }
+          // else if (error === 'User Not found.') {
+          //   this.toastrService.danger('Usuario incorrecto.', 'Autenticación');
+          // }
         }
       );
 

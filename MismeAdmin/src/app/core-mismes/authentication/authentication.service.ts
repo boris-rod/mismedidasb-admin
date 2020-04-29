@@ -38,10 +38,10 @@ export class AuthenticationService {
   private handleError(error: HttpErrorResponse) {
     log.debug(error);
     let errorMessage = '';
-    if (error.error.error === undefined) {
+    if (error.error === undefined) {
       errorMessage = ErrorEnum.SERVER_ERROR;
     } else {
-      errorMessage = error.error.error.message;
+      errorMessage = error.error.message;
     }
     return throwError(errorMessage);
   }

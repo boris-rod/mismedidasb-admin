@@ -13,7 +13,8 @@ export class AuthenticationGuard implements CanActivate {
   constructor(private router: Router, private credentialsService: CredentialsService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.credentialsService.isAuthenticated()) {
+    const creds = this.credentialsService.credentials;
+    if (this.credentialsService.isAuthenticated() && creds.account && creds.account.role.toLowerCase() === 'admin') {
       return true;
     }
 
