@@ -19,6 +19,7 @@ import { DishesTranslationsComponent } from './translations/dishes-translations/
 import { ResultsTranslationsComponent } from './translations/results-translations/results-translations.component';
 import { ReminderTranslationsComponent } from './translations/reminder-translations/reminder-translations.component';
 import { GeneralContentTranslationsComponent } from './translations/general-content-translations/general-content-translations.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const routes: Routes = [{
   path: '',
@@ -53,6 +54,10 @@ const routes: Routes = [{
     {
       path: 'dishes',
       component: DishesComponent,
+    },
+    {
+      path: 'messages',
+      component: MessagesComponent,
     },
     {
       path: 'translations/tip',

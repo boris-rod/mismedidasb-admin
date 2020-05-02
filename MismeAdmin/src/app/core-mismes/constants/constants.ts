@@ -13,6 +13,7 @@ export const Constants = {
   ANSWER_BASE: 'answer',
   CONCEPT_BASE: 'concept',
   QUESTION_BASE: 'question',
+  CONTACT_US_BASE: 'contact-us',
   GENERAL_CONTENT_BASE: 'general-content',
   GET_PERSONAL_DATAS: 'personal-data',
   GET_TAGS: 'tag',

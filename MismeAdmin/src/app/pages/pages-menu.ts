@@ -33,6 +33,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dishes'
   },
   {
+    title: 'Mensajes',
+    icon: 'email-outline',
+    link: '/pages/messages'
+  },
+  {
     title: 'Traducciones',
     icon: 'globe-outline',
     // link: '/pages/translations',

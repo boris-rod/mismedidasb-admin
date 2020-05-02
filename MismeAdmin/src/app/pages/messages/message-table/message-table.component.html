@@ -1,0 +1,92 @@
+<nb-card>
+  <nb-card-header>
+    Mensajes
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="row mb-3 pl-3">
+      <div class="col-2"></div>
+      <div class="col-3"></div>
+      <div class="col text-right pr-3">
+        <label>Lectura</label>
+        <nb-select [fullWidth]="true" [(selected)]="currentReadFilterSelection"
+          (selectedChange)="readSelectionChange($event)">
+          <nb-option [value]="-1">Todos</nb-option>
+          <nb-option [value]="1">Leídos</nb-option>
+          <nb-option [value]="0">No leídos</nb-option>
+        </nb-select>
+      </div>
+      <div class="col text-right pr-3">
+        <label>Prioridad</label>
+        <nb-select [fullWidth]="true" [(selected)]="currentPriorityFilterSelection"
+          (selectedChange)="prioritySelectionChange($event)">
+          <nb-option [value]="-1">Todos</nb-option>
+          <nb-option [value]="0">Sin importancia</nb-option>
+          <nb-option [value]="1">Importante</nb-option>
+        </nb-select>
+        <br>
+        <!-- <a *ngIf="currentFilerSelection!==-1" (click)="reset()" class="reset">Limpiar</a> -->
+        <a (click)="reset()" *ngIf="showReset==true" class="reset">Limpiar</a>
+      </div>
+    </div>
+
+    <ngx-datatable class="material" [headerHeight]="40" [footerHeight]="40" [rows]="messages" [rowHeight]="50"
+      [loadingIndicator]="isLoading" [columnMode]="ColumnMode" [externalPaging]="true" [count]="total" [offset]="page-1"
+      [limit]="perPage" (page)="setPage($event)" [externalSorting]="true" (sort)="setSort($event)">
+      <ngx-datatable-column [width]="10">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <nb-icon *ngIf="row.priorityId===1" icon="alert-circle-outline" nbTooltip="Importante" status="danger">
+          </nb-icon>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="true" prop="userName" name="Nombre">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span [ngClass]="{'unRead': row.read===false}">{{row.userName}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="true" prop="userEmail" name="Email">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span [ngClass]="{'unRead': row.read===false}">{{row.userEmail}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="true" prop="subject" name="Asunto">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span [ngClass]="{'unRead': row.read===false}">{{row.subject}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="true" prop="createdAt" name="Fecha">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span [ngClass]="{'unRead': row.read===false}">
+            {{row.createdAt | date:'short'}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="false" name="Acciones">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button nbTooltip="Leer" nbButton ghost (click)="read(row)" size="tiny">
+            <nb-icon icon="eye-outline"></nb-icon>
+          </button>
+
+          <button nbTooltip="Marcar como leído" nbButton ghost (click)="markAsReadUnread(row)" size="tiny"
+            *ngIf="row.read===false">
+            <nb-icon icon="book-open-outline"></nb-icon>
+          </button>
+          <button nbTooltip="Marcar como no leído" nbButton ghost size="tiny" (click)="markAsReadUnread(row)"
+            *ngIf="row.read===true">
+            <nb-icon icon="book-outline"></nb-icon>
+          </button>
+
+
+          <button nbTooltip="Marcar como no importante" nbButton ghost (click)="markAsImportant(row)" size="tiny"
+            *ngIf="row.priorityId===1">
+            <nb-icon icon="flash-off-outline"></nb-icon>
+          </button>
+          <button nbTooltip="Marcar como importante" nbButton ghost size="tiny" (click)="markAsImportant(row)"
+            *ngIf="row.priorityId===0">
+            <nb-icon icon="flash-outline"></nb-icon>
+          </button>
+
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </nb-card-body>
+</nb-card>

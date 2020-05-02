@@ -71,6 +71,9 @@ import { ReminderFormTranslateComponent } from './translations/reminder-translat
 import { ResultFormTranslateComponent } from './translations/results-translations/result-form-translate/result-form-translate.component';
 import { GeneralContentTranslationsComponent } from './translations/general-content-translations/general-content-translations.component';
 import { ContentFormTranslateComponent } from './translations/general-content-translations/content-form-translate/content-form-translate.component';
+import { MessagesComponent } from './messages/messages.component';
+import { MessageTableComponent } from './messages/message-table/message-table.component';
+import { ViewMessageComponent } from './messages/view-message/view-message.component';
 
 
 @NgModule({
@@ -147,6 +150,9 @@ import { ContentFormTranslateComponent } from './translations/general-content-tr
     ResultFormTranslateComponent,
     GeneralContentTranslationsComponent,
     ContentFormTranslateComponent,
+    MessagesComponent,
+    MessageTableComponent,
+    ViewMessageComponent,
   ],
   entryComponents: [
     DeletePollComponent,
@@ -161,7 +167,8 @@ import { ContentFormTranslateComponent } from './translations/general-content-tr
     PollTipsComponent,
     DisableUserComponent,
     EnableUserComponent,
-    NotifyUserComponent
+    NotifyUserComponent,
+    ViewMessageComponent
   ]
 })
 export class PagesModule {

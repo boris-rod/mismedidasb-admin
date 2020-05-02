@@ -35,7 +35,6 @@ export class TableComponent implements OnInit {
     this.paged.emit(pageInfo.offset + 1);
   }
   selectionChange(selection: any) {
-    console.log(selection);
     if (selection !== -1) {
       this.showReset = true;
     }

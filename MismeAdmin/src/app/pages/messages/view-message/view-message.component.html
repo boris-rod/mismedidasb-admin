@@ -1,0 +1,26 @@
+<div style="width:600px;">
+  <nb-card>
+    <nb-card-header>Mensaje</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="inputConceptName" class="label">Asunto</label>
+            <p>{{message.subject}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="label">Cuerpo</label>
+            <p>{{message.body}}</p>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
+    </nb-card-footer>
+  </nb-card>
+</div>
