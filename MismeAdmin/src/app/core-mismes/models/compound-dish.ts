@@ -1,3 +1,4 @@
+import { Dish } from './dish';
 export interface CompoundDish {
     id: number;
     userId: number;
@@ -30,4 +31,7 @@ export interface CompoundDish {
     imageMimeType: string;
     createdAt: Date;
     modifiedAt: Date;
+    DishCompoundDishResponse: Dish[];
+    isAdminReviewed: boolean;
+    isAdminConverted: boolean;
 }

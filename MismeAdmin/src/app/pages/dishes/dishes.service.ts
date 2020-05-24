@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Constants } from '../../core-mismes/constants/constants';
 import { Dish } from '../../core-mismes/models/dish';
+import { CompoundDish } from '../../core-mismes/models/compound-dish';
 
 @Injectable({
     providedIn: 'root'
@@ -78,13 +79,36 @@ export class DishesService {
         return this.http.post<any>(Constants.DISH_BASE + '/' + dishId + '/define-translation', obj);
     }
 
-    getUsersDishes(search: string) {
+    getUsersDishes(search: string, filter: number) {
         let params: HttpParams = new HttpParams()
-            .append('search', search);
-        return this.http.get<Dish>(Constants.COMPOUND_DISH_BASE + '/admin', {
+            .append('search', search)
+            .append('filter', filter.toString());
+        return this.http.get<CompoundDish>(Constants.COMPOUND_DISH_BASE + '/admin', {
             params: params,
             observe: 'response'
         });
+    }
+    updateUsersDishAsReviewed(id: number) {
+        return this.http.post<any>(Constants.COMPOUND_DISH_BASE + '/' + id + '/reviewed', {});
+    }
+    createDish(dish: any) {
+        const formData = new FormData();
+        formData.append('id', dish.id);
+        formData.append('name', dish.name);
+        formData.append('calories', dish.calories);
+        formData.append('carbohydrates', dish.carbohydrates);
+        formData.append('proteins', dish.proteins);
+        formData.append('fat', dish.fat);
+        formData.append('fiber', dish.fiber);
+        formData.append('image', dish.image);
+        formData.append('removedImage', dish.removedImage);
+        for (const tag of dish.newTags) {
+            formData.append('newTags', tag);
+        }
+        for (const tag of dish.tagsIds) {
+            formData.append('tagsIds', tag.toString());
+        }
+        return this.http.post<any>(Constants.COMPOUND_DISH_BASE + '/create-dish', formData);
     }
 
 }

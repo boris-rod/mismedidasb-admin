@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CompoundDish } from '../../../core-mismes/models/compound-dish';
 import { DishesService } from '../dishes.service';
-import { NbSearchService } from '@nebular/theme';
+import { NbSearchService, NbDialogService } from '@nebular/theme';
 import { finalize } from 'rxjs/operators';
+import { CompoundDishReviewComponent } from '../compound-dish-review/compound-dish-review.component';
 
 @Component({
   selector: 'user-dish',
@@ -16,15 +17,17 @@ export class UserDishComponent implements OnInit {
   searchTerm: string = '';
 
   results: CompoundDish[];
-  resetIsNeeded: boolean = false;
+  showReset: boolean = false;
 
-  constructor(private dishService: DishesService, private searchService: NbSearchService) { }
+  currentFilterSelection: number = 0;
+
+  constructor(private dishService: DishesService, private searchService: NbSearchService, private dialogService: NbDialogService) { }
 
   ngOnInit() {
     this.loadDishes();
     this.searchService.onSearchSubmit().subscribe(s => {
       this.searchTerm = s.term;
-      this.resetIsNeeded = true;
+      this.showReset = true;
       this.loadDishes();
     });
   }
@@ -32,7 +35,7 @@ export class UserDishComponent implements OnInit {
   loadDishes() {
     this.isLoading = true;
 
-    this.dishService.getUsersDishes(this.searchTerm)
+    this.dishService.getUsersDishes(this.searchTerm, this.currentFilterSelection)
       .pipe(finalize(() => {
         this.isLoading = false;
       }))
@@ -42,15 +45,32 @@ export class UserDishComponent implements OnInit {
       });
   }
 
-  onReseted(reset: boolean) {
-    if (reset) {
-      this.searchTerm = '';
-      this.resetIsNeeded = false;
-      this.loadDishes();
-    }
+  reset() {
+    this.searchTerm = '';
+    this.showReset = false;
+    this.currentFilterSelection = 0;
+    this.loadDishes();
   }
 
   reviewUserDish(uDish: CompoundDish) {
-    console.log(uDish);
+    this.dialogService.open(CompoundDishReviewComponent, {
+      context: {
+        dishToEdit: uDish
+      }
+    }).onClose.subscribe(s => {
+      this.loadDishes();
+    });
   }
+
+  selectionChange(selection: any) {
+    this.currentFilterSelection = selection;
+    if (selection !== 0) {
+      this.showReset = true;
+    }
+    else {
+      this.showReset = false;
+    }
+    this.loadDishes();
+  }
+
 }
