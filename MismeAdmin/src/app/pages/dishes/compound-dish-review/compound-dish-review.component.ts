@@ -101,7 +101,9 @@ export class CompoundDishReviewComponent implements OnInit {
       newTags: newTags,
       image: this.imagesToSend.length > 0 ? this.imagesToSend[0] : null,
       id: this.dishToEdit.id,
-      removedImage: this.removedImages.length > 0 ? this.removedImages[0] : null
+      removedImage: this.removedImages.length > 0 ? this.removedImages[0] : null,
+      // for reward system purposes
+      userId: this.dishToEdit.userId
     };
     this.dishService.createDish(obj)
       .pipe(finalize(() => {

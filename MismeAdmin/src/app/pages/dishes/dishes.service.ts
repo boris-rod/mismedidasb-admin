@@ -102,6 +102,7 @@ export class DishesService {
         formData.append('fiber', dish.fiber);
         formData.append('image', dish.image);
         formData.append('removedImage', dish.removedImage);
+        formData.append('userId', dish.userId);
         for (const tag of dish.newTags) {
             formData.append('newTags', tag);
         }
