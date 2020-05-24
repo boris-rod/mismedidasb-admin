@@ -6,6 +6,7 @@ export const Constants = {
   GET_USERS_STATS_BY_DATE: 'user/stats-by-date',
   GET_EATS_STATS_BY_DATE: 'user/eats-by-date',
   POLL_BASE: 'poll',
+  COMPOUND_DISH_BASE: 'compound-dish',
   DISH_BASE: 'dish',
   TIP_BASE: 'tip',
   REMINDER_BASE: 'reminder',

@@ -78,4 +78,13 @@ export class DishesService {
         return this.http.post<any>(Constants.DISH_BASE + '/' + dishId + '/define-translation', obj);
     }
 
+    getUsersDishes(search: string) {
+        let params: HttpParams = new HttpParams()
+            .append('search', search);
+        return this.http.get<Dish>(Constants.COMPOUND_DISH_BASE + '/admin', {
+            params: params,
+            observe: 'response'
+        });
+    }
+
 }

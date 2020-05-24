@@ -74,6 +74,7 @@ import { ContentFormTranslateComponent } from './translations/general-content-tr
 import { MessagesComponent } from './messages/messages.component';
 import { MessageTableComponent } from './messages/message-table/message-table.component';
 import { ViewMessageComponent } from './messages/view-message/view-message.component';
+import { UserDishComponent } from './dishes/user-dish/user-dish.component';
 
 
 @NgModule({
@@ -153,6 +154,7 @@ import { ViewMessageComponent } from './messages/view-message/view-message.compo
     MessagesComponent,
     MessageTableComponent,
     ViewMessageComponent,
+    UserDishComponent,
   ],
   entryComponents: [
     DeletePollComponent,

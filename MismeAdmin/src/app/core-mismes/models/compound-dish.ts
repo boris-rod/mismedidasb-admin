@@ -1,10 +1,10 @@
-import { Tag } from './tag';
-
-export interface Dish {
+export interface CompoundDish {
     id: number;
+    userId: number;
     name: string;
-    nameEN: string;
-    nameIT: string;
+    userName: string;
+    fullname: string;
+    email: string;
     calories: number;
     carbohydrates: number;
     proteins: number;
@@ -28,5 +28,6 @@ export interface Dish {
     thiamine: number;
     image: string;
     imageMimeType: string;
-    tags: Tag[];
+    createdAt: Date;
+    modifiedAt: Date;
 }

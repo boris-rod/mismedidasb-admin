@@ -1,8 +1,20 @@
-<nb-layout>
-  <nb-layout-column>
-    <dishes-table [dishes]="results" [isLoading]="isLoading" [perPage]="perPage" [showReset]="resetIsNeeded"
-      (reseted)="onReseted($event)" (filtered)="onFiltered($event)">
-    </dishes-table>
-  </nb-layout-column>
+<!-- <nb-layout> -->
+<nb-card>
+  <nb-card-body>
+    <nb-tabset>
+      <nb-tab tabTitle="Platos">
+        <dishes-table [dishes]="results" [isLoading]="isLoading" [perPage]="perPage" [showReset]="resetIsNeeded"
+          (reseted)="onReseted($event)" (filtered)="onFiltered($event)">
+        </dishes-table>
+      </nb-tab>
+      <nb-tab tabTitle="Platos de Usuarios" [lazyLoad]="true">
+        <user-dish></user-dish>
+      </nb-tab>
 
-</nb-layout>
+    </nb-tabset>
+
+  </nb-card-body>
+
+</nb-card>
+
+<!-- </nb-layout> -->
