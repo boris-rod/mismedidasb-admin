@@ -136,4 +136,12 @@ export class CompoundDishReviewComponent implements OnInit {
     this.removedImages = [];
     this.images = [];
   }
+  addTagFn(name) {
+    if (!this.selectedTags) {
+      this.selectedTags = [];
+    }
+    this.selectedTags = [...this.selectedTags, { id: -1, name: name }];
+    return { name: name, tag: true };
+
+  }
 }

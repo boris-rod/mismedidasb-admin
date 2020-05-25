@@ -4,6 +4,7 @@ import { DishesService } from '../dishes.service';
 import { NbSearchService, NbDialogService } from '@nebular/theme';
 import { finalize } from 'rxjs/operators';
 import { CompoundDishReviewComponent } from '../compound-dish-review/compound-dish-review.component';
+import { ColumnMode } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'user-dish',
@@ -21,7 +22,10 @@ export class UserDishComponent implements OnInit {
 
   currentFilterSelection: number = 0;
 
-  constructor(private dishService: DishesService, private searchService: NbSearchService, private dialogService: NbDialogService) { }
+  ColumnMode;
+  constructor(private dishService: DishesService, private searchService: NbSearchService, private dialogService: NbDialogService) {
+    this.ColumnMode = ColumnMode.force
+  }
 
   ngOnInit() {
     this.loadDishes();

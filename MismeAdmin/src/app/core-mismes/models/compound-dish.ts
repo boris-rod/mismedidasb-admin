@@ -31,7 +31,7 @@ export interface CompoundDish {
     imageMimeType: string;
     createdAt: Date;
     modifiedAt: Date;
-    DishCompoundDishResponse: Dish[];
+    dishCompoundDishResponse: Dish[];
     isAdminReviewed: boolean;
     isAdminConverted: boolean;
 }
