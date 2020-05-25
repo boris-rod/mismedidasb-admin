@@ -28,6 +28,7 @@ export class MessageTableComponent implements OnInit {
 
   @Output() refreshMessagesRead = new EventEmitter<ContactUs>()
   @Output() refreshMessagesImportant = new EventEmitter<ContactUs>()
+  @Output() refreshMessagesAnswered = new EventEmitter<ContactUs>()
 
   currentPriorityFilterSelection: number = -1;
   currentReadFilterSelection: number = -1;
@@ -84,8 +85,13 @@ export class MessageTableComponent implements OnInit {
     }).onClose.subscribe(s => {
       var ind = this.messages.findIndex(m => m.id === mess.id);
       if (ind > -1) {
+
         if (this.messages[ind].read === false) {
           this.refreshMessagesRead.emit(this.messages[ind]);
+        }
+
+        if (s === true) {
+          this.refreshMessagesAnswered.emit(this.messages[ind]);
         }
       }
     });

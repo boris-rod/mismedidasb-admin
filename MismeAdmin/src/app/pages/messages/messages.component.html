@@ -4,6 +4,7 @@
       [showReset]="resetIsNeeded" (paged)="onPaged($event)" (priorityFiltered)="onPriorityFiltered($event)"
       (readFiltered)="onReadFiltered($event)" (sorted)="onSorted($event)" (reseted)="onReseted($event)"
       (refreshMessagesRead)="onRefreshMessagesRead($event)"
+      (refreshMessagesAnswered)="onRefreshMessagesAnswered($event)"
       (refreshMessagesImportant)="onRefreshMessagesImportant($event)">
     </message-table>
   </nb-layout-column>

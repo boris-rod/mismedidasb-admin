@@ -42,5 +42,8 @@ export class ContactUsService {
             observe: 'response'
         });
     }
+    answerMessage(body: any) {
+        return this.http.post<any>(Constants.CONTACT_US_BASE + '/answer', body, {});
+    }
 
 }

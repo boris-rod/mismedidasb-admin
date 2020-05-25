@@ -14,12 +14,16 @@
         <div class="col-sm-12">
           <div class="form-group">
             <label class="label">Cuerpo</label>
-            <p>{{message.body}}</p>
+            <p *ngIf="answering==false">{{message.body}}</p>
+            <textarea *ngIf="answering==true" rows="5" nbInput fullWidth shape="round" placeholder="Descripción"
+              name="body" [formControl]="body" [status]="'basic'"></textarea>
           </div>
         </div>
       </div>
     </nb-card-body>
     <nb-card-footer>
+      <button *ngIf="answering==false" type="submit" nbButton (click)="answer()">Responder</button>
+      <button *ngIf="answering==true" type="submit" nbButton (click)="send()">Enviar</button>
       <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
     </nb-card-footer>
   </nb-card>

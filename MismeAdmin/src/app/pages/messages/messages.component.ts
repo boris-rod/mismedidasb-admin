@@ -48,6 +48,7 @@ export class MessagesComponent implements OnInit {
         const pData = resp.headers.get('PagingData');
         this.total = JSON.parse(pData)['totalItems'];
         this.results = resp.body['result'];
+        console.log(this.results);
       }, error => {
         log.error(error);
       });
@@ -96,4 +97,12 @@ export class MessagesComponent implements OnInit {
       this.results = [...this.results];
     }
   }
+  onRefreshMessagesAnswered(mess: ContactUs) {
+    var ind = this.results.findIndex(m => m.id === mess.id);
+    if (ind > -1) {
+      this.results[ind].isAnswered = true;
+      this.results = [...this.results];
+    }
+  }
+
 }

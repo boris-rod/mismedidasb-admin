@@ -9,4 +9,5 @@ export interface ContactUs {
     read: boolean;
     priority: string;
     priorityId: number;
+    isAnswered: boolean;
 }
