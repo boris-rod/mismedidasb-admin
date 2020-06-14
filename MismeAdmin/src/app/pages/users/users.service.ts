@@ -65,4 +65,8 @@ export class UserService {
     notify(id: number, obj: any) {
         return this.http.post<any>(Constants.GET_USERS + '/' + id + '/notification', obj, {});
     }
+
+    getUserForDetailsView(userId: number) {
+        return this.http.get<any>(Constants.GET_ADMIN_USER + '/' + userId);
+    }
 }

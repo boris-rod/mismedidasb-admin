@@ -76,6 +76,7 @@ import { MessageTableComponent } from './messages/message-table/message-table.co
 import { ViewMessageComponent } from './messages/view-message/view-message.component';
 import { UserDishComponent } from './dishes/user-dish/user-dish.component';
 import { CompoundDishReviewComponent } from './dishes/compound-dish-review/compound-dish-review.component';
+import { DetailsUserComponent } from './users/details-user/details-user.component';
 
 
 @NgModule({
@@ -157,6 +158,7 @@ import { CompoundDishReviewComponent } from './dishes/compound-dish-review/compo
     ViewMessageComponent,
     UserDishComponent,
     CompoundDishReviewComponent,
+    DetailsUserComponent,
   ],
   entryComponents: [
     DeletePollComponent,
@@ -173,7 +175,8 @@ import { CompoundDishReviewComponent } from './dishes/compound-dish-review/compo
     EnableUserComponent,
     NotifyUserComponent,
     ViewMessageComponent,
-    CompoundDishReviewComponent
+    CompoundDishReviewComponent,
+    DetailsUserComponent
   ]
 })
 export class PagesModule {

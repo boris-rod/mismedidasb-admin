@@ -6,6 +6,7 @@ import { NbDialogService } from '@nebular/theme';
 import { EnableUserComponent } from '../enable-user/enable-user.component';
 import { DisableUserComponent } from '../disable-user/disable-user.component';
 import { NotifyUserComponent } from '../notify-user/notify-user.component';
+import { DetailsUserComponent } from '../details-user/details-user.component';
 const log = new Logger('Users Table');
 @Component({
   selector: 'app-table',
@@ -81,6 +82,15 @@ export class TableComponent implements OnInit {
       }
     }).onClose.subscribe(s => {
       this.reseted.emit(true);
+    });
+  }
+
+  userDetails(user: User) {
+    this.dialogService.open(DetailsUserComponent, {
+      context: {
+        user: user
+      }
+    }).onClose.subscribe(s => {
     });
   }
 }

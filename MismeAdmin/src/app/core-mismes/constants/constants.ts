@@ -18,6 +18,7 @@ export const Constants = {
   GENERAL_CONTENT_BASE: 'general-content',
   GET_PERSONAL_DATAS: 'personal-data',
   GET_TAGS: 'tag',
+  GET_ADMIN_USER: 'admin/user',
   UPDATE_DISH: 'dish/update',
   DELETE_DISH: 'dish/delete',
   CHANGE_PASS: 'account/change-password',

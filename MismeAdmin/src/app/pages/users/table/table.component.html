@@ -56,6 +56,9 @@
           <button nbTooltip="Mensaje" nbButton ghost size="tiny" (click)="sendMessage(row)">
             <nb-icon icon="message-circle-outline"></nb-icon>
           </button>
+          <button nbTooltip="Detalles" nbButton ghost (click)="userDetails(row)" size="tiny">
+            <nb-icon icon="info-outline" title="Detalles"></nb-icon>
+          </button>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>

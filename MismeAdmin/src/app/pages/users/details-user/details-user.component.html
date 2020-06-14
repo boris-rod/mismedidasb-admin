@@ -1,0 +1,62 @@
+<div style="width:1600px;">
+  <nb-card>
+    <nb-card-header>Detalles</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-2 my-class" style="display:flex;justify-content: center;">
+          <nb-user [onlyPicture]="true" [picture]="user.avatar===''?'assets/images/no-photo.png': user.avatar">
+          </nb-user>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <label style="font-weight: bold;">Nombre:&nbsp;</label>{{userDet?.fullName}}
+          </div>
+          <div class="row">
+            <label style="font-weight: bold;">Usuario:&nbsp;</label>{{userDet?.username}}
+          </div>
+          <div class="row">
+            <label style="font-weight: bold;">IMC:&nbsp;</label>{{userDet?.imc}}
+          </div>
+          <div class="row">
+            <label style="font-weight: bold;">kCal:&nbsp;</label>{{userDet?.kCal}}
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <label style="font-weight: bold;">Edad:&nbsp;</label>{{userDet?.age}}
+          </div>
+          <div class="row">
+            <label style="font-weight: bold;">Sexo:&nbsp;</label>{{userDet?.sex}}
+          </div>
+          <div class="row">
+            <label style="font-weight: bold;">Estatura:&nbsp;</label>{{userDet?.height}}
+          </div>
+          <div class="row">
+            <label style="font-weight: bold;">Peso:&nbsp;</label>{{userDet?.weight}}
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="row">
+            <label style="font-weight: bold;">Medidas de Salud
+              Actualizadas:&nbsp;</label>{{userDet?.healthMeasuresLastUpdate== null? "-" : userDet?.healthMeasuresLastUpdate | date:"dd/MM/yy"}}
+          </div>
+          <div class="row">
+            <label style="font-weight: bold;">Medidas de Valores
+              Actualizada:&nbsp;</label>{{userDet?.valueMeasuresLastUpdate== null? "-" : userDet?.valueMeasuresLastUpdate | date:"dd/MM/yy"}}
+          </div>
+          <div class="row">
+            <label style="font-weight: bold;">Medidas de Bienestar
+              Actualizada:&nbsp;</label>{{userDet?.wellnessMeasuresLastUpdate== null? "-" : userDet?.wellnessMeasuresLastUpdate | date:"dd/MM/yy"}}
+          </div>
+          <div class="row">
+            <label style="font-weight: bold;">&Uacute;ltima Comida
+              Planificada:&nbsp;</label>{{userDet?.lastPlanedEat == null? "-" : userDet?.lastPlanedEat | date:"dd/MM/yy" }}
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="basic" (click)="dismiss()" style="float: right;">Cancelar</button>
+    </nb-card-footer>
+  </nb-card>
+</div>

@@ -13,4 +13,7 @@ export interface User {
   modifiedAt: Date;
   activatedAt: Date | null;
   disabledAt: Date | null;
+  language: string;
+  imc: number;
+  kCal: number;
 }
