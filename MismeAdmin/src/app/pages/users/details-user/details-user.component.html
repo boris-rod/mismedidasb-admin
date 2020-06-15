@@ -1,4 +1,4 @@
-<div style="width:1600px;">
+<div style="width:1600px; max-height: 800px; overflow-y: auto;">
   <nb-card>
     <nb-card-header>Detalles</nb-card-header>
     <nb-card-body>
@@ -15,10 +15,10 @@
             <label style="font-weight: bold;">Usuario:&nbsp;</label>{{userDet?.username}}
           </div>
           <div class="row">
-            <label style="font-weight: bold;">IMC:&nbsp;</label>{{userDet?.imc}}
+            <label style="font-weight: bold;">IMC:&nbsp;</label>{{userDet?.imc | number:'.2-2'}}
           </div>
           <div class="row">
-            <label style="font-weight: bold;">kCal:&nbsp;</label>{{userDet?.kCal}}
+            <label style="font-weight: bold;">kCal:&nbsp;</label>{{userDet?.kCal | number:'.2-2'}}
           </div>
         </div>
         <div class="col-3">
@@ -26,7 +26,7 @@
             <label style="font-weight: bold;">Edad:&nbsp;</label>{{userDet?.age}}
           </div>
           <div class="row">
-            <label style="font-weight: bold;">Sexo:&nbsp;</label>{{userDet?.sex}}
+            <label style="font-weight: bold;">Sexo:&nbsp;</label>{{userDet?.sex===2?'Femenino': 'Masculino'}}
           </div>
           <div class="row">
             <label style="font-weight: bold;">Estatura:&nbsp;</label>{{userDet?.height}}
@@ -52,6 +52,21 @@
             <label style="font-weight: bold;">&Uacute;ltima Comida
               Planificada:&nbsp;</label>{{userDet?.lastPlanedEat == null? "-" : userDet?.lastPlanedEat | date:"dd/MM/yy" }}
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <nb-tabset>
+            <nb-tab tabTitle="Medidas de Valores" [lazyLoad]="true">
+              test1
+            </nb-tab>
+            <nb-tab tabTitle="Medidas Bienestar" [lazyLoad]="true">
+              test2
+            </nb-tab>
+            <nb-tab tabTitle="Comidas" [lazyLoad]="true">
+              <details-eats [userId]="user.id"></details-eats>
+            </nb-tab>
+          </nb-tabset>
         </div>
       </div>
     </nb-card-body>

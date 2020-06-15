@@ -77,6 +77,7 @@ import { ViewMessageComponent } from './messages/view-message/view-message.compo
 import { UserDishComponent } from './dishes/user-dish/user-dish.component';
 import { CompoundDishReviewComponent } from './dishes/compound-dish-review/compound-dish-review.component';
 import { DetailsUserComponent } from './users/details-user/details-user.component';
+import { DetailsEatsComponent } from './users/details-user/details-eats/details-eats.component';
 
 
 @NgModule({
@@ -159,6 +160,7 @@ import { DetailsUserComponent } from './users/details-user/details-user.componen
     UserDishComponent,
     CompoundDishReviewComponent,
     DetailsUserComponent,
+    DetailsEatsComponent,
   ],
   entryComponents: [
     DeletePollComponent,

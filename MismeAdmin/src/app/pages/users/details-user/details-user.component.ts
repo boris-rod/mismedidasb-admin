@@ -18,6 +18,7 @@ export class DetailsUserComponent implements OnInit {
     protected ref: NbDialogRef<DetailsUserComponent>) { }
 
   ngOnInit() {
+
     this.userService.getUserForDetailsView(this.user.id)
       .pipe(finalize(() => { }))
       .subscribe(resp => {
