@@ -53,10 +53,10 @@
           <button nbTooltip="Deshabilitar" nbButton ghost (click)="disable(row)" size="tiny" *ngIf="row.statusId===2">
             <nb-icon icon="person-remove-outline"></nb-icon>
           </button>
-          <button nbTooltip="Mensaje" nbButton ghost size="tiny" (click)="sendMessage(row)">
+          <button nbTooltip="Mensaje" nbButton ghost size="tiny" (click)="sendMessage(row)" *ngIf="row.statusId===2">
             <nb-icon icon="message-circle-outline"></nb-icon>
           </button>
-          <button nbTooltip="Detalles" nbButton ghost (click)="userDetails(row)" size="tiny">
+          <button nbTooltip="Detalles" nbButton ghost (click)="userDetails(row)" size="tiny" *ngIf="row.statusId===2">
             <nb-icon icon="info-outline" title="Detalles"></nb-icon>
           </button>
         </ng-template>
