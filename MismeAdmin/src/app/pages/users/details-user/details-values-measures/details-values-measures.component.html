@@ -1,0 +1,15 @@
+<nb-card>
+  <nb-card-body>
+    <div class="list-container">
+      <nb-list>
+        <nb-list-item *ngFor="let q of values">
+          <div class="row">
+            <p><span class="font-weight-bold">P: </span>{{q?.title}}<br>
+              <span class="font-weight-bold">R: </span><span>{{q?.answers[0].title}}</span></p>
+          </div>
+
+        </nb-list-item>
+      </nb-list>
+    </div>
+  </nb-card-body>
+</nb-card>

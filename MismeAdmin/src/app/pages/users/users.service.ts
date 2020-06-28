@@ -69,4 +69,13 @@ export class UserService {
     getUserForDetailsView(userId: number) {
         return this.http.get<any>(Constants.GET_ADMIN_USER + '/' + userId);
     }
+
+    getUserQuestionsAnswersByConcept(userId: number, concept: string) {
+        const params: HttpParams = new HttpParams()
+            .append('conceptName', concept);
+
+        return this.http.get<any>(Constants.GET_ADMIN_USER + '/' + userId + '/question-answers', {
+            params: params
+        });
+    }
 }

@@ -61,7 +61,6 @@ export class DetailsEatsComponent implements OnInit {
           e['totalProteins'] = totalProteins.toFixed(2);
           e['totalCarbohydrates'] = totalCarbo.toFixed(2);
         });
-        console.log(this.eats);
       }, error => {
       });
   }

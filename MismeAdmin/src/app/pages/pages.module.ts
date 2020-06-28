@@ -78,6 +78,8 @@ import { UserDishComponent } from './dishes/user-dish/user-dish.component';
 import { CompoundDishReviewComponent } from './dishes/compound-dish-review/compound-dish-review.component';
 import { DetailsUserComponent } from './users/details-user/details-user.component';
 import { DetailsEatsComponent } from './users/details-user/details-eats/details-eats.component';
+import { DetailsValuesMeasuresComponent } from './users/details-user/details-values-measures/details-values-measures.component';
+import { DetailsWellnessMeasuresComponent } from './users/details-user/details-wellness-measures/details-wellness-measures.component';
 
 
 @NgModule({
@@ -161,6 +163,8 @@ import { DetailsEatsComponent } from './users/details-user/details-eats/details-
     CompoundDishReviewComponent,
     DetailsUserComponent,
     DetailsEatsComponent,
+    DetailsValuesMeasuresComponent,
+    DetailsWellnessMeasuresComponent,
   ],
   entryComponents: [
     DeletePollComponent,

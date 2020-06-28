@@ -1,4 +1,4 @@
-<div style="width:1600px; max-height: 800px; overflow-y: auto;">
+<div style="width:1600px; max-height: 900px; overflow-y: auto;">
   <nb-card>
     <nb-card-header>Detalles</nb-card-header>
     <nb-card-body>
@@ -58,10 +58,10 @@
         <div class="col-12">
           <nb-tabset>
             <nb-tab tabTitle="Medidas de Valores" [lazyLoad]="true">
-              test1
+              <details-values-measures [userId]="user.id"></details-values-measures>
             </nb-tab>
             <nb-tab tabTitle="Medidas Bienestar" [lazyLoad]="true">
-              test2
+              <details-wellness-measures [userId]="user.id"></details-wellness-measures>
             </nb-tab>
             <nb-tab tabTitle="Comidas" [lazyLoad]="true">
               <details-eats [userId]="user.id"></details-eats>
