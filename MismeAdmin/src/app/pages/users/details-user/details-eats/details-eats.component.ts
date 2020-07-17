@@ -32,6 +32,7 @@ export class DetailsEatsComponent implements OnInit {
         const pData = resp.headers.get('PagingData');
         this.total = JSON.parse(pData)['totalItems'];
         this.eats = resp.body['result'];
+        console.log(this.eats);
         this.eats.forEach(e => {
           let totalKCal = 0;
           let totalFat = 0;

@@ -25,8 +25,6 @@ export class DetailsWellnessMeasuresComponent implements OnInit {
       }))
       .subscribe(resp => {
         this.values = resp.result;
-
-        console.log(this.values);
       }, error => {
       });
 
