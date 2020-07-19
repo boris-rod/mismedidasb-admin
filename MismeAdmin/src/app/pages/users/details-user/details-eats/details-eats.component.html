@@ -1,63 +1,67 @@
 <nb-card>
   <nb-card-body>
-    <ngx-datatable class="material" [headerHeight]="40" [footerHeight]="40" [rows]="eats" [rowHeight]="50"
-      [loadingIndicator]="isLoading" [columnMode]="ColumnMode" [externalPaging]="true" [count]="total" [offset]="page-1"
-      [limit]="perPage" (page)="setPage($event)" [summaryRow]="true" [summaryPosition]="'bottom'" [summaryHeight]="50">
-      <ngx-datatable-column [sortable]="false" prop="createdAt" name="Fecha">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.createdAt | date:"dd/MM/yy"}}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="false" prop="eatType" name="Comida">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <span [ngSwitch]="row.eatType">
-            <p *ngSwitchCase="'BREAKFAST'">
-              Desayuno
-            </p>
-            <p *ngSwitchCase="'SNACK1'">
-              Merienda 1
-            </p>
-            <p *ngSwitchCase="'LUNCH'">
-              Almuerzo
-            </p>
-            <p *ngSwitchCase="'SNACK2'">
-              Merienda 2
-            </p>
-            <p *ngSwitchDefault>
-              Cena
-            </p>
-          </span>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="false" name="kCal" [summaryFunc]="summaryForKcal" prop="totalKCal">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.totalKCal}}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="false" name="Proteínas" [summaryFunc]="summaryForProteins" prop="totalProteins">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.totalProteins}}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="false" name="Grasas" [summaryFunc]="summaryForFat" prop="totalFat">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.totalFat}}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="false" name="Carbohidratos" [summaryFunc]="summaryForCarbohydrates"
-        prop="totalCarbohydrates">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.totalCarbohydrates}}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="false" name="Fibras" [summaryFunc]="summaryForFiber" prop="totalFiber">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.totalFiber}}
-        </ng-template>
-      </ngx-datatable-column>
+    <div class="list-container">
+      <ngx-datatable class="material" [headerHeight]="40" [footerHeight]="40" [rows]="eats" [rowHeight]="50"
+        [loadingIndicator]="isLoading" [columnMode]="ColumnMode" [externalPaging]="true" [count]="total"
+        [offset]="page-1" [limit]="perPage" (page)="setPage($event)" [summaryRow]="true" [summaryPosition]="'bottom'"
+        [summaryHeight]="50">
+        <ngx-datatable-column [sortable]="false" prop="createdAt" name="Fecha">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.createdAt | date:"dd/MM/yy"}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" prop="eatType" name="Comida">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <span [ngSwitch]="row.eatType">
+              <p *ngSwitchCase="'BREAKFAST'">
+                Desayuno
+              </p>
+              <p *ngSwitchCase="'SNACK1'">
+                Merienda 1
+              </p>
+              <p *ngSwitchCase="'LUNCH'">
+                Almuerzo
+              </p>
+              <p *ngSwitchCase="'SNACK2'">
+                Merienda 2
+              </p>
+              <p *ngSwitchDefault>
+                Cena
+              </p>
+            </span>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" name="kCal" [summaryFunc]="summaryForKcal" prop="totalKCal">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.totalKCal}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" name="Proteínas" [summaryFunc]="summaryForProteins"
+          prop="totalProteins">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.totalProteins}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" name="Grasas" [summaryFunc]="summaryForFat" prop="totalFat">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.totalFat}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" name="Carbohidratos" [summaryFunc]="summaryForCarbohydrates"
+          prop="totalCarbohydrates">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.totalCarbohydrates}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" name="Fibras" [summaryFunc]="summaryForFiber" prop="totalFiber">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.totalFiber}}
+          </ng-template>
+        </ngx-datatable-column>
 
 
 
-    </ngx-datatable>
+      </ngx-datatable>
+    </div>
   </nb-card-body>
 </nb-card>
