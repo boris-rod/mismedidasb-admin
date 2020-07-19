@@ -45,19 +45,19 @@ export class CompoundDishReviewComponent implements OnInit {
     this.dishName.setValue(this.dishToEdit.name);
 
     this.dishCalories.setValidators(Validators.required);
-    this.dishCalories.setValue(this.dishToEdit.calories);
+    this.dishCalories.setValue(this.dishToEdit.calories.toFixed(2));
 
     this.dishFat.setValidators(Validators.required);
-    this.dishFat.setValue(this.dishToEdit.fat);
+    this.dishFat.setValue(this.dishToEdit.fat.toFixed(2));
 
     this.dishFiber.setValidators(Validators.required);
-    this.dishFiber.setValue(this.dishToEdit.fiber);
+    this.dishFiber.setValue(this.dishToEdit.fiber.toFixed(2));
 
     this.dishCarbohidrates.setValidators(Validators.required);
-    this.dishCarbohidrates.setValue(this.dishToEdit.carbohydrates);
+    this.dishCarbohidrates.setValue(this.dishToEdit.carbohydrates.toFixed(2));
 
     this.dishProteins.setValidators(Validators.required);
-    this.dishProteins.setValue(this.dishToEdit.proteins);
+    this.dishProteins.setValue(this.dishToEdit.proteins.toFixed(2));
 
     if (this.dishToEdit.image !== null && this.dishToEdit.image !== '') {
       const img = {
