@@ -19,14 +19,17 @@ export interface CompoundDish {
     sodium: number;
     zinc: number;
     magnesium: number;
-    ribofla: number;
-    niacin: number;
-    folicAcid: number;
     vitaminA: number;
     vitaminC: number;
     vitaminB6: number;
     vitaminB12: number;
-    thiamine: number;
+    vitaminB2Riboflavin: number;
+    vitaminB3Niacin: number;
+    vitaminD: number;
+    vitaminE: number;
+    vitaminK: number;
+    vitaminB9Folate: number;
+    vitaminB1Thiamin: number;
     image: string;
     imageMimeType: string;
     createdAt: Date;
@@ -34,4 +37,13 @@ export interface CompoundDish {
     dishCompoundDishResponse: Dish[];
     isAdminReviewed: boolean;
     isAdminConverted: boolean;
+    isProteic: boolean;
+    isCaloric: boolean;
+    isFruitAndVegetables: boolean;
+    netWeight: number;
+    volume: number;
+    saturatedFat: number;
+    monoUnsaturatedFat: number;
+    polyUnsaturatedFat: number;
+
 }

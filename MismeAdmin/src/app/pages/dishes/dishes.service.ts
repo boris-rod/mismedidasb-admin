@@ -38,6 +38,32 @@ export class DishesService {
         formData.append('fat', dish.fat);
         formData.append('fiber', dish.fiber);
         formData.append('image', dish.image);
+
+        formData.append('classification', dish.classification);
+        formData.append('cholesterol', dish.cholesterol);
+        formData.append('calcium', dish.calcium);
+        formData.append('phosphorus', dish.phosphorus);
+        formData.append('iron', dish.iron);
+        formData.append('potassium', dish.potassium);
+        formData.append('sodium', dish.sodium);
+        formData.append('vitaminC', dish.vitaminC);
+        formData.append('vitaminA', dish.vitaminA);
+        formData.append('vitaminB6', dish.vitaminB6);
+        formData.append('vitaminB12', dish.vitaminB12);
+        formData.append('vitaminD', dish.vitaminD);
+        formData.append('vitaminE', dish.vitaminE);
+        formData.append('vitaminK', dish.vitaminK);
+        formData.append('vitaminB1Thiamin', dish.vitaminB1Thiamin);
+        formData.append('vitaminB2Riboflavin', dish.vitaminB2Riboflavin);
+        formData.append('vitaminB3Niacin', dish.vitaminB3Niacin);
+        formData.append('vitaminB9Folate', dish.vitaminB9Folate);
+        formData.append('netWeight', dish.netWeight);
+        formData.append('volume', dish.volume);
+        formData.append('saturatedFat', dish.saturatedFat);
+        formData.append('monoUnsaturatedFat', dish.monoUnsaturatedFat);
+        formData.append('polyUnsaturatedFat', dish.polyUnsaturatedFat);
+        formData.append('zinc', dish.zinc);
+
         for (const tag of dish.newTags) {
             formData.append('newTags', tag);
         }
@@ -57,6 +83,31 @@ export class DishesService {
         formData.append('fiber', dish.fiber);
         formData.append('image', dish.image);
         formData.append('removedImage', dish.removedImage);
+        formData.append('classification', dish.classification);
+        formData.append('cholesterol', dish.cholesterol);
+        formData.append('calcium', dish.calcium);
+        formData.append('phosphorus', dish.phosphorus);
+        formData.append('iron', dish.iron);
+        formData.append('potassium', dish.potassium);
+        formData.append('sodium', dish.sodium);
+        formData.append('vitaminC', dish.vitaminC);
+        formData.append('vitaminA', dish.vitaminA);
+        formData.append('vitaminB6', dish.vitaminB6);
+        formData.append('vitaminB12', dish.vitaminB12);
+        formData.append('vitaminD', dish.vitaminD);
+        formData.append('vitaminE', dish.vitaminE);
+        formData.append('vitaminK', dish.vitaminK);
+        formData.append('vitaminB1Thiamin', dish.vitaminB1Thiamin);
+        formData.append('vitaminB2Riboflavin', dish.vitaminB2Riboflavin);
+        formData.append('vitaminB3Niacin', dish.vitaminB3Niacin);
+        formData.append('vitaminB9Folate', dish.vitaminB9Folate);
+        formData.append('netWeight', dish.netWeight);
+        formData.append('volume', dish.volume);
+        formData.append('saturatedFat', dish.saturatedFat);
+        formData.append('monoUnsaturatedFat', dish.monoUnsaturatedFat);
+        formData.append('polyUnsaturatedFat', dish.polyUnsaturatedFat);
+        formData.append('zinc', dish.zinc);
+
         for (const tag of dish.newTags) {
             formData.append('newTags', tag);
         }
@@ -103,6 +154,35 @@ export class DishesService {
         formData.append('image', dish.image);
         formData.append('removedImage', dish.removedImage);
         formData.append('userId', dish.userId);
+
+        formData.append('classification', dish.classification);
+        formData.append('cholesterol', dish.cholesterol);
+        formData.append('calcium', dish.calcium);
+        formData.append('phosphorus', dish.phosphorus);
+        formData.append('iron', dish.iron);
+        formData.append('potassium', dish.potassium);
+        formData.append('sodium', dish.sodium);
+        formData.append('vitaminC', dish.vitaminC);
+        formData.append('vitaminA', dish.vitaminA);
+        formData.append('vitaminB6', dish.vitaminB6);
+        formData.append('vitaminB12', dish.vitaminB12);
+        formData.append('vitaminD', dish.vitaminD);
+        formData.append('vitaminE', dish.vitaminE);
+        formData.append('vitaminK', dish.vitaminK);
+        formData.append('vitaminB1Thiamin', dish.vitaminB1Thiamin);
+        formData.append('vitaminB2Riboflavin', dish.vitaminB2Riboflavin);
+        formData.append('vitaminB3Niacin', dish.vitaminB3Niacin);
+        formData.append('vitaminB9Folate', dish.vitaminB9Folate);
+        formData.append('netWeight', dish.netWeight);
+        formData.append('volume', dish.volume);
+        formData.append('saturatedFat', dish.saturatedFat);
+        formData.append('monoUnsaturatedFat', dish.monoUnsaturatedFat);
+        formData.append('polyUnsaturatedFat', dish.polyUnsaturatedFat);
+        formData.append('zinc', dish.zinc);
+
+
+
+
         for (const tag of dish.newTags) {
             formData.append('newTags', tag);
         }

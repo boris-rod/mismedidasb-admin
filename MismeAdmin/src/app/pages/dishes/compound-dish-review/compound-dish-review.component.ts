@@ -103,8 +103,36 @@ export class CompoundDishReviewComponent implements OnInit {
       id: this.dishToEdit.id,
       removedImage: this.removedImages.length > 0 ? this.removedImages[0] : null,
       // for reward system purposes
-      userId: this.dishToEdit.userId
+      userId: this.dishToEdit.userId,
+
+      //hardcoded fix me
+      classification: 0,
+
+      cholesterol: this.dishToEdit.cholesterol,
+      calcium: this.dishToEdit.calcium,
+      phosphorus: this.dishToEdit.phosphorus,
+      iron: this.dishToEdit.iron,
+      potassium: this.dishToEdit.potassium,
+      sodium: this.dishToEdit.sodium,
+      vitaminA: this.dishToEdit.vitaminA,
+      vitaminC: this.dishToEdit.vitaminC,
+      vitaminB6: this.dishToEdit.vitaminB6,
+      vitaminB12: this.dishToEdit.vitaminB12,
+      vitaminD: this.dishToEdit.vitaminD,
+      vitaminE: this.dishToEdit.vitaminE,
+      vitaminK: this.dishToEdit.vitaminK,
+      vitaminB1Thiamin: this.dishToEdit.vitaminB1Thiamin,
+      vitaminB2Riboflavin: this.dishToEdit.vitaminB2Riboflavin,
+      vitaminB3Niacin: this.dishToEdit.vitaminB3Niacin,
+      vitaminB9Folate: this.dishToEdit.vitaminB9Folate,
+      netWeight: this.dishToEdit.netWeight,
+      volume: this.dishToEdit.volume,
+      saturatedFat: this.dishToEdit.saturatedFat,
+      monoUnsaturatedFat: this.dishToEdit.monoUnsaturatedFat,
+      polyUnsaturatedFat: this.dishToEdit.polyUnsaturatedFat,
+      zinc: this.dishToEdit.zinc
     };
+
     this.dishService.createDish(obj)
       .pipe(finalize(() => {
         this.isLoading = false;
