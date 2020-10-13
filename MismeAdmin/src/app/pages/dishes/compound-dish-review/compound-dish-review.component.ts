@@ -130,8 +130,13 @@ export class CompoundDishReviewComponent implements OnInit {
       saturatedFat: this.dishToEdit.saturatedFat,
       monoUnsaturatedFat: this.dishToEdit.monoUnsaturatedFat,
       polyUnsaturatedFat: this.dishToEdit.polyUnsaturatedFat,
-      zinc: this.dishToEdit.zinc
+      zinc: this.dishToEdit.zinc,
+      alcohol: this.dishToEdit.alcohol
     };
+
+
+
+
 
     this.dishService.createDish(obj)
       .pipe(finalize(() => {

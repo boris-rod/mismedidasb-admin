@@ -52,6 +52,7 @@ export class AddDishComponent implements OnInit {
   zync = new FormControl();
   potassium = new FormControl();
   sodium = new FormControl();
+  alcohol = new FormControl();
 
   images: any[] = [];
   removedImages: any[] = [];
@@ -117,11 +118,11 @@ export class AddDishComponent implements OnInit {
     this.zync.setValue(0.0);
     this.potassium.setValue(0.0);
     this.sodium.setValue(0.0);
+    this.alcohol.setValue(0.0);
 
   }
 
   ngOnInit() {
-    console.log(this.dishToEdit);
     this.loadTags();
     if (this.edit === false) {
       this.selectedClassification = this.allClassifications[0];
@@ -165,6 +166,7 @@ export class AddDishComponent implements OnInit {
       this.zync.setValue(this.dishToEdit.zinc);
       this.potassium.setValue(this.dishToEdit.potassium);
       this.sodium.setValue(this.dishToEdit.sodium);
+      this.alcohol.setValue(this.dishToEdit.alcohol);
       if (this.dishToEdit.isCaloric === true) {
         this.selectedClassification = this.allClassifications.filter(c => c['value'] === 1)[0];
       } else if (this.dishToEdit.isProteic === true) {
@@ -239,7 +241,8 @@ export class AddDishComponent implements OnInit {
       saturatedFat: this.satFat.value,
       monoUnsaturatedFat: this.monoInsatFat.value,
       polyUnsaturatedFat: this.polySatFat.value,
-      zinc: this.zync.value
+      zinc: this.zync.value,
+      alcohol: this.alcohol.value
     };
     if (this.edit === false) {
       this.dishService.addDish(obj)

@@ -301,13 +301,26 @@
               </div>
             </div>
           </div>
+
+
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label">Alcohol</label>
+                <input type="number" nbInput fullWidth min="0.0" step="0.01" name="alcohol" [formControl]="alcohol"
+                  pattern="^\d+(?:\.\d{1,4})?$">
+              </div>
+            </div>
+
+          </div>
+
         </nb-tab>
       </nb-tabset>
 
     </nb-card-body>
     <nb-card-footer>
-      <button type="submit" nbButton [disabled]="!dishName.valid || !dishCalories.valid 
-      || !dishFat.valid || !dishFiber.valid || !dishCarbohidrates.valid 
+      <button type="submit" nbButton [disabled]="!dishName.valid || !dishCalories.valid
+      || !dishFat.valid || !dishFiber.valid || !dishCarbohidrates.valid
       || !dishProteins.valid || isLoading===true" (click)="saveDish()">Salvar</button>
       <button nbButton status="basic" (click)="close()" style="float: right;">Cancelar</button>
     </nb-card-footer>

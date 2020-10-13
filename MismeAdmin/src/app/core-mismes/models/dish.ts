@@ -39,4 +39,5 @@ export interface Dish {
     saturatedFat: number;
     monoUnsaturatedFat: number;
     polyUnsaturatedFat: number;
+    alcohol: number;
 }
