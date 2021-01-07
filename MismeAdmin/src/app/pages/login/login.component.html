@@ -1,0 +1,43 @@
+<nz-layout class="app-layout">
+  <div class="inner-content">
+
+    <form class="login-form" nz-form [nzLayout]="'vertical'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <div nz-row nzJustify="center" nzAlign="top">
+        <h1 nz-typography>Entrar</h1>
+      </div>
+      <div nz-row nzJustify="center" nzAlign="top">
+        <p nz-typography>Hola! Entre con su email.</p>
+      </div>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Por favor use su email.">
+          <nz-input-group nzPrefixIcon="user">
+            <input formControlName="userName" nz-input placeholder="Email" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Por favor introduzca su contraseña!">
+          <nz-input-group nzPrefixIcon="lock">
+            <input formControlName="password" nz-input type="password" placeholder="Contraseña" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+
+        <div nz-row>
+          <div nz-col [nzSpan]="12">
+            <label nz-checkbox formControlName="remember">
+              <span>Recuérdame</span>
+            </label>
+          </div>
+
+        </div>
+
+        <nz-form-control>
+          <button nz-button nzType="primary" [nzLoading]="loading" [disabled]="!validateForm.valid"
+            style="width:100%;">Entrar</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</nz-layout>
