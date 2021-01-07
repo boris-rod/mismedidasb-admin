@@ -35,6 +35,7 @@ export class AuthenticationService {
     return of(true);
   }
 
+  // tslint:disable-next-line:typedef
   private handleError(error: HttpErrorResponse) {
     log.debug(error);
     let errorMessage = '';
@@ -55,11 +56,12 @@ export class AuthenticationService {
     return this.loginHttp(auth).pipe(
       map(d => {
         log.debug(d);
-        const _user: User = { ...d.body['result'] };
+        // tslint:disable-next-line:no-string-literal
+        const user: User = { ...d.body['result'] };
         const data: Credentials = {
           token: d.headers.get('Authorization'),
           refreshToken: d.headers.get('Refreshtoken'),
-          account: _user
+          account: user
         };
         this.credentialsService.setCredentials(data, context.remember);
         return data.account;

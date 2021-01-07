@@ -31,7 +31,7 @@ export class HttpCacheService {
    * @param data The received data.
    * @param lastUpdated The cache last update, current date is used if not specified.
    */
-  setCacheData(url: string, data: HttpResponse<any>, lastUpdated?: Date) {
+  setCacheData(url: string, data: HttpResponse<any>, lastUpdated?: Date): void {
     this.cachedData[url] = {
       lastUpdated: lastUpdated || new Date(),
       data
@@ -79,7 +79,7 @@ export class HttpCacheService {
    * Cleans cache entries older than the specified date.
    * @param expirationDate The cache expiration date. If no date is specified, all cache is cleared.
    */
-  cleanCache(expirationDate?: Date) {
+  cleanCache(expirationDate?: Date): void {
     if (expirationDate) {
       Object.entries(this.cachedData).forEach(([key, value]) => {
         if (expirationDate >= value.lastUpdated) {
@@ -98,19 +98,19 @@ export class HttpCacheService {
    * @param persistence How the cache should be persisted, it can be either local or session storage, or if no value is
    *   provided it will be only in-memory (default).
    */
-  setPersistence(persistence?: 'local' | 'session') {
+  setPersistence(persistence?: 'local' | 'session'): void {
     this.cleanCache();
     this.storage = persistence === 'local' || persistence === 'session' ? window[persistence + 'Storage'] : null;
     this.loadCacheData();
   }
 
-  private saveCacheData() {
+  private saveCacheData(): void {
     if (this.storage) {
       this.storage.setItem(cachePersistenceKey, JSON.stringify(this.cachedData));
     }
   }
 
-  private loadCacheData() {
+  private loadCacheData(): void {
     const data = this.storage ? this.storage.getItem(cachePersistenceKey) : null;
     this.cachedData = data ? JSON.parse(data) : {};
   }
