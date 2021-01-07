@@ -31,12 +31,12 @@
           </nb-user>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="true" prop="fullName" name="Nombre">
+      <ngx-datatable-column [sortable]="true" prop="fullName" name="Usuario">
       </ngx-datatable-column>
       <ngx-datatable-column [sortable]="true" prop="email" name="Correo">
       </ngx-datatable-column>
-      <ngx-datatable-column [sortable]="true" prop="phone" name="Teléfono">
-      </ngx-datatable-column>
+      <!-- <ngx-datatable-column [sortable]="true" prop="phone" name="Teléfono">
+      </ngx-datatable-column> -->
       <ngx-datatable-column [sortable]="true" prop="status" name="Estado">
         <ng-template let-row="row" ngx-datatable-cell-template>
           <span *ngIf="row.statusId===0" style="color: blue;">Pendiente</span>
