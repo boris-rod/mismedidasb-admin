@@ -37,8 +37,6 @@ export class HomeComponent implements OnInit {
       nzTitle: 'Cambiar Contraseña',
       nzContent: ChangePasswordComponent,
       nzFooter: null
-      // nzCancelText: 'Cancelar',
-      // nzOkDisabled: true
     });
   }
 

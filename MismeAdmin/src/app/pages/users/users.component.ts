@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableQueryParams } from 'ng-zorro-antd/table/public-api';
 import { finalize } from 'rxjs/operators';
 import { User } from 'src/app/core-mismes/models/user';
 import { Logger } from '../../core-mismes/logger.service';
 import { UsersService } from './users.service';
+import { MessageComponent } from './message/message.component';
+import { DetailsComponent } from './details/details.component';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 const log = new Logger('Users');
 @Component({
@@ -23,11 +27,11 @@ export class UsersComponent implements OnInit {
   results: User[];
   showReset = false;
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService, private modalService: NzModalService,
+    private messageService: NzMessageService) { }
 
   ngOnInit(): void {
     this.loadUsers();
-
   }
 
   loadUsers(): void {
@@ -69,9 +73,48 @@ export class UsersComponent implements OnInit {
     this.showReset = true;
     this.loadUsers();
   }
+
   reset(): void {
     this.showReset = false;
     this.searchTerm = '';
     this.loadUsers();
+  }
+
+  message(user: User): void {
+    this.modalService.create({
+      nzTitle: 'Enviar Mensaje',
+      nzContent: MessageComponent,
+      nzFooter: null
+    });
+  }
+
+  details(user: User): void {
+    this.modalService.create({
+      nzTitle: 'Detalles',
+      nzContent: DetailsComponent,
+      nzFooter: null
+    });
+  }
+
+  enable(user: User): void {
+    this.isLoading = true;
+    this.userService.enableUser(user.id)
+      .pipe(finalize(() => {
+        this.isLoading = false;
+      })).subscribe(d => {
+        this.messageService.create('success', 'Usuario habilitado satisfactoriamente.');
+        this.loadUsers();
+      });
+  }
+
+  disable(user: User): void {
+    this.isLoading = true;
+    this.userService.disableUser(user.id)
+      .pipe(finalize(() => {
+        this.isLoading = false;
+      })).subscribe(d => {
+        this.messageService.create('success', 'Usuario deshabilitado satisfactoriamente.');
+        this.loadUsers();
+      });
   }
 }

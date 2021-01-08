@@ -10,11 +10,17 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MessageComponent } from './message/message.component';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { DetailsComponent } from './details/details.component';
 
 
 @NgModule({
-  declarations: [UsersComponent],
+  declarations: [UsersComponent, MessageComponent, DetailsComponent],
   imports: [
     UsersRoutingModule,
     CommonModule,
@@ -27,7 +33,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NzButtonModule,
     NzInputModule,
     NzIconModule,
-    NzGridModule
-  ]
+    NzGridModule,
+    NzToolTipModule,
+    NzPopconfirmModule
+  ],
+  providers: [NzMessageService, NzModalService]
 })
 export class UsersModule { }
