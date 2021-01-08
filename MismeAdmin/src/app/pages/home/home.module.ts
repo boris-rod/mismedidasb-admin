@@ -13,6 +13,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
@@ -33,6 +34,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
     NzGridModule,
     NzButtonModule,
     NzDropDownModule,
+    NzToolTipModule,
   ],
   providers: [NzModalService, NzMessageService]
 })
