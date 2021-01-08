@@ -84,7 +84,10 @@ export class UsersComponent implements OnInit {
     this.modalService.create({
       nzTitle: 'Enviar Mensaje',
       nzContent: MessageComponent,
-      nzFooter: null
+      nzFooter: null,
+      nzComponentParams: { userId: user.id }
+      // nzWidth: 1000,
+      // nzBodyStyle: { height: '450px', 'overflow-y': 'auto' }
     });
   }
 

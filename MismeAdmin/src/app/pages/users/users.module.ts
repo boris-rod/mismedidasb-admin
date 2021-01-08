@@ -16,6 +16,8 @@ import { MessageComponent } from './message/message.component';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { QuillModule } from 'ngx-quill';
 import { DetailsComponent } from './details/details.component';
 
 
@@ -35,7 +37,9 @@ import { DetailsComponent } from './details/details.component';
     NzIconModule,
     NzGridModule,
     NzToolTipModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    NzDividerModule,
+    QuillModule.forRoot()
   ],
   providers: [NzMessageService, NzModalService]
 })

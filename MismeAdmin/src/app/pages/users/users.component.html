@@ -49,7 +49,7 @@
           *ngIf="data.statusId===2" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea deshabilitar al usuario?"
           (nzOnConfirm)="disable(data)" nzPopconfirmPlacement="topLeft"></i>
 
-        <i nz-icon nzType="message" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Mensaje'"
+        <i nz-icon nzType="message" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Mensaje mobile'"
           [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
           (click)="message(data)" *ngIf="data.statusId===2"></i>
 
