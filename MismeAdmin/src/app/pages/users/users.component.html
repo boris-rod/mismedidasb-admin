@@ -1,1 +1,43 @@
-<p>users works!</p>
+<div nz-row style="margin-bottom: 10px;">
+  <div nz-col nzSpan="18">
+    <h3 nz-typography>Usuarios</h3>
+  </div>
+  <div nz-col nzSpan="6">
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input type="text" nz-input [(ngModel)]="searchTerm" />
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search" (click)="search()"></i></button>
+    </ng-template>
+    <br>
+    <a (click)="reset()" *ngIf="showReset==true" class="reset">Limpiar</a>
+  </div>
+</div>
+
+<nz-table nzShowSizeChanger [nzData]="results" [nzFrontPagination]="false" [nzLoading]="isLoading" [nzTotal]="total"
+  [nzPageSize]="perPage" [nzPageIndex]="page" [nzPageSizeOptions]="[5,10,15,20]" [nzSize]="'middle'"
+  (nzQueryParams)="onQueryParamsChange($event)">
+  <thead>
+    <tr>
+      <th></th>
+      <th nzColumnKey="fullName" [nzSortFn]="true">Nombre </th>
+      <th nzColumnKey="email" [nzSortFn]="true">Correo</th>
+      <th nzColumnKey="status" [nzSortFn]="true">Estado</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of results">
+      <td>
+        <nz-avatar nzIcon="user" [nzSrc]="data?.avatar===''?'assets/images/no-photo.png': data?.avatar"></nz-avatar>
+      </td>
+      <td>{{ data.fullName }}</td>
+      <td>{{ data.email }}</td>
+      <td>
+        <span *ngIf="data.statusId===0" style="color: blue;">Pendiente</span>
+        <span *ngIf="data.statusId===2" style="color: green;">Activo</span>
+        <span *ngIf="data.statusId===1" style="color: red;">Inactivo</span>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
