@@ -1,6 +1,14 @@
-<div nz-row style="margin-bottom: 10px;">
-  <div nz-col nzSpan="18">
+<div nz-row style="margin-bottom: 10px;" nzGutter="8">
+  <div nz-col nzSpan="14">
     <h3 nz-typography>Usuarios</h3>
+  </div>
+  <div nz-col nzSpan="4">
+    <nz-select [(ngModel)]="statusFilter" style="width:100%;" (ngModelChange)="onChangeSelection($event)">
+      <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
+      <nz-option [nzLabel]="'Pendientes'" [nzValue]="0"></nz-option>
+      <nz-option [nzLabel]="'Inactivo'" [nzValue]="1"></nz-option>
+      <nz-option [nzLabel]="'Activo'" [nzValue]="2"></nz-option>
+    </nz-select>
   </div>
   <div nz-col nzSpan="6">
     <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">

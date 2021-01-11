@@ -20,6 +20,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 import { QuillModule } from 'ngx-quill';
 import { DetailsComponent } from './details/details.component';
 import { EatsComponent } from './details/eats/eats.component';
@@ -48,6 +49,7 @@ import { WellnessMeasuresComponent } from './details/wellness-measures/wellness-
     NzTabsModule,
     NzListModule,
     NzSkeletonModule,
+    NzSelectModule,
     QuillModule.forRoot()
   ],
   providers: [NzMessageService, NzModalService]

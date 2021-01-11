@@ -76,6 +76,7 @@ export class UsersComponent implements OnInit {
   reset(): void {
     this.showReset = false;
     this.searchTerm = '';
+    this.statusFilter = -1;
     this.loadUsers();
   }
 
@@ -123,5 +124,11 @@ export class UsersComponent implements OnInit {
         this.messageService.create('success', 'Usuario deshabilitado satisfactoriamente.');
         this.loadUsers();
       });
+  }
+  onChangeSelection(event: any): void {
+    if (event !== -1) {
+      this.showReset = true;
+    }
+    this.loadUsers();
   }
 }
