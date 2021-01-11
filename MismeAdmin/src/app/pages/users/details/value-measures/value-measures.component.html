@@ -1,0 +1,12 @@
+<nz-skeleton *ngIf="isLoading"></nz-skeleton>
+<nz-list nzBordered nzSize="small" *ngIf="!isLoading">
+  <nz-list-item *ngFor="let q of values">
+    <div nz-row>
+      <p nz-typography>
+        <strong nz-typography>P: </strong>{{q?.title}}<br>
+        <strong nz-typography>R: </strong>{{q?.answers[0]?.title}}
+      </p>
+    </div>
+
+  </nz-list-item>
+</nz-list>

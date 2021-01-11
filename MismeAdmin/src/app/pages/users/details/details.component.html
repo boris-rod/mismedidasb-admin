@@ -1,1 +1,76 @@
-<p>details works!</p>
+<div nz-row>
+  <div nz-col nzSpan="3" style="display:flex;justify-content: center;align-items: center;">
+    <nz-avatar [nzSize]="64" nzIcon="user" [nzSrc]="user?.avatar===''?'assets/images/no-photo.png': user?.avatar">
+    </nz-avatar>
+  </div>
+  <div nz-col nzSpan="7">
+    <div nz-row>
+      <label nz-typography style="font-weight: bold;">Nombre:&nbsp;</label>{{userDet?.fullName}}
+    </div>
+    <div nz-row>
+      <label nz-typography style="font-weight: bold;">Usuario:&nbsp;</label>{{userDet?.username}}
+    </div>
+    <div nz-row>
+      <label nz-typography style="font-weight: bold;">IMC:&nbsp;</label>{{userDet?.imc | number:'.2-2'}}
+    </div>
+    <div nz-row>
+      <label nz-typography style="font-weight: bold;">kCal:&nbsp;</label>{{userDet?.kCal | number:'.2-2'}}
+    </div>
+  </div>
+  <div nz-col nzSpan="7">
+    <div nz-row>
+      <label nz-typography style="font-weight: bold;">Edad:&nbsp;</label>{{userDet?.age}}
+    </div>
+    <div nz-row>
+      <label nz-typography style="font-weight: bold;">Sexo:&nbsp;</label>{{userDet?.sex===2?'Femenino': 'Masculino'}}
+    </div>
+    <div nz-row>
+      <label nz-typography style="font-weight: bold;">Estatura:&nbsp;</label>{{userDet?.height}}
+    </div>
+    <div nz-row>
+      <label nz-typography style="font-weight: bold;">Peso:&nbsp;</label>{{userDet?.weight}}
+    </div>
+  </div>
+  <div nz-col nzSpan="7">
+    <div nz-row>
+      <label nz-typography style="font-weight: bold;">Medidas de Salud
+        Actualizadas:&nbsp;</label>{{userDet?.healthMeasuresLastUpdate== null? "-" : userDet?.healthMeasuresLastUpdate |
+      date:"dd/MM/yy"}}
+    </div>
+    <div nz-row>
+      <label nz-typography style="font-weight: bold;">Medidas de Valores
+        Actualizada:&nbsp;</label>{{userDet?.valueMeasuresLastUpdate== null? "-" : userDet?.valueMeasuresLastUpdate |
+      date:"dd/MM/yy"}}
+    </div>
+    <div nz-row>
+      <label nz-typography style="font-weight: bold;">Medidas de Bienestar
+        Actualizada:&nbsp;</label>{{userDet?.wellnessMeasuresLastUpdate== null? "-" :
+      userDet?.wellnessMeasuresLastUpdate |
+      date:"dd/MM/yy"}}
+    </div>
+    <div nz-row>
+      <label nz-typography style="font-weight: bold;">&Uacute;ltima Comida
+        Planificada:&nbsp;</label>{{userDet?.lastPlanedEat == null? "-" : userDet?.lastPlanedEat | date:"dd/MM/yy" }}
+    </div>
+  </div>
+</div>
+<!-- <nz-divider></nz-divider> -->
+<div nz-row>
+  <nz-tabset style="width: 100%; max-height: 300px; overflow-y: auto; margin-top: 10px;">
+    <nz-tab nzTitle="MEDIDAS DE VALORES">
+
+      <app-value-measures [userId]="user.id">
+      </app-value-measures>
+    </nz-tab>
+    <nz-tab nzTitle="MEDIDAS DE BIENESTAR">
+      <app-wellness-measures [userId]="user.id">
+      </app-wellness-measures>
+    </nz-tab>
+    <nz-tab nzTitle="COMIDAS">
+      <app-eats [userId]="user.id"></app-eats>
+    </nz-tab>
+  </nz-tabset>
+</div>
+<div nz-row nzJustify="end" #nzFooter style="margin-top: 10px;">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+</div>

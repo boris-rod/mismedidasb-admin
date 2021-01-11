@@ -1,0 +1,74 @@
+<nz-table [nzData]="eats" [nzFrontPagination]="false" [nzLoading]="isLoading" [nzTotal]="total" [nzPageSize]="perPage"
+  [nzPageIndex]="page" [nzSize]="'small'" (nzQueryParams)="onQueryParamsChange($event)">
+  <thead>
+    <tr>
+      <th nzColumnKey="createdAt">Fecha </th>
+      <th nzColumnKey="eatType">Comida</th>
+      <th nzColumnKey="kCal">Total KCal</th>
+      <th nzColumnKey="totalProteins">Proteínas</th>
+      <th nzColumnKey="totalFat">Grasas</th>
+      <th nzColumnKey="totalCarbohydrates">Carbohidratos</th>
+      <th nzColumnKey="totalFiber">Fibras</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of eats">
+      <td>{{data.createdAt | date:"dd/MM/yy"}}</td>
+      <td>
+        <span [ngSwitch]="data.eatType">
+          <p *ngSwitchCase="'BREAKFAST'">
+            Desayuno
+          </p>
+          <p *ngSwitchCase="'SNACK1'">
+            Merienda 1
+          </p>
+          <p *ngSwitchCase="'LUNCH'">
+            Almuerzo
+          </p>
+          <p *ngSwitchCase="'SNACK2'">
+            Merienda 2
+          </p>
+          <p *ngSwitchDefault>
+            Cena
+          </p>
+        </span>
+      </td>
+      <td>
+        {{data.totalKCal}}
+      </td>
+      <td>
+        {{data.totalProteins}}
+      </td>
+      <td>
+        {{data.totalFat}}
+      </td>
+      <td>
+        {{data.totalCarbohydrates}}
+      </td>
+      <td>
+        {{data.totalFiber}}
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+      </td>
+      <td style="font-weight: bold;">
+        {{totalKcalGeneral | number:'.2-2'}}
+      </td>
+      <td style="font-weight: bold;">
+        {{totalProteinsGeneral | number:'.2-2'}}
+      </td>
+      <td style="font-weight: bold;">
+        {{totalFatGeneral | number:'.2-2'}}
+      </td>
+      <td style="font-weight: bold;">
+        {{totalCarbohidratesGeneral | number:'.2-2'}}
+      </td>
+      <td style="font-weight: bold;">
+        {{totalFiberGeneral | number:'.2-2'}}
+      </td>
+    </tr>
+
+  </tbody>
+</nz-table>

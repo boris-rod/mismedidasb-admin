@@ -31,7 +31,7 @@ export class UsersComponent implements OnInit {
     private messageService: NzMessageService) { }
 
   ngOnInit(): void {
-    this.loadUsers();
+    // this.loadUsers();
   }
 
   loadUsers(): void {
@@ -51,7 +51,6 @@ export class UsersComponent implements OnInit {
   }
 
   onQueryParamsChange(params: NzTableQueryParams): void {
-    console.log(params);
     const { pageSize, pageIndex, sort, filter } = params;
     const currentSort = sort.find(item => item.value !== null);
     const sortField = (currentSort && currentSort.key) || null;
@@ -95,7 +94,12 @@ export class UsersComponent implements OnInit {
     this.modalService.create({
       nzTitle: 'Detalles',
       nzContent: DetailsComponent,
-      nzFooter: null
+      nzFooter: null,
+      nzWidth: 1000,
+      nzBodyStyle: { height: '500px', 'overflow-y': 'auto' },
+      nzComponentParams: {
+        user
+      }
     });
   }
 

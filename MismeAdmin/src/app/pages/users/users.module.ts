@@ -17,12 +17,18 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { QuillModule } from 'ngx-quill';
 import { DetailsComponent } from './details/details.component';
+import { EatsComponent } from './details/eats/eats.component';
+import { ValueMeasuresComponent } from './details/value-measures/value-measures.component';
+import { WellnessMeasuresComponent } from './details/wellness-measures/wellness-measures.component';
 
 
 @NgModule({
-  declarations: [UsersComponent, MessageComponent, DetailsComponent],
+  declarations: [UsersComponent, MessageComponent, DetailsComponent, EatsComponent, ValueMeasuresComponent, WellnessMeasuresComponent],
   imports: [
     UsersRoutingModule,
     CommonModule,
@@ -39,6 +45,9 @@ import { DetailsComponent } from './details/details.component';
     NzToolTipModule,
     NzPopconfirmModule,
     NzDividerModule,
+    NzTabsModule,
+    NzListModule,
+    NzSkeletonModule,
     QuillModule.forRoot()
   ],
   providers: [NzMessageService, NzModalService]
