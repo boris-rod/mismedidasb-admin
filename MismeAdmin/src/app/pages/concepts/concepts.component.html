@@ -1,0 +1,30 @@
+<div nz-row style="margin-bottom: 10px;" nzGutter="8">
+  <div nz-col nzSpan="14">
+    <h3 nz-typography>Conceptos</h3>
+  </div>
+</div>
+
+<nz-table nzShowSizeChanger [nzData]="results" [nzLoading]="isLoading" [nzPageSize]="perPage" [nzSize]="'middle'"
+  [nzShowPagination]="'false'">
+  <thead>
+    <tr>
+      <th> </th>
+      <th nzColumnKey="title">Nombre </th>
+      <th nzColumnKey="desription">Descripción</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of results">
+      <td>
+        <nz-avatar nzIcon="user" [nzSrc]="data?.image===''?'assets/images/no-photo.png': data?.image"></nz-avatar>
+      </td>
+      <td>{{ data.title }}</td>
+      <td>{{ data.description }}</td>
+      <td>
+        <i nz-icon nzType="edit" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Editar'" [nzTheme]="'twotone'"
+          [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" (click)="edit(data)"></i>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

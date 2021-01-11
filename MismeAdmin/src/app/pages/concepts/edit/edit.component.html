@@ -1,0 +1,22 @@
+<div nz-row>
+  <strong nz-typography>Nombre:</strong>
+  <input nz-input name="conceptName" [formControl]="conceptName">
+  <ng-container *ngIf="conceptName.invalid && conceptName.touched">
+    <p nz-typography class="error">
+      Debe introducir un nombre para el concepto.
+    </p>
+
+  </ng-container>
+</div>
+<div nz-row style="margin-top: 10px;">
+  <strong nz-typography>Descripción:</strong>
+  <textarea nz-input [nzAutosize]="{ minRows: 3, maxRows: 5 }" name="conceptDescription"
+    [formControl]="conceptDescription"></textarea>
+</div>
+
+<nz-divider></nz-divider>
+<div #nzFooter class="custom-footer">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button nz-button nzType="primary" (click)="saveConcept()" [nzLoading]="isLoading"
+    [disabled]="!conceptName.valid">Ok</button>
+</div>
