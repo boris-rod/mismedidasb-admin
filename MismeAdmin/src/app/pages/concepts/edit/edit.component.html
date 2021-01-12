@@ -1,3 +1,8 @@
+<div style="display: flex; justify-content: space-around;">
+  <app-upload-images [images]="images" [imagesToSend]="imagesToSend" (imageAdded)="onImageAdded($event)"
+    (imageRemoved)="onImageRemoved($event)"></app-upload-images>
+</div>
+
 <div nz-row>
   <strong nz-typography>Nombre:</strong>
   <input nz-input name="conceptName" [formControl]="conceptName">
@@ -16,7 +21,7 @@
 
 <nz-divider></nz-divider>
 <div #nzFooter class="custom-footer">
-  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button nz-button nzType="default" (click)="clear()" style="margin-right:10px;">Cancelar</button>
   <button nz-button nzType="primary" (click)="saveConcept()" [nzLoading]="isLoading"
     [disabled]="!conceptName.valid">Ok</button>
 </div>

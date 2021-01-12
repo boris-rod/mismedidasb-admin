@@ -39,7 +39,7 @@ export class ConceptsComponent implements OnInit {
   }
 
   edit(concept: Concept): void {
-    this.modalService.create({
+    const modal = this.modalService.create({
       nzTitle: 'Editar Concepto',
       nzContent: EditComponent,
       nzFooter: null,
@@ -48,6 +48,14 @@ export class ConceptsComponent implements OnInit {
       nzComponentParams: {
         conceptToEdit: concept
       }
+    });
+
+    modal.afterClose.subscribe(resp => {
+      if (resp === true) {
+        this.loadData();
+      }
+    }, err => {
+
     });
   }
 }

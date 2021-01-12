@@ -19,6 +19,7 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     NzSkeletonModule,
     NzSelectModule,
     NzTypographyModule,
-    NzFormModule],
+    NzFormModule,
+    NzUploadModule],
   exports: [
     NzLayoutModule,
     NzTableModule,
@@ -59,6 +61,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     NzSelectModule,
     NzTypographyModule,
     NzFormModule,
+    NzUploadModule
   ],
   providers: [NzMessageService, NzModalService]
 })

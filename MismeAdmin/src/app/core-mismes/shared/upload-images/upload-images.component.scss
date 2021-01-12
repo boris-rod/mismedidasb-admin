@@ -1,0 +1,29 @@
+.images {
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  width: 120px;
+  // margin-top: 10px;
+  // margin-right: 10px;
+}
+.add-images-container {
+  //   border: 1px solid blue;
+  height: 120px;
+  width: 120px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.add-image {
+  color: blue;
+  font-size: 0.875rem;
+}
+
+.remove-image-icon {
+  font-size: 10px;
+  color: blue;
+  cursor: pointer;
+  align-self: center;
+  // justify-self: center;
+  margin-right: 20px;
+}

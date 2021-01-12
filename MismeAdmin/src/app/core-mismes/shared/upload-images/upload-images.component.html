@@ -1,0 +1,17 @@
+<div nz-row style="max-width:450px;  min-height:85px;">
+
+  <div nz-column *ngFor="let img of images;  let i = index" class="images">
+    <ngx-avatar [src]="img.src" [round]="false" [size]="size"></ngx-avatar>
+    <span *ngIf="hideRemoveButton===false" class="remove-image-icon" (click)="removeImage(img,i)">Quitar</span>
+  </div>
+
+  <div *ngIf="hideAddButton===false && currentCount<maxImagesCount" nz-column class="add-images-container"
+    style="display: flex; justify-content: space-around;"
+    onclick="document.getElementById('upload').click(); return false">
+    <span class="add-image">Imágen <i nz-icon nzType="plus" [nzTheme]="'outline'" style="cursor: pointer;"></i>
+    </span>
+  </div>
+
+  <input id="upload" type="file" [multiple]="true" ngFileSelect [uploadInput]="uploadInput"
+    (change)="changeListener($event)" style="visibility: hidden; width: 1px; height: 1px">
+</div>
