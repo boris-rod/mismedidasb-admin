@@ -1,1 +1,35 @@
-<p>poll-details works!</p>
+<div nz-row nzGutter="8">
+  <div nz-col nzSpan="12">
+    <strong nz-typography>Cuestionario:</strong>
+    <span nz-typography>{{poll?.name}}</span>
+  </div>
+  <div nz-col nzSpan="12">
+    <strong nz-typography>Concepto:</strong>
+    <span nz-typography>{{poll?.concept?.title}}</span>
+  </div>
+</div>
+<div nz-row nzGutter="8" style="height: 80px; overflow-y: auto;">
+  <div nz-col nzSpan="24">
+    <strong nz-typography>Descripción:</strong>
+    <br>
+    <p nz-typography>{{poll?.description}}</p>
+  </div>
+</div>
+
+<nz-divider [nzText]="'Preguntas'" *ngIf="poll.isReadOnly===false"></nz-divider>
+<div nz-row nzGutter="8" *ngIf="poll.isReadOnly===false" style="height: 200px; overflow-y: auto;">
+  <nz-list nzBordered nzSize="small" style="width: 100%;">
+    <li nz-list-item *ngFor="let q of poll.questions" nzNoFlex>
+      <ul nz-list-item-actions>
+        <nz-list-item-action>
+          <i *ngIf="selectedQuestion?.id!==q.id" nz-icon nzType="edit" nz-tooltip nzTooltipPlacement="right"
+            [nzTooltipTitle]="'Editar'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;"
+            (click)="editQuestion(q)"></i>
+        </nz-list-item-action>
+      </ul>
+      <label nz-typography nzEditable nzEditIcon="highlight" (click)="hideEditBtn(q)"
+        nzEditTooltip="Click para editar inline" [(nzContent)]="q.title" #questionTitleElement
+        (nzContentChange)="contentChange(q)">{{ q.title }}</label>
+    </li>
+  </nz-list>
+</div>

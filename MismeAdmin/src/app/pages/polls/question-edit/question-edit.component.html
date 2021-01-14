@@ -1,0 +1,27 @@
+<div>
+  <div nz-row>
+    <strong nz-typography>Pregunta:</strong>
+    <input [type]="'text'" nz-input [formControl]="questionName" />
+    <ng-container *ngIf="questionName.invalid && questionName.touched">
+      <p nz-typography class="error" *ngIf="questionName.errors?.required">
+        Debe especificar un texto para la pregunta.
+      </p>
+    </ng-container>
+  </div>
+
+</div>
+<nz-divider [nzText]="'Respuestas'"></nz-divider>
+<div nz-row nzGutter="8" style="height: 200px; overflow-y: auto;">
+  <nz-list nzBordered nzSize="small" style="width: 100%;">
+    <li nz-list-item *ngFor="let a of answers" nzNoFlex>
+      <label nz-typography nzEditable nzEditIcon="edit" nzEditTooltip="Click para editar inline" [(nzContent)]="a.title"
+        (nzContentChange)="contentChange(a)">{{ a.title }}</label>
+    </li>
+  </nz-list>
+</div>
+
+<div #nzFooter class="custom-footer">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button nz-button nzType="primary" (click)="saveQuestion()" [nzLoading]="isLoading"
+    [disabled]="!questionName.valid">Salvar</button>
+</div>

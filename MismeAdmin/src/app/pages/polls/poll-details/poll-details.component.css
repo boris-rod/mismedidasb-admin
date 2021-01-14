@@ -1,0 +1,10 @@
+::ng-deep .ant-typography-edit-content{
+  color: red;
+}
+::ng-deep nz-input{
+  color: red;
+}
+
+::ng-deep .test>textarea{
+  color: red;
+}

@@ -68,18 +68,26 @@ export class PollsComponent implements OnInit {
       nzTitle: 'Detalles del Cuestionario',
       nzContent: PollDetailsComponent,
       nzFooter: null,
-      // nzWidth: 1000,
+      nzComponentParams: { poll },
+      nzWidth: 800
       // nzBodyStyle: { height: '450px', 'overflow-y': 'auto' }
     });
   }
   tips(poll: Poll): void {
-    this.modalService.create({
+    const modal = this.modalService.create({
       nzTitle: 'Consejos',
       nzContent: PollTipsComponent,
       nzFooter: null,
 
       // nzWidth: 1000,
       // nzBodyStyle: { height: '450px', 'overflow-y': 'auto' }
+    });
+    modal.afterClose.subscribe(resp => {
+      if (resp === true) {
+        this.loadPolls();
+      }
+    }, err => {
+
     });
 
   }

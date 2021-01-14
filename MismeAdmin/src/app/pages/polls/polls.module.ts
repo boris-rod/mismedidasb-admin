@@ -7,11 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PollDetailsComponent } from './poll-details/poll-details.component';
 import { PollEditComponent } from './poll-edit/poll-edit.component';
 import { PollTipsComponent } from './poll-tips/poll-tips.component';
+import { QuestionEditComponent } from './question-edit/question-edit.component';
 
 
 
 @NgModule({
-  declarations: [PollsComponent, PollDetailsComponent, PollEditComponent, PollTipsComponent],
+  declarations: [PollsComponent, PollDetailsComponent, PollEditComponent, PollTipsComponent, QuestionEditComponent],
   imports: [
     CommonModule,
     FormsModule,

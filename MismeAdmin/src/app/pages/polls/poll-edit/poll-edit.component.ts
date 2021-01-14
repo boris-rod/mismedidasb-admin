@@ -5,7 +5,7 @@ import { Poll } from 'src/app/core-mismes/models/poll';
 import { PollsService } from '../polls.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { finalize } from 'rxjs/operators';
-import { NzModalRef } from 'ng-zorro-antd/modal';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-poll-edit',
@@ -21,7 +21,9 @@ export class PollEditComponent implements OnInit {
   concepts: Concept[];
 
   selectedConcept: number;
-  constructor(private modal: NzModalRef, private pollService: PollsService, private messageService: NzMessageService) {
+  constructor(private modal: NzModalRef,
+    private pollService: PollsService,
+    private messageService: NzMessageService) {
 
   }
 
