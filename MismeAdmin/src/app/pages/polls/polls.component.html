@@ -1,0 +1,52 @@
+<div nz-row style="margin-bottom: 10px;" nzGutter="8">
+  <div nz-col nzSpan="14">
+    <h3 nz-typography>Cuestionarios</h3>
+  </div>
+  <div nz-col nzSpan="6"></div>
+  <div nz-col nzSpan="4">
+    <nz-select [(ngModel)]="conceptFilter" style="width:100%;" (ngModelChange)="onFilterChange($event)">
+      <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
+      <nz-option *ngFor="let option of concepts" [nzLabel]="option.title" [nzValue]="option.id"></nz-option>
+    </nz-select>
+    <br>
+    <a *ngIf="conceptFilter!==-1" (click)="reset()" class="reset">Limpiar</a>
+  </div>
+</div>
+
+<nz-table nzShowSizeChanger [nzData]="results" [nzLoading]="isLoading" [nzPageSize]="perPage" [nzSize]="'middle'"
+  [nzShowPagination]="'false'">
+  <thead>
+    <tr>
+      <th nzColumnKey="name">Nombre </th>
+      <th nzColumnKey="concept.title">Concepto</th>
+      <th>Solo Lectura</th>
+      <th nzColumnKey="createdAt">Creado</th>
+      <th nzColumnKey="modifiedAt">Modificado</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of results">
+      <td>{{ data.name }}</td>
+      <td>{{ data.concept?.title }}</td>
+      <td>
+        <span *ngIf="data.isReadOnly===true">Sí</span>
+        <span *ngIf="data.isReadOnly===false">No</span>
+      </td>
+      <td>{{ data.createdAt | date:'short'}}</td>
+      <td>{{ data.modifiedAt | date:'short' }}</td>
+      <td>
+        <i nz-icon nzType="edit" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Editar'" [nzTheme]="'twotone'"
+          [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;" (click)="edit(data)"></i>
+
+        <i nz-icon nzType="info-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Detalles'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          (click)="details(data)"></i>
+
+        <i nz-icon nzType="bulb" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Consejos'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" (click)="tips(data)"></i>
+
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

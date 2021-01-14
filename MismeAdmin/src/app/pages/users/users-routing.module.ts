@@ -4,7 +4,7 @@ import { AuthenticationGuard } from 'src/app/core-mismes';
 import { UsersComponent } from './users.component';
 
 const routes: Routes = [
-  { path: '', component: UsersComponent, canActivate: [AuthenticationGuard] },
+  { path: '', component: UsersComponent },
 ];
 
 @NgModule({

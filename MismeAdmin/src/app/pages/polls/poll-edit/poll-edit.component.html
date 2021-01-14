@@ -1,0 +1,26 @@
+<div>
+  <div nz-row>
+    <strong nz-typography>Nombre:</strong>
+    <input [type]="'text'" nz-input [formControl]="pollName" />
+    <ng-container *ngIf="pollName.invalid && pollName.touched">
+      <p nz-typography class="error" *ngIf="pollName.errors?.required">
+        Debe especificar un nombre para el cuestionario.
+      </p>
+    </ng-container>
+  </div>
+  <div nz-row style="margin-top: 20px;">
+    <nz-select [(ngModel)]="selectedConcept" style="width:100%;">
+      <nz-option *ngFor="let option of concepts" [nzLabel]="option.title" [nzValue]="option.id"></nz-option>
+    </nz-select>
+  </div>
+  <div nz-row style="margin-top: 20px;">
+    <strong nz-typography>Descripción:</strong>
+    <textarea nz-input [nzAutosize]=" { minRows: 3, maxRows: 5 }" [formControl]="pollDescription"></textarea>
+  </div>
+
+</div>
+<div #nzFooter class="custom-footer">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button nz-button nzType="primary" (click)="savePoll()" [nzLoading]="isLoading"
+    [disabled]="!pollName.valid">Salvar</button>
+</div>

@@ -19,6 +19,11 @@
         <i nz-icon nzType="unordered-list"></i>
         <span>Conceptos</span>
       </li>
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Cuestionarios' : ''"
+        routerLink="/home/polls">
+        <i nz-icon nzType="question"></i>
+        <span>Cuestionarios</span>
+      </li>
 
       <!-- <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>

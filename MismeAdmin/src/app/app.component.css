@@ -15,3 +15,14 @@
   -ms-border-radius: 0 0 2px 2px;
   -o-border-radius: 0 0 2px 2px;
 }
+
+::ng-deep .reset {
+  cursor: pointer;
+  font-size: 10px;
+  color: #1890ff !important;
+  float: right;
+}
+
+::ng-deep .reset:hover {
+  font-weight: bold;
+}
