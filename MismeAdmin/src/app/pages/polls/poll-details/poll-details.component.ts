@@ -81,4 +81,7 @@ export class PollDetailsComponent implements OnInit {
         );
     }
   }
+  close(): void {
+    this.modal.destroy(true);
+  }
 }

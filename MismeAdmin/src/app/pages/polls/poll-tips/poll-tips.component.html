@@ -1,1 +1,82 @@
-<p>poll-tips works!</p>
+<div nz-row nzGutter="8">
+  <div nz-col nzSpan="11">
+    <strong nz-typography>Cuestionario:</strong>
+    <span nz-typography>{{poll?.name}}</span>
+  </div>
+  <div nz-col nzSpan="2">
+
+  </div>
+  <div nz-col nzSpan="11">
+    <strong nz-typography>Concepto:</strong>
+    <span nz-typography>{{poll?.concept?.title}}</span>
+  </div>
+</div>
+<div nz-row nzGutter="8" style="max-height: 200px; margin-top:10px;overflow-y: auto;">
+  <div nz-col nzSpan="11">
+    <strong nz-typography>Conceptos (Arriba):</strong>
+    <i nz-icon nzType="plus-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Nuevo Consejo'"
+      [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer; float: right; margin-top:5px;"
+      (click)="newTip(0)"></i>
+    <nz-divider *ngIf="top.length>0"></nz-divider>
+    <nz-list *ngIf="top.length>0" nzBordered nzSize="small" style="width: 100%;">
+      <li nz-list-item *ngFor="let q of top" nzNoFlex>
+        <ul nz-list-item-actions>
+          <nz-list-item-action>
+            <i nz-icon nzType="delete" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Eliminar'"
+              [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer; margin-right: 5px;"
+              nz-popconfirm nzPopconfirmTitle="¿Confirma que desea eliminar este consejo?"
+              (nzOnConfirm)="deleteTip(q, 0)" nzPopconfirmPlacement="topLeft"></i>
+            <i nz-icon nzType="thunderbolt" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Activar'"
+              [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" (click)="activeTip(q,0)"></i>
+          </nz-list-item-action>
+        </ul>
+
+        <span nz-typography *ngIf="q.isActive===true" style="font-weight: bold;" nzEditable nzEditIcon="highlight"
+          nzEditTooltip="Click para editar inline" [(nzContent)]="q.content" (nzContentChange)="contentChange(q,0)">{{
+          q.content }} </span>
+        <span *ngIf="q.isActive===false" nz-typography nzType="secondary" nzEditable nzEditIcon="highlight"
+          nzEditTooltip="Click para editar inline" [(nzContent)]="q.content" (nzContentChange)="contentChange(q,0)">{{
+          q.content }}
+        </span>
+      </li>
+    </nz-list>
+
+  </div>
+  <div nz-col nzSpan="2">
+
+  </div>
+  <div nz-col nzSpan="11">
+    <strong nz-typography>Conceptos (Abajo):</strong>
+    <i nz-icon nzType="plus-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Nuevo Consejo'"
+      [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer; float: right; margin-top:5px;"
+      (click)="newTip(1)"></i>
+
+    <nz-divider *ngIf="bottom.length>0"></nz-divider>
+    <nz-list *ngIf="bottom.length>0" nzBordered nzSize="small" style="width: 100%;">
+      <li nz-list-item *ngFor="let q of bottom" nzNoFlex>
+        <ul nz-list-item-actions>
+          <nz-list-item-action>
+            <i nz-icon nzType="delete" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Eliminar'"
+              [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer; margin-right: 5px;"
+              nz-popconfirm nzPopconfirmTitle="¿Confirma que desea eliminar este consejo?"
+              (nzOnConfirm)="deleteTip(q, 1)" nzPopconfirmPlacement="topLeft"></i>
+            <i nz-icon nzType="thunderbolt" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Activar'"
+              [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" (click)="activeTip(q,1)"></i>
+          </nz-list-item-action>
+        </ul>
+
+        <span nz-typography *ngIf="q.isActive===true" style="font-weight: bold;" nzEditable nzEditIcon="highlight"
+          nzEditTooltip="Click para editar inline" [(nzContent)]="q.content" (nzContentChange)="contentChange(q,1)">{{
+          q.content }} </span>
+        <span *ngIf="q.isActive===false" nz-typography nzType="secondary" nzEditable nzEditIcon="highlight"
+          nzEditTooltip="Click para editar inline" [(nzContent)]="q.content" (nzContentChange)="contentChange(q,1)">{{
+          q.content }}
+        </span>
+      </li>
+    </nz-list>
+  </div>
+
+</div>
+<div #nzFooter class="custom-footer">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+</div>

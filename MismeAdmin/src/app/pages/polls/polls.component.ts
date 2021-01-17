@@ -64,7 +64,7 @@ export class PollsComponent implements OnInit {
   }
 
   details(poll: Poll): void {
-    this.modalService.create({
+    const modal = this.modalService.create({
       nzTitle: 'Detalles del Cuestionario',
       nzContent: PollDetailsComponent,
       nzFooter: null,
@@ -72,27 +72,32 @@ export class PollsComponent implements OnInit {
       nzWidth: 800
       // nzBodyStyle: { height: '450px', 'overflow-y': 'auto' }
     });
+    modal.afterClose.subscribe(resp => {
+      if (resp === true) {
+        this.loadPolls();
+      }
+    }, err => { });
   }
   tips(poll: Poll): void {
     const modal = this.modalService.create({
       nzTitle: 'Consejos',
       nzContent: PollTipsComponent,
       nzFooter: null,
-
-      // nzWidth: 1000,
+      nzComponentParams: { poll },
+      nzWidth: 950
       // nzBodyStyle: { height: '450px', 'overflow-y': 'auto' }
     });
     modal.afterClose.subscribe(resp => {
       if (resp === true) {
         this.loadPolls();
       }
-    }, err => {
-
-    });
+    }, err => { });
 
   }
+
+
   edit(poll: Poll): void {
-    this.modalService.create({
+    const modal = this.modalService.create({
       nzTitle: 'Editar Cuestionario',
       nzContent: PollEditComponent,
       nzFooter: null,
@@ -100,6 +105,11 @@ export class PollsComponent implements OnInit {
       // nzWidth: 1000,
       // nzBodyStyle: { height: '450px', 'overflow-y': 'auto' }
     });
+    modal.afterClose.subscribe(resp => {
+      if (resp === true) {
+        this.loadPolls();
+      }
+    }, err => { });
   }
 
 }
