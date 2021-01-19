@@ -1,0 +1,277 @@
+<nz-tabset>
+  <nz-tab nzTitle="Datos Principales">
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="12">
+        <strong nz-typography>Nombre:</strong>
+        <input nz-input name="dishName" [formControl]="dishName">
+        <ng-container *ngIf="dishName.invalid && dishName.touched">
+          <p nz-typography class="error">
+            Debe introducir un nombre para el plato.
+          </p>
+        </ng-container>
+      </div>
+
+      <div nz-col nzSpan="12">
+        <strong nz-typography>Calorías (Kcal):</strong>
+        <br>
+        <nz-input-number name="dishCalories" [formControl]="dishCalories" [nzMin]="0.0" nzStep="0.1"
+          style="width:100%;">
+        </nz-input-number>
+        <ng-container *ngIf="dishCalories.invalid && dishCalories.touched">
+          <p nz-typography class="error">
+            Debe introducir un valor entero.
+          </p>
+        </ng-container>
+      </div>
+
+    </div>
+    <div nz-row nzGutter="8" class="mt-10">
+      <div nz-col nzSpan="12">
+        <strong nz-typography>Carbohidratos (g):</strong>
+        <br>
+        <nz-input-number name="dishCarbohidrates" [formControl]="dishCarbohidrates" nzMin="0.0" nzStep="0.1"
+          style="width:100%;">
+        </nz-input-number>
+        <ng-container *ngIf="dishCarbohidrates.invalid && dishCarbohidrates.touched">
+          <p nz-typography class="error">
+            Debe introducir un valor.
+          </p>
+        </ng-container>
+      </div>
+      <div nz-col nzSpan="12">
+        <strong nz-typography>Proteínas (g):</strong>
+        <br>
+        <nz-input-number name="dishProteins" [formControl]="dishProteins" nzMin="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+        <ng-container *ngIf="dishProteins.invalid && dishProteins.touched">
+          <p nz-typography class="error">
+            Debe introducir un valor.
+          </p>
+        </ng-container>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="8" class="mt-10">
+      <div nz-col nzSpan="12">
+        <strong nz-typography>Grasas (g):</strong>
+        <br>
+        <nz-input-number name="dishFat" [formControl]="dishFat" nzMin="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+        <ng-container *ngIf="dishFat.invalid && dishFat.touched">
+          <p nz-typography class="error">
+            Debe introducir un valor.
+          </p>
+        </ng-container>
+      </div>
+      <div nz-col nzSpan="12">
+        <strong nz-typography>Fibras (g):</strong>
+        <br>
+        <nz-input-number name="dishFiber" [formControl]="dishFiber" nzMin="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+        <ng-container *ngIf="dishFiber.invalid && dishFiber.touched">
+          <p nz-typography class="error">
+            Debe introducir un valor.
+          </p>
+        </ng-container>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="8" class="mt-10">
+      <div nz-col nzSpan="12">
+        <strong nz-typography>Tag:</strong>
+        <br>
+        <nz-select [(ngModel)]="currentTag" style="width:100%;">
+          <nz-option *ngFor="let t of allTags" [nzLabel]="t.name" [nzValue]="t.id"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col nzSpan="12">
+        <strong nz-typography>Imagen:</strong>
+        <br>
+        <app-upload-images [images]="images" [imagesToSend]="imagesToSend" (imageAdded)="onImageAdded($event)"
+          (imageRemoved)="onImageRemoved($event)"></app-upload-images>
+      </div>
+    </div>
+  </nz-tab>
+
+  <nz-tab nzTitle="Otros Datos">
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Clasificación:</strong>
+        <br>
+        <nz-select [(ngModel)]="currentClassification" style="width:100%;">
+          <nz-option *ngFor="let t of allClassifications" [nzLabel]="t.name" [nzValue]="t.value"></nz-option>
+        </nz-select>
+
+      </div>
+
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Peso Neto:</strong>
+        <br>
+        <nz-input-number name="netWeight" [formControl]="netWeight" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Volumen:</strong>
+        <br>
+        <nz-input-number name="volume" [formControl]="volume" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Grasas Sat.:</strong>
+        <br>
+        <nz-input-number name="satFat" [formControl]="satFat" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+    </div>
+    <div nz-row nzGutter="8" class="mt-10">
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Grasas Monoinsat.:</strong>
+        <br>
+        <nz-input-number name="monoInsatFat" [formControl]="monoInsatFat" [nzMin]="0.0" nzStep="0.1"
+          style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Grasas Poli.:</strong>
+        <br>
+        <nz-input-number name="polySatFat" [formControl]="polySatFat" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Colesterol:</strong>
+        <br>
+        <nz-input-number name="cholesterol" [formControl]="cholesterol" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Vitamina A:</strong>
+        <br>
+        <nz-input-number name="vitaminA" [formControl]="vitaminA" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+    </div>
+    <div nz-row nzGutter="8" class="mt-10">
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Tiamina:</strong>
+        <br>
+        <nz-input-number name="tiamin" [formControl]="tiamin" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Riboflavina:</strong>
+        <br>
+        <nz-input-number name="riboflavin" [formControl]="riboflavin" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Niacina:</strong>
+        <br>
+        <nz-input-number name="niacin" [formControl]="niacin" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Vitamina B6:</strong>
+        <br>
+        <nz-input-number name="vitaminB6" [formControl]="vitaminB6" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+    </div>
+    <div nz-row nzGutter="8" class="mt-10">
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Folato:</strong>
+        <br>
+        <nz-input-number name="folato" [formControl]="folato" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Vitamina B12:</strong>
+        <br>
+        <nz-input-number name="vitaminB12" [formControl]="vitaminB12" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Vitaina C:</strong>
+        <br>
+        <nz-input-number name="vitaminC" [formControl]="vitaminC" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Vitamina D:</strong>
+        <br>
+        <nz-input-number name="vitaminD" [formControl]="vitaminD" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="8" class="mt-10">
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Vitamina E:</strong>
+        <br>
+        <nz-input-number name="vitaminE" [formControl]="vitaminE" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Vitamina K:</strong>
+        <br>
+        <nz-input-number name="vitaminK" [formControl]="vitaminK" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Calcio:</strong>
+        <br>
+        <nz-input-number name="calcium" [formControl]="calcium" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Fósforo:</strong>
+        <br>
+        <nz-input-number name="phosphorus" [formControl]="phosphorus" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="8" class="mt-10">
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Hierro:</strong>
+        <br>
+        <nz-input-number name="iron" [formControl]="iron" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Zinc:</strong>
+        <br>
+        <nz-input-number name="zync" [formControl]="zync" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Potasio:</strong>
+        <br>
+        <nz-input-number name="potassium" [formControl]="potassium" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Sodio:</strong>
+        <br>
+        <nz-input-number name="sodium" [formControl]="sodium" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+    </div>
+
+    <div nz-row nzGutter="8" class="mt-10">
+      <div nz-col nzSpan="6">
+        <strong nz-typography>Alcohol:</strong>
+        <br>
+        <nz-input-number name="alcohol" [formControl]="alcohol" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+        </nz-input-number>
+      </div>
+
+    </div>
+  </nz-tab>
+
+</nz-tabset>
+<div #nzFooter class="custom-footer">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button nz-button nzType="primary" (click)="save()" [nzLoading]="isLoading" [disabled]="!dishName.valid || !dishCalories.valid
+      || !dishFat.valid || !dishFiber.valid || !dishCarbohidrates.valid
+      || !dishProteins.valid || isLoading===true">Ok</button>
+</div>

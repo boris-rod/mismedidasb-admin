@@ -1,0 +1,72 @@
+<div nz-row style="margin-bottom: 10px;" nzGutter="8">
+  <div nz-col nzSpan="12">
+    <h3 nz-typography>Platos <i nz-icon nzType="plus-circle" nzTheme="twotone" nz-tooltip nzTooltipPlacement="right"
+        [nzTooltipTitle]="'Nuevo Plato'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" (click)="newDish()"></i>
+    </h3>
+  </div>
+  <div nz-col nzSpan="6">
+    <nz-select [(ngModel)]="currentTag" style="width:100%;" (ngModelChange)="onChangeTagSelection($event)">
+      <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
+      <nz-option *ngFor="let t of tags" [nzLabel]="t.name" [nzValue]="t.id"></nz-option>
+    </nz-select>
+  </div>
+  <div nz-col nzSpan="6">
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input type="text" nz-input [(ngModel)]="searchTerm" />
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search" (click)="search()"></i></button>
+    </ng-template>
+    <br>
+    <a (click)="reset()" *ngIf="showReset==true" class="reset">Limpiar</a>
+  </div>
+</div>
+
+<nz-table nzShowSizeChanger [nzData]="results" [nzFrontPagination]="false" [nzLoading]="isLoading" [nzTotal]="total"
+  [nzPageSize]="perPage" [nzPageIndex]="page" [nzPageSizeOptions]="[5,10,15,20]" [nzSize]="'middle'"
+  (nzQueryParams)="onQueryParamsChange($event)" nzTableLayout="fixed">
+  <thead>
+    <tr>
+      <th></th>
+      <th nzColumnKey="name" [nzSortFn]="true" nzEllipsis>Nombre </th>
+      <th nzColumnKey="calories" [nzSortFn]="true">Calorías (Kcal)</th>
+      <th nzColumnKey="carbohydrates" [nzSortFn]="true">Carbohidratos (g)</th>
+      <th nzColumnKey="proteins" [nzSortFn]="true">Proteínas (g)</th>
+      <th nzColumnKey="fat" [nzSortFn]="true">Grasas (g)</th>
+      <th nzColumnKey="fiber" [nzSortFn]="true">Fibras (g)</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of results">
+      <td>
+        <nz-avatar nzIcon="user" [nzSrc]="data?.image===''?'assets/images/dish.png': data?.image"></nz-avatar>
+      </td>
+      <td>{{ data.name}}</td>
+      <td>{{ data.calories }}</td>
+      <td>{{ data.carbohydrates }}</td>
+      <td>{{ data.proteins }}</td>
+      <td>{{ data.fat }}</td>
+      <td>{{ data.fiber }}</td>
+      <td>
+        <i nz-icon nzType="delete" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Eliminar'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;" nz-popconfirm
+          nzPopconfirmTitle="¿Confirma que desea eliminar este plato?" (nzOnConfirm)="delete(data)"
+          nzPopconfirmPlacement="topLeft"></i>
+
+        <!--   <i nz-icon nzType="stop" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Deshabilitar'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          *ngIf="data.statusId===2" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea deshabilitar al usuario?"
+          (nzOnConfirm)="disable(data)" nzPopconfirmPlacement="topLeft"></i>
+
+        <i nz-icon nzType="message" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Mensaje mobile'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          (click)="message(data)" *ngIf="data.statusId===2"></i>-->
+
+        <i nz-icon nzType="edit" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Editar'" [nzTheme]="'twotone'"
+          [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" (click)="edit(data)"></i>
+
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

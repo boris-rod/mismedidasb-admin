@@ -26,6 +26,9 @@
 ::ng-deep .reset:hover {
   font-weight: bold;
 }
+::ng-deep .mt-10{
+  margin-top: 10px;
+}
 
 /* SCROLLS */
 ::ng-deep ::-webkit-scrollbar {

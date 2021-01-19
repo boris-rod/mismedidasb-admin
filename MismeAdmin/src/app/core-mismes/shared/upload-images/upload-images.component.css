@@ -3,13 +3,13 @@
   flex-direction: column;
   height: 120px;
   width: 120px;
-  // margin-top: 10px;
-  // margin-right: 10px;
+  /* margin-top: 10px;
+  margin-right: 10px; */
 }
 .add-images-container {
-  //   border: 1px solid blue;
-  height: 120px;
-  width: 120px;
+  /* border: 1px solid blue; */
+  max-height: 120px;
+  max-width: 120px;
   margin-top: 10px;
   cursor: pointer;
 }
@@ -24,6 +24,6 @@
   color: blue;
   cursor: pointer;
   align-self: center;
-  // justify-self: center;
+  /* justify-self: center; */
   margin-right: 20px;
 }
