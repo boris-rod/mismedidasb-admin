@@ -133,10 +133,14 @@ export class DishesService {
     return this.http.post<any>(Constants.DISH_BASE + '/' + dishId + '/define-translation', obj);
   }
 
-  getUsersDishes(search: string, filter: number): Observable<any> {
+  getUsersDishes(search: string, filter: number, page: number, perPage: number, sort: string): Observable<any> {
     const params: HttpParams = new HttpParams()
       .append('search', search)
-      .append('filter', filter.toString());
+      .append('filter', filter.toString())
+      .append('sort', sort)
+      .append('page', page.toString())
+      .append('perPage', perPage.toString());
+
     return this.http.get<CompoundDish>(Constants.COMPOUND_DISH_BASE + '/admin', {
       params,
       observe: 'response'

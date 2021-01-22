@@ -1,0 +1,128 @@
+<div style="max-height: 400px; overflow-y: auto;overflow-x: hidden;">
+  <div nz-row nzGutter="8">
+    <div nz-col nzSpan="12">
+      <strong nz-typography>Nombre:</strong>
+      <input nz-input name="dishName" [formControl]="dishName">
+      <ng-container *ngIf="dishName.invalid && dishName.touched">
+        <p nz-typography class="error">
+          Debe introducir un nombre para el plato.
+        </p>
+      </ng-container>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <strong nz-typography>Calorías (Kcal):</strong>
+      <br>
+      <nz-input-number name="dishCalories" [formControl]="dishCalories" [nzMin]="0.0" nzStep="0.1" style="width:100%;">
+      </nz-input-number>
+      <ng-container *ngIf="dishCalories.invalid && dishCalories.touched">
+        <p nz-typography class="error">
+          Debe introducir un valor entero.
+        </p>
+      </ng-container>
+    </div>
+
+  </div>
+  <div nz-row nzGutter="8" class="mt-10">
+    <div nz-col nzSpan="12">
+      <strong nz-typography>Carbohidratos (g):</strong>
+      <br>
+      <nz-input-number name="dishCarbohidrates" [formControl]="dishCarbohidrates" nzMin="0.0" nzStep="0.1"
+        style="width:100%;">
+      </nz-input-number>
+      <ng-container *ngIf="dishCarbohidrates.invalid && dishCarbohidrates.touched">
+        <p nz-typography class="error">
+          Debe introducir un valor.
+        </p>
+      </ng-container>
+    </div>
+    <div nz-col nzSpan="12">
+      <strong nz-typography>Proteínas (g):</strong>
+      <br>
+      <nz-input-number name="dishProteins" [formControl]="dishProteins" nzMin="0.0" nzStep="0.1" style="width:100%;">
+      </nz-input-number>
+      <ng-container *ngIf="dishProteins.invalid && dishProteins.touched">
+        <p nz-typography class="error">
+          Debe introducir un valor.
+        </p>
+      </ng-container>
+    </div>
+  </div>
+
+  <div nz-row nzGutter="8" class="mt-10">
+    <div nz-col nzSpan="12">
+      <strong nz-typography>Grasas (g):</strong>
+      <br>
+      <nz-input-number name="dishFat" [formControl]="dishFat" nzMin="0.0" nzStep="0.1" style="width:100%;">
+      </nz-input-number>
+      <ng-container *ngIf="dishFat.invalid && dishFat.touched">
+        <p nz-typography class="error">
+          Debe introducir un valor.
+        </p>
+      </ng-container>
+    </div>
+    <div nz-col nzSpan="12">
+      <strong nz-typography>Fibras (g):</strong>
+      <br>
+      <nz-input-number name="dishFiber" [formControl]="dishFiber" nzMin="0.0" nzStep="0.1" style="width:100%;">
+      </nz-input-number>
+      <ng-container *ngIf="dishFiber.invalid && dishFiber.touched">
+        <p nz-typography class="error">
+          Debe introducir un valor.
+        </p>
+      </ng-container>
+    </div>
+  </div>
+
+  <div nz-row nzGutter="8" class="mt-10">
+    <div nz-col nzSpan="12">
+      <strong nz-typography>Tag:</strong>
+      <br>
+      <nz-select [(ngModel)]="currentTag" style="width:100%;">
+        <nz-option *ngFor="let t of allTags" [nzLabel]="t.name" [nzValue]="t.id"></nz-option>
+      </nz-select>
+    </div>
+    <div nz-col nzSpan="12">
+      <strong nz-typography>Imagen:</strong>
+      <br>
+      <app-upload-images [images]="images" [imagesToSend]="imagesToSend" (imageAdded)="onImageAdded($event)"
+        (imageRemoved)="onImageRemoved($event)"></app-upload-images>
+    </div>
+  </div>
+
+  <nz-divider nzText="Platos Incluidos"></nz-divider>
+  <div nz-row nzGutter="8">
+    <nz-table [nzData]="dishToEdit.dishCompoundDishResponse" style="width:100%;" [nzSize]="'small'">
+      <thead>
+        <tr>
+          <th>Cant.</th>
+          <th>Nombre</th>
+          <th>Calorías</th>
+          <th>Carbohidratos</th>
+          <th>Proteínas</th>
+          <th>Grasas</th>
+          <th>Fibras</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let q of dishToEdit.dishCompoundDishResponse">
+          <td>{{ q.qty}}</td>
+          <td>{{ q.dish.name }}</td>
+          <td>{{ q.dish.calories.toFixed(2) }}</td>
+          <td>{{q.dish.carbohydrates.toFixed(2)}} </td>
+          <td>{{q.dish.proteins.toFixed(2)}} </td>
+          <td>{{q.dish.fat.toFixed(2)}} </td>
+          <td>{{q.dish.fiber.toFixed(2)}} </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+<div #nzFooter class="custom-footer">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button nz-button nzType="primary" (click)="saveUserDish()" [nzLoading]="isLoading" [disabled]="!dishName.valid || !dishCalories.valid
+      || !dishFat.valid || !dishFiber.valid || !dishCarbohidrates.valid || !dishProteins.valid || isLoading===true"
+    style="margin-right:10px;">Nuevo Plato</button>
+  <button *ngIf="dishToEdit.isAdminReviewed===false" nz-button nzType="primary" (click)="reviewUserDish()"
+    [nzLoading]="isLoading">Revisado</button>
+</div>

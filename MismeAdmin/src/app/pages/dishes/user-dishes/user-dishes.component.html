@@ -1,0 +1,54 @@
+<div nz-row style="margin-bottom: 10px;" nzGutter="8">
+  <div nz-col nzSpan="12">
+  </div>
+  <div nz-col nzSpan="6">
+
+  </div>
+  <div nz-col nzSpan="6">
+    <nz-select [(ngModel)]="currentFilterSelection" style="width:100%;" (ngModelChange)="selectionChange($event)">
+      <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
+      <nz-option [nzLabel]="'Por revisar'" [nzValue]="0"> </nz-option>
+      <nz-option [nzLabel]="'Revisados'" [nzValue]="1"> </nz-option>
+    </nz-select>
+    <br>
+    <a (click)="reset()" *ngIf="showReset==true" class="reset">Limpiar</a>
+  </div>
+</div>
+
+<nz-table nzShowSizeChanger [nzData]="results" [nzFrontPagination]="false" [nzLoading]="isLoading" [nzTotal]="total"
+  [nzPageSize]="perPage" [nzPageIndex]="page" [nzPageSizeOptions]="[5,10,15,20]" [nzSize]="'middle'"
+  (nzQueryParams)="onQueryParamsChange($event)" nzTableLayout="fixed">
+  <thead>
+    <tr>
+      <th></th>
+      <th nzColumnKey="name" [nzSortFn]="true" nzEllipsis>Nombre </th>
+      <th nzColumnKey="calories">Calorías (Kcal)</th>
+      <th nzColumnKey="carbohydrates">Carbohidratos (g)</th>
+      <th nzColumnKey="proteins">Proteínas (g)</th>
+      <th nzColumnKey="fat">Grasas (g)</th>
+      <th nzColumnKey="fiber">Fibras (g)</th>
+      <th nzColumnKey="isAdminReviewed">Revisado</th>
+      <th nzColumnKey="isAdminConverted">Convertido</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of results">
+      <td>
+        <nz-avatar nzIcon="user" [nzSrc]="data?.image===''?'assets/images/dish.png': data?.image"></nz-avatar>
+      </td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.calories | number }}</td>
+      <td>{{ data.carbohydrates | number }}</td>
+      <td>{{ data.proteins | number}}</td>
+      <td>{{ data.fat | number}}</td>
+      <td>{{ data.fiber | number}}</td>
+      <td>{{data.isAdminReviewed===true ? 'Sí': 'No'}}</td>
+      <td>{{data.isAdminConverted===true ? 'Sí': 'No'}}</td>
+      <td>
+        <i nz-icon nzType="eye" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Ver'" [nzTheme]="'twotone'"
+          [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" (click)="view(data)"></i>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

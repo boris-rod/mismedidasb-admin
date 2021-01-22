@@ -9,6 +9,7 @@ import { Tag } from 'src/app/core-mismes/models/tag';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { AddDishComponent } from './add-dish/add-dish.component';
+import { Subscriber } from 'rxjs';
 
 const log = new Logger('Dishes');
 @Component({
@@ -102,6 +103,13 @@ export class DishesComponent implements OnInit {
         dishToEdit: dish
       }
     });
+    modal.afterClose.subscribe(
+      resp => {
+        if (resp === true) {
+          this.loadDishes();
+        }
+      }
+    );
   }
   newDish(): void {
     const modal = this.modalService.create({
@@ -114,6 +122,13 @@ export class DishesComponent implements OnInit {
         dishToEdit: null
       }
     });
+    modal.afterClose.subscribe(
+      resp => {
+        if (resp === true) {
+          this.loadDishes();
+        }
+      }
+    );
   }
   onChangeTagSelection(event: any): void {
     this.showReset = true;
