@@ -1,0 +1,24 @@
+<div nz-row nzGutter="8">
+  <div nz-col nzSpan="0-24">
+    <strong nz-typography>Asunto:</strong>
+    <br>
+    <p nz-typography>{{message.subject}}</p>
+  </div>
+
+</div>
+<div nz-row nzGutter="8">
+  <div nz-col nzSpan="24">
+    <strong nz-typography>Cuerpo:</strong>
+    <br>
+    <p *ngIf="answering==false" nz-typography>{{message.body}}</p>
+    <textarea *ngIf="answering==true" nz-input rows="5" name="body" [formControl]="body"></textarea>
+  </div>
+
+</div>
+
+<div #nzFooter class="custom-footer">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button *ngIf="answering==false" nz-button nzType="primary" (click)="answer()"
+    [nzLoading]="isLoading">Responder</button>
+  <button *ngIf="answering==true" nz-button nzType="primary" (click)="send()" [nzLoading]="isLoading">Enviar</button>
+</div>

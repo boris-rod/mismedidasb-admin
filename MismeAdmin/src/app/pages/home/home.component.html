@@ -29,6 +29,11 @@
         <i nz-icon nzType="book"></i>
         <span>Platos</span>
       </li>
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Mensajes' : ''"
+        routerLink="/home/messages">
+        <i nz-icon nzType="mail"></i>
+        <span>Mensajes</span>
+      </li>
 
       <!-- <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
