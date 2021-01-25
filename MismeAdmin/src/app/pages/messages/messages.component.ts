@@ -72,10 +72,22 @@ export class MessagesComponent implements OnInit {
   }
 
   onChangePrioritySelection(priority: any): void {
-
+    if (priority !== -1) {
+      this.resetIsNeeded = true;
+    }
+    this.loadMessages();
   }
-  onChangeSelection(priority: any): void {
-
+  onChangeSelection(read: any): void {
+    if (read !== -1) {
+      this.resetIsNeeded = true;
+    }
+    this.loadMessages();
+  }
+  reset(): void {
+    this.resetIsNeeded = false;
+    this.priorityFilter = -1;
+    this.readFilter = -1;
+    this.loadMessages();
   }
 
   view(message: ContactUs): void {

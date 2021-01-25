@@ -1,25 +1,23 @@
 <div nz-row style="margin-bottom: 10px;" nzGutter="8">
-  <div nz-col nzSpan="14">
+  <div nz-col nzSpan="16">
     <h3 nz-typography>Tickets</h3>
   </div>
-  <!-- <div nz-col nzSpan="4">
+  <div nz-col nzSpan="4">
     <nz-select [(ngModel)]="readFilter" style="width:100%;" (ngModelChange)="onChangeSelection($event)">
       <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
-      <nz-option [nzLabel]="'Pendientes'" [nzValue]="0"></nz-option>
-      <nz-option [nzLabel]="'Inactivo'" [nzValue]="1"></nz-option>
-      <nz-option [nzLabel]="'Activo'" [nzValue]="2"></nz-option>
+      <nz-option [nzLabel]="'Leídos'" [nzValue]="1"></nz-option>
+      <nz-option [nzLabel]="'Sin leer'" [nzValue]="0"></nz-option>
     </nz-select>
   </div>
-  <div nz-col nzSpan="6">
+  <div nz-col nzSpan="4">
     <nz-select [(ngModel)]="priorityFilter" style="width:100%;" (ngModelChange)="onChangePrioritySelection($event)">
       <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
-      <nz-option [nzLabel]="'Pendientes'" [nzValue]="0"></nz-option>
-      <nz-option [nzLabel]="'Inactivo'" [nzValue]="1"></nz-option>
-      <nz-option [nzLabel]="'Activo'" [nzValue]="2"></nz-option>
+      <nz-option [nzLabel]="'Sin importancia'" [nzValue]="0"></nz-option>
+      <nz-option [nzLabel]="'Importantes'" [nzValue]="1"></nz-option>
     </nz-select>
     <br>
-    <a (click)="reset()" *ngIf="showReset==true" class="reset">Limpiar</a>
-  </div> -->
+    <a (click)="reset()" *ngIf="resetIsNeeded==true" class="reset">Limpiar</a>
+  </div>
 </div>
 
 <nz-table nzShowSizeChanger [nzData]="results" [nzFrontPagination]="false" [nzLoading]="isLoading" [nzTotal]="total"
@@ -32,8 +30,8 @@
       <th nzColumnKey="userEmail" [nzSortFn]="true">Correo</th>
       <th nzColumnKey="subject" [nzSortFn]="true">Asunto</th>
       <th nzColumnKey="createdAt" [nzSortFn]="true">Fecha</th>
-      <th [nzSortFn]="true">Leído</th>
-      <th nzColumnKey="isAnswered" [nzSortFn]="true">Respondido</th>
+      <th>Leído</th>
+      <th nzColumnKey="isAnswered">Respondido</th>
       <th></th>
     </tr>
   </thead>
@@ -50,20 +48,6 @@
       <td [ngClass]="{'unRead': data.read===false}">{{ data.read===true ? 'Si': 'No' }} </td>
       <td [ngClass]="{'unRead': data.read===false}">{{ data.isAnswered===true ? 'Si': 'No' }} </td>
       <td>
-        <!-- <i nz-icon nzType="check-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Habilitar'"
-          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
-          *ngIf="data.statusId===1" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea habilitar al usuario?"
-          (nzOnConfirm)="enable(data)" nzPopconfirmPlacement="topLeft"></i>
-
-        <i nz-icon nzType="stop" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Deshabilitar'"
-          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
-          *ngIf="data.statusId===2" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea deshabilitar al usuario?"
-          (nzOnConfirm)="disable(data)" nzPopconfirmPlacement="topLeft"></i>
-
-        <i nz-icon nzType="message" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Mensaje mobile'"
-          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
-          (click)="message(data)" *ngIf="data.statusId===2"></i>-->
-
         <i nz-icon nzType="eye" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Leer'" [nzTheme]="'twotone'"
           [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;" (click)="view(data)"></i>
 
