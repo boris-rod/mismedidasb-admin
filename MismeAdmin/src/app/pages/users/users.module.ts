@@ -13,14 +13,18 @@ import { AntModule } from '../../ant.module';
 
 
 @NgModule({
-  declarations: [UsersComponent, MessageComponent, DetailsComponent, EatsComponent, ValueMeasuresComponent, WellnessMeasuresComponent],
+  declarations: [UsersComponent,
+    MessageComponent,
+    DetailsComponent,
+    EatsComponent,
+    ValueMeasuresComponent,
+    WellnessMeasuresComponent],
   imports: [
     UsersRoutingModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AntModule,
-    QuillModule.forRoot()
+    AntModule
   ]
 })
 export class UsersModule { }

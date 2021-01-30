@@ -48,4 +48,8 @@ export class MessagesService {
     return this.http.post<any>(Constants.CONTACT_US_BASE + '/answer', body, {});
   }
 
+  sendEmailToUsers(body: any): Observable<any> {
+    return this.http.put<any>(Constants.GET_ADMIN_USER + '/send-email', body, {});
+  }
+
 }

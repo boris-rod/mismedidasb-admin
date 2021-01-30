@@ -1,0 +1,56 @@
+<div nz-row nzGutter="8" style="padding-left: 10px;">
+  <p nz-typography nzType="success"><i nz-icon nzType="bulb" nzTheme="twotone"></i> Desde esta vista podrá enviar un
+    correo eléctrónico a todos los usuarios de la app y a usarios o grupos específicos.</p>
+</div>
+<nz-radio-group [(ngModel)]="audience" (ngModelChange)="onChangeAudienceSelection($event)">
+  <label nz-radio nzValue="0">Todos</label>
+  <label nz-radio nzValue="-1">Usuarios específicos</label>
+  <label nz-radio nzValue="1">Grupos</label>
+</nz-radio-group>
+
+<div nz-row nzGutter="8" style="margin-top: 10px;">
+  <div nz-col nzSpan="16">
+    <label nz-typography><strong>Asunto:</strong></label>
+    <input nz-input [(ngModel)]="subject" name="subject" placeholder="">
+  </div>
+</div>
+
+<div nz-row nzGutter="8" style="margin-top: 10px;">
+  <div nz-col nzSpan="16">
+    <label nz-typography><strong>Mensaje:</strong></label>
+    <quill-editor name='message' [(ngModel)]="message" [placeholder]="''" [styles]="{height:'200px'}"></quill-editor>
+  </div>
+  <div nz-col nzSpan="8" style="margin-top: 22px;">
+    <nz-list nzBordered nzSize="small" *ngIf="audience==='0'" style="height:200px;">
+      <nz-list-header>Audiencia </nz-list-header>
+      <nz-list-item>El mensaje será enviado a todos los usuarios del sistema.</nz-list-item>
+    </nz-list>
+
+    <nz-list nzBordered nzSize="small" *ngIf="audience==='-1'"
+      style="max-height:265px; overflow-y: auto; overflow-x: hidden;">
+      <nz-list-header>Audiencia <i nz-icon nzType="plus-circle" nzTheme="twotone" style="cursor: pointer;"
+          (click)="addAudience()" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Adicionar'"></i>
+      </nz-list-header>
+      <nz-list-item>El mensaje será enviado a los siguientes usuarios:</nz-list-item>
+      <nz-list-item *ngFor="let item of selectedUsers">
+        <span nz-typography style="font-weight: bold;">{{ item.fullName}}</span>
+        <br>
+        <span nz-typography style="font-size: 10px; margin-left: 25px;">{{ item.email}}</span>
+      </nz-list-item>
+    </nz-list>
+
+    <nz-list nzBordered nzSize="small" *ngIf="audience==='1'"
+      style="max-height:250px; overflow-y: auto; overflow-x: hidden;">
+      <nz-list-header>Audiencia <i nz-icon nzType="plus-circle" nzTheme="twotone" style="cursor: pointer;"
+          (click)="addAudience()" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Adicionar'"></i>
+      </nz-list-header>
+      <nz-list-item>El mensaje será enviado a los siguientes grupos:</nz-list-item>
+    </nz-list>
+
+  </div>
+</div>
+
+<div nz-row nzJustify="end" #nzFooter class="mt-10">
+  <button nz-button nzType="primary" (click)="send()" [nzLoading]="isLoading"
+    [disabled]="message===''||subject===''|| (audience==='-1' && selectedUsers.length===0) || (audience==='1' && selectedGroups.length===0)">Enviar</button>
+</div>

@@ -22,6 +22,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzTransferModule } from 'ng-zorro-antd/transfer';
 
 @NgModule({
   imports: [
@@ -45,7 +47,9 @@ import { NzCardModule } from 'ng-zorro-antd/card';
     NzFormModule,
     NzUploadModule,
     NzInputNumberModule,
-    NzCardModule],
+    NzCardModule,
+    NzRadioModule,
+    NzTransferModule],
   exports: [
     NzLayoutModule,
     NzTableModule,
@@ -67,7 +71,9 @@ import { NzCardModule } from 'ng-zorro-antd/card';
     NzFormModule,
     NzUploadModule,
     NzInputNumberModule,
-    NzCardModule
+    NzCardModule,
+    NzRadioModule,
+    NzTransferModule
   ],
   providers: [NzMessageService, NzModalService]
 })

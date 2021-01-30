@@ -25,4 +25,5 @@ export const Constants = {
   CHANGE_PASS: 'account/change-password',
   GET_PROFILE: 'account/profile',
   GET_EATS_COUNT: 'user/eat-count'
+
 };

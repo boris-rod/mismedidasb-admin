@@ -1,0 +1,30 @@
+<nz-transfer [nzDataSource]="list" [nzListStyle]="{ 'width': '100%', 'height.px': 300 }" [nzRender]="render"
+  [nzShowSearch]="true" [nzFilterOption]="filter" (nzChange)="change($event)">
+  <ng-template #render let-item>
+    <!-- <div nz-row nzGutter="8">
+      <div nz-col nzSpan="2">
+
+      </div>
+      <div nz-col nzSpan="4">
+        <nz-avatar nzIcon="user" [nzSrc]="item?.avatar===''?'assets/images/no-photo.png': data?.avatar"></nz-avatar>
+      </div>
+      <div nz-col nzSpan="18">
+        <div nz-row nzGutter="8"> -->
+    <span nz-typography style="font-weight: bold;">{{ item.fullName}}</span>
+    <br>
+    <!-- </div>
+        <div nz-row nzGutter="8"> -->
+    <span nz-typography style="font-size: 10px; margin-left: 25px;">{{ item.email}}</span>
+    <!-- </div>
+
+      </div>
+    </div> -->
+    <!-- <i nz-icon nzType="{{ item.icon }}"></i>  -->
+
+  </ng-template>
+</nz-transfer>
+<div nz-row nzJustify="end" #nzFooter class="mt-10">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button nz-button nzType="primary" (click)="selectAndExit()" [nzLoading]="isLoading"
+    [disabled]="isLoading===true||selectedUsers.length===0">Seleccionar</button>
+</div>

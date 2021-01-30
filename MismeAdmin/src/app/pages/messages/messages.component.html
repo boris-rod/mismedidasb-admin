@@ -1,72 +1,84 @@
-<div nz-row style="margin-bottom: 10px;" nzGutter="8">
-  <div nz-col nzSpan="16">
-    <h3 nz-typography>Tickets</h3>
-  </div>
-  <div nz-col nzSpan="4">
-    <nz-select [(ngModel)]="readFilter" style="width:100%;" (ngModelChange)="onChangeSelection($event)">
-      <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
-      <nz-option [nzLabel]="'Leídos'" [nzValue]="1"></nz-option>
-      <nz-option [nzLabel]="'Sin leer'" [nzValue]="0"></nz-option>
-    </nz-select>
-  </div>
-  <div nz-col nzSpan="4">
-    <nz-select [(ngModel)]="priorityFilter" style="width:100%;" (ngModelChange)="onChangePrioritySelection($event)">
-      <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
-      <nz-option [nzLabel]="'Sin importancia'" [nzValue]="0"></nz-option>
-      <nz-option [nzLabel]="'Importantes'" [nzValue]="1"></nz-option>
-    </nz-select>
-    <br>
-    <a (click)="reset()" *ngIf="resetIsNeeded==true" class="reset">Limpiar</a>
-  </div>
-</div>
+<nz-tabset>
+  <nz-tab nzTitle="Tickets">
+    <div nz-row style="margin-bottom: 10px;" nzGutter="8">
+      <!-- <div nz-col nzSpan="16">
+        <h3 nz-typography>Tickets</h3>
+      </div> -->
+      <div nz-col nzSpan="4">
+        <nz-select [(ngModel)]="readFilter" style="width:100%;" (ngModelChange)="onChangeSelection($event)">
+          <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
+          <nz-option [nzLabel]="'Leídos'" [nzValue]="1"></nz-option>
+          <nz-option [nzLabel]="'Sin leer'" [nzValue]="0"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col nzSpan="4">
+        <nz-select [(ngModel)]="priorityFilter" style="width:100%;" (ngModelChange)="onChangePrioritySelection($event)">
+          <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
+          <nz-option [nzLabel]="'Sin importancia'" [nzValue]="0"></nz-option>
+          <nz-option [nzLabel]="'Importantes'" [nzValue]="1"></nz-option>
+        </nz-select>
+        <br>
+        <a (click)="reset()" *ngIf="resetIsNeeded==true" class="reset">Limpiar</a>
+      </div>
+    </div>
 
-<nz-table nzShowSizeChanger [nzData]="results" [nzFrontPagination]="false" [nzLoading]="isLoading" [nzTotal]="total"
-  [nzPageSize]="perPage" [nzPageIndex]="page" [nzPageSizeOptions]="[5,10,15,20]" [nzSize]="'middle'"
-  (nzQueryParams)="onQueryParamsChange($event)">
-  <thead>
-    <tr>
-      <th></th>
-      <th nzColumnKey="userName" [nzSortFn]="true">Nombre </th>
-      <th nzColumnKey="userEmail" [nzSortFn]="true">Correo</th>
-      <th nzColumnKey="subject" [nzSortFn]="true">Asunto</th>
-      <th nzColumnKey="createdAt" [nzSortFn]="true">Fecha</th>
-      <th>Leído</th>
-      <th nzColumnKey="isAnswered">Respondido</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let data of results">
-      <td>
-        <i *ngIf="data.priorityId===1" nz-icon nzType="warning" nz-tooltip nzTooltipPlacement="right"
-          [nzTooltipTitle]="'Importante'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'"></i>
-      </td>
-      <td [ngClass]="{'unRead': data.read===false}">{{ data.userName }}</td>
-      <td [ngClass]="{'unRead': data.read===false}">{{ data.userEmail }}</td>
-      <td [ngClass]="{'unRead': data.read===false}">{{ data.subject }}</td>
-      <td [ngClass]="{'unRead': data.read===false}">{{ data.createdAt | date:'short' }}</td>
-      <td [ngClass]="{'unRead': data.read===false}">{{ data.read===true ? 'Si': 'No' }} </td>
-      <td [ngClass]="{'unRead': data.read===false}">{{ data.isAnswered===true ? 'Si': 'No' }} </td>
-      <td>
-        <i nz-icon nzType="eye" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Leer'" [nzTheme]="'twotone'"
-          [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;" (click)="view(data)"></i>
+    <nz-table nzShowSizeChanger [nzData]="results" [nzFrontPagination]="false" [nzLoading]="isLoading" [nzTotal]="total"
+      [nzPageSize]="perPage" [nzPageIndex]="page" [nzPageSizeOptions]="[5,10,15,20]" [nzSize]="'middle'"
+      (nzQueryParams)="onQueryParamsChange($event)">
+      <thead>
+        <tr>
+          <th></th>
+          <th nzColumnKey="userName" [nzSortFn]="true">Nombre </th>
+          <th nzColumnKey="userEmail" [nzSortFn]="true">Correo</th>
+          <th nzColumnKey="subject" [nzSortFn]="true">Asunto</th>
+          <th nzColumnKey="createdAt" [nzSortFn]="true">Fecha</th>
+          <th>Leído</th>
+          <th nzColumnKey="isAnswered">Respondido</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of results">
+          <td>
+            <i *ngIf="data.priorityId===1" nz-icon nzType="warning" nz-tooltip nzTooltipPlacement="right"
+              [nzTooltipTitle]="'Importante'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'"></i>
+          </td>
+          <td [ngClass]="{'unRead': data.read===false}">{{ data.userName }}</td>
+          <td [ngClass]="{'unRead': data.read===false}">{{ data.userEmail }}</td>
+          <td [ngClass]="{'unRead': data.read===false}">{{ data.subject }}</td>
+          <td [ngClass]="{'unRead': data.read===false}">{{ data.createdAt | date:'short' }}</td>
+          <td [ngClass]="{'unRead': data.read===false}">{{ data.read===true ? 'Si': 'No' }} </td>
+          <td [ngClass]="{'unRead': data.read===false}">{{ data.isAnswered===true ? 'Si': 'No' }} </td>
+          <td>
+            <i nz-icon nzType="eye" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Leer'"
+              [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+              (click)="view(data)"></i>
 
-        <i *ngIf="data.read===false" nz-icon nzType="container" nz-tooltip nzTooltipPlacement="right"
-          [nzTooltipTitle]="'Marcar como leído'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'"
-          style="cursor: pointer;margin-right:10px;" (click)="markAsReadUnread(data)"></i>
+            <i *ngIf="data.read===false" nz-icon nzType="container" nz-tooltip nzTooltipPlacement="right"
+              [nzTooltipTitle]="'Marcar como leído'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'"
+              style="cursor: pointer;margin-right:10px;" (click)="markAsReadUnread(data)"></i>
 
-        <i *ngIf="data.read===true" nz-icon nzType="book" nz-tooltip nzTooltipPlacement="right"
-          [nzTooltipTitle]="'Marcar como no leído'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'"
-          style="cursor: pointer;margin-right:10px;" (click)="markAsReadUnread(data)"></i>
+            <i *ngIf="data.read===true" nz-icon nzType="book" nz-tooltip nzTooltipPlacement="right"
+              [nzTooltipTitle]="'Marcar como no leído'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'"
+              style="cursor: pointer;margin-right:10px;" (click)="markAsReadUnread(data)"></i>
 
-        <i *ngIf="data.priorityId===1" nz-icon nzType="box-plot" nz-tooltip nzTooltipPlacement="right"
-          [nzTooltipTitle]="'Marcar como no importante'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'"
-          style="cursor: pointer;" (click)="markAsImportant(data)"></i>
+            <i *ngIf="data.priorityId===1" nz-icon nzType="box-plot" nz-tooltip nzTooltipPlacement="right"
+              [nzTooltipTitle]="'Marcar como no importante'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'"
+              style="cursor: pointer;" (click)="markAsImportant(data)"></i>
 
-        <i *ngIf="data.priorityId===0" nz-icon nzType="thunderbolt" nz-tooltip nzTooltipPlacement="right"
-          [nzTooltipTitle]="'Marcar como importante'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'"
-          style="cursor: pointer;" (click)="markAsImportant(data)"></i>
-      </td>
-    </tr>
-  </tbody>
-</nz-table>
+            <i *ngIf="data.priorityId===0" nz-icon nzType="thunderbolt" nz-tooltip nzTooltipPlacement="right"
+              [nzTooltipTitle]="'Marcar como importante'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'"
+              style="cursor: pointer;" (click)="markAsImportant(data)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+  </nz-tab>
+  <nz-tab nzTitle="Mensajes">
+    <ng-template nz-tab>
+      <app-send-messages-audience></app-send-messages-audience>
+    </ng-template>
+  </nz-tab>
+
+</nz-tabset>
