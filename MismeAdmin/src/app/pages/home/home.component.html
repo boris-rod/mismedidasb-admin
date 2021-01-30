@@ -9,6 +9,11 @@
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Dashboard' : ''"
+        routerLink="/home/dashboard">
+        <i nz-icon nzType="home"></i>
+        <span>Dashboard</span>
+      </li>
       <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Usuarios' : ''"
         routerLink="/home/users">
         <i nz-icon nzType="team"></i>

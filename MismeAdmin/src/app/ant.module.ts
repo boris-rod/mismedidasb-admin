@@ -21,6 +21,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     NzTypographyModule,
     NzFormModule,
     NzUploadModule,
-    NzInputNumberModule],
+    NzInputNumberModule,
+    NzCardModule],
   exports: [
     NzLayoutModule,
     NzTableModule,
@@ -64,7 +66,8 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     NzTypographyModule,
     NzFormModule,
     NzUploadModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    NzCardModule
   ],
   providers: [NzMessageService, NzModalService]
 })

@@ -7,11 +7,13 @@ import { MessagesModule } from '../messages/messages.module';
 const routes: Routes = [
   {
     path: '', component: HomeComponent, canActivate: [AuthenticationGuard], children: [
+      { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'users', loadChildren: () => import('../users/users.module').then(m => m.UsersModule) },
       { path: 'concepts', loadChildren: () => import('../concepts/concepts.module').then(m => m.ConceptsModule) },
       { path: 'polls', loadChildren: () => import('../polls/polls.module').then(m => m.PollsModule) },
       { path: 'dishes', loadChildren: () => import('../dishes/dishes.module').then(m => m.DishesModule) },
       { path: 'messages', loadChildren: () => import('../messages/messages.module').then(m => m.MessagesModule) }
+
     ]
   },
 

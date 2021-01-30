@@ -21,6 +21,7 @@
     "@angular/router": "~11.0.5",
     "@rxweb/reactive-dynamic-forms": "0.0.4",
     "@rxweb/reactive-form-validators": "^2.1.2",
+    "@swimlane/ngx-charts": "^17.0.0",
     "moment": "^2.29.1",
     "ng-zorro-antd": "^11.0.1",
     "ngx-avatar": "^4.0.0",

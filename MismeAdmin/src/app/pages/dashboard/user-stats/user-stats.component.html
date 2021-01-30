@@ -1,0 +1,11 @@
+<nz-card nzTitle="Usuarios del Sistema: {{total}}">
+  <div style="display: flex; justify-content: space-between;">
+    <span nz-typography nzType="success">Activos: {{active}}</span>
+    <span nz-typography nzType="warning">Por Activar: {{pending}}</span>
+    <span nz-typography nzType="danger">Deshabilitados: {{disabled}}</span>
+  </div>
+  <div style="width: 600px; height: 400px;">
+    <ngx-charts-pie-chart [results]="userStats" labels="true" [trimLabels]="false" [explodeSlices]="true">
+    </ngx-charts-pie-chart>
+  </div>
+</nz-card>
