@@ -39,6 +39,11 @@
         <i nz-icon nzType="mail"></i>
         <span>Mensajes</span>
       </li>
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Grupos' : ''"
+        routerLink="/home/groups">
+        <i nz-icon nzType="group"></i>
+        <span>Grupos</span>
+      </li>
 
       <!-- <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
