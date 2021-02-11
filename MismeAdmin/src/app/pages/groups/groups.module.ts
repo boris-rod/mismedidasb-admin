@@ -4,16 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AntModule } from 'src/app/ant.module';
 import { SharedModule } from '../../core-mismes/shared/shared.module';
 import { GroupsRoutingModule } from './groups-routing.module';
+import { GroupsComponent } from './groups.component';
+import { EditGroupComponent } from './edit-group/edit-group.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [GroupsComponent, EditGroupComponent],
   imports: [
     GroupsRoutingModule,
     CommonModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    AntModule,
+    AntModule
   ],
 })
 export class GroupsModule { }

@@ -1,0 +1,32 @@
+<div nz-row>
+  <strong nz-typography>Nombre:</strong>
+  <input nz-input name="groupName" [formControl]="groupName">
+  <ng-container *ngIf="groupName.invalid && groupName.touched">
+    <p nz-typography class="error">
+      Debe introducir un nombre para el grupo.
+    </p>
+  </ng-container>
+</div>
+
+<div nz-row style="margin-top: 10px;">
+  <strong nz-typography>Descripción:</strong>
+  <textarea nz-input [nzAutosize]="{ minRows: 3, maxRows: 5 }" name="groupDescription"
+    [formControl]="groupDescription"></textarea>
+</div>
+
+<div nz-row>
+  <strong nz-typography>Administrador (Email):</strong>
+  <input nz-input name="adminEmail" [formControl]="adminEmail">
+  <ng-container *ngIf="adminEmail.invalid && adminEmail.touched">
+    <p nz-typography class="error">
+      Debe introducir el email del administrador del grupo.
+    </p>
+  </ng-container>
+</div>
+
+<nz-divider></nz-divider>
+<div #nzFooter class="custom-footer">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button nz-button nzType="primary" (click)="saveGroup()" [nzLoading]="isLoading"
+    [disabled]="!groupName.valid||!adminEmail.valid">Ok</button>
+</div>

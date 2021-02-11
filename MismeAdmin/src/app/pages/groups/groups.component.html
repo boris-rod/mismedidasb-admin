@@ -1,1 +1,79 @@
-<p>groups works!</p>
+<div nz-row style="margin-bottom: 10px;" nzGutter="8">
+  <div nz-col nzSpan="14">
+    <h3 nz-typography>Grupos</h3>
+  </div>
+</div>
+
+<div nz-row style="margin-bottom: 10px;" nzGutter="8">
+  <div nz-col nzSpan="12">
+    <button nz-button nzType="primary" (click)="newGroup()">Nuevo Grupo</button>
+  </div>
+  <div nz-col nzSpan="6">
+    <nz-select [(ngModel)]="isActive" style="width:100%;" (ngModelChange)="onChangeSelection($event)">
+      <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
+      <nz-option [nzLabel]="'Activo'" [nzValue]="1"></nz-option>
+      <nz-option [nzLabel]="'Inactivo'" [nzValue]="0"></nz-option>
+    </nz-select>
+  </div>
+  <div nz-col nzSpan="6">
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input type="text" nz-input [(ngModel)]="searchTerm" />
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search" (click)="search()"></i></button>
+    </ng-template>
+    <br>
+    <a (click)="reset()" *ngIf="showReset==true" class="reset">Limpiar</a>
+  </div>
+</div>
+
+<nz-table nzShowSizeChanger [nzData]="results" [nzFrontPagination]="false" [nzLoading]="isLoading" [nzTotal]="total"
+  [nzPageSize]="perPage" [nzPageIndex]="page" [nzPageSizeOptions]="[5,10,15,20]" [nzSize]="'middle'"
+  (nzQueryParams)="onQueryParamsChange($event)">
+  <thead>
+    <tr>
+      <th nzColumnKey="name" [nzSortFn]="true">Nombre </th>
+      <th nzColumnKey="adminEmail" [nzSortFn]="true">Admin</th>
+      <th nzColumnKey="usersCount" [nzSortFn]="true">Miembros</th>
+      <th nzColumnKey="isActive" [nzSortFn]="true">Estado</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of results">
+      <td>
+        {{data.name}}
+      </td>
+      <td>
+        {{ data.adminEmail }}
+      </td>
+      <td>
+        {{ data.usersCount }}
+      </td>
+
+      <td>
+        <span *ngIf="data.isActive" nz-typography [nzType]="'success'">Activo</span>
+        <span *ngIf="!data.isActive" nz-typography [nzType]="'danger'">Inactivo</span>
+      </td>
+      <td>
+        <!-- <i nz-icon nzType="check-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Habilitar'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          *ngIf="data.statusId===1" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea habilitar al usuario?"
+          (nzOnConfirm)="enable(data)" nzPopconfirmPlacement="topLeft"></i>
+
+        <i nz-icon nzType="stop" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Deshabilitar'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          *ngIf="data.statusId===2" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea deshabilitar al usuario?"
+          (nzOnConfirm)="disable(data)" nzPopconfirmPlacement="topLeft"></i>
+
+        <i nz-icon nzType="message" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Mensaje mobile'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          (click)="message(data)" *ngIf="data.statusId===2"></i>-->
+
+        <i nz-icon nzType="edit" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Editar'" [nzTheme]="'twotone'"
+          [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;" (click)="edit(data)"></i>
+
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
