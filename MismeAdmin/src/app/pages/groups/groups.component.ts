@@ -139,5 +139,25 @@ export class GroupsComponent implements OnInit {
     this.loadGroups();
   }
 
+  activate(g: Group): void {
+    this.isLoading = true;
+    this.groupService.activateGroup(g.id)
+      .pipe(finalize(() => {
+        this.isLoading = false;
+      })).subscribe(d => {
+        this.messageService.create('success', 'Grupo activado satisfactoriamente.');
+        this.loadGroups();
+      });
+  }
+  deactivate(g: Group): void {
+    this.isLoading = true;
+    this.groupService.deactivateGroup(g.id)
+      .pipe(finalize(() => {
+        this.isLoading = false;
+      })).subscribe(d => {
+        this.messageService.create('success', 'Grupo desactivado satisfactoriamente.');
+        this.loadGroups();
+      });
+  }
 }
 

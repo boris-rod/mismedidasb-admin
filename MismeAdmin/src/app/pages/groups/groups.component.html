@@ -56,17 +56,17 @@
         <span *ngIf="!data.isActive" nz-typography [nzType]="'danger'">Inactivo</span>
       </td>
       <td>
-        <!-- <i nz-icon nzType="check-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Habilitar'"
+        <i nz-icon nzType="check-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Activar'"
           [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
-          *ngIf="data.statusId===1" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea habilitar al usuario?"
-          (nzOnConfirm)="enable(data)" nzPopconfirmPlacement="topLeft"></i>
+          *ngIf="data.isActive===false" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea habilitar este grupo?"
+          (nzOnConfirm)="activate(data)" nzPopconfirmPlacement="topLeft"></i>
 
-        <i nz-icon nzType="stop" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Deshabilitar'"
+        <i nz-icon nzType="stop" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Desactivar'"
           [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
-          *ngIf="data.statusId===2" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea deshabilitar al usuario?"
-          (nzOnConfirm)="disable(data)" nzPopconfirmPlacement="topLeft"></i>
+          *ngIf="data.isActive===true" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea desactivar este grupo?"
+          (nzOnConfirm)="deactivate(data)" nzPopconfirmPlacement="topLeft"></i>
 
-        <i nz-icon nzType="message" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Mensaje mobile'"
+        <!-- <i nz-icon nzType="message" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Mensaje mobile'"
           [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
           (click)="message(data)" *ngIf="data.statusId===2"></i>-->
 

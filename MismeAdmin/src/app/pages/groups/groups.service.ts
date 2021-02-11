@@ -31,6 +31,16 @@ export class GroupsService {
   addGroup(obj: any): Observable<any> {
     return this.http.post<any>(Constants.GROUPS_BASE, obj);
   }
+
+  activateGroup(groupId: number): Observable<any> {
+    return this.http.patch<any>(Constants.GROUPS_BASE + '/' + groupId + '/active', {});
+  }
+
+  deactivateGroup(groupId: number): Observable<any> {
+    return this.http.patch<any>(Constants.GROUPS_BASE + '/' + groupId + '/deactivate', {});
+  }
+
+
   // getAdminConcepts(): Observable<any> {
   //   return this.http.get<Concept[]>(Constants.CONCEPT_BASE + '/admin', {
   //     observe: 'response'
