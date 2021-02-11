@@ -31,6 +31,7 @@
       <th nzColumnKey="fullName" [nzSortFn]="true">Nombre </th>
       <th nzColumnKey="email" [nzSortFn]="true">Correo</th>
       <th nzColumnKey="status" [nzSortFn]="true">Estado</th>
+      <th nzColumnKey="lastAccessAt">&Uacute;lt. Acceso</th>
       <th></th>
     </tr>
   </thead>
@@ -45,6 +46,14 @@
         <span *ngIf="data.statusId===0" style="color: blue;">Pendiente</span>
         <span *ngIf="data.statusId===2" style="color: green;">Activo</span>
         <span *ngIf="data.statusId===1" style="color: red;">Inactivo</span>
+      </td>
+      <td>
+        <span nz-typography *ngIf="data.lastAccessAt">
+          {{data.lastAccessAt | date}}
+        </span>
+        <span nz-typography *ngIf="!data.lastAccessAt">
+          -
+        </span>
       </td>
       <td>
         <i nz-icon nzType="check-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Habilitar'"
