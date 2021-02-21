@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Constants } from '../../core-mismes/constants/constants';
 import { Observable } from 'rxjs';
 import { Group } from 'src/app/core-mismes/models/group';
+import { Invitation } from '../../core-mismes/models/invitation';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,31 @@ export class GroupsService {
     return this.http.patch<any>(Constants.GROUPS_BASE + '/' + groupId + '/deactivate', {});
   }
 
+  getGroupInvitations(groupId: number, page: number, perPage: number, sort: string, search: string,
+    status: number[]): Observable<any> {
+    let params: HttpParams = new HttpParams()
+      .append('page', page.toString())
+      .append('perPage', perPage.toString())
+      .append('sortOrder', sort)
+      .append('search', search);
+
+    status.forEach(sf => {
+      params = params.append('statuses', sf.toString());
+    });
+
+    return this.http.get<Invitation[]>(Constants.GROUPS_BASE_NO_ADMIN + '/' + groupId + '/group-invitations', {
+      params,
+      observe: 'response'
+    });
+  }
+
+  sentGroupInvites(groupId: number, obj: any): Observable<any> {
+    return this.http.post<any>(Constants.GROUPS_BASE_NO_ADMIN + '/' + groupId + '/group-invitations', obj);
+  }
+
+  deleteInvite(groupId: number, invitationId: number): Observable<any> {
+    return this.http.delete<any>(Constants.GROUPS_BASE_NO_ADMIN + '/' + groupId + '/group-invitations/' + invitationId);
+  }
 
   // getAdminConcepts(): Observable<any> {
   //   return this.http.get<Concept[]>(Constants.CONCEPT_BASE + '/admin', {
@@ -61,9 +87,7 @@ export class GroupsService {
   //   });
   // }
 
-  // updateConceptPollOrder(conceptId: number, obj: any): Observable<any> {
-  //   return this.http.post<any>(Constants.CONCEPT_BASE + '/' + conceptId + '/polls-order', obj);
-  // }
+
 
   // updateConceptTranslations(conceptId: number, obj: any): Observable<any> {
   //   return this.http.post<any>(Constants.CONCEPT_BASE + '/' + conceptId + '/define-translation', obj);

@@ -66,12 +66,12 @@
           *ngIf="data.isActive===true" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea desactivar este grupo?"
           (nzOnConfirm)="deactivate(data)" nzPopconfirmPlacement="topLeft"></i>
 
-        <!-- <i nz-icon nzType="message" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Mensaje mobile'"
-          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
-          (click)="message(data)" *ngIf="data.statusId===2"></i>-->
-
         <i nz-icon nzType="edit" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Editar'" [nzTheme]="'twotone'"
           [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;" (click)="edit(data)"></i>
+
+        <i nz-icon nzType="contacts" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Miembros'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" (click)="members(data)"
+          *ngIf="data.isActive===true"></i>
 
       </td>
     </tr>

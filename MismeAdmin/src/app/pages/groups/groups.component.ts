@@ -7,6 +7,7 @@ import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { EditGroupComponent } from './edit-group/edit-group.component';
+import { GroupMembersComponent } from './group-members/group-members.component';
 
 const log = new Logger('Groups');
 @Component({
@@ -149,6 +150,7 @@ export class GroupsComponent implements OnInit {
         this.loadGroups();
       });
   }
+
   deactivate(g: Group): void {
     this.isLoading = true;
     this.groupService.deactivateGroup(g.id)
@@ -159,5 +161,26 @@ export class GroupsComponent implements OnInit {
         this.loadGroups();
       });
   }
+
+  members(g: Group): void {
+    const modal = this.modalService.create({
+      nzTitle: 'Miembros',
+      nzContent: GroupMembersComponent,
+      nzFooter: null,
+      nzWidth: 900,
+      // nzBodyStyle: { 'max-height': '450px', 'overflow-y': 'auto' },
+      nzComponentParams: {
+        groupToEdit: g
+      }
+    });
+    modal.afterClose.subscribe(
+      resp => {
+        if (resp === true) {
+          this.loadGroups();
+        }
+      }
+    );
+  }
+
 }
 

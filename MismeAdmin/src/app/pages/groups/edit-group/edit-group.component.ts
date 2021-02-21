@@ -40,9 +40,11 @@ export class EditGroupComponent implements OnInit {
       this.adminEmail.setValue('');
     }
   }
+
   close(refresh = false): void {
     this.modal.destroy(refresh);
   }
+
   saveGroup(): void {
     this.isLoading = true;
     const obj = {
