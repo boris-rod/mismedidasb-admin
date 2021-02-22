@@ -4,7 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home/dashboard' },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
-  { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) }
+  { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) },
+  {
+    path: 'accept-invite/:token',
+    loadChildren: () => import('./pages/accept-invite/accept-invite.module').then(m => m.AcceptInviteModule)
+  },
+  {
+    path: 'reject-invite/:token',
+    loadChildren: () => import('./pages/reject-invite/reject-invite.module').then(m => m.RejectInviteModule)
+  }
+
 ];
 
 @NgModule({

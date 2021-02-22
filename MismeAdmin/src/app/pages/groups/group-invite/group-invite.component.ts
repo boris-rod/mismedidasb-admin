@@ -59,7 +59,7 @@ export class GroupInviteComponent implements OnInit {
 
   add(): void {
     const ind = this.newInvitations.findIndex(i => i === this.email.value);
-    const ind1 = this.invitations.findIndex(i => i.user.email === this.email.value);
+    const ind1 = this.invitations.findIndex(i => i.userEmail === this.email.value);
     if (ind === -1 && ind1 === -1) {
       this.newInvitations.push(this.email.value);
       this.email.setValue('');

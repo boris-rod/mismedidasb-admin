@@ -1,0 +1,9 @@
+<div nz-row nzGutter="8"
+  style="width: 100%; height: 100%;padding: 20px; display: flex; justify-items: center; align-items: center; justify-content: center;">
+  <nz-spin nzSimple [nzSize]="'large'" *ngIf="isLoading"></nz-spin>
+  <nz-avatar [nzSize]="64" [nzSrc]="'assets/images/logo.png'" *ngIf="!isLoading"></nz-avatar>
+  <h1 nz-typography [nzType]="'success'" style="margin-bottom: 0px;" *ngIf="!isLoading && hasError===false">Invitación
+    rechazada.</h1>
+  <h1 nz-typography [nzType]="'danger'" style="margin-bottom: 0px;" *ngIf="!isLoading && hasError===true">La invitación
+    ha caducado.</h1>
+</div>

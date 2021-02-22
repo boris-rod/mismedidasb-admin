@@ -9,4 +9,5 @@ export interface Invitation {
   createdAt: Date;
   modifiedAt: Date;
   user: User;
+  userEmail: string;
 }

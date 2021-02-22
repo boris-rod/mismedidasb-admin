@@ -48,7 +48,7 @@
     <tbody>
       <tr *ngFor="let data of invitations">
         <td>
-          {{data.user?.email}}
+          {{data.userEmail}}
         </td>
         <td>
           <span nz-typography *ngIf="data.statusId===0" nzType="warning">Pendiente</span>
