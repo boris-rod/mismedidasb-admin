@@ -1,0 +1,13 @@
+<nz-card nzTitle="Usuarios por Edades">
+  <div style="display: flex; justify-content: space-between;">
+    <span nz-typography nzType="success">Total: {{total}}</span>
+    <span nz-typography nzType="success">Activos: {{active}}</span>
+  </div>
+  <div style="width: 600px; height: 400px;">
+    <ngx-charts-bar-vertical-stacked [results]="series" [xAxis]="true" [yAxis]="true" [legend]="true" [legendTitle]="''"
+      *ngIf="series.length>0">
+    </ngx-charts-bar-vertical-stacked>
+    <p *ngIf="series.length===0">Sin datos que mostrar.</p>
+  </div>
+
+</nz-card>

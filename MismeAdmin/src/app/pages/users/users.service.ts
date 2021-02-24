@@ -96,4 +96,9 @@ export class UsersService {
     });
   }
 
+
+  getUserByAgesSummary(): Observable<any> {
+    return this.http.get<any>(Constants.GET_ADMIN_USER + '/statistics-summary');
+  }
+
 }

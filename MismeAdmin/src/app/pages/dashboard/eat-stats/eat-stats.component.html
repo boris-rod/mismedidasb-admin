@@ -1,16 +1,16 @@
 <nz-card nzTitle="Total de Comidas: {{total}}">
-  <div nz-col nzSpan="24">
-    <div style="display: flex; justify-content: flex-end;">
-      <nz-select [(ngModel)]="currentFilterSelection">
-        <nz-option *ngFor="let t of options" [nzLabel]="t.name" [nzValue]="t.id"></nz-option>
-      </nz-select>
-    </div>
-    <div style="width: 600px; height: 400px;">
-      <ngx-charts-bar-vertical-2d [results]="results" [xAxis]="true" [yAxis]="true" [legend]="true" [legendTitle]="''"
-        *ngIf="results.length>0">
-      </ngx-charts-bar-vertical-2d>
-      <p *ngIf="results.length===0">Sin datos que mostrar.</p>
-    </div>
+  <!-- <div nz-col nzSpan="24"> -->
+  <div style="display: flex; justify-content: flex-end;">
+    <nz-select [(ngModel)]="currentFilterSelection">
+      <nz-option *ngFor="let t of options" [nzLabel]="t.name" [nzValue]="t.id"></nz-option>
+    </nz-select>
   </div>
+  <div style="width: 600px; height: 400px;">
+    <ngx-charts-bar-vertical-2d [results]="results" [xAxis]="true" [yAxis]="true" [legend]="true" [legendTitle]="''"
+      *ngIf="results.length>0">
+    </ngx-charts-bar-vertical-2d>
+    <p *ngIf="results.length===0">Sin datos que mostrar.</p>
+  </div>
+  <!-- </div> -->
 
 </nz-card>

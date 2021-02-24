@@ -8,9 +8,10 @@ import { EatStatsComponent } from './eat-stats/eat-stats.component';
 import { UserStatsComponent } from './user-stats/user-stats.component';
 import { UserStatsBydateComponent } from './user-stats-bydate/user-stats-bydate.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { UserAgesComponent } from './user-ages/user-ages.component';
 
 @NgModule({
-  declarations: [DashboardComponent, EatStatsComponent, UserStatsComponent, UserStatsBydateComponent],
+  declarations: [DashboardComponent, EatStatsComponent, UserStatsComponent, UserStatsBydateComponent, UserAgesComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
