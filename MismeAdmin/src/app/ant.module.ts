@@ -25,6 +25,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
 
 @NgModule({
   imports: [
@@ -51,7 +52,9 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NzCardModule,
     NzRadioModule,
     NzTransferModule,
-    NzSpinModule],
+    NzSpinModule,
+    NzSliderModule
+  ],
   exports: [
     NzLayoutModule,
     NzTableModule,
@@ -76,7 +79,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NzCardModule,
     NzRadioModule,
     NzTransferModule,
-    NzSpinModule
+    NzSpinModule,
+    NzSliderModule
   ],
   providers: [NzMessageService, NzModalService]
 })

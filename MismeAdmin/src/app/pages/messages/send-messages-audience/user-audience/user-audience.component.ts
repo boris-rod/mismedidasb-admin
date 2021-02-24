@@ -46,7 +46,7 @@ export class UserAudienceComponent implements OnInit {
 
   loadUsers(): void {
     this.isLoading = true;
-    this.userService.getUsers(-1, -1, '', '', -1)
+    this.userService.getUsers(-1, -1, '', '', -1, 0, 0, 0, 0)
       .pipe(finalize(() => {
         this.isLoading = false;
       }))

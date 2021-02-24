@@ -10,13 +10,28 @@ import { UserStatSerie } from 'src/app/core-mismes/models/user-stats-series';
 })
 export class UsersService {
   constructor(private http: HttpClient) { }
-  getUsers(page: number, perPage: number, sortOrder: string, search: string, statusFilter: number): Observable<any> {
-    const params: HttpParams = new HttpParams()
+
+  getUsers(page: number, perPage: number, sortOrder: string,
+    search: string, statusFilter: number, minEatValue: number, maxEatValue: number,
+    minEmotionValue: number, maxEmotionValue: number): Observable<any> {
+    let params: HttpParams = new HttpParams()
       .append('page', page.toString())
       .append('perPage', perPage.toString())
       .append('sortOrder', sortOrder)
       .append('search', search)
       .append('statusFilter', statusFilter.toString());
+    if (minEatValue > 0) {
+      params = params.append('minPlannedEats', minEatValue.toString());
+    }
+    if (maxEatValue > 0) {
+      params = params.append('maxPlannedEats', maxEatValue.toString());
+    }
+    if (minEmotionValue > 0) {
+      params = params.append('minEmotionMedia', minEmotionValue.toString());
+    }
+    if (maxEmotionValue > 0) {
+      params = params.append('maxEmotionMedia', maxEmotionValue.toString());
+    }
 
     return this.http.get<User>(Constants.GET_USERS, {
       params,

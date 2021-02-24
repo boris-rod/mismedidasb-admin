@@ -48,7 +48,10 @@ export class GroupMembersComponent implements OnInit {
         const pData = resp.headers.get('PagingData');
         this.total = JSON.parse(pData).totalItems;
         this.invitations = resp.body.result;
-        log.info(this.invitations);
+        const ind = this.invitations.findIndex(p => p.userEmail === this.groupToEdit.adminEmail);
+        if (ind !== -1) {
+          this.invitations.splice(ind, 1);
+        }
       }, error => {
         log.error(error);
       });

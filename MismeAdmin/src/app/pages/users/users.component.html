@@ -1,6 +1,28 @@
 <div nz-row style="margin-bottom: 10px;" nzGutter="8">
-  <div nz-col nzSpan="14">
+  <div nz-col nzSpan="6">
     <h3 nz-typography>Usuarios</h3>
+  </div>
+  <div nz-col nzSpan="4">
+    <label nz-typography>Cant. Comidas</label>
+    <nz-slider nzRange [nzStep]="20" nzMax="1000" nzMin="0" nzTooltipVisible="always" name="eatFilterValue"
+      [(ngModel)]="eatFilterValue" (ngModelChange)="onEatCountAfterChange($event)">
+    </nz-slider>
+    <div nz-row nzGutter="8" nzJustify="space-between" style="font-size: 8px;">
+      <span nz-typography>Min: {{minEatValue}}</span>
+      <span nz-typography>Max: {{maxEatValue}}</span>
+    </div>
+
+  </div>
+  <div nz-col nzSpan="4">
+    <label nz-typography>&Aacute;nimo Prom.</label>
+    <nz-slider nzRange [nzStep]="1" nzMax="10" nzMin="-10" nzTooltipVisible="always" name="emotionFilterValue"
+      [(ngModel)]="emotionFilterValue" (ngModelChange)="onEmotionCountAfterChange($event)">
+    </nz-slider>
+    <div nz-row nzGutter="8" nzJustify="space-between" style="font-size: 8px;padding-left: 10px;">
+      <span nz-typography>Min: {{minEmotionValue}}</span>
+      <span nz-typography>Max: {{maxEmotionValue}}</span>
+    </div>
+
   </div>
   <div nz-col nzSpan="4">
     <nz-select [(ngModel)]="statusFilter" style="width:100%;" (ngModelChange)="onChangeSelection($event)">
@@ -32,6 +54,8 @@
       <th nzColumnKey="email" [nzSortFn]="true">Correo</th>
       <th nzColumnKey="status" [nzSortFn]="true">Estado</th>
       <th nzColumnKey="lastAccessAt">&Uacute;lt. Acceso</th>
+      <th nzColumnKey="plannedEats">Comidas Plan.</th>
+      <th nzColumnKey="emotionMedia">&Aacute;nimo Prom.</th>
       <th></th>
     </tr>
   </thead>
@@ -55,6 +79,8 @@
           -
         </span>
       </td>
+      <td>{{ data.plannedEats }}</td>
+      <td>{{ data.emotionMedia | number }}</td>
       <td>
         <i nz-icon nzType="check-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Habilitar'"
           [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"

@@ -17,4 +17,6 @@ export interface User {
   language: string;
   imc: number;
   kCal: number;
+  plannedEats: number;
+  emotionMedia: number;
 }

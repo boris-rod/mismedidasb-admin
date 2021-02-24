@@ -27,6 +27,14 @@ export class UsersComponent implements OnInit {
   results: User[];
   showReset = false;
 
+  eatFilterValue = [0, 0];
+  minEatValue = 0;
+  maxEatValue = 0;
+
+  emotionFilterValue = [-10.0, -10.0];
+  minEmotionValue = -10.0;
+  maxEmotionValue = -10.0;
+
   constructor(private userService: UsersService, private modalService: NzModalService,
     private messageService: NzMessageService) { }
 
@@ -37,7 +45,8 @@ export class UsersComponent implements OnInit {
   loadUsers(): void {
     this.isLoading = true;
 
-    this.userService.getUsers(this.page, this.perPage, this.sort, this.searchTerm, this.statusFilter)
+    this.userService.getUsers(this.page, this.perPage, this.sort, this.searchTerm, this.statusFilter,
+      this.minEatValue, this.maxEatValue, this.minEmotionValue, this.maxEmotionValue)
       .pipe(finalize(() => {
         this.isLoading = false;
       }))
@@ -77,6 +86,15 @@ export class UsersComponent implements OnInit {
     this.showReset = false;
     this.searchTerm = '';
     this.statusFilter = -1;
+
+    this.eatFilterValue = [0, 0];
+    this.minEatValue = 0;
+    this.maxEatValue = 0;
+
+    this.emotionFilterValue = [-10.0, -10.0];
+    this.minEmotionValue = -10.0;
+    this.maxEmotionValue = -10.0;
+
     this.loadUsers();
   }
 
@@ -129,6 +147,20 @@ export class UsersComponent implements OnInit {
     if (event !== -1) {
       this.showReset = true;
     }
+    this.loadUsers();
+  }
+
+  onEatCountAfterChange(event: any): void {
+    this.minEatValue = event[0];
+    this.maxEatValue = event[1];
+    this.showReset = true;
+    this.loadUsers();
+  }
+
+  onEmotionCountAfterChange(event: any): void {
+    this.minEmotionValue = event[0];
+    this.maxEmotionValue = event[1];
+    this.showReset = true;
     this.loadUsers();
   }
 }
