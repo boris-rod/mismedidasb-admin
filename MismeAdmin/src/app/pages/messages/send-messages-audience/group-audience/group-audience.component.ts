@@ -43,7 +43,7 @@ export class GroupAudienceComponent implements OnInit {
 
   loadGroups(): void {
     this.isLoading = true;
-    this.groupService.getGroups(1, 100, '', '', null)
+    this.groupService.getGroups(1, 1000000, '', '', null)
       .pipe(finalize(() => {
         this.isLoading = false;
       }))
