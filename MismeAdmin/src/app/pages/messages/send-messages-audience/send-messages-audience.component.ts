@@ -6,6 +6,7 @@ import { User } from 'src/app/core-mismes/models/user';
 import { MessagesService } from '../messages.service';
 import { finalize } from 'rxjs/operators';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { Group } from '../../../core-mismes/models/group';
 
 @Component({
   selector: 'app-send-messages-audience',
@@ -19,7 +20,7 @@ export class SendMessagesAudienceComponent implements OnInit {
   subject = '';
   isLoading = false;
   selectedUsers: User[] = [];
-  selectedGroups: any[] = [];
+  selectedGroups: Group[] = [];
 
   constructor(private modalService: NzModalService,
     private messageService: MessagesService,
@@ -31,6 +32,7 @@ export class SendMessagesAudienceComponent implements OnInit {
   send(): void {
     this.isLoading = true;
     const selectedUserIds = [];
+    const selectedGroupIds = [];
     if (this.audience === '0') {
       selectedUserIds.push(-1);
     } else if (this.audience === '-1') {
@@ -38,9 +40,15 @@ export class SendMessagesAudienceComponent implements OnInit {
         selectedUserIds.push(u.id);
       });
     }
+    else if (this.audience === '1') {
+      this.selectedGroups.forEach(g => {
+        selectedGroupIds.push(g.id);
+      });
+    }
 
     const obj = {
       userIds: selectedUserIds,
+      groupIds: selectedGroupIds,
       subject: this.subject,
       body: this.message
     };
@@ -74,6 +82,9 @@ export class SendMessagesAudienceComponent implements OnInit {
         // nzComponentParams: { userId: user.id }
         nzWidth: 900,
         // nzBodyStyle: { height: '450px', 'overflow-y': 'auto' }
+      });
+      modal.afterClose.subscribe(resp => {
+        this.selectedGroups = resp;
       });
     }
 

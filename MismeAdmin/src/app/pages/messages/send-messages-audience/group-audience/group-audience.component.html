@@ -1,1 +1,16 @@
-<p>TRABAJO EN PROGRESO!</p>
+<nz-transfer [nzDataSource]="list" [nzListStyle]="{ 'width': '100%', 'height.px': 300 }" [nzRender]="render"
+  [nzShowSearch]="true" [nzFilterOption]="filter" (nzChange)="change($event)">
+  <ng-template #render let-item>
+
+    <span nz-typography style="font-weight: bold;">{{ item.name}}</span>
+    <br>
+
+    <span nz-typography style="font-size: 10px; margin-left: 25px;">{{ item.adminEmail}}</span>
+
+  </ng-template>
+</nz-transfer>
+<div nz-row nzJustify="end" #nzFooter class="mt-10">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button nz-button nzType="primary" (click)="selectAndExit()" [nzLoading]="isLoading"
+    [disabled]="isLoading===true||selectedGroups.length===0">Seleccionar</button>
+</div>
