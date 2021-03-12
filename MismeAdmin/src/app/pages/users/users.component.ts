@@ -8,6 +8,7 @@ import { UsersService } from './users.service';
 import { MessageComponent } from './message/message.component';
 import { DetailsComponent } from './details/details.component';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { UserSendCoinsComponent } from './user-send-coins/user-send-coins.component';
 
 const log = new Logger('Users');
 @Component({
@@ -122,6 +123,31 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  sendCoins(user: User): void {
+    this.modalService.create({
+      nzTitle: 'Enviar Monedas',
+      nzContent: UserSendCoinsComponent,
+      nzFooter: null,
+      // nzWidth: 1000,
+      // nzBodyStyle: { height: '500px', 'overflow-y': 'auto' },
+      nzComponentParams: {
+        user
+      }
+    });
+  }
+  sendCoinsAllUsers(): void {
+    this.modalService.create({
+      nzTitle: 'Enviar Monedas',
+      nzContent: UserSendCoinsComponent,
+      nzFooter: null,
+      // nzWidth: 1000,
+      // nzBodyStyle: { height: '500px', 'overflow-y': 'auto' },
+      nzComponentParams: {
+        allUsers: true
+      }
+    });
+  }
+
   enable(user: User): void {
     this.isLoading = true;
     this.userService.enableUser(user.id)
@@ -149,6 +175,8 @@ export class UsersComponent implements OnInit {
     }
     this.loadUsers();
   }
+
+
 
   onEatCountAfterChange(event: any): void {
     this.minEatValue = event[0];

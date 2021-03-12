@@ -1,6 +1,8 @@
 <div nz-row style="margin-bottom: 10px;" nzGutter="8">
   <div nz-col nzSpan="6">
-    <h3 nz-typography>Usuarios</h3>
+    <h3 nz-typography>Usuarios <i nz-icon nzType="dollar-circle" nz-tooltip nzTooltipPlacement="right"
+        [nzTooltipTitle]="'Enviar monedas a todos los usuarios'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'"
+        style="cursor: pointer;margin-right:10px;" (click)="sendCoinsAllUsers()"></i></h3>
   </div>
   <div nz-col nzSpan="4">
     <label nz-typography>Cant. Comidas</label>
@@ -99,6 +101,10 @@
         <i nz-icon nzType="info-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Detalles'"
           [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
           (click)="details(data)" *ngIf="data.statusId===2"></i>
+
+        <i nz-icon nzType="dollar-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Enviar monedas'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          (click)="sendCoins(data)" *ngIf="data.statusId===2"></i>
 
       </td>
     </tr>

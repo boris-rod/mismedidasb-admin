@@ -1,0 +1,27 @@
+<div nz-row nzGutter="8">
+  <div nz-col nzSpan="10">
+    <strong nz-typography>Cantidad:</strong>
+    <nz-input-number [(ngModel)]="coinsQty" [nzMin]="1" [nzMax]="10000000" [nzStep]="10" style="width: 100%;">
+    </nz-input-number>
+  </div>
+</div>
+
+<div nz-row>
+  <strong nz-typography>Título:</strong>
+  <input nz-input name="title" [formControl]="title">
+  <ng-container *ngIf="title.invalid && title.touched">
+    <p nz-typography class="error">
+      Debe introducir un título para la notificación.
+    </p>
+
+  </ng-container>
+</div>
+<div nz-row style="margin-top: 10px;">
+  <strong nz-typography>Cuerpo:</strong>
+  <textarea nz-input [nzAutosize]="{ minRows: 3, maxRows: 5 }" name="body" [formControl]="body"></textarea>
+</div>
+<div #nzFooter class="custom-footer">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button nz-button nzType="primary" (click)="send()" [nzLoading]="isLoading"
+    [disabled]="!title.valid || isLoading===true">Ok</button>
+</div>

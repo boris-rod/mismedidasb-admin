@@ -8,6 +8,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { EditGroupComponent } from './edit-group/edit-group.component';
 import { GroupMembersComponent } from './group-members/group-members.component';
+import { UserSendCoinsComponent } from '../users/user-send-coins/user-send-coins.component';
 
 const log = new Logger('Groups');
 @Component({
@@ -42,7 +43,6 @@ export class GroupsComponent implements OnInit {
     } else if (this.isActive === 1) {
       act = true;
     }
-    console.log(act);
 
     this.groupService.getGroups(this.page, this.perPage, this.sort, this.searchTerm, act)
       .pipe(finalize(() => {
@@ -115,6 +115,19 @@ export class GroupsComponent implements OnInit {
     );
   }
 
+  sendCoins(group: Group): void {
+    this.modalService.create({
+      nzTitle: 'Enviar Monedas',
+      nzContent: UserSendCoinsComponent,
+      nzFooter: null,
+      // nzWidth: 1000,
+      // nzBodyStyle: { height: '500px', 'overflow-y': 'auto' },
+      nzComponentParams: {
+        group
+      }
+    });
+  }
+
   search(): void {
     if (this.searchTerm.trim() !== '') {
       this.showReset = true;
@@ -139,6 +152,8 @@ export class GroupsComponent implements OnInit {
     }
     this.loadGroups();
   }
+
+
 
   activate(g: Group): void {
     this.isLoading = true;

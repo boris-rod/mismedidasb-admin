@@ -101,4 +101,8 @@ export class UsersService {
     return this.http.get<any>(Constants.GET_ADMIN_USER + '/statistics-summary');
   }
 
+  sendCoins(obj: any): Observable<any> {
+    return this.http.put<any>(Constants.GET_ADMIN_USER + '/give-coins-rewards', obj, {});
+  }
+
 }

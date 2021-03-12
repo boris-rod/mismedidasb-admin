@@ -70,8 +70,12 @@
           [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;" (click)="edit(data)"></i>
 
         <i nz-icon nzType="contacts" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Miembros'"
-          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" (click)="members(data)"
-          *ngIf="data.isActive===true"></i>
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          (click)="members(data)" *ngIf="data.isActive===true"></i>
+
+        <i nz-icon nzType="dollar-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Enviar monedas'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          (click)="sendCoins(data)" *ngIf="data.isActive===true"></i>
 
       </td>
     </tr>
