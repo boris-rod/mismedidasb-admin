@@ -14,9 +14,12 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 export class HomeComponent implements OnInit {
   isCollapsed = false;
   user: User;
+  role = '';
   constructor(private router: Router, private authService: AuthenticationService,
     private credsService: CredentialsService,
-    private modalService: NzModalService) { }
+    private modalService: NzModalService) {
+    this.role = this.credsService.getCurrentUserRole().toLowerCase();
+  }
 
   ngOnInit(): void {
     this.user = this.credsService.credentials.account;

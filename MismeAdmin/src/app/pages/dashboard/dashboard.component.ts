@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CredentialsService } from '../../core-mismes/authentication/credentials.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  role = '';
+  constructor(private credsService: CredentialsService) {
+    this.role = this.credsService.getCurrentUserRole().toLowerCase();
+  }
 
   ngOnInit(): void {
   }

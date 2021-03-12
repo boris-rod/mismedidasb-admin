@@ -1,6 +1,10 @@
 <div style="overflow-x: hidden;">
 
-  <div nz-row nzGutter="8">
+  <span *ngIf="role==='group_admin'">
+    We need to work on a dashboard for the group admin.
+  </span>
+
+  <div nz-row nzGutter="8" *ngIf="role==='admin'">
     <div nz-col nzSpan="12">
       <app-user-stats></app-user-stats>
     </div>
@@ -9,7 +13,7 @@
     </div>
   </div>
 
-  <div nz-row nzGutter="8">
+  <div nz-row nzGutter="8" *ngIf="role==='admin'">
     <div nz-col nzSpan="12">
       <app-user-stats-bydate></app-user-stats-bydate>
     </div>

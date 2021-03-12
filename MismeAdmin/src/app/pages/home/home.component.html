@@ -14,57 +14,38 @@
         <i nz-icon nzType="home"></i>
         <span>Dashboard</span>
       </li>
-      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Usuarios' : ''"
-        routerLink="/home/users">
+      <li *ngIf="role==='admin'" nz-menu-item nz-tooltip nzTooltipPlacement="right"
+        [nzTooltipTitle]="isCollapsed ? 'Usuarios' : ''" routerLink="/home/users">
         <i nz-icon nzType="team"></i>
         <span>Usuarios</span>
       </li>
-      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Conceptos' : ''"
-        routerLink="/home/concepts">
+      <li *ngIf="role==='admin'" nz-menu-item nz-tooltip nzTooltipPlacement="right"
+        [nzTooltipTitle]="isCollapsed ? 'Conceptos' : ''" routerLink="/home/concepts">
         <i nz-icon nzType="unordered-list"></i>
         <span>Conceptos</span>
       </li>
-      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Cuestionarios' : ''"
-        routerLink="/home/polls">
+      <li *ngIf="role==='admin'" nz-menu-item nz-tooltip nzTooltipPlacement="right"
+        [nzTooltipTitle]="isCollapsed ? 'Cuestionarios' : ''" routerLink="/home/polls">
         <i nz-icon nzType="question"></i>
         <span>Cuestionarios</span>
       </li>
-      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Platos' : ''"
-        routerLink="/home/dishes">
+      <li *ngIf="role==='admin'" nz-menu-item nz-tooltip nzTooltipPlacement="right"
+        [nzTooltipTitle]="isCollapsed ? 'Platos' : ''" routerLink="/home/dishes">
         <i nz-icon nzType="book"></i>
         <span>Platos</span>
       </li>
-      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Mensajes' : ''"
-        routerLink="/home/messages">
+      <li *ngIf="role==='admin'" nz-menu-item nz-tooltip nzTooltipPlacement="right"
+        [nzTooltipTitle]="isCollapsed ? 'Mensajes' : ''" routerLink="/home/messages">
         <i nz-icon nzType="mail"></i>
         <span>Mensajes</span>
       </li>
-      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Grupos' : ''"
-        routerLink="/home/groups">
+      <li *ngIf="role==='admin'" nz-menu-item nz-tooltip nzTooltipPlacement="right"
+        [nzTooltipTitle]="isCollapsed ? 'Grupos' : ''" routerLink="/home/groups">
         <i nz-icon nzType="group"></i>
         <span>Grupos</span>
       </li>
 
-      <!-- <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/welcome">Welcome</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Monitor</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Workplace</a>
-          </li>
-        </ul>
-      </li> -->
-      <!-- <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
-          </li>
-        </ul>
-      </li> -->
+
     </ul>
   </nz-sider>
   <nz-layout>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { AuthenticationService, Logger, LoginContext } from 'src/app/core-mismes';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { CredentialsService } from '../../core-mismes/authentication/credentials.service';
 
 const log = new Logger('Login');
 
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private router: Router,
     private authenticationService: AuthenticationService,
+    private credentialsService: CredentialsService,
     private message: NzMessageService) { }
 
   ngOnInit(): void {
@@ -44,7 +46,9 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         credentials => {
-          if (credentials.role.toLowerCase() !== 'admin') {
+          const role = this.credentialsService.getCurrentUserRole();
+          if (role.toLowerCase() !== 'admin' && role.toLowerCase() !== 'group_admin') {
+            // if (credentials.role.toLowerCase() !== 'admin') {
             this.message.create('error', 'Solo usuarios con permiso de administración pueden acceder.');
           }
           this.router.navigate(['/'], { replaceUrl: true });

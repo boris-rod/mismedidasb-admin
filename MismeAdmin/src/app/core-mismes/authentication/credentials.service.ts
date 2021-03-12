@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Constants } from '../constants/constants';
 import { User } from '../models/user';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 export interface Credentials {
   // Customize received credentials here
@@ -17,9 +18,13 @@ export interface Credentials {
   providedIn: 'root'
 })
 export class CredentialsService {
+  // tslint:disable-next-line:variable-name
   private _credentials: Credentials | null = null;
 
+  private helper: JwtHelperService;
+
   constructor() {
+    this.helper = new JwtHelperService();
     const savedCredentials =
       sessionStorage.getItem(Constants.CREDENTIALS_KEY) || localStorage.getItem(Constants.CREDENTIALS_KEY);
     if (savedCredentials) {
@@ -50,7 +55,7 @@ export class CredentialsService {
    * @param credentials The user credentials.
    * @param remember True to remember credentials across sessions.
    */
-  setCredentials(credentials?: Credentials, remember?: boolean) {
+  setCredentials(credentials?: Credentials, remember?: boolean): void {
     this._credentials = credentials || null;
 
     if (credentials) {
@@ -60,5 +65,18 @@ export class CredentialsService {
       sessionStorage.removeItem(Constants.CREDENTIALS_KEY);
       localStorage.removeItem(Constants.CREDENTIALS_KEY);
     }
+  }
+  public getCurrentUserRole(): any {
+    const creds = localStorage.getItem(Constants.CREDENTIALS_KEY);
+    const obj = JSON.parse(creds);
+    const token = obj.token;
+    if (token) {
+      const tokenData = this.helper.decodeToken(token);
+      if (tokenData) {
+        return tokenData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+      }
+      return '';
+    }
+    return '';
   }
 }
