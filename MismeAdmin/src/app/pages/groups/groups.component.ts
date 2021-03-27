@@ -52,7 +52,6 @@ export class GroupsComponent implements OnInit {
         const pData = resp.headers.get('PagingData');
         this.total = JSON.parse(pData).totalItems;
         this.results = resp.body.result;
-        log.info(this.results);
       }, error => {
         log.error(error);
       });

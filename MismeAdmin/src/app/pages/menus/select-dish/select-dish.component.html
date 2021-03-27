@@ -1,0 +1,21 @@
+<div nz-row style="margin-bottom: 10px;">
+  <div nz-col nzSpan="24">
+    <strong nz-typography>Cantidad:</strong>
+    <br>
+    <nz-input-number [(ngModel)]="qty" [nzMin]="1" [nzMax]="1000" [nzStep]="1"></nz-input-number>
+  </div>
+
+</div>
+<div nz-row style="margin-bottom: 10px;">
+  <strong nz-typography>Plato:</strong>
+  <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleccione un plato" [(ngModel)]="dish" style="width: 100%;">
+    <nz-option *ngFor="let item of allDishes" [nzLabel]="item.name" [nzValue]="item"></nz-option>
+  </nz-select>
+</div>
+
+
+<!-- <nz-divider></nz-divider> -->
+<div #nzFooter class="custom-footer">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button nz-button nzType="primary" (click)="select()" [nzLoading]="isLoading">Ok</button>
+</div>

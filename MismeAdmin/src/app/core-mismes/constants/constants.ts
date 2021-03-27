@@ -27,4 +27,6 @@ export const Constants = {
   GET_EATS_COUNT: 'user/eat-count',
   GROUPS_BASE: 'admin/group',
   GROUPS_BASE_NO_ADMIN: 'group',
+  MENU: 'menu',
+  MENU_ADMIN: 'menu/admin',
 };

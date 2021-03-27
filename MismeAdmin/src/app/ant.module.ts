@@ -26,6 +26,8 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 
 @NgModule({
   imports: [
@@ -53,7 +55,9 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
     NzRadioModule,
     NzTransferModule,
     NzSpinModule,
-    NzSliderModule
+    NzSliderModule,
+    NzCollapseModule,
+    NzAutocompleteModule
   ],
   exports: [
     NzLayoutModule,
@@ -80,7 +84,9 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
     NzRadioModule,
     NzTransferModule,
     NzSpinModule,
-    NzSliderModule
+    NzSliderModule,
+    NzCollapseModule,
+    NzAutocompleteModule
   ],
   providers: [NzMessageService, NzModalService]
 })

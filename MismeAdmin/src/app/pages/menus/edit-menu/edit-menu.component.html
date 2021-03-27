@@ -1,0 +1,101 @@
+<div nz-row style="margin-bottom: 10px;">
+  <div class="col-6">
+    <strong nz-typography>Nombre:</strong>
+    <input nz-input name="menuName" [formControl]="menuName">
+    <ng-container *ngIf="menuName.invalid && menuName.touched">
+      <p nz-typography class="error">
+        Debe introducir un nombre para el menú.
+      </p>
+    </ng-container>
+  </div>
+</div>
+<nz-collapse nzAccordion>
+  <nz-collapse-panel nzHeader="Desayuno" [nzExtra]="breakfastTpl">
+    <div nz-row nzGutter="8" *ngFor="let item of breakfast">
+      <div nz-col nzSpan="22">
+        <p nz-typography class="no-margin">{{item.dish.name}}</p>
+        <p nz-typography style="font-size: 10px;"><span style="font-weight: bold;">Cant:
+          </span><span>{{item.qty}}</span>
+        </p>
+      </div>
+      <div nz-col nzSpan="2">
+        <i nz-icon nzType="delete" (click)="removeEat($event,item, 0)" style="cursor: pointer;"></i>
+      </div>
+    </div>
+  </nz-collapse-panel>
+  <nz-collapse-panel nzHeader="Merienda 1" [nzExtra]="snack1Tpl">
+    <div nz-row nzGutter="8" *ngFor="let item of snack1">
+      <div nz-col nzSpan="22">
+        <p nz-typography class="no-margin">{{item.dish.name}}</p>
+        <p nz-typography style="font-size: 10px;"><span style="font-weight: bold;">Cant:
+          </span><span>{{item.qty}}</span>
+        </p>
+      </div>
+      <div nz-col nzSpan="2">
+        <i nz-icon nzType="delete" (click)="removeEat($event,item, 1)" style="cursor: pointer;"></i>
+      </div>
+    </div>
+  </nz-collapse-panel>
+  <nz-collapse-panel nzHeader="Almuerzo" [nzExtra]="lunchTpl">
+    <div nz-row nzGutter="8" *ngFor="let item of lunch">
+      <div nz-col nzSpan="22">
+        <p nz-typography class="no-margin">{{item.dish.name}}</p>
+        <p nz-typography style="font-size: 10px;"><span style="font-weight: bold;">Cant:
+          </span><span>{{item.qty}}</span>
+        </p>
+      </div>
+      <div nz-col nzSpan="2">
+        <i nz-icon nzType="delete" (click)="removeEat($event,item, 2)" style="cursor: pointer;"></i>
+      </div>
+    </div>
+  </nz-collapse-panel>
+  <nz-collapse-panel nzHeader="Merienda 2" [nzExtra]="snack2Tpl">
+    <div nz-row nzGutter="8" *ngFor="let item of snack2">
+      <div nz-col nzSpan="22">
+        <p nz-typography class="no-margin">{{item.dish.name}}</p>
+        <p nz-typography style="font-size: 10px;"><span style="font-weight: bold;">Cant:
+          </span><span>{{item.qty}}</span>
+        </p>
+      </div>
+      <div nz-col nzSpan="2">
+        <i nz-icon nzType="delete" (click)="removeEat($event,item, 3)" style="cursor: pointer;"></i>
+      </div>
+    </div>
+  </nz-collapse-panel>
+  <nz-collapse-panel nzHeader="Comida" [nzExtra]="dinnerTpl">
+    <div nz-row nzGutter="8" *ngFor="let item of dinner">
+      <div nz-col nzSpan="22">
+        <p nz-typography class="no-margin">{{item.dish.name}}</p>
+        <p nz-typography style="font-size: 10px;"><span style="font-weight: bold;">Cant:
+          </span><span>{{item.qty}}</span>
+        </p>
+      </div>
+      <div nz-col nzSpan="2">
+        <i nz-icon nzType="delete" (click)="removeEat($event,item, 4)" style="cursor: pointer;"></i>
+      </div>
+    </div>
+  </nz-collapse-panel>
+</nz-collapse>
+
+<nz-divider></nz-divider>
+<div #nzFooter class="custom-footer">
+  <button nz-button nzType="default" (click)="close()" style="margin-right:10px;">Cancelar</button>
+  <button nz-button nzType="primary" (click)="saveMenu()" [nzLoading]="isLoading">Ok</button>
+</div>
+
+
+<ng-template #breakfastTpl>
+  <i nz-icon nzType="plus" (click)="addDishEat($event, 0)"></i>
+</ng-template>
+<ng-template #snack1Tpl>
+  <i nz-icon nzType="plus" (click)="addDishEat($event, 1)"></i>
+</ng-template>
+<ng-template #lunchTpl>
+  <i nz-icon nzType="plus" (click)="addDishEat($event, 2)"></i>
+</ng-template>
+<ng-template #snack2Tpl>
+  <i nz-icon nzType="plus" (click)="addDishEat($event, 3)"></i>
+</ng-template>
+<ng-template #dinnerTpl>
+  <i nz-icon nzType="plus" (click)="addDishEat($event, 4)"></i>
+</ng-template>
