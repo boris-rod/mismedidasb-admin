@@ -1,3 +1,4 @@
+import { Group } from './group';
 export interface User {
   id: number;
   fullName: string;
@@ -19,4 +20,5 @@ export interface User {
   kCal: number;
   plannedEats: number;
   emotionMedia: number;
+  group: Group;
 }

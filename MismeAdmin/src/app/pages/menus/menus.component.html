@@ -8,14 +8,14 @@
   <div nz-col nzSpan="12">
     <button nz-button nzType="primary" (click)="newMenu()">Nuevo Menú</button>
   </div>
-  <!-- <div nz-col nzSpan="6">
+  <div nz-col nzSpan="6">
     <nz-select [(ngModel)]="isActive" style="width:100%;" (ngModelChange)="onChangeSelection($event)">
       <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
       <nz-option [nzLabel]="'Activo'" [nzValue]="1"></nz-option>
       <nz-option [nzLabel]="'Inactivo'" [nzValue]="0"></nz-option>
     </nz-select>
-  </div> -->
-  <!-- <div nz-col nzSpan="6">
+  </div>
+  <div nz-col nzSpan="6">
     <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
       <input type="text" nz-input [(ngModel)]="searchTerm" />
     </nz-input-group>
@@ -24,7 +24,7 @@
     </ng-template>
     <br>
     <a (click)="reset()" *ngIf="showReset==true" class="reset">Limpiar</a>
-  </div> -->
+  </div>
 </div>
 
 <nz-table nzShowSizeChanger [nzData]="results" [nzFrontPagination]="false" [nzLoading]="isLoading" [nzTotal]="total"
@@ -33,7 +33,7 @@
   <thead>
     <tr>
       <th nzColumnKey="name" [nzSortFn]="true">Nombre </th>
-      <th nzColumnKey="isActive" [nzSortFn]="true">Estado</th>
+      <th nzColumnKey="isActive">Estado</th>
       <th></th>
     </tr>
   </thead>

@@ -10,15 +10,36 @@ import { Menu } from 'src/app/core-mismes/models/menu';
 export class MenusService {
   constructor(private http: HttpClient) { }
 
-  getMenusAdmin(page: number, perPage: number, sortOrder: string, search: string)
+  getMenusAdmin(page: number, perPage: number, sortOrder: string, search: string, isActive?: boolean)
     : Observable<any> {
-    const params: HttpParams = new HttpParams()
+    let params: HttpParams = new HttpParams()
       .append('page', page.toString())
       .append('perPage', perPage.toString())
       .append('sortOrder', sortOrder)
       .append('search', search);
 
+    if (isActive !== null) {
+      params = params.append('isActive', isActive.toString());
+    }
     return this.http.get<Menu>(Constants.MENU_ADMIN, {
+      params,
+      observe: 'response'
+    });
+  }
+  getMenusGroup(page: number, perPage: number, sortOrder: string, search: string, groupId: number, isActive?: boolean)
+    : Observable<any> {
+
+    let params: HttpParams = new HttpParams()
+      .append('page', page.toString())
+      .append('perPage', perPage.toString())
+      .append('sortOrder', sortOrder)
+      .append('search', search);
+
+    if (isActive !== null) {
+      params = params.append('isActive', isActive.toString());
+    }
+
+    return this.http.get<Menu>(Constants.MENU + '/group/' + groupId, {
       params,
       observe: 'response'
     });

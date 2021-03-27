@@ -13,6 +13,7 @@ import { SelectDishComponent } from '../select-dish/select-dish.component';
 })
 export class EditMenuComponent implements OnInit {
   menuToEdit: Menu;
+  groupId = null;
   isLoading = false;
   menuName = new FormControl();
 
@@ -38,13 +39,15 @@ export class EditMenuComponent implements OnInit {
 
   saveMenu(): void {
     this.isLoading = true;
+
     const objBase = {
       name: this.menuName.value,
       nameEN: '',
       nameIT: '',
       description: '',
       descriptionEN: '',
-      descriptionIT: ''
+      descriptionIT: '',
+      groupId: this.groupId
     };
     const breakIds = [];
     this.breakfast.forEach(b => breakIds.push({ qty: b.qty, dishId: b.dish.id }));
@@ -79,9 +82,8 @@ export class EditMenuComponent implements OnInit {
       }, error => {
         this.messageService.error(error.error.message);
       });
+
   }
-
-
 
   addDishEat(ev: any, eatType: number): void {
     ev.stopPropagation();

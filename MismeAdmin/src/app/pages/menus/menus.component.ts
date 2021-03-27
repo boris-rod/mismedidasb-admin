@@ -8,6 +8,7 @@ import { Menu } from 'src/app/core-mismes/models/menu';
 import { MenusService } from './menus.service';
 import { Logger } from '../../core-mismes/logger.service';
 import { EditMenuComponent } from './edit-menu/edit-menu.component';
+import { CredentialsService } from '../../core-mismes/authentication/credentials.service';
 const log = new Logger('Menus');
 
 @Component({
@@ -23,36 +24,51 @@ export class MenusComponent implements OnInit {
   page = 1;
   sort = '';
   searchTerm = '';
-  // isActive = -1;
+  isActive = -1;
   showReset = false;
 
   constructor(private menuService: MenusService,
     private messageService: NzMessageService,
-    private modalService: NzModalService) { }
+    private modalService: NzModalService, private credService: CredentialsService) { }
 
   ngOnInit(): void {
   }
 
   loadMenus(): void {
     this.isLoading = true;
-    // let act = null;
-    // if (this.isActive === 0) {
-    //   act = false;
-    // } else if (this.isActive === 1) {
-    //   act = true;
-    // }
+    let act = null;
+    if (this.isActive === 0) {
+      act = false;
+    } else if (this.isActive === 1) {
+      act = true;
+    }
 
-    this.menuService.getMenusAdmin(this.page, this.perPage, this.sort, this.searchTerm)
-      .pipe(finalize(() => {
-        this.isLoading = false;
-      }))
-      .subscribe(resp => {
-        const pData = resp.headers.get('PagingData');
-        this.total = JSON.parse(pData).totalItems;
-        this.results = resp.body.result;
-      }, error => {
-        log.error(error);
-      });
+    if (this.credService.getCurrentUserRole.toString().toLowerCase() === 'admin') {
+      this.menuService.getMenusAdmin(this.page, this.perPage, this.sort, this.searchTerm, act)
+        .pipe(finalize(() => {
+          this.isLoading = false;
+        }))
+        .subscribe(resp => {
+          const pData = resp.headers.get('PagingData');
+          this.total = JSON.parse(pData).totalItems;
+          this.results = resp.body.result;
+        }, error => {
+          log.error(error);
+        });
+    } else {
+      this.menuService.getMenusGroup(this.page, this.perPage, this.sort, this.searchTerm,
+        this.credService.credentials.account.group.id, act)
+        .pipe(finalize(() => {
+          this.isLoading = false;
+        }))
+        .subscribe(resp => {
+          const pData = resp.headers.get('PagingData');
+          this.total = JSON.parse(pData).totalItems;
+          this.results = resp.body.result;
+        }, error => {
+          log.error(error);
+        });
+    }
   }
 
   onQueryParamsChange(params: NzTableQueryParams): void {
@@ -79,10 +95,11 @@ export class MenusComponent implements OnInit {
       nzContent: EditMenuComponent,
       nzFooter: null,
       nzWidth: 900,
-      // nzBodyStyle: { 'max-height': '450px', 'overflow-y': 'auto' },
-      // nzComponentParams: {
-      //   dishToEdit: dish
-      // }
+      nzBodyStyle: { 'max-height': '460px', 'overflow-y': 'auto' },
+      nzComponentParams: {
+        groupId: this.credService.getCurrentUserRole.toString().toLowerCase() === 'admin' ?
+          null : this.credService.credentials.account.group.id
+      }
     });
     modal.afterClose.subscribe(
       resp => {
@@ -113,5 +130,30 @@ export class MenusComponent implements OnInit {
         this.messageService.create('success', 'Menú desactivado satisfactoriamente.');
         this.loadMenus();
       });
+  }
+
+  search(): void {
+    if (this.searchTerm.trim() !== '') {
+      this.showReset = true;
+      this.loadMenus();
+    }
+  }
+
+  reset(): void {
+    this.showReset = false;
+    this.searchTerm = '';
+    this.isActive = -1;
+    this.loadMenus();
+  }
+
+  onChangeSelection(event: any): void {
+    if (event !== -1) {
+      this.showReset = true;
+    } else {
+      if (this.searchTerm === '') {
+        this.showReset = false;
+      }
+    }
+    this.loadMenus();
   }
 }
