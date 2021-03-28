@@ -42,8 +42,7 @@ export class MenusComponent implements OnInit {
     } else if (this.isActive === 1) {
       act = true;
     }
-
-    if (this.credService.getCurrentUserRole.toString().toLowerCase() === 'admin') {
+    if (this.credService.getCurrentUserRole().toString().toLowerCase() === 'admin') {
       this.menuService.getMenusAdmin(this.page, this.perPage, this.sort, this.searchTerm, act)
         .pipe(finalize(() => {
           this.isLoading = false;
@@ -99,6 +98,28 @@ export class MenusComponent implements OnInit {
       nzComponentParams: {
         groupId: this.credService.getCurrentUserRole.toString().toLowerCase() === 'admin' ?
           null : this.credService.credentials.account.group.id
+      }
+    });
+    modal.afterClose.subscribe(
+      resp => {
+        if (resp === true) {
+          this.loadMenus();
+        }
+      }
+    );
+  }
+
+  edit(data: Menu): void {
+    const modal = this.modalService.create({
+      nzTitle: 'Editar Menú',
+      nzContent: EditMenuComponent,
+      nzFooter: null,
+      nzWidth: 900,
+      nzBodyStyle: { 'max-height': '460px', 'overflow-y': 'auto' },
+      nzComponentParams: {
+        groupId: this.credService.getCurrentUserRole.toString().toLowerCase() === 'admin' ?
+          null : this.credService.credentials.account.group.id,
+        menuToEdit: data
       }
     });
     modal.afterClose.subscribe(

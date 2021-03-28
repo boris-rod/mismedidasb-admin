@@ -57,6 +57,9 @@ export class MenusService {
       observe: 'response'
     });
   }
+  updateMenuBasic(obj: any, menuId: number): Observable<any> {
+    return this.http.put<any>(Constants.MENU + '/' + menuId, obj, {});
+  }
 
   activateMenu(menuId: number): Observable<any> {
     return this.http.patch<any>(Constants.MENU + '/' + menuId + '/active', {});
@@ -66,20 +69,6 @@ export class MenusService {
     return this.http.patch<any>(Constants.MENU + '/' + menuId + '/deactivate', {});
   }
 
-  // markImportantNormal(id: number, important: boolean): Observable<any> {
-  //   const params: HttpParams = new HttpParams()
-  //     .append('important', important.toString());
-  //   return this.http.post<any>(Constants.CONTACT_US_BASE + '/' + id + '/important-status', {}, {
-  //     params,
-  //     observe: 'response'
-  //   });
-  // }
-  // answerMessage(body: any): Observable<any> {
-  //   return this.http.post<any>(Constants.CONTACT_US_BASE + '/answer', body, {});
-  // }
 
-  // sendEmailToUsers(body: any): Observable<any> {
-  //   return this.http.put<any>(Constants.GET_ADMIN_USER + '/send-email', body, {});
-  // }
 
 }

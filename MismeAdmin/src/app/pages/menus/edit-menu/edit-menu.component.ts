@@ -31,6 +31,33 @@ export class EditMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.menuToEdit !== undefined) {
+      this.menuName.setValue(this.menuToEdit.name);
+      this.menuToEdit.eats.forEach(e => {
+        const eatDishes = e.eatDishResponse;
+        eatDishes.forEach(ed => {
+          switch (e.eatTypeId) {
+            case 0:
+              this.breakfast.push({ qty: ed.qty, dish: ed.dish });
+              break;
+            case 1:
+              this.snack1.push({ qty: ed.qty, dish: ed.dish });
+              break;
+            case 2:
+              this.lunch.push({ qty: ed.qty, dish: ed.dish });
+              break;
+            case 3:
+              this.snack2.push({ qty: ed.qty, dish: ed.dish });
+              break;
+            default:
+              this.dinner.push({ qty: ed.qty, dish: ed.dish });
+              break;
+          }
+        });
+
+      });
+    }
+    console.log(this.menuToEdit);
   }
 
   close(refresh = false): void {
@@ -70,19 +97,29 @@ export class EditMenuComponent implements OnInit {
 
     const objExtra = { eats: [breakObj, snack1Obj, lunchObj, snack2Obj, dinnerObj] };
 
-    console.log(objExtra);
 
-    this.menusService.addMenuBasic(objBase)
-      .subscribe(resp => {
-        const id = resp.body.result.id;
-        this.menusService.addMenuWithDishes(objExtra, id).subscribe(resp1 => {
-          this.messageService.success('El menú se ha creado satisfactoriamente.');
-          this.close(true);
+    if (this.menuToEdit === undefined) {
+      this.menusService.addMenuBasic(objBase)
+        .subscribe(resp => {
+          const id = resp.body.result.id;
+          this.menusService.addMenuWithDishes(objExtra, id).subscribe(resp1 => {
+            this.messageService.success('El menú se ha creado satisfactoriamente.');
+            this.close(true);
+          });
+        }, error => {
+          this.messageService.error(error.error.message);
         });
-      }, error => {
-        this.messageService.error(error.error.message);
-      });
-
+    } else {
+      this.menusService.updateMenuBasic(objBase, this.menuToEdit.id)
+        .subscribe(resp => {
+          this.menusService.addMenuWithDishes(objExtra, this.menuToEdit.id).subscribe(resp1 => {
+            this.messageService.success('El menú se ha actualizado satisfactoriamente.');
+            this.close(true);
+          });
+        }, error => {
+          this.messageService.error(error.error.message);
+        });
+    }
   }
 
   addDishEat(ev: any, eatType: number): void {

@@ -1,5 +1,6 @@
 import { Group } from './group';
 import { User } from './user';
+import { Eat } from './eat';
 
 export interface Menu {
   id: number;
@@ -12,6 +13,6 @@ export interface Menu {
   createdBY: User;
   createdAt: Date;
   modifiedAt: Date;
-
+  eats: Eat[];
 
 }

@@ -34,6 +34,11 @@
     <tr>
       <th nzColumnKey="name" [nzSortFn]="true">Nombre </th>
       <th nzColumnKey="isActive">Estado</th>
+      <th nzColumnKey="calories">kCal</th>
+      <th nzColumnKey="proteins">Proteinas</th>
+      <th nzColumnKey="fats">Grasas</th>
+      <th nzColumnKey="fibers">Fibra</th>
+      <th nzColumnKey="carbohydrates">Carbohidratos</th>
       <th></th>
     </tr>
   </thead>
@@ -46,6 +51,11 @@
         <span *ngIf="data.active" nz-typography [nzType]="'success'">Activo</span>
         <span *ngIf="!data.active" nz-typography [nzType]="'danger'">Inactivo</span>
       </td>
+      <td>{{data.calories| number}}</td>
+      <td>{{data.proteins| number}}</td>
+      <td>{{data.fats| number}}</td>
+      <td>{{data.fibers| number}}</td>
+      <td>{{data.carbohydrates| number}}</td>
       <td>
         <i nz-icon nzType="check-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Activar'"
           [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
@@ -57,10 +67,10 @@
           *ngIf="data.active===true" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea desactivar este menú?"
           (nzOnConfirm)="deactivate(data)" nzPopconfirmPlacement="topLeft"></i>
 
-        <!--  <i nz-icon nzType="edit" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Editar'" [nzTheme]="'twotone'"
+        <i nz-icon nzType="edit" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Editar'" [nzTheme]="'twotone'"
           [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;" (click)="edit(data)"></i>
 
-        <i nz-icon nzType="contacts" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Miembros'"
+        <!--<i nz-icon nzType="contacts" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Miembros'"
           [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
           (click)="members(data)" *ngIf="data.isActive===true"></i>
 
