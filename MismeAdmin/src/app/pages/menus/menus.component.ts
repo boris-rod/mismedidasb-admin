@@ -89,6 +89,7 @@ export class MenusComponent implements OnInit {
   }
 
   newMenu(): void {
+    console.log(this.credService.getCurrentUserRole().toString().toLowerCase());
     const modal = this.modalService.create({
       nzTitle: 'Nuevo Menú',
       nzContent: EditMenuComponent,
@@ -96,7 +97,7 @@ export class MenusComponent implements OnInit {
       nzWidth: 900,
       nzBodyStyle: { 'max-height': '460px', 'overflow-y': 'auto' },
       nzComponentParams: {
-        groupId: this.credService.getCurrentUserRole.toString().toLowerCase() === 'admin' ?
+        groupId: this.credService.getCurrentUserRole().toString().toLowerCase() === 'admin' ?
           null : this.credService.credentials.account.group.id
       }
     });
@@ -117,7 +118,7 @@ export class MenusComponent implements OnInit {
       nzWidth: 900,
       nzBodyStyle: { 'max-height': '460px', 'overflow-y': 'auto' },
       nzComponentParams: {
-        groupId: this.credService.getCurrentUserRole.toString().toLowerCase() === 'admin' ?
+        groupId: this.credService.getCurrentUserRole().toString().toLowerCase() === 'admin' ?
           null : this.credService.credentials.account.group.id,
         menuToEdit: data
       }
