@@ -11,6 +11,7 @@ import { ValueMeasuresComponent } from './details/value-measures/value-measures.
 import { WellnessMeasuresComponent } from './details/wellness-measures/wellness-measures.component';
 import { AntModule } from '../../ant.module';
 import { UserSendCoinsComponent } from './user-send-coins/user-send-coins.component';
+import { GroupUsersComponent } from './group-users/group-users.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { UserSendCoinsComponent } from './user-send-coins/user-send-coins.compon
     EatsComponent,
     ValueMeasuresComponent,
     WellnessMeasuresComponent,
-    UserSendCoinsComponent],
+    UserSendCoinsComponent,
+    GroupUsersComponent],
   imports: [
     UsersRoutingModule,
     CommonModule,

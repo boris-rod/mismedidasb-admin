@@ -28,6 +28,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 
 @NgModule({
   imports: [
@@ -57,7 +58,8 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
     NzSpinModule,
     NzSliderModule,
     NzCollapseModule,
-    NzAutocompleteModule
+    NzAutocompleteModule,
+    NzCalendarModule
   ],
   exports: [
     NzLayoutModule,
@@ -86,7 +88,8 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
     NzSpinModule,
     NzSliderModule,
     NzCollapseModule,
-    NzAutocompleteModule
+    NzAutocompleteModule,
+    NzCalendarModule
   ],
   providers: [NzMessageService, NzModalService]
 })

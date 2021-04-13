@@ -1,0 +1,70 @@
+<div nz-row style="margin-bottom: 10px;" nzGutter="8">
+  <div nz-col nzSpan="6">
+    <h3 nz-typography>Usuarios</h3>
+  </div>
+</div>
+
+<nz-table nzShowSizeChanger [nzData]="results" [nzFrontPagination]="false" [nzLoading]="isLoading" [nzTotal]="total"
+  [nzPageSize]="perPage" [nzPageIndex]="page" [nzPageSizeOptions]="[5,10,15,20]" [nzSize]="'middle'"
+  (nzQueryParams)="onQueryParamsChange($event)">
+  <thead>
+    <tr>
+      <th></th>
+      <th nzColumnKey="fullName" [nzSortFn]="true">Nombre </th>
+      <th nzColumnKey="email" [nzSortFn]="true">Correo</th>
+      <th nzColumnKey="status" [nzSortFn]="true">Estado</th>
+      <th nzColumnKey="lastAccessAt">&Uacute;lt. Acceso</th>
+      <!-- <th nzColumnKey="plannedEats">Comidas Plan.</th>
+      <th nzColumnKey="emotionMedia">&Aacute;nimo Prom.</th> -->
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of results">
+      <td>
+        <nz-avatar nzIcon="user" [nzSrc]="data?.avatar===''?'assets/images/no-photo.png': data?.avatar"></nz-avatar>
+      </td>
+      <td>{{ data.fullName }}</td>
+      <td>{{ data.email }}</td>
+      <td>
+        <span *ngIf="data.statusId===0" style="color: blue;">Pendiente</span>
+        <span *ngIf="data.statusId===2" style="color: green;">Activo</span>
+        <span *ngIf="data.statusId===1" style="color: red;">Inactivo</span>
+      </td>
+      <td>
+        <span nz-typography *ngIf="data.lastAccessAt">
+          {{data.lastAccessAt | date}}
+        </span>
+        <span nz-typography *ngIf="!data.lastAccessAt">
+          -
+        </span>
+      </td>
+      <!-- <td>{{ data.plannedEats }}</td>
+      <td>{{ data.emotionMedia | number }}</td> -->
+      <td>
+        <!-- <i nz-icon nzType="check-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Habilitar'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          *ngIf="data.statusId===1" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea habilitar al usuario?"
+          (nzOnConfirm)="enable(data)" nzPopconfirmPlacement="topLeft"></i>
+
+        <i nz-icon nzType="stop" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Deshabilitar'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          *ngIf="data.statusId===2" nz-popconfirm nzPopconfirmTitle="¿Confirma que desea deshabilitar al usuario?"
+          (nzOnConfirm)="disable(data)" nzPopconfirmPlacement="topLeft"></i>
+
+        <i nz-icon nzType="message" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Mensaje mobile'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          (click)="message(data)" *ngIf="data.statusId===2"></i>
+
+        <i nz-icon nzType="info-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Detalles'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          (click)="details(data)" *ngIf="data.statusId===2"></i>
+
+        <i nz-icon nzType="dollar-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Enviar monedas'"
+          [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+          (click)="sendCoins(data)" *ngIf="data.statusId===2"></i> -->
+
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

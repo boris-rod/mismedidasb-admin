@@ -19,6 +19,11 @@
         <i nz-icon nzType="team"></i>
         <span>Usuarios</span>
       </li>
+      <li *ngIf="role!=='admin'" nz-menu-item nz-tooltip nzTooltipPlacement="right"
+        [nzTooltipTitle]="isCollapsed ? 'Usuarios' : ''" routerLink="/home/users/group-users">
+        <i nz-icon nzType="team"></i>
+        <span>Usuarios</span>
+      </li>
       <li *ngIf="role==='admin'" nz-menu-item nz-tooltip nzTooltipPlacement="right"
         [nzTooltipTitle]="isCollapsed ? 'Conceptos' : ''" routerLink="/home/concepts">
         <i nz-icon nzType="unordered-list"></i>
