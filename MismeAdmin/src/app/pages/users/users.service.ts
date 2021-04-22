@@ -105,4 +105,8 @@ export class UsersService {
     return this.http.put<any>(Constants.GET_ADMIN_USER + '/give-coins-rewards', obj, {});
   }
 
+  unsubscribeEmail(token: string): Observable<any> {
+    return this.http.patch<any>('account/email-unsuscribe/' + token, {});
+  }
+
 }

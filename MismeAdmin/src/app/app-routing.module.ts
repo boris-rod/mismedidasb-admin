@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CancelSubscriptionComponent } from './pages/cancel-subscription/cancel-subscription.component';
+import { CancelSubscriptionModule } from './pages/cancel-subscription/cancel-subscription.module';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home/dashboard' },
@@ -12,6 +14,10 @@ const routes: Routes = [
   {
     path: 'reject-invite/:token',
     loadChildren: () => import('./pages/reject-invite/reject-invite.module').then(m => m.RejectInviteModule)
+  },
+  {
+    path: 'email-unsuscribe/:token',
+    loadChildren: () => import('./pages/cancel-subscription/cancel-subscription.module').then(m => m.CancelSubscriptionModule)
   }
 
 ];

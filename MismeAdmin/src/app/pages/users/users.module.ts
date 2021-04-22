@@ -12,6 +12,7 @@ import { WellnessMeasuresComponent } from './details/wellness-measures/wellness-
 import { AntModule } from '../../ant.module';
 import { UserSendCoinsComponent } from './user-send-coins/user-send-coins.component';
 import { GroupUsersComponent } from './group-users/group-users.component';
+import { GroupUsersCalendarComponent } from './group-users-calendar/group-users-calendar.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { GroupUsersComponent } from './group-users/group-users.component';
     ValueMeasuresComponent,
     WellnessMeasuresComponent,
     UserSendCoinsComponent,
-    GroupUsersComponent],
+    GroupUsersComponent,
+    GroupUsersCalendarComponent],
   imports: [
     UsersRoutingModule,
     CommonModule,
