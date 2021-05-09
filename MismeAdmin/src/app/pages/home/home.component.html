@@ -70,7 +70,7 @@
           <nz-avatar nzIcon="user" [nzSrc]="user?.avatar===''?'assets/images/no-photo.png': user?.avatar"></nz-avatar>
 
           <a nz-dropdown [nzDropdownMenu]="menu">
-            Yoandry Leon
+            {{user?.fullName}}
             <i nz-icon nzType="down"></i>
           </a>
           <nz-dropdown-menu #menu="nzDropdownMenu">
