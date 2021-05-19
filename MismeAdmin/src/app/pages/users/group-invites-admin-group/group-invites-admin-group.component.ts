@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Group } from 'src/app/core-mismes/models/group';
-import { Invitation } from 'src/app/core-mismes/models/invitation';
-import { GroupsService } from '../groups.service';
-import { Logger } from '../../../core-mismes/logger.service';
-import { finalize } from 'rxjs/operators';
-import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { GroupInviteComponent } from '../group-invite/group-invite.component';
-const log = new Logger('Group invitations');
+import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { finalize } from 'rxjs/operators';
+import { CredentialsService } from 'src/app/core-mismes';
+import { Group } from 'src/app/core-mismes/models/group';
+import { Invitation } from 'src/app/core-mismes/models/invitation';
+import { GroupsService } from '../../groups/groups.service';
 
 @Component({
-  selector: 'app-group-members',
-  templateUrl: './group-members.component.html',
-  styleUrls: ['./group-members.component.css']
+  selector: 'app-group-invites-admin-group',
+  templateUrl: './group-invites-admin-group.component.html',
+  styleUrls: ['./group-invites-admin-group.component.css']
 })
-export class GroupMembersComponent implements OnInit {
+export class GroupInvitesAdminGroupComponent implements OnInit {
   isLoading = false;
   page = 1;
   perPage = 10;
@@ -32,7 +30,10 @@ export class GroupMembersComponent implements OnInit {
 
   constructor(private groupService: GroupsService,
     private messageService: NzMessageService,
-    private modalService: NzModalService) { }
+    private credsService: CredentialsService
+  ) {
+    this.groupToEdit = this.credsService.credentials.account.group;
+  }
 
   ngOnInit(): void {
 
@@ -40,7 +41,8 @@ export class GroupMembersComponent implements OnInit {
 
   loadGroupInvitations(): void {
     this.isLoading = true;
-    this.groupService.getGroupInvitations(this.groupToEdit.id, this.page, this.perPage, this.sort, this.searchTerm, this.status)
+    this.groupService.getGroupInvitations(this.groupToEdit.id, this.page, this.perPage, this.sort, this.searchTerm,
+      this.status)
       .pipe(finalize(() => {
         this.isLoading = false;
       }))
@@ -53,7 +55,6 @@ export class GroupMembersComponent implements OnInit {
           this.invitations.splice(ind, 1);
         }
       }, error => {
-        log.error(error);
       });
   }
 
@@ -75,26 +76,6 @@ export class GroupMembersComponent implements OnInit {
     this.loadGroupInvitations();
   }
 
-  newInvite(): void {
-    const modal = this.modalService.create({
-      nzTitle: 'Invitar',
-      nzContent: GroupInviteComponent,
-      nzFooter: null,
-      // nzWidth: 900,
-      // nzBodyStyle: { 'max-height': '450px', 'overflow-y': 'auto' },
-      nzComponentParams: {
-        invitations: this.invitations,
-        groupId: this.groupToEdit.id
-      }
-    });
-    modal.afterClose.subscribe(
-      resp => {
-        if (resp === true) {
-          this.loadGroupInvitations();
-        }
-      }
-    );
-  }
   onChangeSelection(e: any): void {
     if (e !== -1) {
       this.showReset = true;

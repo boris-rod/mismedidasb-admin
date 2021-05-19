@@ -13,6 +13,11 @@ import { AntModule } from '../../ant.module';
 import { UserSendCoinsComponent } from './user-send-coins/user-send-coins.component';
 import { GroupUsersComponent } from './group-users/group-users.component';
 import { GroupUsersCalendarComponent } from './group-users-calendar/group-users-calendar.component';
+import { OneDayPlanComponent } from './one-day-plan/one-day-plan.component';
+import { EditUserPlanComponent } from './edit-user-plan/edit-user-plan.component';
+import { GroupsModule } from '../groups/groups.module';
+import { GroupInvitesAdminGroupComponent } from './group-invites-admin-group/group-invites-admin-group.component';
+import { AssignEatMenuComponent } from './assign-eat-menu/assign-eat-menu.component';
 
 
 @NgModule({
@@ -24,13 +29,18 @@ import { GroupUsersCalendarComponent } from './group-users-calendar/group-users-
     WellnessMeasuresComponent,
     UserSendCoinsComponent,
     GroupUsersComponent,
-    GroupUsersCalendarComponent],
+    GroupUsersCalendarComponent,
+    OneDayPlanComponent,
+    EditUserPlanComponent,
+    GroupInvitesAdminGroupComponent,
+    AssignEatMenuComponent],
   imports: [
     UsersRoutingModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AntModule
+    AntModule,
+    GroupsModule
   ]
 })
 export class UsersModule { }

@@ -21,4 +21,8 @@ export interface User {
   plannedEats: number;
   emotionMedia: number;
   group: Group;
+  height: number;
+  weight: number;
+  sex: number;
+  age: number;
 }

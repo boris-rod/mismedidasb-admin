@@ -6,6 +6,9 @@ import { User } from 'src/app/core-mismes/models/user';
 import { UsersService } from '../users.service';
 import { Logger } from '../../../core-mismes/logger.service';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { Router } from '@angular/router';
+import { GroupInviteComponent } from '../../groups/group-invite/group-invite.component';
+import { CredentialsService } from '../../../core-mismes/authentication/credentials.service';
 
 const log = new Logger('Group users');
 
@@ -35,7 +38,7 @@ export class GroupUsersComponent implements OnInit {
   maxEmotionValue = -10.0;
 
   constructor(private userService: UsersService, private modalService: NzModalService,
-    private messageService: NzMessageService) { }
+    private messageService: NzMessageService, private router: Router, private credentialsService: CredentialsService) { }
 
   ngOnInit(): void {
   }
@@ -94,6 +97,23 @@ export class GroupUsersComponent implements OnInit {
     // this.maxEmotionValue = -10.0;
 
     this.loadUsers();
+  }
+
+  calendar(data: User): void {
+    this.router.navigate(['home/users/calendar/' + data.id]);
+  }
+
+  inviteUser(): void {
+    this.modalService.create({
+      nzTitle: 'Invitar Usuario',
+      nzContent: GroupInviteComponent,
+      nzFooter: null,
+      nzComponentParams: {
+        invitations: [],
+        groupId: this.credentialsService.credentials.account.group.id
+      }
+      // nzBodyStyle: { height: '600px', 'overflow-y': 'auto' }
+    });
   }
 
 }

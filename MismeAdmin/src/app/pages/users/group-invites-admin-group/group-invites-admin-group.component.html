@@ -1,0 +1,55 @@
+<div nz-row style="margin-bottom: 10px;" nzGutter="8">
+  <div nz-col nzSpan="12"></div>
+  <div nz-col nzSpan="6">
+    <nz-select [(ngModel)]="activeFilter" style="width:100%;" (ngModelChange)="onChangeSelection($event)">
+      <nz-option [nzLabel]="'Todos'" [nzValue]="-1"></nz-option>
+      <nz-option [nzLabel]="'Aceptada'" [nzValue]="1"></nz-option>
+      <nz-option [nzLabel]="'Pendiente'" [nzValue]="0"></nz-option>
+      <nz-option [nzLabel]="'Rechazada'" [nzValue]="2"></nz-option>
+    </nz-select>
+  </div>
+  <div nz-col nzSpan="6">
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input type="text" nz-input [(ngModel)]="searchTerm" />
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search" (click)="search()"></i></button>
+    </ng-template>
+    <br>
+    <a (click)="reset()" *ngIf="showReset==true" class="reset">Limpiar</a>
+  </div>
+</div>
+
+
+<div nz-row nzGutter="8" class="mt-10">
+  <nz-table nzShowSizeChanger [nzData]="invitations" [nzFrontPagination]="false" [nzLoading]="isLoading"
+    [nzTotal]="total" [nzPageSize]="perPage" [nzPageIndex]="page" [nzPageSizeOptions]="[5,10,15,20]" [nzSize]="'small'"
+    (nzQueryParams)="onQueryParamsChange($event)" style="width: 100%;">
+    <thead>
+      <tr>
+        <th nzColumnKey="email" [nzSortFn]="true">Email</th>
+        <th nzColumnKey="status" [nzSortFn]="true">Estado</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of invitations">
+        <td>
+          {{data.userEmail}}
+        </td>
+        <td>
+          <span nz-typography *ngIf="data.statusId===0" nzType="warning">Pendiente</span>
+          <span nz-typography *ngIf="data.statusId===1" nzType="success">Aceptada</span>
+          <span nz-typography *ngIf="data.statusId===2" nzType="danger">Rechazada</span>
+        </td>
+        <td>
+          <i nz-icon nzType="delete" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Eliminar'"
+            [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;" nz-popconfirm
+            nzPopconfirmTitle="¿Confirma que desea eliminar esta invitación?" (nzOnConfirm)="deleteInvite(data)"
+            nzPopconfirmPlacement="topLeft"></i>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+</div>

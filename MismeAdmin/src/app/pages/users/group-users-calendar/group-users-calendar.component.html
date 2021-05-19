@@ -1,0 +1,25 @@
+<nz-calendar [(ngModel)]="selectedValue" (nzSelectChange)="selectChange($event)" [nzDateCell]="dateCellTpl">
+</nz-calendar>
+
+
+<ng-template #dateCellTpl let-date>
+  <div nz-row *ngIf="getEntry(date); let entry" [ngClass]="{'balanced': entry.eatBalancedSummary.isBalanced===true,
+  'noBalanced': entry.eatBalancedSummary.isBalanced===false}">
+    <div nz-col nzSpan="12">
+      <span>Kcal: <span>{{entry.eatBalancedSummary.currentCaloriesSum | number}}</span></span>
+      <br>
+      <span>Prot.: <span>{{entry.eatBalancedSummary.currentProteinsSum | number}}</span></span>
+      <br>
+      <span>Carb.: <span>{{entry.eatBalancedSummary.currentCarbohydratesSum | number}}</span></span>
+    </div>
+    <div nz-col nzSpan="12">
+      <span>Gras.: <span>{{entry.eatBalancedSummary.currentFatSum | number}}</span></span>
+      <br>
+      <span>Fib.: <span>{{entry.eatBalancedSummary.currentFiberSum | number}}</span></span>
+      <br>
+      <i nz-icon nzType="info-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Detalles'"
+        [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" (click)="explorePlan(entry)"></i>
+    </div>
+  </div>
+
+</ng-template>

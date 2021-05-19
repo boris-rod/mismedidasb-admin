@@ -4,6 +4,7 @@ import { User } from '../../core-mismes/models/user';
 import { Constants } from '../../core-mismes/constants/constants';
 import { UserStatSerie } from '../../core-mismes/models/user-stats-series';
 import { Observable } from 'rxjs';
+import { startsWith } from '@rxweb/reactive-form-validators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,34 @@ export class EatsService {
       params,
       observe: 'response'
     });
+  }
+
+  getMonthSummary(userId: number, startDate: string, endDate: string): Observable<any> {
+    const params: HttpParams = new HttpParams()
+      .append('date', startDate)
+      .append('endDate', endDate);
+
+    return this.http.get<any>(Constants.EATS_BASE + '/users/' + userId + '/plan-summaries',
+      {
+        params
+      });
+  }
+
+  getUserPlanByDate(userId: number, date: string, page: number, perPage: number, eatType = null): Observable<any> {
+    const params: HttpParams = new HttpParams()
+      .append('userId', userId.toString())
+      .append('date', date)
+      .append('perPage', perPage.toString())
+      .append('page', page.toString());
+
+    return this.http.get<any>(Constants.EATS_BASE + '/user-eats',
+      {
+        params
+      });
+  }
+
+  getPlanIsBalanced(userId: number, obj: any): Observable<any> {
+    return this.http.put<any>(Constants.EATS_BASE + '/users/' + userId + '/is-balanced-plan', obj);
   }
 
 }

@@ -86,6 +86,9 @@ export class UsersService {
   getUserForDetailsView(userId: number): Observable<any> {
     return this.http.get<any>(Constants.GET_ADMIN_USER + '/' + userId);
   }
+  getUserForDetailsViewNoAdmin(userId: number): Observable<any> {
+    return this.http.get<any>(Constants.GET_USERS + '/' + userId);
+  }
 
   getUserQuestionsAnswersByConcept(userId: number, concept: string): Observable<any> {
     const params: HttpParams = new HttpParams()

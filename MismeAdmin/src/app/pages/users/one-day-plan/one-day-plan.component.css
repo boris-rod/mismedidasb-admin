@@ -1,0 +1,11 @@
+.balanced{
+  color: green;
+}
+.noBalanced{
+  color: red;
+}
+.insidePanel{
+  min-height: 300px;
+  max-height: 300px;
+  overflow-y: auto;
+}

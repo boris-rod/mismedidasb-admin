@@ -7,7 +7,7 @@ import { GroupUsersCalendarComponent } from './group-users-calendar/group-users-
 const routes: Routes = [
   { path: '', component: UsersComponent },
   { path: 'group-users', component: GroupUsersComponent },
-  { path: 'calendar', component: GroupUsersCalendarComponent },
+  { path: 'calendar/:userId', component: GroupUsersCalendarComponent },
 ];
 
 @NgModule({
