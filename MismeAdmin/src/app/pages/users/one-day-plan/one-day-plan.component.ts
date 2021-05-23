@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { ModalOptions, NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { UsersService } from '../users.service';
 import { UserPlanSummary } from '../../../core-mismes/models/plan-summary';
 import { User } from 'src/app/core-mismes/models/user';
@@ -11,6 +11,8 @@ import { EatDish } from '../../../core-mismes/models/eatDish';
 import { EditUserPlanComponent } from '../edit-user-plan/edit-user-plan.component';
 import { json } from '@rxweb/reactive-form-validators';
 import { AssignEatMenuComponent } from '../assign-eat-menu/assign-eat-menu.component';
+import { CredentialsService } from '../../../core-mismes/authentication/credentials.service';
+import { Menu } from '../../../core-mismes/models/menu';
 
 @Component({
   selector: 'app-one-day-plan',
@@ -34,6 +36,7 @@ export class OneDayPlanComponent implements OnInit {
 
   constructor(private modal: NzModalRef,
     private messageService: NzMessageService,
+    private credService: CredentialsService,
     private eatService: EatsService,
     private usersService: UsersService,
     private modalService: NzModalService) { }
@@ -121,7 +124,7 @@ export class OneDayPlanComponent implements OnInit {
 
     modal.afterClose.subscribe(
       resp => {
-        if (resp !== null) {
+        if (resp !== null && resp !== undefined) {
           switch (this.selectedIndex) {
             case 0:
               this.breakfast.eatDishResponse = [...this.breakfast.eatDishResponse, resp];
@@ -130,10 +133,39 @@ export class OneDayPlanComponent implements OnInit {
                 this.plan[planInd] = this.breakfast;
                 this.recalculateEverything();
               }
-
+              break;
+            case 1:
+              this.snack1.eatDishResponse = [...this.snack1.eatDishResponse, resp];
+              const planSnack1 = this.plan.findIndex(p => p.eatTypeId === 1);
+              if (planSnack1 > -1) {
+                this.plan[planSnack1] = this.snack1;
+                this.recalculateEverything();
+              }
+              break;
+            case 2:
+              this.lunch.eatDishResponse = [...this.lunch.eatDishResponse, resp];
+              const planLunch = this.plan.findIndex(p => p.eatTypeId === 2);
+              if (planLunch > -1) {
+                this.plan[planLunch] = this.lunch;
+                this.recalculateEverything();
+              }
+              break;
+            case 3:
+              this.snack2.eatDishResponse = [...this.snack2.eatDishResponse, resp];
+              const planSnack2 = this.plan.findIndex(p => p.eatTypeId === 3);
+              if (planSnack2 > -1) {
+                this.plan[planSnack2] = this.snack2;
+                this.recalculateEverything();
+              }
               break;
 
             default:
+              this.dinner.eatDishResponse = [...this.dinner.eatDishResponse, resp];
+              const planDinner = this.plan.findIndex(p => p.eatTypeId === 4);
+              if (planDinner > -1) {
+                this.plan[planDinner] = this.dinner;
+                this.recalculateEverything();
+              }
               break;
           }
         }
@@ -152,7 +184,7 @@ export class OneDayPlanComponent implements OnInit {
 
     modal.afterClose.subscribe(
       resp => {
-        if (resp !== null) {
+        if (resp !== null && resp !== undefined) {
           switch (eat) {
             case 0:
               const ind = this.breakfast.eatDishResponse.findIndex(e => e.dish.id === item.dish.id);
@@ -166,8 +198,54 @@ export class OneDayPlanComponent implements OnInit {
                 }
               }
               break;
+            case 1:
+              const indSnack1 = this.snack1.eatDishResponse.findIndex(e => e.dish.id === item.dish.id);
+              if (indSnack1 > -1) {
+                this.snack1.eatDishResponse.splice(indSnack1, 1);
+                this.snack1.eatDishResponse.push(resp);
+                const planInd = this.plan.findIndex(p => p.eatTypeId === 1);
+                if (planInd > -1) {
+                  this.plan[planInd] = this.snack1;
+                  this.recalculateEverything();
+                }
+              }
+              break;
+            case 2:
+              const indLunch = this.lunch.eatDishResponse.findIndex(e => e.dish.id === item.dish.id);
+              if (indLunch > -1) {
+                this.lunch.eatDishResponse.splice(indLunch, 1);
+                this.lunch.eatDishResponse.push(resp);
+                const planInd = this.plan.findIndex(p => p.eatTypeId === 2);
+                if (planInd > -1) {
+                  this.plan[planInd] = this.lunch;
+                  this.recalculateEverything();
+                }
+              }
+              break;
+            case 3:
+              const indSnack2 = this.snack2.eatDishResponse.findIndex(e => e.dish.id === item.dish.id);
+              if (indSnack2 > -1) {
+                this.snack2.eatDishResponse.splice(indSnack2, 1);
+                this.snack2.eatDishResponse.push(resp);
+                const planInd = this.plan.findIndex(p => p.eatTypeId === 3);
+                if (planInd > -1) {
+                  this.plan[planInd] = this.snack2;
+                  this.recalculateEverything();
+                }
+              }
+              break;
 
             default:
+              const indDinner = this.dinner.eatDishResponse.findIndex(e => e.dish.id === item.dish.id);
+              if (indDinner > -1) {
+                this.dinner.eatDishResponse.splice(indDinner, 1);
+                this.dinner.eatDishResponse.push(resp);
+                const planInd = this.plan.findIndex(p => p.eatTypeId === 4);
+                if (planInd > -1) {
+                  this.plan[planInd] = this.dinner;
+                  this.recalculateEverything();
+                }
+              }
               break;
           }
         }
@@ -177,7 +255,7 @@ export class OneDayPlanComponent implements OnInit {
 
   recalculateEverything(): void {
     this.eatService.getPlanIsBalanced(this.userId, this.plan).subscribe(resp => {
-      console.log(resp);
+      this.entry.eatBalancedSummary = resp.result;
     });
   }
 
@@ -186,7 +264,38 @@ export class OneDayPlanComponent implements OnInit {
       nzTitle: 'Asignar Menú',
       nzContent: AssignEatMenuComponent,
       nzFooter: null,
+      nzComponentParams: { groupId: this.credService.credentials.account.group.id },
       // nzBodyStyle: { height: '250px', 'overflow-y': 'auto' }
+    });
+
+    modal.afterClose.subscribe(resp => {
+      if (resp !== null && resp !== undefined) {
+        resp.eats.forEach(m => {
+          switch (m.eatTypeId) {
+            case 0:
+              this.breakfast.eatDishResponse = m.eatDishResponse;
+              this.recalculateEverything();
+              break;
+            case 1:
+              this.snack1.eatDishResponse = m.eatDishResponse;
+              this.recalculateEverything();
+              break;
+            case 2:
+              this.lunch.eatDishResponse = m.eatDishResponse;
+              this.recalculateEverything();
+              break;
+            case 3:
+              this.snack2.eatDishResponse = m.eatDishResponse;
+              this.recalculateEverything();
+              break;
+
+            default:
+              this.dinner.eatDishResponse = m.eatDishResponse;
+              this.recalculateEverything();
+              break;
+          }
+        });
+      }
     });
   }
 

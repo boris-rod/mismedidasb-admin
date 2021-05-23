@@ -3,6 +3,7 @@ import { EatDish } from '../../../core-mismes/models/eatDish';
 import { DishesService } from '../../dishes/dishes.service';
 import { Dish } from '../../../core-mismes/models/dish';
 import { NzModalRef } from 'ng-zorro-antd/modal';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-user-plan',
@@ -31,14 +32,22 @@ export class EditUserPlanComponent implements OnInit {
     this.loadDishes();
   }
   loadDishes(): void {
-    this.dishService.getDishes('', [], 1, 100000, '').subscribe(resp => {
-      this.allDishes = resp.body.result;
-      if (this.add === false) {
-        this.selectedDish = this.eatDish.dish;
-        this.qty = this.eatDish.qty;
-      }
-      this.isLoading = false;
-    }, err => { });
+    this.dishService.getDishes('', [], 1, 100000, '')
+      .pipe(finalize(() => {
+        if (this.add === false) {
+          this.qty = this.eatDish.qty;
+          console.log(this.selectedDish);
+          const ind = this.allDishes.findIndex(d => d.id === this.eatDish.dish.id);
+          if (ind > -1) {
+            this.selectedDish = this.allDishes[ind];
+          }
+
+        }
+      }))
+      .subscribe(resp => {
+        this.allDishes = resp.body.result;
+        this.isLoading = false;
+      }, err => { });
 
   }
 

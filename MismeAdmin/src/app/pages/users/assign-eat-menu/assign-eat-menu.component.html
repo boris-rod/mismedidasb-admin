@@ -1,1 +1,36 @@
-<p>assign-eat-menu works!</p>
+<div nz-row nzGutter="8">
+  <p nz-typography nzType="success">Note que solo puede asignar un menú. Al asignar el menú, se cambiará el plan de
+    comidas del usuario según los platos contenidos en el menú para cada tipo de comida.</p>
+</div>
+
+<div nz-row nzGutter="8">
+  <div nz-col nzSpan="10">
+    <div nz-row nzGutter="8">
+      <strong nz-typography>Menus del Grupo:</strong>
+      <nz-select nzShowSearch [(ngModel)]="selectedMenu" style="width: 100%;">
+        <nz-option *ngFor="let item of groupMenus" [nzLabel]="item.name" [nzValue]="item"></nz-option>
+      </nz-select>
+    </div>
+  </div>
+
+  <div nz-col nzSpan="4"></div>
+
+  <div nz-col nzSpan="10">
+    <div nz-row nzGutter="8">
+      <strong nz-typography>Menus Generales:</strong>
+      <nz-select nzShowSearch [(ngModel)]="selectedMenu" style="width: 100%;">
+        <nz-option *ngFor="let item of generalMenus" [nzLabel]="item.name" [nzValue]="item"></nz-option>
+      </nz-select>
+    </div>
+  </div>
+</div>
+
+<div nz-row nzGutter="8" style="margin-top: 10px;">
+  <p nz-typography><span style="font-weight: bold;">Seleccionado: </span> {{selectedMenu?.name}}</p>
+</div>
+
+<div #nzFooter class="custom-footer">
+  <button nz-button nzType="default" (click)="close(null)" style="margin-right:10px;"
+    [disabled]="isLoading">Cancelar</button>
+  <button nz-button nzType="primary" (click)="save()" [disabled]="isLoading || !selectedMenu">Ok</button>
+</div>

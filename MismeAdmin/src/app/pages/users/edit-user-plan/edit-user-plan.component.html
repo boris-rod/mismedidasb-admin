@@ -1,6 +1,6 @@
 <div nz-row nzGutter="8">
   <strong nz-typography>Plato:</strong>
-  <nz-select nzShowSearch nzAllowClear [(ngModel)]="selectedDish" style="width: 100%;">
+  <nz-select nzShowSearch [(ngModel)]="selectedDish" style="width: 100%;">
     <nz-option *ngFor="let item of allDishes" [nzLabel]="item.name" [nzValue]="item"></nz-option>
   </nz-select>
 </div>

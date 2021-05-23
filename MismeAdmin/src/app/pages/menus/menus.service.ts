@@ -69,6 +69,19 @@ export class MenusService {
     return this.http.patch<any>(Constants.MENU + '/' + menuId + '/deactivate', {});
   }
 
+  getGeneralMenus(page: number, perPage: number, sortOrder: string, search: string)
+    : Observable<any> {
+    const params: HttpParams = new HttpParams()
+      .append('page', page.toString())
+      .append('perPage', perPage.toString())
+      .append('sortOrder', sortOrder)
+      .append('search', search);
+
+    return this.http.get<Menu>(Constants.MENU, {
+      params,
+      observe: 'response'
+    });
+  }
 
 
 }

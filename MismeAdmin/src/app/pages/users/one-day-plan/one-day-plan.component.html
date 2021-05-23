@@ -89,22 +89,86 @@
 
     <nz-tab [nzTitle]="'Merienda 1'">
       <div nz-row nzGutter="8" class="insidePanel">
-
+        <nz-list nzItemLayout="horizontal" style="width:100%;">
+          <nz-list-item *ngFor="let item of snack1?.eatDishResponse">
+            <div nz-col nzSpan="20">
+              <p style="margin-bottom: 0px;">{{item.dish.name}}</p>
+              <span>Cant: {{item.qty}}</span>
+            </div>
+            <div nz-col nzSpan="4">
+              <i nz-icon nzType="edit" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Editar'"
+                [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer; margin-right: 10px;"
+                (click)="editEatPlan(item,1)"></i>
+              <i nz-icon nzType="delete" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Eliminar'"
+                [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" nz-popconfirm
+                nzPopconfirmTitle="¿Confirma que desea eliminar este plato del plan?" (nzOnConfirm)="deleteFrom(1,item)"
+                nzPopconfirmPlacement="topLeft"></i>
+            </div>
+          </nz-list-item>
+        </nz-list>
       </div>
     </nz-tab>
     <nz-tab [nzTitle]="'Almuerzo'">
       <div nz-row nzGutter="8" class="insidePanel">
-
+        <nz-list nzItemLayout="horizontal" style="width:100%;">
+          <nz-list-item *ngFor="let item of lunch?.eatDishResponse">
+            <div nz-col nzSpan="20">
+              <p style="margin-bottom: 0px;">{{item.dish.name}}</p>
+              <span>Cant: {{item.qty}}</span>
+            </div>
+            <div nz-col nzSpan="4">
+              <i nz-icon nzType="edit" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Editar'"
+                [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer; margin-right: 10px;"
+                (click)="editEatPlan(item,2)"></i>
+              <i nz-icon nzType="delete" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Eliminar'"
+                [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" nz-popconfirm
+                nzPopconfirmTitle="¿Confirma que desea eliminar este plato del plan?" (nzOnConfirm)="deleteFrom(2,item)"
+                nzPopconfirmPlacement="topLeft"></i>
+            </div>
+          </nz-list-item>
+        </nz-list>
       </div>
     </nz-tab>
     <nz-tab [nzTitle]="'Merienda 2'">
       <div nz-row nzGutter="8" class="insidePanel">
-
+        <nz-list nzItemLayout="horizontal" style="width:100%;">
+          <nz-list-item *ngFor="let item of snack2?.eatDishResponse">
+            <div nz-col nzSpan="20">
+              <p style="margin-bottom: 0px;">{{item.dish.name}}</p>
+              <span>Cant: {{item.qty}}</span>
+            </div>
+            <div nz-col nzSpan="4">
+              <i nz-icon nzType="edit" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Editar'"
+                [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer; margin-right: 10px;"
+                (click)="editEatPlan(item,3)"></i>
+              <i nz-icon nzType="delete" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Eliminar'"
+                [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" nz-popconfirm
+                nzPopconfirmTitle="¿Confirma que desea eliminar este plato del plan?" (nzOnConfirm)="deleteFrom(3,item)"
+                nzPopconfirmPlacement="topLeft"></i>
+            </div>
+          </nz-list-item>
+        </nz-list>
       </div>
     </nz-tab>
     <nz-tab [nzTitle]="'Comida'">
       <div nz-row nzGutter="8" class="insidePanel">
-
+        <nz-list nzItemLayout="horizontal" style="width:100%;">
+          <nz-list-item *ngFor="let item of dinner?.eatDishResponse">
+            <div nz-col nzSpan="20">
+              <p style="margin-bottom: 0px;">{{item.dish.name}}</p>
+              <span>Cant: {{item.qty}}</span>
+            </div>
+            <div nz-col nzSpan="4">
+              <i nz-icon nzType="edit" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Editar'"
+                [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer; margin-right: 10px;"
+                (click)="editEatPlan(item,4)"></i>
+              <i nz-icon nzType="delete" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Eliminar'"
+                [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" nz-popconfirm
+                nzPopconfirmTitle="¿Confirma que desea eliminar este plato del plan?" (nzOnConfirm)="deleteFrom(4,item)"
+                nzPopconfirmPlacement="topLeft"></i>
+            </div>
+          </nz-list-item>
+        </nz-list>
       </div>
     </nz-tab>
   </nz-tabset>
