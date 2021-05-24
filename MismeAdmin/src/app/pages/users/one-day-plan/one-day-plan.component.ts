@@ -22,6 +22,8 @@ import { Menu } from '../../../core-mismes/models/menu';
 export class OneDayPlanComponent implements OnInit {
   isLoading: false;
   selectedIndex = 0;
+  newPlan = false;
+  newPlanDate: Date = null;
 
   userId = 0;
   entry: UserPlanSummary;
@@ -53,28 +55,138 @@ export class OneDayPlanComponent implements OnInit {
         this.user = resp.result;
       }, error => { });
 
-    this.eatService.getUserPlanByDate(this.userId, this.entry.planDateTime.toString(),
+    this.eatService.getUserPlanByDate(this.userId, this.newPlan === false ?
+      this.entry.planDateTime.toString() : this.newPlanDate.toUTCString(),
       1, 100000).
       pipe(finalize(() => {
         this.isLoading = false;
       }))
       .subscribe(resp => {
         this.plan = resp.result;
-        console.log(this.plan);
-        this.breakfast = this.plan.filter(f => f.eatTypeId === 0)[0];
-        this.snack1 = this.plan.filter(f => f.eatTypeId === 1)[0];
-        this.snack2 = this.plan.filter(f => f.eatTypeId === 3)[0];
-        this.lunch = this.plan.filter(f => f.eatTypeId === 2)[0];
-        this.dinner = this.plan.filter(f => f.eatTypeId === 4)[0];
+        if (this.newPlan === true) {
+          this.breakfast = {
+            id: -1,
+            createdAt: this.newPlanDate,
+            eatDishResponse: [],
+            eatCompoundDishResponse: [],
+            eatType: 'BREAKFAST',
+            eatTypeId: 0,
+            isBalanced: false,
+            modifiedAt: new Date()
+          };
+          this.snack1 = {
+            id: -1,
+            createdAt: this.newPlanDate,
+            eatDishResponse: [],
+            eatCompoundDishResponse: [],
+            eatType: 'SNACK1',
+            eatTypeId: 1,
+            isBalanced: false,
+            modifiedAt: new Date()
+          };
+          this.snack2 = {
+            id: -1,
+            createdAt: this.newPlanDate,
+            eatDishResponse: [],
+            eatCompoundDishResponse: [],
+            eatType: 'LUNCH',
+            eatTypeId: 2,
+            isBalanced: false,
+            modifiedAt: new Date()
+          };
+          this.lunch = {
+            id: -1,
+            createdAt: this.newPlanDate,
+            eatDishResponse: [],
+            eatCompoundDishResponse: [],
+            eatType: 'SNACK2',
+            eatTypeId: 3,
+            isBalanced: false,
+            modifiedAt: new Date()
+          };
+          this.dinner = {
+            id: -1,
+            createdAt: this.newPlanDate,
+            eatDishResponse: [],
+            eatCompoundDishResponse: [],
+            eatType: 'DINNER',
+            eatTypeId: 4,
+            isBalanced: false,
+            modifiedAt: new Date()
+          };
+          this.plan.push(this.breakfast);
+          this.plan.push(this.snack1);
+          this.plan.push(this.lunch);
+          this.plan.push(this.snack2);
+          this.plan.push(this.dinner);
+          this.entry = {
+            eatBalancedSummary: null,
+            planDateTime: this.newPlanDate,
+            userEatHealtParameters: null
+          };
+        }
+        else {
+          this.breakfast = this.plan.filter(f => f.eatTypeId === 0)[0];
+          this.snack1 = this.plan.filter(f => f.eatTypeId === 1)[0];
+          this.snack2 = this.plan.filter(f => f.eatTypeId === 3)[0];
+          this.lunch = this.plan.filter(f => f.eatTypeId === 2)[0];
+          this.dinner = this.plan.filter(f => f.eatTypeId === 4)[0];
+        }
       }, error => { });
 
   }
 
-  close(): void {
-    this.modal.destroy();
+  close(refresh = false): void {
+    this.modal.destroy(refresh);
   }
 
-  save(): void { }
+  save(): void {
+
+    const eatsToSave: any[] = [];
+
+    const breakfastDef: any[] = [];
+    const snack1Def: any[] = [];
+    const lunchDef: any[] = [];
+    const snack2Def: any[] = [];
+    const dinnerDef: any[] = [];
+
+    this.breakfast.eatDishResponse.forEach(b => {
+      breakfastDef.push({ qty: b.qty, dishId: b.dish.id });
+    });
+    this.snack1.eatDishResponse.forEach(b => {
+      snack1Def.push({ qty: b.qty, dishId: b.dish.id });
+    });
+    this.lunch.eatDishResponse.forEach(b => {
+      lunchDef.push({ qty: b.qty, dishId: b.dish.id });
+    });
+    this.snack2.eatDishResponse.forEach(b => {
+      snack2Def.push({ qty: b.qty, dishId: b.dish.id });
+    });
+    this.dinner.eatDishResponse.forEach(b => {
+      dinnerDef.push({ qty: b.qty, dishId: b.dish.id });
+    });
+
+    eatsToSave.push({ eatType: 0, dishes: breakfastDef, compoundDishes: [] });
+    eatsToSave.push({ eatType: 1, dishes: snack1Def, compoundDishes: [] });
+    eatsToSave.push({ eatType: 2, dishes: lunchDef, compoundDishes: [] });
+    eatsToSave.push({ eatType: 3, dishes: snack2Def, compoundDishes: [] });
+    eatsToSave.push({ eatType: 4, dishes: dinnerDef, compoundDishes: [] });
+
+
+
+    const obj = {
+      dateInUtc: this.entry.planDateTime,
+      isBalanced: this.entry.eatBalancedSummary.isBalanced,
+      eats: eatsToSave
+    };
+    this.eatService.setUserPlan(obj, this.userId).subscribe(resp => {
+      this.messageService.success('Plan actualizado satisfactoriamente.');
+      this.close(true);
+    });
+
+
+
+  }
 
   deleteFrom(eatType: number, item: EatDish): void {
     let ind = -1;
@@ -264,7 +376,11 @@ export class OneDayPlanComponent implements OnInit {
       nzTitle: 'Asignar Menú',
       nzContent: AssignEatMenuComponent,
       nzFooter: null,
-      nzComponentParams: { groupId: this.credService.credentials.account.group.id },
+      nzComponentParams: {
+        groupId: this.credService.getCurrentUserRole() === 'ADMIN' ?
+          -1
+          : this.credService.credentials.account.group.id
+      },
       // nzBodyStyle: { height: '250px', 'overflow-y': 'auto' }
     });
 

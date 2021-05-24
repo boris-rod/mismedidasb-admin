@@ -63,7 +63,7 @@
   <button nz-button nzType="primary" (click)="assignEatMenu()">Asignar Menu</button>
 </div>
 <div nz-row nzGutter="8">
-  <nz-tabset [nzSelectedIndex]="selectedIndex" style="padding-left: 5px; width: 100%;">
+  <nz-tabset [(nzSelectedIndex)]="selectedIndex" style="padding-left: 5px; width: 100%;">
     <nz-tab [nzTitle]="'Desayuno'">
       <div nz-row nzGutter="8" class="insidePanel">
         <nz-list nzItemLayout="horizontal" style="width:100%;">

@@ -24,9 +24,11 @@ export class AssignEatMenuComponent implements OnInit {
   }
 
   loadMenus(): void {
-    this.menuService.getMenusGroup(1, 10000, '', '', this.groupId, true).subscribe(resp => {
-      this.groupMenus = resp.body.result;
-    });
+    if (this.groupId !== -1) {
+      this.menuService.getMenusGroup(1, 10000, '', '', this.groupId, true).subscribe(resp => {
+        this.groupMenus = resp.body.result;
+      });
+    }
 
     this.menuService.getGeneralMenus(1, 10000, '', '').subscribe(resp => {
       const temp: Menu[] = resp.body.result;

@@ -21,5 +21,10 @@
         [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;" (click)="explorePlan(entry)"></i>
     </div>
   </div>
+  <div *ngIf="!getEntry(date);">
+    <i nz-icon nzType="plus-circle" nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="'Nuevo Plan'"
+      [nzTheme]="'twotone'" [nzTwotoneColor]="'#1890ff'" style="cursor: pointer;margin-right:10px;"
+      (click)="newPlan(date)"></i>
+  </div>
 
 </ng-template>

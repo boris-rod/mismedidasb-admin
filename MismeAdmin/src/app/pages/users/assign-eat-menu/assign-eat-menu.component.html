@@ -4,7 +4,7 @@
 </div>
 
 <div nz-row nzGutter="8">
-  <div nz-col nzSpan="10">
+  <div nz-col nzSpan="10" *ngIf="groupId!==-1">
     <div nz-row nzGutter="8">
       <strong nz-typography>Menus del Grupo:</strong>
       <nz-select nzShowSearch [(ngModel)]="selectedMenu" style="width: 100%;">
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div nz-col nzSpan="4"></div>
+  <div nz-col nzSpan="4" *ngIf="groupId!==-1"></div>
 
   <div nz-col nzSpan="10">
     <div nz-row nzGutter="8">
@@ -24,6 +24,7 @@
     </div>
   </div>
 </div>
+
 
 <div nz-row nzGutter="8" style="margin-top: 10px;">
   <p nz-typography><span style="font-weight: bold;">Seleccionado: </span> {{selectedMenu?.name}}</p>

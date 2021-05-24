@@ -9,6 +9,7 @@ import { MessageComponent } from './message/message.component';
 import { DetailsComponent } from './details/details.component';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { UserSendCoinsComponent } from './user-send-coins/user-send-coins.component';
+import { Router } from '@angular/router';
 
 const log = new Logger('Users');
 @Component({
@@ -37,7 +38,7 @@ export class UsersComponent implements OnInit {
   maxEmotionValue = -10.0;
 
   constructor(private userService: UsersService, private modalService: NzModalService,
-    private messageService: NzMessageService) { }
+    private messageService: NzMessageService, private router: Router) { }
 
   ngOnInit(): void {
     // this.loadUsers();
@@ -190,5 +191,9 @@ export class UsersComponent implements OnInit {
     this.maxEmotionValue = event[1];
     this.showReset = true;
     this.loadUsers();
+  }
+
+  calendar(data: User): void {
+    this.router.navigate(['home/users/calendar/' + data.id]);
   }
 }

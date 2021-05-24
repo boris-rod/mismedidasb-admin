@@ -52,4 +52,7 @@ export class EatsService {
     return this.http.put<any>(Constants.EATS_BASE + '/users/' + userId + '/is-balanced-plan', obj);
   }
 
+  setUserPlan(plan: any, userId: number): Observable<any> {
+    return this.http.post<any>(Constants.EATS_BASE + '/users/' + userId + '/bulk-eats', plan);
+  }
 }

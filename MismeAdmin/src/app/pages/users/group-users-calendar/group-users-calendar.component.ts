@@ -65,7 +65,7 @@ export class GroupUsersCalendarComponent implements OnInit {
   }
 
   explorePlan(entry: UserPlanSummary): void {
-    this.modalService.create({
+    const modal = this.modalService.create({
       nzTitle: 'Revisar Plan',
       nzContent: OneDayPlanComponent,
       nzFooter: null,
@@ -73,6 +73,26 @@ export class GroupUsersCalendarComponent implements OnInit {
       nzWidth: 1400,
       nzBodyStyle: { height: '600px', 'overflow-y': 'auto' }
     });
+    modal.afterClose.subscribe(resp => {
+      if (resp === true) {
+        this.getMonthEatsSummary();
+      }
+    });
   }
 
+  newPlan(date: Date): void {
+    const modal = this.modalService.create({
+      nzTitle: 'Revisar Plan',
+      nzContent: OneDayPlanComponent,
+      nzFooter: null,
+      nzComponentParams: { userId: this.userId, newPlan: true, newPlanDate: date },
+      nzWidth: 1400,
+      nzBodyStyle: { height: '600px', 'overflow-y': 'auto' }
+    });
+    modal.afterClose.subscribe(resp => {
+      if (resp === true) {
+        this.getMonthEatsSummary();
+      }
+    });
+  }
 }
