@@ -29,13 +29,6 @@ export class GroupUsersComponent implements OnInit {
   results: User[];
   showReset = false;
 
-  eatFilterValue = [0, 0];
-  minEatValue = 0;
-  maxEatValue = 0;
-
-  emotionFilterValue = [-10.0, -10.0];
-  minEmotionValue = -10.0;
-  maxEmotionValue = -10.0;
 
   constructor(private userService: UsersService, private modalService: NzModalService,
     private messageService: NzMessageService, private router: Router, private credentialsService: CredentialsService) { }
@@ -46,8 +39,8 @@ export class GroupUsersComponent implements OnInit {
   loadUsers(): void {
     this.isLoading = true;
 
-    this.userService.getUsers(this.page, this.perPage, this.sort, this.searchTerm, this.statusFilter,
-      this.minEatValue, this.maxEatValue, this.minEmotionValue, this.maxEmotionValue)
+    this.userService.getGroupUsers(this.credentialsService.credentials.account.group.id,
+      this.page, this.perPage, this.sort, this.searchTerm, this.statusFilter)
       .pipe(finalize(() => {
         this.isLoading = false;
       }))
@@ -55,6 +48,10 @@ export class GroupUsersComponent implements OnInit {
         const pData = resp.headers.get('PagingData');
         this.total = JSON.parse(pData).totalItems;
         this.results = resp.body.result;
+        const ind = this.results.findIndex(r => r.email === this.credentialsService.credentials.account.email);
+        if (ind > -1) {
+          this.results.splice(ind, 1);
+        }
       }, error => {
         log.error(error);
       });

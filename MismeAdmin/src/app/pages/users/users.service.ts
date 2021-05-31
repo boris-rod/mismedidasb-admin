@@ -112,4 +112,21 @@ export class UsersService {
     return this.http.patch<any>('account/email-unsuscribe/' + token, {});
   }
 
+
+  getGroupUsers(groupId: number, page: number, perPage: number, sortOrder: string,
+    search: string, statusFilter: number): Observable<any> {
+
+    const params: HttpParams = new HttpParams()
+      .append('page', page.toString())
+      .append('perPage', perPage.toString())
+      .append('sortOrder', sortOrder)
+      .append('search', search)
+      .append('statusFilter', statusFilter.toString());
+
+    return this.http.get<User>(Constants.GROUPS_BASE_NO_ADMIN + '/' + groupId + '/users', {
+      params,
+      observe: 'response'
+    });
+  }
+
 }
