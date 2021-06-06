@@ -51,6 +51,9 @@ export class GroupUsersCalendarComponent implements OnInit {
       }))
       .subscribe(resp => {
         this.summaries = resp.result;
+        this.summaries.forEach(sum => {
+          sum.planDateTime = new Date(sum.planDateTime);
+        });
       }, error => { });
   }
 
@@ -81,6 +84,9 @@ export class GroupUsersCalendarComponent implements OnInit {
   }
 
   newPlan(date: Date): void {
+    const d = new Date();
+    date = new Date(date.getFullYear(), date.getMonth(), date.getDate(), d.getHours(), d.getMinutes());
+
     const modal = this.modalService.create({
       nzTitle: 'Revisar Plan',
       nzContent: OneDayPlanComponent,

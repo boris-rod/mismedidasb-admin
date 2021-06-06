@@ -4,8 +4,11 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'https://localhost:44384/api/',
-  hubUrl: 'https://localhost:44384/'
+  // serverUrl: 'https://localhost:44384/api/',
+  // hubUrl: 'https://localhost:44384/'
+  serverUrl: 'https://api-dev.metriri.com/api/',
+  hubUrl: 'https://api-dev.metriri.com/'
+
 };
 
 /*

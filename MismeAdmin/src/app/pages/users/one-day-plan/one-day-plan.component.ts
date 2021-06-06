@@ -13,6 +13,9 @@ import { json } from '@rxweb/reactive-form-validators';
 import { AssignEatMenuComponent } from '../assign-eat-menu/assign-eat-menu.component';
 import { CredentialsService } from '../../../core-mismes/authentication/credentials.service';
 import { Menu } from '../../../core-mismes/models/menu';
+import * as moment from 'moment';
+
+
 
 @Component({
   selector: 'app-one-day-plan',
@@ -56,7 +59,7 @@ export class OneDayPlanComponent implements OnInit {
       }, error => { });
 
     this.eatService.getUserPlanByDate(this.userId, this.newPlan === false ?
-      this.entry.planDateTime.toString() : this.newPlanDate.toUTCString(),
+      this.entry.planDateTime.toUTCString() : this.newPlanDate.toUTCString(),
       1, 100000).
       pipe(finalize(() => {
         this.isLoading = false;
