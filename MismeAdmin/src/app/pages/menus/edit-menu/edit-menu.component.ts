@@ -163,31 +163,31 @@ export class EditMenuComponent implements OnInit {
   removeEat(ev: any, item: any, eatType: number): void {
     switch (eatType) {
       case 0:
-        const ind = this.breakfast.findIndex(b => b.name === item.name && b.qty === item.qty);
+        const ind = this.breakfast.findIndex(b => b.dish.name === item.dish.name && b.qty === item.qty);
         if (ind !== -1) {
           this.breakfast.splice(ind, 1);
         }
         break;
       case 1:
-        const ind1 = this.snack1.findIndex(b => b.name === item.name && b.qty === item.qty);
+        const ind1 = this.snack1.findIndex(b => b.dish.name === item.dish.name && b.qty === item.qty);
         if (ind1 !== -1) {
           this.snack1.splice(ind, 1);
         }
         break;
       case 2:
-        const ind2 = this.lunch.findIndex(b => b.name === item.name && b.qty === item.qty);
+        const ind2 = this.lunch.findIndex(b => b.dish.name === item.dish.name && b.qty === item.qty);
         if (ind2 !== -1) {
           this.lunch.splice(ind, 1);
         }
         break;
       case 3:
-        const ind3 = this.snack2.findIndex(b => b.name === item.name && b.qty === item.qty);
+        const ind3 = this.snack2.findIndex(b => b.dish.name === item.dish.name && b.qty === item.qty);
         if (ind3 !== -1) {
           this.snack2.splice(ind, 1);
         }
         break;
       default:
-        const ind4 = this.dinner.findIndex(b => b.name === item.name && b.qty === item.qty);
+        const ind4 = this.dinner.findIndex(b => b.dish.name === item.dish.name && b.qty === item.qty);
         if (ind4 !== -1) {
           this.dinner.splice(ind, 1);
         }

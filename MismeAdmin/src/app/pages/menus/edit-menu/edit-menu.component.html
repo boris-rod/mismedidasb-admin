@@ -24,54 +24,54 @@
     </div>
   </nz-collapse-panel>
   <nz-collapse-panel nzHeader="Merienda 1" [nzExtra]="snack1Tpl">
-    <div nz-row nzGutter="8" *ngFor="let item of snack1">
+    <div nz-row nzGutter="8" *ngFor="let item1 of snack1">
       <div nz-col nzSpan="22">
-        <p nz-typography class="no-margin">{{item.dish.name}}</p>
+        <p nz-typography class="no-margin">{{item1.dish.name}}</p>
         <p nz-typography style="font-size: 10px;"><span style="font-weight: bold;">Cant:
-          </span><span>{{item.qty}}</span>
+          </span><span>{{item1.qty}}</span>
         </p>
       </div>
       <div nz-col nzSpan="2">
-        <i nz-icon nzType="delete" (click)="removeEat($event,item, 1)" style="cursor: pointer;"></i>
+        <i nz-icon nzType="delete" (click)="removeEat($event,item1, 1)" style="cursor: pointer;"></i>
       </div>
     </div>
   </nz-collapse-panel>
   <nz-collapse-panel nzHeader="Almuerzo" [nzExtra]="lunchTpl">
-    <div nz-row nzGutter="8" *ngFor="let item of lunch">
+    <div nz-row nzGutter="8" *ngFor="let item2 of lunch">
       <div nz-col nzSpan="22">
-        <p nz-typography class="no-margin">{{item.dish.name}}</p>
+        <p nz-typography class="no-margin">{{item2.dish.name}}</p>
         <p nz-typography style="font-size: 10px;"><span style="font-weight: bold;">Cant:
-          </span><span>{{item.qty}}</span>
+          </span><span>{{item2.qty}}</span>
         </p>
       </div>
       <div nz-col nzSpan="2">
-        <i nz-icon nzType="delete" (click)="removeEat($event,item, 2)" style="cursor: pointer;"></i>
+        <i nz-icon nzType="delete" (click)="removeEat($event,item2, 2)" style="cursor: pointer;"></i>
       </div>
     </div>
   </nz-collapse-panel>
   <nz-collapse-panel nzHeader="Merienda 2" [nzExtra]="snack2Tpl">
-    <div nz-row nzGutter="8" *ngFor="let item of snack2">
+    <div nz-row nzGutter="8" *ngFor="let item3 of snack2">
       <div nz-col nzSpan="22">
-        <p nz-typography class="no-margin">{{item.dish.name}}</p>
+        <p nz-typography class="no-margin">{{item3.dish.name}}</p>
         <p nz-typography style="font-size: 10px;"><span style="font-weight: bold;">Cant:
-          </span><span>{{item.qty}}</span>
+          </span><span>{{item3.qty}}</span>
         </p>
       </div>
       <div nz-col nzSpan="2">
-        <i nz-icon nzType="delete" (click)="removeEat($event,item, 3)" style="cursor: pointer;"></i>
+        <i nz-icon nzType="delete" (click)="removeEat($event,item3, 3)" style="cursor: pointer;"></i>
       </div>
     </div>
   </nz-collapse-panel>
   <nz-collapse-panel nzHeader="Comida" [nzExtra]="dinnerTpl">
-    <div nz-row nzGutter="8" *ngFor="let item of dinner">
+    <div nz-row nzGutter="8" *ngFor="let item4 of dinner">
       <div nz-col nzSpan="22">
-        <p nz-typography class="no-margin">{{item.dish.name}}</p>
+        <p nz-typography class="no-margin">{{item4.dish.name}}</p>
         <p nz-typography style="font-size: 10px;"><span style="font-weight: bold;">Cant:
-          </span><span>{{item.qty}}</span>
+          </span><span>{{item4.qty}}</span>
         </p>
       </div>
       <div nz-col nzSpan="2">
-        <i nz-icon nzType="delete" (click)="removeEat($event,item, 4)" style="cursor: pointer;"></i>
+        <i nz-icon nzType="delete" (click)="removeEat($event,item4, 4)" style="cursor: pointer;"></i>
       </div>
     </div>
   </nz-collapse-panel>
