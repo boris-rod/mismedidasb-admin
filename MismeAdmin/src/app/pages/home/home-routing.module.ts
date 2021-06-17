@@ -13,7 +13,8 @@ const routes: Routes = [
       { path: 'dishes', loadChildren: () => import('../dishes/dishes.module').then(m => m.DishesModule) },
       { path: 'messages', loadChildren: () => import('../messages/messages.module').then(m => m.MessagesModule) },
       { path: 'groups', loadChildren: () => import('../groups/groups.module').then(m => m.GroupsModule) },
-      { path: 'menus', loadChildren: () => import('../menus/menus.module').then(m => m.MenusModule) }
+      { path: 'menus', loadChildren: () => import('../menus/menus.module').then(m => m.MenusModule) },
+      { path: 'translations', loadChildren: () => import('../translations/translations.module').then(m => m.TranslationsModule) }
 
     ]
   },

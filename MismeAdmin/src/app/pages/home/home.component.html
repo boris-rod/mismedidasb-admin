@@ -54,6 +54,11 @@
         <i nz-icon nzType="menu"></i>
         <span>Menús</span>
       </li>
+      <li *ngIf="role==='admin'" nz-menu-item nz-tooltip nzTooltipPlacement="right"
+        [nzTooltipTitle]="isCollapsed ? 'Traducciones' : ''" routerLink="/home/translations">
+        <i nz-icon nzType="translation"></i>
+        <span>Traducciones</span>
+      </li>
 
 
     </ul>

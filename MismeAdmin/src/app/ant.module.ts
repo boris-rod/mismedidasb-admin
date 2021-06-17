@@ -29,6 +29,7 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 @NgModule({
   imports: [
@@ -59,7 +60,8 @@ import { NzCalendarModule } from 'ng-zorro-antd/calendar';
     NzSliderModule,
     NzCollapseModule,
     NzAutocompleteModule,
-    NzCalendarModule
+    NzCalendarModule,
+    NzCheckboxModule
   ],
   exports: [
     NzLayoutModule,
@@ -89,7 +91,8 @@ import { NzCalendarModule } from 'ng-zorro-antd/calendar';
     NzSliderModule,
     NzCollapseModule,
     NzAutocompleteModule,
-    NzCalendarModule
+    NzCalendarModule,
+    NzCheckboxModule
   ],
   providers: [NzMessageService, NzModalService]
 })
