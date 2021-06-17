@@ -1,1 +1,51 @@
-<p>general-content-translations works!</p>
+<div nz-row>
+  <label nz-checkbox (ngModelChange)="onCheckedChange($event)" [(ngModel)]="checked">
+    Por traducir
+  </label>
+</div>
+<nz-collapse nzAccordion>
+  <nz-collapse-panel *ngFor="let c of contents" [nzHeader]="expandedIcon">
+    <nz-tabset>
+      <nz-tab nzTitle="Español">
+        <ng-template nz-tab>
+          <app-general-content-for-translation [contentId]="c.id" [content]="c.content" [lang]="'es'"
+            (valuesChanged)='onContentChanged($event)'>
+          </app-general-content-for-translation>
+        </ng-template>
+      </nz-tab>
+      <nz-tab nzTitle="Inglés">
+        <ng-template nz-tab>
+          <app-general-content-for-translation [contentId]="c.id" [content]="c.contentEN" [lang]="'en'"
+            (valuesChanged)='onContentChanged($event)'>
+          </app-general-content-for-translation>
+        </ng-template>
+      </nz-tab>
+      <nz-tab nzTitle="Italiano">
+        <ng-template nz-tab>
+          <app-general-content-for-translation [contentId]="c.id" [content]="c.contentIT" [lang]="'it'"
+            (valuesChanged)='onContentChanged($event)'>
+          </app-general-content-for-translation>
+        </ng-template>
+      </nz-tab>
+    </nz-tabset>
+    <ng-template #expandedIcon let-active>
+      <p>
+        <span *ngIf="c.contentTypeId===0">
+          Política de Privacidad
+        </span>
+        <span *ngIf="c.contentTypeId===1">
+          Términos y condiciones
+        </span>
+        <span *ngIf="c.contentTypeId===2">
+          Acerca de Nosotros
+        </span>
+        <span *ngIf="c.contentTypeId===3">
+          Preguntas Frecuentes
+        </span>
+        <span class="langName">ES</span>
+        <span *ngIf="c.contentEN?.length>0" class="langName">EN</span>
+        <span *ngIf="c.contentIT?.length>0" class="langName">IT</span>
+      </p>
+    </ng-template>
+  </nz-collapse-panel>
+</nz-collapse>
