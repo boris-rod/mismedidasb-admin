@@ -58,3 +58,12 @@
   -o-border-radius: 10px;
 }
 /*END SCROLLS */
+
+
+::ng-deep .langName {
+  font-size: 10px;
+  color: #3366ff;
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}

@@ -15,12 +15,13 @@ import { RemindersTranslationsComponent } from './reminders-translations/reminde
 import { ResultsTranslationsComponent } from './results-translations/results-translations.component';
 import { TipsTranslationsComponent } from './tips-translations/tips-translations.component';
 import { TipsForTranslationComponent } from './tips-translations/tips-for-translation/tips-for-translation.component';
+import { ResultsForTranslationComponent } from './results-translations/results-for-translation/results-for-translation.component';
 
 @NgModule({
   declarations: [TranslationsComponent, AnswersTranslationsComponent,
     ConceptsTranslationsComponent, DishesTranslationsComponent,
     GeneralContentTranslationsComponent, PollsTranslationsComponent,
-    QuestionsTranslationsComponent, RemindersTranslationsComponent, ResultsTranslationsComponent, TipsTranslationsComponent, TipsForTranslationComponent],
+    QuestionsTranslationsComponent, RemindersTranslationsComponent, ResultsTranslationsComponent, TipsTranslationsComponent, TipsForTranslationComponent, ResultsForTranslationComponent],
   imports: [
     CommonModule,
     FormsModule,
