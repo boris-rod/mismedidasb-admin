@@ -1,0 +1,19 @@
+<div nz-row nzGutter="8" style="margin-top: 10px;">
+  <div nz-col nzSpan="24">
+    <label nz-typography><strong>Título:</strong></label>
+    <input nz-input [(ngModel)]="titleString" name="titleString" placeholder="">
+  </div>
+</div>
+
+<div nz-row nzGutter="8" style="margin-top: 10px;">
+  <div nz-col nzSpan="24">
+    <label nz-typography><strong>Mensaje:</strong></label>
+    <quill-editor name='contentString' [(ngModel)]="contentString" [placeholder]="''"
+      [styles]="{height:'200px', width:'100%'}"></quill-editor>
+  </div>
+</div>
+
+<div nz-row nzJustify="end" #nzFooter class="mt-10">
+  <button nz-button nzType="primary" (click)="saveTranslation()" [nzLoading]="isLoading"
+    [disabled]="contentString===null||contentString===''">Salvar</button>
+</div>

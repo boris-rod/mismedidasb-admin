@@ -1,1 +1,40 @@
-<p>reminders-translations works!</p>
+<div nz-row>
+  <label nz-checkbox (ngModelChange)="onCheckedChange($event)" [(ngModel)]="checked">
+    Por traducir
+  </label>
+</div>
+<nz-collapse nzAccordion>
+  <nz-collapse-panel *ngFor="let c of reminders" [nzHeader]="expandedIcon">
+    <nz-tabset>
+      <nz-tab nzTitle="Español">
+        <ng-template nz-tab>
+          <app-reminder-for-translation [reminderId]="c.id" [title]="c.title" [body]="c.body" [lang]="'es'"
+            (valuesChanged)='onContentChanged($event)'>
+          </app-reminder-for-translation>
+        </ng-template>
+      </nz-tab>
+      <nz-tab nzTitle="Inglés">
+        <ng-template nz-tab>
+          <app-reminder-for-translation [reminderId]="c.id" [title]="c.titleEN" [body]="c.bodyEN" [lang]="'en'"
+            (valuesChanged)='onContentChanged($event)'>
+          </app-reminder-for-translation>
+        </ng-template>
+      </nz-tab>
+      <nz-tab nzTitle="Italiano">
+        <ng-template nz-tab>
+          <app-reminder-for-translation [reminderId]="c.id" [title]="c.titleIT" [body]="c.bodyIT" [lang]="'it'"
+            (valuesChanged)='onContentChanged($event)'>
+          </app-reminder-for-translation>
+        </ng-template>
+      </nz-tab>
+    </nz-tabset>
+    <ng-template #expandedIcon let-active>
+      <p>
+        {{c.title}}
+        <span class="langName">ES</span>
+        <span *ngIf="c.titleEN?.length>0" class="langName">EN</span>
+        <span *ngIf="c.titleIT?.length>0" class="langName">IT</span>
+      </p>
+    </ng-template>
+  </nz-collapse-panel>
+</nz-collapse>
