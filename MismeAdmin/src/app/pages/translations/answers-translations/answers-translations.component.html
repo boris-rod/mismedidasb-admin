@@ -1,1 +1,43 @@
-<p>answers-translations works!</p>
+<div nz-row>
+  <label nz-checkbox (ngModelChange)="onCheckedChange($event)" [(ngModel)]="checked">
+    Por traducir
+  </label>
+</div>
+<nz-collapse nzAccordion>
+  <nz-collapse-panel *ngFor="let c of answers" [nzHeader]="expandedIcon">
+    <nz-tabset>
+      <nz-tab nzTitle="Español">
+        <ng-template nz-tab>
+          <app-tips-for-translation [answerId]="c.id" [title]="c.title" [lang]="'es'"
+            (valuesChanged)='onContentChanged($event)'>
+          </app-tips-for-translation>
+        </ng-template>
+      </nz-tab>
+      <nz-tab nzTitle="Inglés">
+        <ng-template nz-tab>
+          <app-tips-for-translation [answerId]="c.id" [title]="c.titleEN" [lang]="'en'"
+            (valuesChanged)='onContentChanged($event)'>
+          </app-tips-for-translation>
+        </ng-template>
+      </nz-tab>
+      <nz-tab nzTitle="Italiano">
+        <ng-template nz-tab>
+          <app-tips-for-translation [answerId]="c.id" [title]="c.titleIT" [lang]="'it'"
+            (valuesChanged)='onContentChanged($event)'>
+          </app-tips-for-translation>
+        </ng-template>
+      </nz-tab>
+    </nz-tabset>
+    <ng-template #expandedIcon let-active>
+      <p>
+        {{c.title}}
+        <span class="langName">ES</span>
+        <span *ngIf="c.titleEN?.length>0" class="langName">EN</span>
+        <span *ngIf="c.titleIT?.length>0" class="langName">IT</span>
+      </p>
+      <p>
+        Cuestionario: {{c.pollName}}
+      </p>
+    </ng-template>
+  </nz-collapse-panel>
+</nz-collapse>

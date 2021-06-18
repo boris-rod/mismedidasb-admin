@@ -1,0 +1,12 @@
+<div nz-row nzGutter="8" style="margin-top: 10px;">
+  <div nz-col nzSpan="24">
+    <quill-editor name="titleString" [(ngModel)]="titleString" [placeholder]="''"
+      [styles]="{height:'200px', width: '100%'}">
+    </quill-editor>
+  </div>
+</div>
+
+<div nz-row nzJustify="end" #nzFooter class="mt-10">
+  <button nz-button nzType="primary" (click)="saveTranslation()" [nzLoading]="isLoading"
+    [disabled]="titleString===null||titleString===''">Salvar</button>
+</div>
