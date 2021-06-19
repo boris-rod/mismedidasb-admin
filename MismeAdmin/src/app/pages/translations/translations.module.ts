@@ -19,12 +19,13 @@ import { ResultsForTranslationComponent } from './results-translations/results-f
 import { ReminderForTranslationComponent } from './reminders-translations/reminder-for-translation/reminder-for-translation.component';
 import { GeneralContentForTranslationComponent } from './general-content-translations/general-content-for-translation/general-content-for-translation.component';
 import { AnswerForTranslationComponent } from './answers-translations/answer-for-translation/answer-for-translation.component';
+import { ConceptForTranslationComponent } from './concepts-translations/concept-for-translation/concept-for-translation.component';
 
 @NgModule({
   declarations: [TranslationsComponent, AnswersTranslationsComponent,
     ConceptsTranslationsComponent, DishesTranslationsComponent,
     GeneralContentTranslationsComponent, PollsTranslationsComponent,
-    QuestionsTranslationsComponent, RemindersTranslationsComponent, ResultsTranslationsComponent, TipsTranslationsComponent, TipsForTranslationComponent, ResultsForTranslationComponent, ReminderForTranslationComponent, GeneralContentForTranslationComponent, AnswerForTranslationComponent],
+    QuestionsTranslationsComponent, RemindersTranslationsComponent, ResultsTranslationsComponent, TipsTranslationsComponent, TipsForTranslationComponent, ResultsForTranslationComponent, ReminderForTranslationComponent, GeneralContentForTranslationComponent, AnswerForTranslationComponent, ConceptForTranslationComponent],
   imports: [
     CommonModule,
     FormsModule,

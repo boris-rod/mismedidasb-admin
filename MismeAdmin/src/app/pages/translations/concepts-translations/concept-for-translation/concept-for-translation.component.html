@@ -1,0 +1,26 @@
+<div nz-row nzGutter="8" style="margin-top: 10px;">
+  <div nz-col nzSpan="24">
+    <label nz-typography><strong>Nombre:</strong></label>
+    <input nz-input [(ngModel)]="conceptNameString" name="conceptNameString" placeholder="">
+  </div>
+</div>
+
+<div nz-row nzGutter="8" style="margin-top: 10px;">
+  <div nz-col nzSpan="24">
+    <label nz-typography><strong>Descripción:</strong></label>
+    <quill-editor name='conceptDescriptionString' [(ngModel)]="conceptDescriptionString" [placeholder]="''"
+      [styles]="{height:'200px', width:'100%'}"></quill-editor>
+  </div>
+</div>
+
+<div nz-row nzGutter="8" style="margin-top: 10px;">
+  <div nz-col nzSpan="24">
+    <label nz-typography><strong>Instrucciones:</strong></label>
+    <quill-editor name='instructions' [(ngModel)]="instructions" [placeholder]="''"
+      [styles]="{height:'200px', width:'100%'}"></quill-editor>
+  </div>
+</div>
+
+<div nz-row nzJustify="end" #nzFooter class="mt-10">
+  <button nz-button nzType="primary" (click)="saveTranslation()" [nzLoading]="isLoading">Salvar</button>
+</div>

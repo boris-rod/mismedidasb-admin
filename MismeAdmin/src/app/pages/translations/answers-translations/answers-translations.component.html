@@ -8,23 +8,23 @@
     <nz-tabset>
       <nz-tab nzTitle="Español">
         <ng-template nz-tab>
-          <app-tips-for-translation [answerId]="c.id" [title]="c.title" [lang]="'es'"
+          <app-answer-for-translation [answerId]="c.id" [title]="c.title" [lang]="'es'"
             (valuesChanged)='onContentChanged($event)'>
-          </app-tips-for-translation>
+          </app-answer-for-translation>
         </ng-template>
       </nz-tab>
       <nz-tab nzTitle="Inglés">
         <ng-template nz-tab>
-          <app-tips-for-translation [answerId]="c.id" [title]="c.titleEN" [lang]="'en'"
+          <app-answer-for-translation [answerId]="c.id" [title]="c.titleEN" [lang]="'en'"
             (valuesChanged)='onContentChanged($event)'>
-          </app-tips-for-translation>
+          </app-answer-for-translation>
         </ng-template>
       </nz-tab>
       <nz-tab nzTitle="Italiano">
         <ng-template nz-tab>
-          <app-tips-for-translation [answerId]="c.id" [title]="c.titleIT" [lang]="'it'"
+          <app-answer-for-translation [answerId]="c.id" [title]="c.titleIT" [lang]="'it'"
             (valuesChanged)='onContentChanged($event)'>
-          </app-tips-for-translation>
+          </app-answer-for-translation>
         </ng-template>
       </nz-tab>
     </nz-tabset>
