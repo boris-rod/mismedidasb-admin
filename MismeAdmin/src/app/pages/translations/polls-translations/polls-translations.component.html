@@ -1,1 +1,43 @@
-<p>polls-translations works!</p>
+<div nz-row>
+  <label nz-checkbox (ngModelChange)="onCheckedChange($event)" [(ngModel)]="checked">
+    Por traducir
+  </label>
+</div>
+<nz-collapse nzAccordion>
+  <nz-collapse-panel *ngFor="let c of polls" [nzHeader]="expandedIcon">
+    <nz-tabset>
+      <nz-tab nzTitle="Español">
+        <ng-template nz-tab>
+          <app-poll-for-translation [pollId]="c.id" [pollName]="c.name" [pollDescription]="c.description"
+            [pollHtmlContent]="c.htmlContent" [pollReadOnly]="c.isReadOnly" [lang]="'es'"
+            (valuesChanged)='onTitleChanged($event)'>
+          </app-poll-for-translation>
+        </ng-template>
+      </nz-tab>
+      <nz-tab nzTitle="Inglés">
+        <ng-template nz-tab>
+          <app-poll-for-translation [pollId]="c.id" [pollName]="c.nameEN" [pollDescription]="c.descriptionEN"
+            [pollHtmlContent]="c.htmlContentEN" [pollReadOnly]="c.isReadOnly" [lang]="'en'"
+            (valuesChanged)='onTitleChanged($event)'>
+          </app-poll-for-translation>
+        </ng-template>
+      </nz-tab>
+      <nz-tab nzTitle="Italiano">
+        <ng-template nz-tab>
+          <app-poll-for-translation [pollId]="c.id" [pollName]="c.nameIT" [pollDescription]="c.descriptionIT"
+            [pollHtmlContent]="c.htmlContentIT" [pollReadOnly]="c.isReadOnly" [lang]="'it'"
+            (valuesChanged)='onTitleChanged($event)'>
+          </app-poll-for-translation>
+        </ng-template>
+      </nz-tab>
+    </nz-tabset>
+    <ng-template #expandedIcon let-active>
+      <p>
+        {{c.name}}
+        <span class="langName">ES</span>
+        <span *ngIf="c.nameEN?.length>0" class="langName">EN</span>
+        <span *ngIf="c.nameIT?.length>0" class="langName">IT</span>
+      </p>
+    </ng-template>
+  </nz-collapse-panel>
+</nz-collapse>

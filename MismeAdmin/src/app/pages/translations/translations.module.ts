@@ -21,12 +21,13 @@ import { GeneralContentForTranslationComponent } from './general-content-transla
 import { AnswerForTranslationComponent } from './answers-translations/answer-for-translation/answer-for-translation.component';
 import { ConceptForTranslationComponent } from './concepts-translations/concept-for-translation/concept-for-translation.component';
 import { QuestionForTranslationComponent } from './questions-translations/question-for-translation/question-for-translation.component';
+import { PollForTranslationComponent } from './polls-translations/poll-for-translation/poll-for-translation.component';
 
 @NgModule({
   declarations: [TranslationsComponent, AnswersTranslationsComponent,
     ConceptsTranslationsComponent, DishesTranslationsComponent,
     GeneralContentTranslationsComponent, PollsTranslationsComponent,
-    QuestionsTranslationsComponent, RemindersTranslationsComponent, ResultsTranslationsComponent, TipsTranslationsComponent, TipsForTranslationComponent, ResultsForTranslationComponent, ReminderForTranslationComponent, GeneralContentForTranslationComponent, AnswerForTranslationComponent, ConceptForTranslationComponent, QuestionForTranslationComponent],
+    QuestionsTranslationsComponent, RemindersTranslationsComponent, ResultsTranslationsComponent, TipsTranslationsComponent, TipsForTranslationComponent, ResultsForTranslationComponent, ReminderForTranslationComponent, GeneralContentForTranslationComponent, AnswerForTranslationComponent, ConceptForTranslationComponent, QuestionForTranslationComponent, PollForTranslationComponent],
   imports: [
     CommonModule,
     FormsModule,
